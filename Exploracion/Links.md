@@ -6,3 +6,4 @@
 ## De Sanchez
 - [video](https://www.youtube.com/watch?v=dQw4w9WgXcQ)
 - [gitignore generator](https://mrkandreev.name/snippets/gitignore-generator/)
+- [gitattributes generator](https://richienb.github.io/gitattributes-generator/)
