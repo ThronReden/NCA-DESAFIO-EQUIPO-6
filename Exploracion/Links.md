@@ -1,6 +1,6 @@
 # LINKS
 ## De Salva
-- [Descargar JDBC]([https://www.youtube.com/watch?v=dQw4w9WgXcQ](https://www.mysql.com/products/connector/))
+- [Descargar JDBC](https://www.mysql.com/products/connector/)
 ## De Raul
 - [link 1](https://www.youtube.com/watch?v=dQw4w9WgXcQ)
 ## De Sanchez
