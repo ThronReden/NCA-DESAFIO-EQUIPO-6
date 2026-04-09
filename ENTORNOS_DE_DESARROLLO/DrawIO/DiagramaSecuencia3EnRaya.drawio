@@ -1,6 +1,6 @@
 <mxfile host="Electron" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) draw.io/29.6.6 Chrome/144.0.7559.236 Electron/40.8.4 Safari/537.36" version="29.6.6">
   <diagram name="Página-1" id="thWF08PiDz08Z6Adx_c4">
-    <mxGraphModel dx="786" dy="562" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1169" pageHeight="827" math="0" shadow="0">
+    <mxGraphModel dx="561" dy="401" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1169" pageHeight="827" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
@@ -29,12 +29,18 @@
           <mxGeometry height="300" width="100" x="650" y="140" as="geometry" />
         </mxCell>
         <mxCell id="JlyGrm7Pw1j7JAJ7eoR0-2" parent="JlyGrm7Pw1j7JAJ7eoR0-1" style="html=1;points=[[0,0,0,0,5],[0,1,0,0,-5],[1,0,0,0,5],[1,1,0,0,-5]];perimeter=orthogonalPerimeter;outlineConnect=0;targetShapes=umlLifeline;portConstraint=eastwest;newEdgeStyle={&quot;curved&quot;:0,&quot;rounded&quot;:0};" value="" vertex="1">
-          <mxGeometry height="120" width="10" x="45" y="90" as="geometry" />
+          <mxGeometry height="110" width="10" x="45" y="100" as="geometry" />
         </mxCell>
-        <mxCell id="JlyGrm7Pw1j7JAJ7eoR0-3" edge="1" parent="1" source="fg_hyCTc4bR9PKc5q-nf-20" style="html=1;verticalAlign=bottom;labelBackgroundColor=none;endArrow=open;endFill=0;rounded=0;exitX=1;exitY=0;exitDx=0;exitDy=5;exitPerimeter=0;" target="fg_hyCTc4bR9PKc5q-nf-1" value="1: Empezar partida">
+        <mxCell id="JlyGrm7Pw1j7JAJ7eoR0-3" edge="1" parent="1" source="fg_hyCTc4bR9PKc5q-nf-20" style="html=1;verticalAlign=bottom;labelBackgroundColor=none;endArrow=open;endFill=0;rounded=0;exitX=1;exitY=0;exitDx=0;exitDy=5;exitPerimeter=0;entryX=0;entryY=0;entryDx=0;entryDy=5;entryPerimeter=0;" target="fg_hyCTc4bR9PKc5q-nf-2" value="1: Empezar partida">
           <mxGeometry relative="1" width="160" as="geometry">
             <mxPoint x="570" y="290" as="sourcePoint" />
             <mxPoint x="730" y="290" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="NRyxV8TNJwbOeVv7qcTH-1" edge="1" parent="1" source="fg_hyCTc4bR9PKc5q-nf-2" style="html=1;verticalAlign=bottom;labelBackgroundColor=none;endArrow=open;endFill=0;rounded=0;exitX=0.971;exitY=0.142;exitDx=0;exitDy=0;exitPerimeter=0;" target="JlyGrm7Pw1j7JAJ7eoR0-2" value="&lt;span style=&quot;background-color: light-dark(#ffffff, var(--ge-dark-color, #121212));&quot;&gt;1.1: Empezar partida&lt;/span&gt;">
+          <mxGeometry relative="1" width="160" as="geometry">
+            <mxPoint x="520" y="280" as="sourcePoint" />
+            <mxPoint x="720" y="290" as="targetPoint" />
           </mxGeometry>
         </mxCell>
       </root>
