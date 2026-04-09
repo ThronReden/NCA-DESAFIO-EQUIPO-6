@@ -38,3 +38,6 @@ nbdist/
 .nb-gradle/
 
 # End of https://mrkandreev.name/snippets/gitignore-generator/#Java,Maven,NetBeans
+
+# DrawIO stuff
+.bkp
