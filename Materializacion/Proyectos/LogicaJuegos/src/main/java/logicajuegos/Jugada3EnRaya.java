@@ -29,5 +29,17 @@ class Jugada3EnRaya {
             this.jugador = j;
         }
     }
+
+    public int getTurno() {
+        return turno;
+    }
+
+    public int getPosicion() {
+        return posicion;
+    }
+
+    public String getJugador() {
+        return jugador;
+    }
     
 }
