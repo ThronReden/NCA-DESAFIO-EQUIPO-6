@@ -8,20 +8,20 @@ class Jugada3EnRaya {
     
     private int turno;
     private int posicion;
-    private String jugador;
+    private Jugador jugador;
     
-    public static final int ARRIBA_IZQUIERDA = 1;
-    public static final int ARRIBA = 2;
-    public static final int ARRIBA_DERECHA = 3;
-    public static final int CENTRO_IZQUIERDA = 4;
-    public static final int CENTRO = 5;
-    public static final int CENTRO_DERECHA = 6;
-    public static final int ABAJO_IZQUIERDA = 7;
-    public static final int ABAJO = 8;
-    public static final int ABAJO_DERECHA = 9;
+    public static final int ARRIBA_IZQUIERDA = 0;
+    public static final int ARRIBA = 1;
+    public static final int ARRIBA_DERECHA = 2;
+    public static final int CENTRO_IZQUIERDA = 3;
+    public static final int CENTRO = 4;
+    public static final int CENTRO_DERECHA = 5;
+    public static final int ABAJO_IZQUIERDA = 6;
+    public static final int ABAJO = 7;
+    public static final int ABAJO_DERECHA = 8;
     
-    public Jugada3EnRaya(int turn, int pos, String j){
-        if(pos < 1 || pos > 9){
+    public Jugada3EnRaya(int turn, int pos, Jugador j){
+        if(pos < 0 || pos >= 9){
             throw new IllegalArgumentException("Posicion no valida");
         } else {
             this.turno = turn;
@@ -38,7 +38,7 @@ class Jugada3EnRaya {
         return posicion;
     }
 
-    public String getJugador() {
+    public Jugador getJugador() {
         return jugador;
     }
     
