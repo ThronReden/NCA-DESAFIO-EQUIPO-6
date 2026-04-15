@@ -3,7 +3,8 @@
 - [Descargar JDBC](https://www.mysql.com/products/connector/)
 - [Video CRUD MySQL - NetBeans](https://youtu.be/oalqIZnnvs8?si=BPfF0z7RPYPYju9B).
 ## De Raul
-- [link 1](https://www.youtube.com/watch?v=dQw4w9WgXcQ)
+- [video SAMBA](https://www.youtube.com/watch?v=lInuZPRxFjE)
+- [video FileZilla](https://www.youtube.com/watch?v=4sDguUKel6c)
 ## De Sanchez
 - [video](https://www.youtube.com/watch?v=dQw4w9WgXcQ)
 - [gitignore generator](https://mrkandreev.name/snippets/gitignore-generator/)
