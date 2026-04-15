@@ -9,7 +9,7 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <maven.compiler.source>22</maven.compiler.source>
         <maven.compiler.target>22</maven.compiler.target>
-        <exec.mainClass>logica3enraya.Logica3EnRaya</exec.mainClass>
+        <exec.mainClass>logicajuegos.Partida3EnRaya</exec.mainClass>
     </properties>
     <name>LogicaJuegos</name>
 </project>
