@@ -1,0 +1,67 @@
+use desafio_grupo6;
+
+INSERT INTO TIENDA (ID_ARTICULOS, NOMBRE, PRECIO, ID_TIENDA) VALUES
+(1, 'Fondo Rojo', 100, 11),
+(2, 'Fondo Azul', 100, 12),
+(3, 'Fondo Verde', 100, 13),
+(4, 'Fondo Negro', 150, 14),
+(5, 'Fondo Dorado', 200, 15);
+
+INSERT INTO USUARIO (ID_USUARIO, NOMBRE_USUARIO, CORREO, CONTRASEÑA) VALUES
+(1, 'Javiergamer', 'Javier1@gmail.com', '1234'),
+(2, 'lucia', 'lucia@gmail.com', 'abcd'),
+(3, 'diego', 'diego@gmail.com', 'pass3'),
+(4, 'marta', 'marta@gmail.com', 'pass4'),
+(5, 'adminmaster', 'admin@gmail.com', 'admin1');
+
+INSERT INTO JUGADOR (ID_JUGADOR, PUNTOS, ULTIMA_CONEXION, ID_USUARIO) VALUES
+(1, 1200, '2026-04-15 10:00:00', 1),
+(2, 2500, '2026-04-15 10:05:00', 2),
+(3, 800, '2026-04-15 10:10:00', 3),
+(4, 3400, '2026-04-15 10:15:00', 4),
+(5, 5000, '2026-04-15 10:20:00', 1);
+
+INSERT INTO ADMINISTRADOR (ID_ADMINISTRADOR, ID_USUARIO) VALUES
+(1, 5);
+
+INSERT INTO ESTADISTICAS_PPT (ID_JUGADOR, PIEDRA, PAPEL, TIJERA) VALUES
+(1, 10, 7, 5),
+(2, 15, 12, 9),
+(3, 4, 6, 3),
+(4, 20, 11, 14),
+(5, 8, 8, 8);
+
+INSERT INTO ESTADISTICAS_PPTLS (ID_JUGADOR, PIEDRA, PAPEL, TIJERA, LAGARTO, SPOCK) VALUES
+(1, 5, 4, 3, 2, 1),
+(2, 9, 8, 7, 4, 2),
+(3, 1, 2, 1, 0, 1),
+(4, 12, 10, 8, 6, 5),
+(5, 3, 3, 3, 3, 3);
+
+INSERT INTO ESTADISTICAS_3_EN_RAYA (ID_JUGADOR, PARTIDAS_JUGADAS, PARTIDAS_GANADAS, PARTIDAS_PERDIDAS, EMPATES) VALUES
+(1, 12, 7, 4, 1),
+(2, 18, 11, 6, 1),
+(3, 9, 3, 5, 1),
+(4, 20, 15, 4, 1),
+(5, 14, 8, 5, 1);
+
+INSERT INTO PARTIDOS (ID_PARTIDA, FECHA, GANADOR, ID_PPTLS) VALUES
+(1, '2026-04-15 10:30:00', 1, 1),
+(2, '2026-04-15 10:40:00', 2, 1),
+(3, '2026-04-15 10:50:00', 4, 1),
+(4, '2026-04-15 11:00:00', 5, 1),
+(5, '2026-04-15 11:10:00', 2, 1);
+
+INSERT INTO Jugador_Partidos (ID_JUGADOR, ID_PARTIDA, `%VICTORIAS`) VALUES
+(1, 1, 1),
+(2, 2, 1),
+(4, 3, 1),
+(5, 4, 1),
+(2, 5, 1);
+
+INSERT INTO ARTICULOS_JUGADOR (ID_JUGADOR, ID_ARTICULOS, FEHCACOMPRA) VALUES
+(1, 1, '2026-04-15 09:00:00'),
+(2, 2, '2026-04-15 09:05:00'),
+(3, 3, '2026-04-15 09:10:00'),
+(4, 4, '2026-04-15 09:15:00'),
+(5, 5, '2026-04-15 09:20:00');
