@@ -31,7 +31,7 @@ public class Jugador3EnRaya extends Jugador{
         boolean bueno;
         do {
             bueno = false;
-            estadoTablero.mostrarEstadoTableroTerminal();
+            getEstadoTablero().mostrarEstadoTableroTerminal();
             try{
                 hacerJugada(Teclado.leerEntero(getNombre()+" introduce una posicion (1-9): ")-1,p);
                 bueno = true;

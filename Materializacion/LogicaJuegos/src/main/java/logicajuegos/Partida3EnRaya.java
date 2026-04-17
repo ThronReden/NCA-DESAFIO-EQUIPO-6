@@ -2,7 +2,6 @@ package logicajuegos;
 
 import java.util.ArrayList;
 import java.util.Random;
-import utilidades.Teclado;
 
 /**
  *
@@ -180,6 +179,7 @@ public class Partida3EnRaya extends Juego<Jugador3EnRaya> {
         Jugador3EnRaya unJ = new Jugador3EnRaya("Persona");
 //        Jugador3EnRaya otroJ = new Jugador3EnRaya("Juan");
         Bot3EnRaya otroJ = Bot3EnRaya.crearBot3EnRaya();
+        
         Partida3EnRaya p = Partida3EnRaya.crearPartida(unJ, otroJ);
         p.iniciarJuego();
     }
