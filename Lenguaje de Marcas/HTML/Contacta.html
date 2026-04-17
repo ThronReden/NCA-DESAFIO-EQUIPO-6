@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<HTML>
+    <head>
+        <title>Desafio 6</title>
+        <meta lang="es"></meta>
+        <meta charset="UTF-8"></meta>
+        <meta name="keywords" lang="es" content="Piedra Papel Tijera, Piedra papel tijera lagarto spock, 3 en raya"></meta>
+        <meta name="keywords" lang="Ro" content="Rock Paper Scissors, Rock Paper Scissors Lizard Spock, Tic-Tac-Toe"></meta>
+        <meta name="viewport" 
+        content="width=device-width initial-scale=1.0, shrink-to-fit=no"></meta>
+        <link href="../CSS/Desafio6.css" rel="stylesheet" type="text/css">   
+        <link href="../FrameWorks/css/bootstrap.min.css" rel="stylesheet">
+    </head>
+
+                    <!-- col puede ser xxl,xl,lg,md,sm,vacia'-->
+                <!-- xxl significa que colapsa a los 1400px-->
+                <!-- xl significa que colapsa a los 1200px-->
+                <!-- lg significa que colapsa a los 992px-->
+                <!-- md significa que colapsa a los 768px-->
+                <!-- sd significa que colapsa a los 576px-->
+                <!-- vacia significa que NO colapsa-->
+
+    <body>
+        <header>
+            <div class="row">
+                <div class="col-lg-3 caja">
+                    <a href="Desafio6.html" class="animation">Desafio Grupo 6</a>
+                </div>
+                <div class="col-lg-9 Pestañas despegable">
+            <ul>
+                <a href="Tutorial.html">Tutorial</a>
+                <a href="QuienesSomos.html">¿Quienes somos?</a>
+                <a href="ComoIniciar.html">Como Iniciar Sesion</a>
+                <a href="Contacta.html">Contacto</a>
+            </ul>
+                </div>
+            </div>
+        </header>
+<br/><br/>
+        <div>
+            <div class="Margen Contacta">
+                Contacta con nosotros
+            </div>
+<br/>
+            <div class="col-lg-4 Margen Formulario">
+
+                    <label for="nombre">Nombre:</label>
+                    <input type="text" id="nombre" name="nombre" size="50">
+                    <br><br>
+
+                    <div class="mb-3">
+                        <label for="correo" class="form-label">Correo electrónico</label>
+                        <input type="email" class="form-control" id="correo" name="correo"placeholder="ejemplo@gmail.com"required pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}"title="Introduce un correo válido">
+                    </div>
+
+                    <br><br>
+
+                    <label for="asunto">Asunto:</label>
+                    <input type="text" id="asunto" name="asunto" size="50">
+                    <br><br>
+
+                    <label for="problema">Problema:</label>
+                    <textarea id="problema" name="problema" rows="8" cols="50"></textarea>
+                    <br><br>
+
+                    <label for="archivo">Prueba:</label>
+                    <input type="file" id="archivo" name="archivo">
+                    <br><br>
+
+                    <button type="submit" class="btn-enviar">Enviar</button>
+
+                </div>
+
+<br/><br/>
+            </div>
+        </div>
+    </body>

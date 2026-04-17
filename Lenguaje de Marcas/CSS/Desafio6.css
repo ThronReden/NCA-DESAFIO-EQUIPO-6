@@ -1,0 +1,227 @@
+/* Css Header Todas Las Diapositivas*/
+
+header{
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1000;
+}
+.caja{
+  display: inline-block;
+    background-color: blue;
+    height: 40px;
+    font-size: 25px;
+    z-index: 4;
+    justify-content: center;
+}
+.animation{
+    animation-direction: normal; /*La direccion*/
+    animation-iteration-count: infinite;/*cuantas veces se repite*/
+    animation-duration: 10s; /*Cuanto dura la animacion*/
+    align-items: center;
+    animation-name: Animacion1;
+    justify-content: center;
+     
+}
+
+@keyframes  Animacion1{
+        from{
+        color: red;
+        margin-left:0px;
+        font-size: 14px;
+        
+    }
+
+    50%{ 
+        margin-left: 130px;
+        font-size: 25px;
+        color: green;
+    }
+    to{
+        margin-left:0px;
+        font-size: 14px;
+        color: red;
+    }
+    
+}
+
+.Pestañas{
+    background-color: blue;
+    height: 40px;
+    font-size: 25px;
+    }
+
+.despegable ul{
+    display: flex;
+    list-style-type: none;
+    margin-left: 650px;
+
+}
+.despegable ul a{
+    padding:8px 12px 8px 2px;
+    text-align: center;
+    font-size: 15px;
+    opacity: 0.7;
+    color: white;
+}
+
+.despegable ul a:hover{
+    color: yellow;
+}
+/* Css Pagina Principal*/
+.Contenedor{
+    display: grid;
+   grid-template-columns:repeat(12,1fr);
+    grid-template-rows:repeat(19,100px);
+}
+.imagenprincipal{
+    grid-column: 1/13;
+    grid-row: 1/8;
+    background-image: url(../Imagenes/ImagenPrincipal.png);
+background-size: cover;     /* ← Cubre toda el área SIN REPETIR */
+    background-position: center; /* ← Centrada */
+    background-repeat: no-repeat;
+}
+.TextoImagen{
+    font-size: 50px;
+    grid-column: 5/9;
+    grid-row: 1/4;
+    padding-top: 44px;
+padding-left: 70px;
+font-weight: bold;
+}
+
+
+
+
+
+/* Css Quienes somos*/
+.Contenedor2{
+    display: grid;
+   grid-template-columns:repeat(12,1fr);
+    grid-template-rows:repeat(19,100px);
+}
+.ImagenGrupo{
+    display:grid;
+    grid-column: 1/5;
+    grid-row: 1/8;
+    background-image: url(../Imagenes/Ejemplo.png);
+background-size: cover;     /* ← Cubre toda el área SIN REPETIR */
+    background-position: center; /* ← Centrada */
+    background-repeat: no-repeat;
+
+}
+
+
+
+
+.equipo-grid{
+    width: 100%;
+    min-height: 100vh;
+    display: grid;
+    gap: 20px;
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+.equipo-grid input{
+    display: none;
+}
+
+.botones{
+    display: flex;
+    flex-direction: row;
+    gap: 40px;
+    justify-content: center;
+    align-items: center;
+    padding-top: 40px;
+}
+
+
+.botones label{
+    background-color: #1d4ed8;
+    color: white;
+    padding: 12px 18px;
+    border-radius: 10px;
+    cursor: pointer;
+    font-weight: bold;
+    width: 180px;
+}
+
+.contenido{
+    grid-column: 1 / 13;
+    grid-row: 2 / 3;
+    display: none;
+    width: 1450px;
+    min-height: calc(100vh - 120px);
+    background-color: #f2f2f2;
+    border-radius: 15px;
+    padding: 40px;
+    box-sizing: border-box;
+    text-align:justify
+}
+
+.contenido img{
+    width: 280px;
+    max-width: 100%;
+    height: auto;
+    border-radius: 12px;
+    margin-bottom: 20px;
+}
+
+#raul:checked ~ .ficha-raul,
+#salvador:checked ~ .ficha-salvador,
+#sanchez:checked ~ .ficha-sanchez,
+#grupo:checked ~ .ficha-grupo{
+    display: block;
+}
+
+
+/*Css Para Contacta*/
+
+textarea{
+    width: 500px;
+    height: 200px;
+    vertical-align: top;
+    padding: 10px;
+    line-height: 1.4;
+}
+.Contacta{
+    font-weight: bold;
+    font-size: 40px;
+}
+
+.Margen{
+    margin-left: 20px;
+}
+.Margen.Formulario label{
+    display: block;
+    margin-bottom: 8px;
+    font-weight: bold;
+}
+
+.Margen.Formulario input,
+.Margen.Formulario textarea{
+    width: 100%;
+    max-width: 600px;
+}
+
+.Margen.Formulario textarea{
+    min-height: 200px;
+}
+
+.btn-enviar{
+    background-color: #1d4ed8;
+    color: white;
+    padding: 12px 25px;
+    font-size: 18px;
+    font-weight: bold;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+
+
+
