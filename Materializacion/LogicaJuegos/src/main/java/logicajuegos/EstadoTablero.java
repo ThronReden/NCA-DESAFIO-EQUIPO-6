@@ -139,4 +139,26 @@ class EstadoTablero {
         }
         return lleno;
     }
+    
+    public int getNumCasillasVacias(){
+        int count = 0;
+        for(int casilla : tablero) {
+            if(casilla == EstadoTablero.VACIO){
+                count++;
+            }
+        }
+        return count;
+    }
+
+    public int[] getCasillasVacias() {
+        int[] casillas = new int[getNumCasillasVacias()];
+        int index = 0;
+        for(int casilla = 0; casilla < tablero.length; casilla++) {
+            if(tablero[casilla] == EstadoTablero.VACIO){
+                casillas[index] = casilla;
+                index++;
+            }
+        }
+        return casillas;
+    }
 }
