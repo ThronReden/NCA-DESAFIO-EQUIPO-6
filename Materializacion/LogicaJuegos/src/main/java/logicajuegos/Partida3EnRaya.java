@@ -1,26 +1,30 @@
 package logicajuegos;
 
 import java.util.ArrayList;
+import java.util.NoSuchElementException;
+import java.util.Optional;
 import java.util.Random;
+import java.util.function.Supplier;
 
 /**
  *
  * @author jsanchez
  */
-public class Partida3EnRaya extends Juego<Jugador3EnRaya> {
+public class Partida3EnRaya extends Juego<Integer,Jugador3EnRaya> {
     
     private final ArrayList<Jugada3EnRaya> jugadas = new ArrayList<>();
     
     private int turno = 0;
+    
+    private static final Integer EMPATE = EstadoTablero.VACIO;
+    private static final Integer GANA_J1 = EstadoTablero.X;
+    private static final Integer GANA_J2 = EstadoTablero.O;
 
     public Partida3EnRaya(Jugador3EnRaya j1, Jugador3EnRaya j2) {
         super(j1, j2);
     }
     
-    public static Partida3EnRaya crearPartida(
-        Jugador3EnRaya unJ, 
-        Jugador3EnRaya otroJ)
-    {
+    public static Partida3EnRaya crearPartida(Jugador3EnRaya unJ, Jugador3EnRaya otroJ) {
         Jugador3EnRaya J1 = elegirQuienComienza(unJ, otroJ);
         Jugador3EnRaya J2;
         if(J1.equals(unJ)){
@@ -31,10 +35,7 @@ public class Partida3EnRaya extends Juego<Jugador3EnRaya> {
         return new Partida3EnRaya(J1,J2);
     }
     
-    private static Jugador3EnRaya elegirQuienComienza(
-        Jugador3EnRaya unJ,
-        Jugador3EnRaya otroJ)
-    {
+    private static Jugador3EnRaya elegirQuienComienza(Jugador3EnRaya unJ, Jugador3EnRaya otroJ) {
         ArrayList<Jugador3EnRaya> liJ = new ArrayList<>();
         liJ.add(unJ);
         liJ.add(otroJ);
@@ -106,7 +107,7 @@ public class Partida3EnRaya extends Juego<Jugador3EnRaya> {
     
     private void nuevoTurno(){
         turno++;
-        System.out.println("Turno de "+getJugadorTurnoActual().getNombre());
+//        System.out.println("Turno de "+getJugadorTurnoActual().getNombre());
         enviarEstadoTablero(getJugadorTurnoActual());
         getJugadorTurnoActual().pedirJugada(this);
     }
@@ -115,7 +116,7 @@ public class Partida3EnRaya extends Juego<Jugador3EnRaya> {
         j.recibirEstadoTablero(getEstadoTablero());
     }
     
-    public void recibirJugada(Jugada3EnRaya jugada){
+    public void recibirJugada(Jugada3EnRaya jugada) throws IllegalArgumentException {
         if(seHaJugado(jugada.getPosicion())){
             throw new IllegalArgumentException(
                 "No se puede hacer otra jugada en esa casilla.");
@@ -128,12 +129,12 @@ public class Partida3EnRaya extends Juego<Jugador3EnRaya> {
     private void continuarTurno() {
         if(existe3EnRaya()){
             setPartidaEnCurso(false);
-            System.out.println("####\n\nGana "+getGanador().getNombre()+"!");
-            getEstadoTablero().mostrarEstadoTableroTerminal();
+//            System.out.println("####\n\nGana "+getGanador().getNombre()+"!");
+//            getEstadoTablero().mostrarEstadoTableroTerminal();
         } else if(tableroLleno()){
             setPartidaEnCurso(false);
-            System.out.println("####\n\nEmpate!");
-            getEstadoTablero().mostrarEstadoTableroTerminal();
+//            System.out.println("####\n\nEmpate!");
+//            getEstadoTablero().mostrarEstadoTableroTerminal();
         } else {
             nuevoTurno();
         }
@@ -148,8 +149,28 @@ public class Partida3EnRaya extends Juego<Jugador3EnRaya> {
     }
 
     @Override
-    public int devolverResultado() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    protected void setResultadoGanaJ1() {
+        setResultado(GANA_J1);
+    }
+
+    @Override
+    protected void setResultadoGanaJ2() {
+        setResultado(GANA_J2);
+    }
+    
+    protected void setResultadoEmpate() {
+        setResultado(EMPATE);
+    }
+
+    @Override
+    public Jugador3EnRaya devolverGanador() throws NoSuchElementException {
+        Optional<Jugador3EnRaya> ganador = Optional.empty();
+        if(devolverResultado().equals(GANA_J1)){
+            ganador = Optional.of(getJugador1());
+        } else if(devolverResultado().equals(GANA_J2)){
+            ganador = Optional.of(getJugador2());
+        }
+        return ganador.orElseThrow(new SupplierExcepcionesNoHayGanador());
     }
     
     public void mostrarTableroTerminal(){
@@ -181,6 +202,7 @@ public class Partida3EnRaya extends Juego<Jugador3EnRaya> {
         Bot3EnRaya otroJ = Bot3EnRaya.crearBot3EnRaya();
         
         Partida3EnRaya p = Partida3EnRaya.crearPartida(unJ, otroJ);
+        System.out.println(p.getGanador().getNombre());
         p.iniciarJuego();
     }
     

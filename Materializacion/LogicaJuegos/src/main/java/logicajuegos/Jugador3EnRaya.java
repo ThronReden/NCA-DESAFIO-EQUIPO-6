@@ -1,7 +1,5 @@
 package logicajuegos;
 
-import utilidades.Teclado;
-
 /**
  *
  * @author jsanchez
@@ -31,12 +29,13 @@ public class Jugador3EnRaya extends Jugador{
         boolean bueno;
         do {
             bueno = false;
-            getEstadoTablero().mostrarEstadoTableroTerminal();
+//            getEstadoTablero().mostrarEstadoTableroTerminal();
             try{
-                hacerJugada(Teclado.leerEntero(getNombre()+" introduce una posicion (1-9): ")-1,p);
+//                hacerJugada(Teclado.leerEntero(getNombre()+" introduce una posicion (1-9): ")-1,p);
+    
                 bueno = true;
             } catch (IllegalArgumentException IAE){
-                System.out.println(IAE.getMessage());
+//                System.out.println(IAE.getMessage());
             }
         } while(!bueno);
     }

@@ -40,7 +40,7 @@ public class Bot3EnRaya extends Jugador3EnRaya{
         if(marca == 0){
             marca = (p.getTurno()%2 == 1)? EstadoTablero.X : EstadoTablero.O;
         }
-        getEstadoTablero().mostrarEstadoTableroTerminal();
+//        getEstadoTablero().mostrarEstadoTableroTerminal();
         boolean bueno;
         do{
             bueno = false;
@@ -48,7 +48,7 @@ public class Bot3EnRaya extends Jugador3EnRaya{
                 hacerJugada(calcularJugada(),p);
                 bueno = true;
             } catch(IllegalArgumentException IAE){
-                System.out.println(IAE.getMessage());
+//                System.out.println(IAE.getMessage());
             }
         } while(!bueno);
     }
@@ -65,14 +65,14 @@ public class Bot3EnRaya extends Jugador3EnRaya{
         } else if(existeAmenaza()){
             if(r.nextInt(10)+1 > 6){
                 pos = getTaparAmenaza();
-                return pos;  
+                return pos;
             } else {
                 pos = getJugadaAleatoria();
             }
         } else {
             pos = getJugadaAleatoria();
         }
-        System.out.println(getNombre()+" intenta jugar "+(pos+1));
+//        System.out.println(getNombre()+" intenta jugar "+(pos+1));
         return pos;
     }
 
