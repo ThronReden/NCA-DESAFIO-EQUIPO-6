@@ -225,3 +225,32 @@ textarea{
 
 
 
+/*CSS de descargas*/
+
+.tabla-descargas{
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+.tabla-descargas th,
+.tabla-descargas td{
+    border: 1px solid #ccc;
+    padding: 12px;
+    text-align: center;
+}
+
+.tabla-descargas th{
+    background-color: #1d4ed8;
+    color: white;
+}
+
+.tabla-descargas a{
+    text-decoration: none;
+    color: #1d4ed8;
+    font-weight: bold;
+}
+tbody tr:hover{
+    background-color: #d9d9d9;
+    transition: background-color 0.2s ease;
+}
