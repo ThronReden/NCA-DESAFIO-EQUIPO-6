@@ -4,7 +4,7 @@ package logicajuegos;
  *
  * @author jsanchez
  */
-class Jugada3EnRaya {
+public class Jugada3EnRaya {
     
     private int turno;
     private int posicion;
@@ -20,7 +20,7 @@ class Jugada3EnRaya {
     public static final int ABAJO = 7;
     public static final int ABAJO_DERECHA = 8;
     
-    public Jugada3EnRaya(int turn, int pos, Jugador j){
+    public Jugada3EnRaya(int turn, int pos, Jugador j) throws IllegalArgumentException {
         if(pos < 0 || pos >= 9){
             throw new IllegalArgumentException("Posicion no valida");
         } else {

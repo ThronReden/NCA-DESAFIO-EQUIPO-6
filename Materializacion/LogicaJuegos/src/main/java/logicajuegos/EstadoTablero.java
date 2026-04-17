@@ -4,9 +4,9 @@ package logicajuegos;
  *
  * @author jsanchez
  */
-class EstadoTablero {
+public class EstadoTablero {
     
-    private int[] tablero = new int[9];
+    private final int[] tablero = new int[9];
     
     private int ganador = 0;
     
@@ -24,7 +24,7 @@ class EstadoTablero {
         return this.tablero[i];
     }
     
-    public void setCasilla(int i, int marca){
+    public void setCasilla(int i, int marca) throws IllegalArgumentException {
         if(marca < 0 || marca > 2){
             throw new IllegalArgumentException(marca+" no es una marca valida.");
         } else if (i < 0 || i >= this.tablero.length){
