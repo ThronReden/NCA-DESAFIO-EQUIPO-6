@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.NoSuchElementException;
 import java.util.Optional;
 import java.util.Random;
-import java.util.function.Supplier;
 
 /**
  *
@@ -88,16 +87,6 @@ public class Partida3EnRaya extends Juego<Integer,Jugador3EnRaya> {
         }
         return t;
     }
-
-    private Jugador3EnRaya getGanador() {
-        Jugador3EnRaya ganador;
-        switch(getEstadoTablero().getGanador()){
-            case 1 -> ganador = getJugador1();
-            case 2 -> ganador = getJugador2();
-            default -> ganador = null;
-        }
-        return ganador;
-    }
     
     @Override
     public void iniciarJuego() {
@@ -163,14 +152,14 @@ public class Partida3EnRaya extends Juego<Integer,Jugador3EnRaya> {
     }
 
     @Override
-    public Jugador3EnRaya devolverGanador() throws NoSuchElementException {
+    public Optional<Jugador3EnRaya> devolverGanador() {
         Optional<Jugador3EnRaya> ganador = Optional.empty();
-        if(devolverResultado().equals(GANA_J1)){
+        if(devolverResultado().orElseThrow(new SupplierExcepcionesNoHayResultado()).equals(GANA_J1)){
             ganador = Optional.of(getJugador1());
-        } else if(devolverResultado().equals(GANA_J2)){
+        } else if(devolverResultado().orElseThrow(new SupplierExcepcionesNoHayResultado()).equals(GANA_J2)){
             ganador = Optional.of(getJugador2());
         }
-        return ganador.orElseThrow(new SupplierExcepcionesNoHayGanador());
+        return ganador;
     }
     
     public void mostrarTableroTerminal(){
@@ -202,7 +191,16 @@ public class Partida3EnRaya extends Juego<Integer,Jugador3EnRaya> {
         Bot3EnRaya otroJ = Bot3EnRaya.crearBot3EnRaya();
         
         Partida3EnRaya p = Partida3EnRaya.crearPartida(unJ, otroJ);
-        System.out.println(p.getGanador().getNombre());
+        try {
+            System.out.println(p.devolverGanador().orElseThrow(new SupplierExcepcionesNoHayGanador()).getNombre());
+        } catch (NoSuchElementException e) {
+            System.out.println(e.getMessage());
+        }
+        try {
+            System.out.println(p.devolverResultado().orElseThrow(new SupplierExcepcionesNoHayResultado()));
+        } catch (NoSuchElementException e) {
+            System.out.println(e.getMessage());
+        }
         p.iniciarJuego();
     }
     

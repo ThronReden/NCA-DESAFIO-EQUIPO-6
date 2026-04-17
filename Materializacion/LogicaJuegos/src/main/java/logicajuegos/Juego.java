@@ -16,7 +16,7 @@ public abstract class Juego<R,J extends Jugador> {
     private final J jugador2;
     
     private boolean partidaEnCurso;
-    private Optional<R> resultado;
+    private R resultado;
     
     protected Juego(J j1, J j2){
         this.jugador1 = j1;
@@ -49,17 +49,17 @@ public abstract class Juego<R,J extends Jugador> {
     //enviar mensaje terminar juego, cambiar pantalla visible
     
     protected void setResultado(R unResultado){
-        this.resultado = Optional.of(unResultado);
+        this.resultado = unResultado;
     }
     
     protected abstract void setResultadoGanaJ1();
     
     protected abstract void setResultadoGanaJ2();
     
-    public R devolverResultado() throws NoSuchElementException {
-        return resultado.orElseThrow(new SupplierExcepcionesNoHayResultado());
+    public Optional<R> devolverResultado() {
+        return Optional.ofNullable(resultado);
     }
     
-    public abstract J devolverGanador();
+    public abstract Optional<J> devolverGanador();
     
 }

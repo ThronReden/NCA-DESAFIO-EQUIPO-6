@@ -6,7 +6,7 @@ package logicajuegos;
  */
 public class EstadoTablero {
     
-    private int[] tablero = new int[9];
+    private final int[] tablero = new int[9];
     
     private int ganador = 0;
     
