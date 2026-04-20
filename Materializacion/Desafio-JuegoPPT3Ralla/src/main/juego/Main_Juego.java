@@ -404,7 +404,7 @@ public class Main_Juego extends javax.swing.JFrame {
         PPTLS.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel25.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel25.setIcon(new javax.swing.ImageIcon("C:\\Users\\LENOVO\\Desktop\\Clase\\ImagenesProgramacion (Josep)\\DESAFIO_IMAGENES\\PPTLS.png")); // NOI18N
+        jLabel25.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/PPTLS.png"))); // NOI18N
         jLabel25.setToolTipText("");
         jLabel25.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseEntered(java.awt.event.MouseEvent evt) {
@@ -424,7 +424,7 @@ public class Main_Juego extends javax.swing.JFrame {
         Rayas.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel26.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel26.setIcon(new javax.swing.ImageIcon("C:\\Users\\LENOVO\\Desktop\\Clase\\ImagenesProgramacion (Josep)\\DESAFIO_IMAGENES\\3Raya.png")); // NOI18N
+        jLabel26.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/3Raya.png"))); // NOI18N
         jLabel26.setToolTipText("");
         jLabel26.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
