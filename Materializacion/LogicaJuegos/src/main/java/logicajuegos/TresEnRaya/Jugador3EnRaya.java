@@ -35,7 +35,6 @@ public class Jugador3EnRaya extends Jugador{
             getEstadoTablero().mostrarEstadoTableroTerminal();
             try{
                 hacerJugada(Teclado.leerEntero(getNombre()+" introduce una posicion (1-9): ")-1,p);
-    
                 bueno = true;
             } catch (IllegalArgumentException IAE){
                 System.out.println(IAE.getMessage());

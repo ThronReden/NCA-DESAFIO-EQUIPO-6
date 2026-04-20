@@ -2,7 +2,6 @@ package logicajuegos.TresEnRaya;
 
 import logicajuegos.SupplierExcepcionesNoHayResultado;
 import java.util.ArrayList;
-import java.util.NoSuchElementException;
 import java.util.Optional;
 import java.util.Random;
 import logicajuegos.Juego;
@@ -35,8 +34,19 @@ public class Partida3EnRaya extends Juego<Integer,Jugador3EnRaya> {
         }
         return new Partida3EnRaya(J1,J2);
     }
+    public static Partida3EnRaya crearPartida(Jugador3EnRaya personaJ) {
+        Jugador3EnRaya botJ = Bot3EnRaya.crearBot3EnRaya();
+        Jugador3EnRaya J1 = elegirQuienComienza(personaJ, botJ);
+        Jugador3EnRaya J2;
+        if(J1.equals(personaJ)){
+            J2 = botJ;
+        } else {
+            J2 = personaJ;
+        }
+        return new Partida3EnRaya(J1,J2);
+    }
     
-    private static Jugador3EnRaya elegirQuienComienza(Jugador3EnRaya unJ, Jugador3EnRaya otroJ) {
+    public static Jugador3EnRaya elegirQuienComienza(Jugador3EnRaya unJ, Jugador3EnRaya otroJ) {
         ArrayList<Jugador3EnRaya> liJ = new ArrayList<>();
         liJ.add(unJ);
         liJ.add(otroJ);
@@ -44,7 +54,7 @@ public class Partida3EnRaya extends Juego<Integer,Jugador3EnRaya> {
         return liJ.get(r.nextInt(2));
     }
     
-    private Jugador3EnRaya getJugadorTurnoActual(){
+    protected Jugador3EnRaya getJugadorTurnoActual(){
         Jugador3EnRaya j = null;
         if(isPartidaEnCurso()){
             switch (turno%2){
@@ -69,6 +79,10 @@ public class Partida3EnRaya extends Juego<Integer,Jugador3EnRaya> {
         return 0;
     }
     
+    protected void avanzarTurno(){
+        turno++;
+    }
+    
     private boolean seHaJugado(int pos) {
         for(Jugada3EnRaya j: jugadas){
             if(j.getPosicion() == pos){
@@ -78,7 +92,7 @@ public class Partida3EnRaya extends Juego<Integer,Jugador3EnRaya> {
         return false;
     }
 
-    private EstadoTablero getEstadoTablero() {
+    protected EstadoTablero getEstadoTablero() {
         EstadoTablero t = new EstadoTablero();
         for(Jugada3EnRaya j : jugadas){
             if(j.getJugador().equals(this.getJugador1())){
@@ -96,14 +110,14 @@ public class Partida3EnRaya extends Juego<Integer,Jugador3EnRaya> {
         nuevoTurno();
     }
     
-    private void nuevoTurno(){
+    protected void nuevoTurno(){
         turno++;
-//        System.out.println("Turno de "+getJugadorTurnoActual().getNombre());
+        System.out.println("Turno de "+getJugadorTurnoActual().getNombre());
         enviarEstadoTablero(getJugadorTurnoActual());
         getJugadorTurnoActual().pedirJugada(this);
     }
     
-    private void enviarEstadoTablero(Jugador3EnRaya j){
+    protected void enviarEstadoTablero(Jugador3EnRaya j){
         j.recibirEstadoTablero(getEstadoTablero());
     }
     
@@ -123,16 +137,24 @@ public class Partida3EnRaya extends Juego<Integer,Jugador3EnRaya> {
                 case 1 -> setResultado(GANA_J1);
                 case 2 -> setResultado(GANA_J2);
             }
-//            System.out.println("####\n\nGana "+getGanador().getNombre()+"!");
-//            getEstadoTablero().mostrarEstadoTableroTerminal();
+            mostrarGanador();
+            getEstadoTablero().mostrarEstadoTableroTerminal();
         } else if(tableroLleno()){
             setPartidaEnCurso(false);
             setResultado(EMPATE);
-//            System.out.println("####\n\nEmpate!");
-//            getEstadoTablero().mostrarEstadoTableroTerminal();
+            mostrarEmpate();
+            getEstadoTablero().mostrarEstadoTableroTerminal();
         } else {
             nuevoTurno();
         }
+    }
+    
+    public void mostrarGanador(){
+        System.out.println("####\n\nGana "+devolverGanador().orElseThrow(new SupplierExcepcionesNoHayGanador()).getNombre()+"!");
+    }
+    
+    public void mostrarEmpate(){
+        System.out.println("####\n\nEmpate!");
     }
     
     private boolean existe3EnRaya() {

@@ -5,7 +5,9 @@ import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import logicajuegos.TresEnRaya.EstadoTablero;
+import logicajuegos.TresEnRaya.Jugada3EnRaya;
 import logicajuegos.TresEnRaya.Jugador3EnRaya;
+import logicajuegos.TresEnRaya.Partida3EnRaya;
 
 /**
  *
@@ -19,7 +21,8 @@ public class Pantalla_3EnRaya extends javax.swing.JFrame {
 
     private final JLabel[] labelGrid;
 
-    private final Jugador3EnRaya J = new Jugador3EnRaya("Persona");
+    private final Jugador3EnRayaUI J = new Jugador3EnRayaUI("Persona");
+    private final Partida3EnRayaUI P = Partida3EnRayaUI.crearPartida(J,this);
 
     public Pantalla_3EnRaya() {
         initComponents();
@@ -28,6 +31,8 @@ public class Pantalla_3EnRaya extends javax.swing.JFrame {
         for (JLabel label : labelGrid) {
             label.setIcon(VACIO);
         }
+        
+        P.iniciarJuego();
     }
 
     /**
@@ -77,9 +82,6 @@ public class Pantalla_3EnRaya extends javax.swing.JFrame {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jLabel1MouseClicked(evt);
             }
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                jLabel1MouseEntered(evt);
-            }
         });
         Juego.add(jLabel1);
 
@@ -88,8 +90,8 @@ public class Pantalla_3EnRaya extends javax.swing.JFrame {
         jLabel2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         jLabel2.setOpaque(true);
         jLabel2.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                jLabel2MouseEntered(evt);
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel2MouseClicked(evt);
             }
         });
         Juego.add(jLabel2);
@@ -98,42 +100,77 @@ public class Pantalla_3EnRaya extends javax.swing.JFrame {
         jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/iconsVACIOJuego.png"))); // NOI18N
         jLabel3.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         jLabel3.setOpaque(true);
+        jLabel3.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel3MouseClicked(evt);
+            }
+        });
         Juego.add(jLabel3);
 
         jLabel4.setBackground(new java.awt.Color(255, 255, 204));
         jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/iconsVACIOJuego.png"))); // NOI18N
         jLabel4.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         jLabel4.setOpaque(true);
+        jLabel4.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel4MouseClicked(evt);
+            }
+        });
         Juego.add(jLabel4);
 
         jLabel5.setBackground(new java.awt.Color(255, 255, 204));
         jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/iconsVACIOJuego.png"))); // NOI18N
         jLabel5.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         jLabel5.setOpaque(true);
+        jLabel5.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel5MouseClicked(evt);
+            }
+        });
         Juego.add(jLabel5);
 
         jLabel6.setBackground(new java.awt.Color(255, 255, 204));
         jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/iconsVACIOJuego.png"))); // NOI18N
         jLabel6.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         jLabel6.setOpaque(true);
+        jLabel6.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel6MouseClicked(evt);
+            }
+        });
         Juego.add(jLabel6);
 
         jLabel7.setBackground(new java.awt.Color(255, 255, 204));
         jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/iconsVACIOJuego.png"))); // NOI18N
         jLabel7.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         jLabel7.setOpaque(true);
+        jLabel7.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel7MouseClicked(evt);
+            }
+        });
         Juego.add(jLabel7);
 
         jLabel8.setBackground(new java.awt.Color(255, 255, 204));
         jLabel8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/iconsVACIOJuego.png"))); // NOI18N
         jLabel8.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         jLabel8.setOpaque(true);
+        jLabel8.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel8MouseClicked(evt);
+            }
+        });
         Juego.add(jLabel8);
 
         jLabel9.setBackground(new java.awt.Color(255, 255, 204));
         jLabel9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/iconsVACIOJuego.png"))); // NOI18N
         jLabel9.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         jLabel9.setOpaque(true);
+        jLabel9.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel9MouseClicked(evt);
+            }
+        });
         Juego.add(jLabel9);
 
         Panel_3EnRaya.add(Juego, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 190, 770, 740));
@@ -154,16 +191,40 @@ public class Pantalla_3EnRaya extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jLabel1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel1MouseClicked
-
+        J.hacerJugada(Jugada3EnRaya.ARRIBA_IZQUIERDA, P);
     }//GEN-LAST:event_jLabel1MouseClicked
 
-    private void jLabel1MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel1MouseEntered
+    private void jLabel2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel2MouseClicked
+        J.hacerJugada(Jugada3EnRaya.ARRIBA, P);
+    }//GEN-LAST:event_jLabel2MouseClicked
 
-    }//GEN-LAST:event_jLabel1MouseEntered
+    private void jLabel3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel3MouseClicked
+        J.hacerJugada(Jugada3EnRaya.ARRIBA_DERECHA, P);
+    }//GEN-LAST:event_jLabel3MouseClicked
 
-    private void jLabel2MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel2MouseEntered
+    private void jLabel4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel4MouseClicked
+        J.hacerJugada(Jugada3EnRaya.CENTRO_IZQUIERDA, P);
+    }//GEN-LAST:event_jLabel4MouseClicked
 
-    }//GEN-LAST:event_jLabel2MouseEntered
+    private void jLabel5MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel5MouseClicked
+        J.hacerJugada(Jugada3EnRaya.CENTRO, P);
+    }//GEN-LAST:event_jLabel5MouseClicked
+
+    private void jLabel6MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel6MouseClicked
+        J.hacerJugada(Jugada3EnRaya.CENTRO_DERECHA, P);
+    }//GEN-LAST:event_jLabel6MouseClicked
+
+    private void jLabel7MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel7MouseClicked
+        J.hacerJugada(Jugada3EnRaya.ABAJO_IZQUIERDA, P);
+    }//GEN-LAST:event_jLabel7MouseClicked
+
+    private void jLabel8MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel8MouseClicked
+        J.hacerJugada(Jugada3EnRaya.ABAJO, P);
+    }//GEN-LAST:event_jLabel8MouseClicked
+
+    private void jLabel9MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel9MouseClicked
+        J.hacerJugada(Jugada3EnRaya.ABAJO_DERECHA, P);
+    }//GEN-LAST:event_jLabel9MouseClicked
 
     public void mostrarEstadoTablero() {
         EstadoTablero t = J.getEstadoTablero();
@@ -171,9 +232,17 @@ public class Pantalla_3EnRaya extends javax.swing.JFrame {
         for (int i = 0; i < 10; i++) {
             estado = t.getCasilla(i);
             switch (estado) {
-                case 1 -> labelGrid[i].setIcon(X);
-                case 2 -> labelGrid[i].setIcon(O);
-                default -> labelGrid[i].setIcon(VACIO);
+                case 1: 
+                    labelGrid[i].setIcon(X);
+                    labelGrid[i].setEnabled(false);
+                    break;
+                case 2:
+                    labelGrid[i].setIcon(O);
+                    labelGrid[i].setEnabled(false);
+                    break;
+                default:
+                    labelGrid[i].setIcon(VACIO);
+                    labelGrid[i].setEnabled(true);
             }
         }
     }
