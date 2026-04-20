@@ -1,6 +1,7 @@
 package logicajuegos.TresEnRaya;
 
 import logicajuegos.Jugador;
+import utilidades.Teclado;
 
 /**
  *
@@ -18,7 +19,7 @@ public class Jugador3EnRaya extends Jugador{
         super(j.getNombre());
     }
 
-    public EstadoTablero getEstadoTablero() {
+    protected EstadoTablero getEstadoTablero() {
         return this.estadoTablero;
     }
     
@@ -26,23 +27,23 @@ public class Jugador3EnRaya extends Jugador{
         this.estadoTablero = estadoTablero;
     }
     
-    //PRELIMINAR
+    //TERMINAL
     public void pedirJugada(Partida3EnRaya p){
         boolean bueno;
         do {
             bueno = false;
-//            getEstadoTablero().mostrarEstadoTableroTerminal();
+            getEstadoTablero().mostrarEstadoTableroTerminal();
             try{
-//                hacerJugada(Teclado.leerEntero(getNombre()+" introduce una posicion (1-9): ")-1,p);
+                hacerJugada(Teclado.leerEntero(getNombre()+" introduce una posicion (1-9): ")-1,p);
     
                 bueno = true;
             } catch (IllegalArgumentException IAE){
-//                System.out.println(IAE.getMessage());
+                System.out.println(IAE.getMessage());
             }
         } while(!bueno);
     }
     
-    public void hacerJugada(int pos, Partida3EnRaya p){
+    protected void hacerJugada(int pos, Partida3EnRaya p){
         Jugada3EnRaya jugada = new Jugada3EnRaya(p.getTurno(),pos,this);
         p.recibirJugada(jugada);
     }

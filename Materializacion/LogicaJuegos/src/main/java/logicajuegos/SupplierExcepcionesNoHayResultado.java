@@ -1,4 +1,4 @@
-package logicajuegos.TresEnRaya;
+package logicajuegos;
 
 import java.util.NoSuchElementException;
 import java.util.function.Supplier;

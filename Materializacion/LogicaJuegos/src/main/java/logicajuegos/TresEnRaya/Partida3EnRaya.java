@@ -1,5 +1,6 @@
 package logicajuegos.TresEnRaya;
 
+import logicajuegos.SupplierExcepcionesNoHayResultado;
 import java.util.ArrayList;
 import java.util.NoSuchElementException;
 import java.util.Optional;
@@ -182,16 +183,16 @@ public class Partida3EnRaya extends Juego<Integer,Jugador3EnRaya> {
         Bot3EnRaya otroJ = Bot3EnRaya.crearBot3EnRaya();
         
         Partida3EnRaya p = Partida3EnRaya.crearPartida(unJ, otroJ);
-        try {
-            System.out.println(p.devolverGanador().orElseThrow(new SupplierExcepcionesNoHayGanador()).getNombre());
-        } catch (NoSuchElementException e) {
-            System.out.println(e.getMessage());
-        }
-        try {
-            System.out.println(p.devolverResultado().orElseThrow(new SupplierExcepcionesNoHayResultado()));
-        } catch (NoSuchElementException e) {
-            System.out.println(e.getMessage());
-        }
+//        try {
+//            System.out.println(p.devolverGanador().orElseThrow(new SupplierExcepcionesNoHayGanador()).getNombre());
+//        } catch (NoSuchElementException e) {
+//            System.out.println(e.getMessage());
+//        }
+//        try {
+//            System.out.println(p.devolverResultado().orElseThrow(new SupplierExcepcionesNoHayResultado()));
+//        } catch (NoSuchElementException e) {
+//            System.out.println(e.getMessage());
+//        }
         p.iniciarJuego();
     }
     

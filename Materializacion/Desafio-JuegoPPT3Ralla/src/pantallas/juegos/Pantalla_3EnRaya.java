@@ -1,12 +1,9 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
 package pantallas.juegos;
 
 import java.awt.Color;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
+import javax.swing.JLabel;
 
 /**
  *
@@ -14,13 +11,18 @@ import javax.swing.ImageIcon;
  */
 public class Pantalla_3EnRaya extends javax.swing.JFrame {
 
-    private final ImageIcon O = new ImageIcon("imagenes\\iconsOJuego.png");
-    private final ImageIcon X = new ImageIcon("imagenes\\iconsXJuego.png");
-    private final Icon VACIO;
+    private final Icon O = new ImageIcon("imagenes\\iconsOJuego.png");
+    private final Icon X = new ImageIcon("imagenes\\iconsXJuego.png");
+    private final Icon VACIO = new ImageIcon("imagenes\\iconsVACIOJuego.png");
+    
+    private final JLabel[] labelGrid;
 
     public Pantalla_3EnRaya() {
         initComponents();
-        VACIO = jLabel1.getIcon();
+        labelGrid = new JLabel[]{jLabel1,jLabel2,jLabel3,jLabel4,jLabel5,jLabel6,jLabel7,jLabel8,jLabel9};
+//        for(JLabel label:labelGrid){
+//            label.setIcon(VACIO);
+//        }
     }
 
     /**
@@ -41,7 +43,7 @@ public class Pantalla_3EnRaya extends javax.swing.JFrame {
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
-        jLabel10 = new javax.swing.JLabel();
+        jLabel8 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
         jLabel11 = new javax.swing.JLabel();
         jLabel12 = new javax.swing.JLabel();
@@ -61,6 +63,7 @@ public class Pantalla_3EnRaya extends javax.swing.JFrame {
         Juego.setLayout(new java.awt.GridLayout(3, 3));
 
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/iconsXJuego.png"))); // NOI18N
         jLabel1.setToolTipText("");
         jLabel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         jLabel1.setOpaque(true);
@@ -74,7 +77,9 @@ public class Pantalla_3EnRaya extends javax.swing.JFrame {
         });
         Juego.add(jLabel1);
 
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/iconsVACIOJuego.png"))); // NOI18N
         jLabel2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        jLabel2.setOpaque(true);
         jLabel2.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 jLabel2MouseEntered(evt);
@@ -82,25 +87,39 @@ public class Pantalla_3EnRaya extends javax.swing.JFrame {
         });
         Juego.add(jLabel2);
 
+        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/iconsVACIOJuego.png"))); // NOI18N
         jLabel3.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        jLabel3.setOpaque(true);
         Juego.add(jLabel3);
 
+        jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/iconsVACIOJuego.png"))); // NOI18N
         jLabel4.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        jLabel4.setOpaque(true);
         Juego.add(jLabel4);
 
+        jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/iconsVACIOJuego.png"))); // NOI18N
         jLabel5.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        jLabel5.setOpaque(true);
         Juego.add(jLabel5);
 
+        jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/iconsVACIOJuego.png"))); // NOI18N
         jLabel6.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        jLabel6.setOpaque(true);
         Juego.add(jLabel6);
 
+        jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/iconsVACIOJuego.png"))); // NOI18N
         jLabel7.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        jLabel7.setOpaque(true);
         Juego.add(jLabel7);
 
-        jLabel10.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        Juego.add(jLabel10);
+        jLabel8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/iconsVACIOJuego.png"))); // NOI18N
+        jLabel8.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        jLabel8.setOpaque(true);
+        Juego.add(jLabel8);
 
+        jLabel9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/iconsVACIOJuego.png"))); // NOI18N
         jLabel9.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        jLabel9.setOpaque(true);
         Juego.add(jLabel9);
 
         Panel_3EnRaya.add(Juego, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 190, 770, 740));
@@ -123,6 +142,8 @@ public class Pantalla_3EnRaya extends javax.swing.JFrame {
     private void jLabel1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel1MouseClicked
         if (jLabel1.getIcon().equals(VACIO)) {
             jLabel1.setIcon(O);
+        } else if (jLabel1.getIcon().equals(O)) {
+            jLabel1.setIcon(X);
         } else {
             jLabel1.setIcon(VACIO);
         }
@@ -175,7 +196,6 @@ public class Pantalla_3EnRaya extends javax.swing.JFrame {
     private javax.swing.JPanel Juego;
     private javax.swing.JPanel Panel_3EnRaya;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel2;
@@ -184,6 +204,7 @@ public class Pantalla_3EnRaya extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     // End of variables declaration//GEN-END:variables
 }
