@@ -19,11 +19,11 @@ public class Jugador3EnRaya extends Jugador{
         super(j.getNombre());
     }
 
-    protected EstadoTablero getEstadoTablero() {
+    public EstadoTablero getEstadoTablero() {
         return this.estadoTablero;
     }
     
-    public void recibirEstadoTablero(EstadoTablero estadoTablero){
+    protected void recibirEstadoTablero(EstadoTablero estadoTablero){
         this.estadoTablero = estadoTablero;
     }
     

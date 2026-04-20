@@ -4,6 +4,8 @@ import java.awt.Color;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
+import logicajuegos.TresEnRaya.EstadoTablero;
+import logicajuegos.TresEnRaya.Jugador3EnRaya;
 
 /**
  *
@@ -11,18 +13,21 @@ import javax.swing.JLabel;
  */
 public class Pantalla_3EnRaya extends javax.swing.JFrame {
 
-    private final Icon O = new ImageIcon("imagenes\\iconsOJuego.png");
-    private final Icon X = new ImageIcon("imagenes\\iconsXJuego.png");
-    private final Icon VACIO = new ImageIcon("imagenes\\iconsVACIOJuego.png");
-    
+    private final ImageIcon O = new ImageIcon("src\\imagenes\\iconsOJuego.png");
+    private final ImageIcon X = new ImageIcon("src\\imagenes\\iconsXJuego.png");
+    private final ImageIcon VACIO = new ImageIcon("src\\imagenes\\iconsVACIOJuego.png");
+
     private final JLabel[] labelGrid;
+
+    private final Jugador3EnRaya J = new Jugador3EnRaya("Persona");
 
     public Pantalla_3EnRaya() {
         initComponents();
-        labelGrid = new JLabel[]{jLabel1,jLabel2,jLabel3,jLabel4,jLabel5,jLabel6,jLabel7,jLabel8,jLabel9};
-//        for(JLabel label:labelGrid){
-//            label.setIcon(VACIO);
-//        }
+
+        labelGrid = new JLabel[]{jLabel1, jLabel2, jLabel3, jLabel4, jLabel5, jLabel6, jLabel7, jLabel8, jLabel9};
+        for (JLabel label : labelGrid) {
+            label.setIcon(VACIO);
+        }
     }
 
     /**
@@ -62,6 +67,7 @@ public class Pantalla_3EnRaya extends javax.swing.JFrame {
 
         Juego.setLayout(new java.awt.GridLayout(3, 3));
 
+        jLabel1.setBackground(new java.awt.Color(255, 255, 204));
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/iconsXJuego.png"))); // NOI18N
         jLabel1.setToolTipText("");
@@ -77,6 +83,7 @@ public class Pantalla_3EnRaya extends javax.swing.JFrame {
         });
         Juego.add(jLabel1);
 
+        jLabel2.setBackground(new java.awt.Color(255, 255, 204));
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/iconsVACIOJuego.png"))); // NOI18N
         jLabel2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         jLabel2.setOpaque(true);
@@ -87,36 +94,43 @@ public class Pantalla_3EnRaya extends javax.swing.JFrame {
         });
         Juego.add(jLabel2);
 
+        jLabel3.setBackground(new java.awt.Color(255, 255, 204));
         jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/iconsVACIOJuego.png"))); // NOI18N
         jLabel3.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         jLabel3.setOpaque(true);
         Juego.add(jLabel3);
 
+        jLabel4.setBackground(new java.awt.Color(255, 255, 204));
         jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/iconsVACIOJuego.png"))); // NOI18N
         jLabel4.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         jLabel4.setOpaque(true);
         Juego.add(jLabel4);
 
+        jLabel5.setBackground(new java.awt.Color(255, 255, 204));
         jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/iconsVACIOJuego.png"))); // NOI18N
         jLabel5.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         jLabel5.setOpaque(true);
         Juego.add(jLabel5);
 
+        jLabel6.setBackground(new java.awt.Color(255, 255, 204));
         jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/iconsVACIOJuego.png"))); // NOI18N
         jLabel6.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         jLabel6.setOpaque(true);
         Juego.add(jLabel6);
 
+        jLabel7.setBackground(new java.awt.Color(255, 255, 204));
         jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/iconsVACIOJuego.png"))); // NOI18N
         jLabel7.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         jLabel7.setOpaque(true);
         Juego.add(jLabel7);
 
+        jLabel8.setBackground(new java.awt.Color(255, 255, 204));
         jLabel8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/iconsVACIOJuego.png"))); // NOI18N
         jLabel8.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         jLabel8.setOpaque(true);
         Juego.add(jLabel8);
 
+        jLabel9.setBackground(new java.awt.Color(255, 255, 204));
         jLabel9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/iconsVACIOJuego.png"))); // NOI18N
         jLabel9.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         jLabel9.setOpaque(true);
@@ -140,13 +154,7 @@ public class Pantalla_3EnRaya extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jLabel1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel1MouseClicked
-        if (jLabel1.getIcon().equals(VACIO)) {
-            jLabel1.setIcon(O);
-        } else if (jLabel1.getIcon().equals(O)) {
-            jLabel1.setIcon(X);
-        } else {
-            jLabel1.setIcon(VACIO);
-        }
+
     }//GEN-LAST:event_jLabel1MouseClicked
 
     private void jLabel1MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel1MouseEntered
@@ -156,6 +164,19 @@ public class Pantalla_3EnRaya extends javax.swing.JFrame {
     private void jLabel2MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel2MouseEntered
 
     }//GEN-LAST:event_jLabel2MouseEntered
+
+    public void mostrarEstadoTablero() {
+        EstadoTablero t = J.getEstadoTablero();
+        int estado;
+        for (int i = 0; i < 10; i++) {
+            estado = t.getCasilla(i);
+            switch (estado) {
+                case 1 -> labelGrid[i].setIcon(X);
+                case 2 -> labelGrid[i].setIcon(O);
+                default -> labelGrid[i].setIcon(VACIO);
+            }
+        }
+    }
 
     /**
      * @param args the command line arguments
