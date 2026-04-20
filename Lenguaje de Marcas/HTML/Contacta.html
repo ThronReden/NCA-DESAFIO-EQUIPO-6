@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<HTML>
+    <head>
+        <title>Desafio 6</title>
+        <meta lang="es"></meta>
+        <meta charset="UTF-8"></meta>
+        <meta name="keywords" lang="es" content="Piedra Papel Tijera, Piedra papel tijera lagarto spock, 3 en raya"></meta>
+        <meta name="keywords" lang="Ro" content="Rock Paper Scissors, Rock Paper Scissors Lizard Spock, Tic-Tac-Toe"></meta>
+        <meta name="viewport" 
+        content="width=device-width initial-scale=1.0, shrink-to-fit=no"></meta>
+        <link href="../CSS/Desafio6.css" rel="stylesheet" type="text/css">   
+        <link href="../FrameWorks/css/bootstrap.min.css" rel="stylesheet">
+    </head>
+
+                    <!-- col puede ser xxl,xl,lg,md,sm,vacia'-->
+                <!-- xxl significa que colapsa a los 1400px-->
+                <!-- xl significa que colapsa a los 1200px-->
+                <!-- lg significa que colapsa a los 992px-->
+                <!-- md significa que colapsa a los 768px-->
+                <!-- sd significa que colapsa a los 576px-->
+                <!-- vacia significa que NO colapsa-->
+
+    <body>
+     <header>
+    <div class="container-fluid">
+        <div class="row ">
+
+            <div class="col-12 col-lg-3 text-lg-start">
+                <a href="../../index.html" class="animation titulo"> Desafio Grupo 6</a>
+            </div>
+
+            <div class="col-12 col-lg-9">
+                <nav class="nav flex-column flex-lg-row justify-content-center justify-content-lg-end text-center">
+                    <a class="enlace-menu" href="Tutorial.html">Tutorial</a>
+                    <a class="enlace-menu" href="QuienesSomos.html">¿Quienes somos?</a>
+                    <a class="enlace-menu" href="Descargar.html">Descargar</a>
+                    <a class="enlace-menu" href="Contacta.html">Contacto</a>
+                </nav>
+            </div>
+
+        </div>
+    </div>
+</header>
+<br/><br/>
+        <div>
+            <div class="Margen Contacta">
+                Contacta con nosotros
+            </div>
+<br/>
+
+<div class="container">
+    <div class="row">
+        <form action="https://formspree.io/f/xdaygogq" method="POST" class="col-lg-12 Margen Formulario">
+            <div class="row">
+
+                <div class="col-lg-6 mb-3">
+                    <label for="nombre">Nombre:</label>
+                    <input type="text" id="nombre" name="nombre" class="form-control" required>
+                </div>
+
+                <div class="col-lg-6 mb-3">
+                    <label for="correo" class="form-label">Correo electrónico</label>
+                    <input type="email" class="form-control" id="correo" name="email" placeholder="ejemplo@gmail.com" required>
+                </div>
+
+                <div class="col-lg-6 mb-3">
+                    <label for="asunto">Asunto:</label>
+                    <input type="text" id="asunto" name="asunto" class="form-control" required>
+                </div>
+                 <div class="col-lg-6 mb-3">
+                    <label for="archivo">Prueba:</label>
+                    <input type="file" id="archivo" name="archivo" class="form-control">
+                 </div>
+
+                <div class="col-12 mb-3">
+                    <label for="problema">Problema:</label>
+                    <textarea id="problema" name="message" rows="8" class="form-control" required></textarea>
+                </div>
+
+                <div class="col-12 mb-3">
+                    <button type="submit" class="btn-enviar">Enviar</button>
+                </div>
+
+            </div>
+        </form>
+    </div>
+</div>
+<footer class="pie">
+    <p>© 2026 Desafío Grupo 6 - Todos los derechos reservados</p>
+    <p>No nos hacemos responsables de que tengais ganas de jugar al mejor juego del mundo</p>
+    <p>Si lees esto debes 10 euros al proyecto para poder hacer mejoras y que sea mas entretenido</p>
+</footer>
+</body>
