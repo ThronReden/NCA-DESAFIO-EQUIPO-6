@@ -47,4 +47,9 @@ public class Partida3EnRayaUI extends Partida3EnRaya{
     public void mostrarEmpate(){
 //        System.out.println("####\n\nEmpate!");
     }
+    
+    @Override
+    public void mostrarEstadoTablero() {
+        Pantalla.mostrarEstadoTablero();
+    }
 }

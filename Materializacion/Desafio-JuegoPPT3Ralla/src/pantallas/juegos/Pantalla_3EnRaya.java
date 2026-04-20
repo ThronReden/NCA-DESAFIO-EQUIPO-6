@@ -32,6 +32,8 @@ public class Pantalla_3EnRaya extends javax.swing.JFrame {
             label.setIcon(VACIO);
         }
         
+        jLabel13.setText("");
+        setNombresJugadores();
         P.iniciarJuego();
     }
 
@@ -57,6 +59,7 @@ public class Pantalla_3EnRaya extends javax.swing.JFrame {
         jLabel9 = new javax.swing.JLabel();
         jLabel11 = new javax.swing.JLabel();
         jLabel12 = new javax.swing.JLabel();
+        jLabel13 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setExtendedState(6);
@@ -86,6 +89,7 @@ public class Pantalla_3EnRaya extends javax.swing.JFrame {
         Juego.add(jLabel1);
 
         jLabel2.setBackground(new java.awt.Color(255, 255, 204));
+        jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/iconsVACIOJuego.png"))); // NOI18N
         jLabel2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         jLabel2.setOpaque(true);
@@ -97,6 +101,7 @@ public class Pantalla_3EnRaya extends javax.swing.JFrame {
         Juego.add(jLabel2);
 
         jLabel3.setBackground(new java.awt.Color(255, 255, 204));
+        jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/iconsVACIOJuego.png"))); // NOI18N
         jLabel3.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         jLabel3.setOpaque(true);
@@ -108,6 +113,7 @@ public class Pantalla_3EnRaya extends javax.swing.JFrame {
         Juego.add(jLabel3);
 
         jLabel4.setBackground(new java.awt.Color(255, 255, 204));
+        jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/iconsVACIOJuego.png"))); // NOI18N
         jLabel4.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         jLabel4.setOpaque(true);
@@ -119,6 +125,7 @@ public class Pantalla_3EnRaya extends javax.swing.JFrame {
         Juego.add(jLabel4);
 
         jLabel5.setBackground(new java.awt.Color(255, 255, 204));
+        jLabel5.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/iconsVACIOJuego.png"))); // NOI18N
         jLabel5.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         jLabel5.setOpaque(true);
@@ -130,6 +137,7 @@ public class Pantalla_3EnRaya extends javax.swing.JFrame {
         Juego.add(jLabel5);
 
         jLabel6.setBackground(new java.awt.Color(255, 255, 204));
+        jLabel6.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/iconsVACIOJuego.png"))); // NOI18N
         jLabel6.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         jLabel6.setOpaque(true);
@@ -141,6 +149,7 @@ public class Pantalla_3EnRaya extends javax.swing.JFrame {
         Juego.add(jLabel6);
 
         jLabel7.setBackground(new java.awt.Color(255, 255, 204));
+        jLabel7.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/iconsVACIOJuego.png"))); // NOI18N
         jLabel7.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         jLabel7.setOpaque(true);
@@ -152,6 +161,7 @@ public class Pantalla_3EnRaya extends javax.swing.JFrame {
         Juego.add(jLabel7);
 
         jLabel8.setBackground(new java.awt.Color(255, 255, 204));
+        jLabel8.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/iconsVACIOJuego.png"))); // NOI18N
         jLabel8.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         jLabel8.setOpaque(true);
@@ -163,6 +173,7 @@ public class Pantalla_3EnRaya extends javax.swing.JFrame {
         Juego.add(jLabel8);
 
         jLabel9.setBackground(new java.awt.Color(255, 255, 204));
+        jLabel9.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/iconsVACIOJuego.png"))); // NOI18N
         jLabel9.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         jLabel9.setOpaque(true);
@@ -184,6 +195,11 @@ public class Pantalla_3EnRaya extends javax.swing.JFrame {
         jLabel12.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel12.setText("{nombre_bot}");
         Panel_3EnRaya.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 690, -1, -1));
+
+        jLabel13.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
+        jLabel13.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel13.setText("{mensajes_error}");
+        Panel_3EnRaya.add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(507, 960, 770, -1));
 
         getContentPane().add(Panel_3EnRaya, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 2010, 1090));
 
@@ -227,22 +243,22 @@ public class Pantalla_3EnRaya extends javax.swing.JFrame {
     }//GEN-LAST:event_jLabel9MouseClicked
 
     public void mostrarEstadoTablero() {
-        EstadoTablero t = J.getEstadoTablero();
+        EstadoTablero t = P.getEstadoTablero();
         int estado;
-        for (int i = 0; i < 10; i++) {
+        for (int i = 0; i < 9; i++) {
             estado = t.getCasilla(i);
             switch (estado) {
                 case 1: 
                     labelGrid[i].setIcon(X);
-                    labelGrid[i].setEnabled(false);
+//                    labelGrid[i].setEnabled(false);
                     break;
                 case 2:
                     labelGrid[i].setIcon(O);
-                    labelGrid[i].setEnabled(false);
+//                    labelGrid[i].setEnabled(false);
                     break;
                 default:
                     labelGrid[i].setIcon(VACIO);
-                    labelGrid[i].setEnabled(true);
+//                    labelGrid[i].setEnabled(true);
             }
         }
     }
@@ -288,6 +304,7 @@ public class Pantalla_3EnRaya extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
+    private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -297,4 +314,18 @@ public class Pantalla_3EnRaya extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     // End of variables declaration//GEN-END:variables
+
+    public void setNombresJugadores() {
+        if (P.getJugador1() instanceof Jugador3EnRayaUI) {
+            jLabel11.setText(P.getJugador1().getNombre());
+            jLabel12.setText(P.getJugador2().getNombre());
+        } else {
+            jLabel11.setText(P.getJugador2().getNombre());
+            jLabel12.setText(P.getJugador1().getNombre());
+        }
+    }
+
+    void mostrarError(String message) {
+        jLabel13.setText(message);
+    }
 }

@@ -92,7 +92,7 @@ public class Partida3EnRaya extends Juego<Integer,Jugador3EnRaya> {
         return false;
     }
 
-    protected EstadoTablero getEstadoTablero() {
+    public EstadoTablero getEstadoTablero() {
         EstadoTablero t = new EstadoTablero();
         for(Jugada3EnRaya j : jugadas){
             if(j.getJugador().equals(this.getJugador1())){
@@ -124,6 +124,8 @@ public class Partida3EnRaya extends Juego<Integer,Jugador3EnRaya> {
     public void recibirJugada(Jugada3EnRaya jugada) throws IllegalArgumentException {
         if(seHaJugado(jugada.getPosicion())){
             throw new IllegalArgumentException("No se puede hacer otra jugada en esa casilla.");
+        } else if(!isPartidaEnCurso()){
+            throw new IllegalArgumentException("No se pueden hacer jugadas, la partida ha terminado.");
         } else {
             this.jugadas.add(jugada);
         }
@@ -138,12 +140,12 @@ public class Partida3EnRaya extends Juego<Integer,Jugador3EnRaya> {
                 case 2 -> setResultado(GANA_J2);
             }
             mostrarGanador();
-            getEstadoTablero().mostrarEstadoTableroTerminal();
+            mostrarEstadoTablero();
         } else if(tableroLleno()){
             setPartidaEnCurso(false);
             setResultado(EMPATE);
             mostrarEmpate();
-            getEstadoTablero().mostrarEstadoTableroTerminal();
+            mostrarEstadoTablero();
         } else {
             nuevoTurno();
         }
@@ -176,7 +178,7 @@ public class Partida3EnRaya extends Juego<Integer,Jugador3EnRaya> {
         return ganador;
     }
     
-    public void mostrarTableroTerminal(){
+    public void mostrarTablero(){
         String br = "+-+-+-+";
         String model = br+"\n";
         String ln = "|";
@@ -196,6 +198,10 @@ public class Partida3EnRaya extends Juego<Integer,Jugador3EnRaya> {
         }
         
         System.out.println(model);
+    }
+
+    public void mostrarEstadoTablero() {
+        getEstadoTablero().mostrarEstadoTableroTerminal();
     }
     
     public static void main(String[] args) {

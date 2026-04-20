@@ -26,7 +26,7 @@ public class Jugador3EnRayaUI extends Jugador3EnRaya {
         try{
             p.recibirJugada(jugada);
         } catch (IllegalArgumentException IAEx){
-            //HACER COSAS
+            ((Partida3EnRayaUI)p).Pantalla.mostrarError(IAEx.getMessage());
         }
     }
 }

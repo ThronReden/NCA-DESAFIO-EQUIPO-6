@@ -63,7 +63,7 @@ public class Bot3EnRaya extends Jugador3EnRaya{
                 pos = r.nextInt(9);
             }
         } else if(existeAmenaza()){
-            if(r.nextInt(10)+1 > 6){
+            if(r.nextInt(10)+1 > 5){
                 pos = getTaparAmenaza();
                 return pos;
             } else {
