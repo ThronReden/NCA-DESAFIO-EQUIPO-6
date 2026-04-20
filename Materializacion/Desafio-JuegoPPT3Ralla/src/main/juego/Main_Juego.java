@@ -3,6 +3,7 @@ package main.juego;
 import inicio.de.sesion.Inicio_Sesion;
 import java.awt.Color;
 import static java.awt.Color.green;
+import pantallas.juegos.Pantalla_3EnRaya;
 import perfil.usuario.Perfil_Usuario;
 
 /*
@@ -22,6 +23,7 @@ public class Main_Juego extends javax.swing.JFrame {
 
         initComponents();
         Menu_Ampliado.setVisible(false);
+        
 
     }
 
@@ -104,10 +106,8 @@ public class Main_Juego extends javax.swing.JFrame {
         });
 
         Cierre_de_Sesion.setBackground(new java.awt.Color(255, 255, 255));
-        Cierre_de_Sesion.setMaximumSize(new java.awt.Dimension(900, 560));
         Cierre_de_Sesion.setMinimumSize(new java.awt.Dimension(900, 560));
         Cierre_de_Sesion.setUndecorated(true);
-        Cierre_de_Sesion.setPreferredSize(new java.awt.Dimension(900, 560));
         Cierre_de_Sesion.setResizable(false);
         Cierre_de_Sesion.getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -385,7 +385,7 @@ public class Main_Juego extends javax.swing.JFrame {
 
         jLabel27.setBackground(new java.awt.Color(153, 153, 153));
         jLabel27.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel27.setIcon(new javax.swing.ImageIcon(getClass().getResource("/main/juego/PPT.png"))); // NOI18N
+        jLabel27.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/PPT.png"))); // NOI18N
         jLabel27.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 jLabel27MouseEntered(evt);
@@ -427,6 +427,9 @@ public class Main_Juego extends javax.swing.JFrame {
         jLabel26.setIcon(new javax.swing.ImageIcon("C:\\Users\\LENOVO\\Desktop\\Clase\\ImagenesProgramacion (Josep)\\DESAFIO_IMAGENES\\3Raya.png")); // NOI18N
         jLabel26.setToolTipText("");
         jLabel26.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel26MouseClicked(evt);
+            }
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 jLabel26MouseEntered(evt);
             }
@@ -660,6 +663,11 @@ public class Main_Juego extends javax.swing.JFrame {
     private void Boton_TiendaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Boton_TiendaMouseClicked
 
     }//GEN-LAST:event_Boton_TiendaMouseClicked
+
+    private void jLabel26MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel26MouseClicked
+        new Pantalla_3EnRaya().setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_jLabel26MouseClicked
 
     /**
      * @param args the command line arguments
