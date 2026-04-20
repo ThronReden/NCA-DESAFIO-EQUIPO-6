@@ -1,6 +1,5 @@
 package logicajuegos;
 
-import java.util.NoSuchElementException;
 import java.util.Optional;
 
 /**
@@ -51,10 +50,6 @@ public abstract class Juego<R,J extends Jugador> {
     protected void setResultado(R unResultado){
         this.resultado = unResultado;
     }
-    
-    protected abstract void setResultadoGanaJ1();
-    
-    protected abstract void setResultadoGanaJ2();
     
     public Optional<R> devolverResultado() {
         return Optional.ofNullable(resultado);

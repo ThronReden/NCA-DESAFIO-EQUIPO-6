@@ -1,9 +1,10 @@
-package logicajuegos;
+package logicajuegos.TresEnRaya;
 
 import java.util.ArrayList;
 import java.util.NoSuchElementException;
 import java.util.Optional;
 import java.util.Random;
+import logicajuegos.Juego;
 
 /**
  *
@@ -107,8 +108,7 @@ public class Partida3EnRaya extends Juego<Integer,Jugador3EnRaya> {
     
     public void recibirJugada(Jugada3EnRaya jugada) throws IllegalArgumentException {
         if(seHaJugado(jugada.getPosicion())){
-            throw new IllegalArgumentException(
-                "No se puede hacer otra jugada en esa casilla.");
+            throw new IllegalArgumentException("No se puede hacer otra jugada en esa casilla.");
         } else {
             this.jugadas.add(jugada);
         }
@@ -118,10 +118,15 @@ public class Partida3EnRaya extends Juego<Integer,Jugador3EnRaya> {
     private void continuarTurno() {
         if(existe3EnRaya()){
             setPartidaEnCurso(false);
+            switch (getEstadoTablero().getGanador()){
+                case 1 -> setResultado(GANA_J1);
+                case 2 -> setResultado(GANA_J2);
+            }
 //            System.out.println("####\n\nGana "+getGanador().getNombre()+"!");
 //            getEstadoTablero().mostrarEstadoTableroTerminal();
         } else if(tableroLleno()){
             setPartidaEnCurso(false);
+            setResultado(EMPATE);
 //            System.out.println("####\n\nEmpate!");
 //            getEstadoTablero().mostrarEstadoTableroTerminal();
         } else {
@@ -136,21 +141,7 @@ public class Partida3EnRaya extends Juego<Integer,Jugador3EnRaya> {
     private boolean tableroLleno() {
         return getEstadoTablero().tableroLleno();
     }
-
-    @Override
-    protected void setResultadoGanaJ1() {
-        setResultado(GANA_J1);
-    }
-
-    @Override
-    protected void setResultadoGanaJ2() {
-        setResultado(GANA_J2);
-    }
     
-    protected void setResultadoEmpate() {
-        setResultado(EMPATE);
-    }
-
     @Override
     public Optional<Jugador3EnRaya> devolverGanador() {
         Optional<Jugador3EnRaya> ganador = Optional.empty();

@@ -1,4 +1,4 @@
-package logicajuegos;
+package logicajuegos.TresEnRaya;
 
 /**
  *
@@ -153,9 +153,9 @@ public class EstadoTablero {
     public int[] getCasillasVacias() {
         int[] casillas = new int[getNumCasillasVacias()];
         int index = 0;
-        for(int casilla = 0; casilla < tablero.length; casilla++) {
-            if(tablero[casilla] == EstadoTablero.VACIO){
-                casillas[index] = casilla;
+        for(int pos = 0; pos < tablero.length; pos++) {
+            if(tablero[pos] == EstadoTablero.VACIO){
+                casillas[index] = pos;
                 index++;
             }
         }

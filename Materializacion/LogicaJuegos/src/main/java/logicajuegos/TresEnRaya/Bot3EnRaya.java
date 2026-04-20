@@ -1,4 +1,4 @@
-package logicajuegos;
+package logicajuegos.TresEnRaya;
 
 import java.util.Optional;
 import java.util.Random;
