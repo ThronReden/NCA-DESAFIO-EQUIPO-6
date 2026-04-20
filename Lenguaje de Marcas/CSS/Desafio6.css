@@ -5,69 +5,82 @@ header{
     top: 0;
     left: 0;
     width: 100%;
-    z-index: 1000;
-}
-.caja{
-  display: inline-block;
+    z-index: 1;
+    min-height: 50px;
     background-color: blue;
-    height: 40px;
-    font-size: 25px;
-    z-index: 4;
-    justify-content: center;
-}
-.animation{
-    animation-direction: normal; /*La direccion*/
-    animation-iteration-count: infinite;/*cuantas veces se repite*/
-    animation-duration: 10s; /*Cuanto dura la animacion*/
-    align-items: center;
-    animation-name: Animacion1;
-    justify-content: center;
-     
-}
-
-@keyframes  Animacion1{
-        from{
-        color: red;
-        margin-left:0px;
-        font-size: 14px;
-        
-    }
-
-    50%{ 
-        margin-left: 130px;
-        font-size: 25px;
-        color: green;
-    }
-    to{
-        margin-left:0px;
-        font-size: 14px;
-        color: red;
-    }
     
 }
+@media (max-width: 991.98px){
+    body{
+        padding-top: 140px;
+    }
+    .pie{
+        padding-top: 20px;
+    }
+}
 
-.Pestañas{
-    background-color: blue;
-    height: 40px;
-    font-size: 25px;
+.animation{
+    display: inline-block;
+    animation-name: Animacion1;
+    animation-duration: 10s;
+    animation-iteration-count: infinite;
+    animation-direction: normal;
+    font-weight: bold;
+}
+
+
+@keyframes Animacion1{
+    from{
+        color: red;
+        transform: translateX(0) scale(1);
     }
 
-.despegable ul{
-    display: flex;
-    list-style-type: none;
-    margin-left: 650px;
+    50%{
+        color: black;
+        transform: translateX(400px) scale(1.6);
+    }
 
+    to{
+        color: red;
+        transform: translateX(0) scale(1);
+    }
 }
-.despegable ul a{
-    padding:8px 12px 8px 2px;
-    text-align: center;
-    font-size: 15px;
-    opacity: 0.7;
+
+.titulo{
     color: white;
+    text-decoration: none;
+    padding-top: 11px;
 }
 
-.despegable ul a:hover{
+.enlace-menu{
+    color: white;
+    text-decoration: none;
+    margin-left: 20px;
+    justify-content: center;
+    z-index: 78;
+    font-weight: bold;
+    align-items: center;
+    padding-top: 11px;
+}
+
+.enlace-menu:hover{
     color: yellow;
+    font-weight: bold;
+
+}
+
+.enlace-menu:hover{
+    color: yellow;
+}
+
+
+
+.pie{
+    background-color: #111;
+    color: white;
+    text-align: center;
+    margin-top: 40px;
+    height: 150px;
 }
 /* Css Pagina Principal*/
 .Contenedor{
@@ -195,19 +208,18 @@ textarea{
 .Margen{
     margin-left: 20px;
 }
-.Margen.Formulario label{
+.Formulario label{
     display: block;
     margin-bottom: 8px;
     font-weight: bold;
 }
 
-.Margen.Formulario input,
-.Margen.Formulario textarea{
+.Formulario input, .Formulario textarea{
     width: 100%;
     max-width: 600px;
 }
 
-.Margen.Formulario textarea{
+.Formulario textarea{
     min-height: 200px;
 }
 
@@ -253,4 +265,23 @@ textarea{
 tbody tr:hover{
     background-color: #d9d9d9;
     transition: background-color 0.2s ease;
+}
+
+.Oscuro:hover{
+    color: rgb(46, 46, 46);
+}
+
+#mensajeFinal{
+    font-size: 24px;
+    font-weight: bold;
+    color: red;
+    margin-top: 20px;
+}
+
+
+
+/*Css Para Tutorial*/
+
+.tamaño{
+    font-size: 18px;
 }

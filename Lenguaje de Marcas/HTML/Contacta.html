@@ -21,21 +21,26 @@
                 <!-- vacia significa que NO colapsa-->
 
     <body>
-        <header>
-            <div class="row">
-                <div class="col-lg-3 caja">
-                    <a href="Desafio6.html" class="animation">Desafio Grupo 6</a>
-                </div>
-                <div class="col-lg-9 Pestañas despegable">
-            <ul>
-                <a href="Tutorial.html">Tutorial</a>
-                <a href="QuienesSomos.html">¿Quienes somos?</a>
-                <a href="Descargar.html">Descargar</a>
-                <a href="Contacta.html">Contacto</a>
-            </ul>
-                </div>
+     <header>
+    <div class="container-fluid">
+        <div class="row ">
+
+            <div class="col-12 col-lg-3 text-lg-start">
+                <a href="Desafio6.html" class="animation titulo"> Desafio Grupo 6</a>
             </div>
-        </header>
+
+            <div class="col-12 col-lg-9">
+                <nav class="nav flex-column flex-lg-row justify-content-center justify-content-lg-end text-center">
+                    <a class="enlace-menu" href="Tutorial.html">Tutorial</a>
+                    <a class="enlace-menu" href="QuienesSomos.html">¿Quienes somos?</a>
+                    <a class="enlace-menu" href="Descargar.html">Descargar</a>
+                    <a class="enlace-menu" href="Contacta.html">Contacto</a>
+                </nav>
+            </div>
+
+        </div>
+    </div>
+</header>
 <br/><br/>
         <div>
             <div class="Margen Contacta">
@@ -55,13 +60,7 @@
 
                 <div class="col-lg-6 mb-3">
                     <label for="correo" class="form-label">Correo electrónico</label>
-                    <input 
-                        type="email" 
-                        class="form-control" 
-                        id="correo" 
-                        name="email"
-                        placeholder="ejemplo@gmail.com"
-                        required>
+                    <input type="email" class="form-control" id="correo" name="email" placeholder="ejemplo@gmail.com" required>
                 </div>
 
                 <div class="col-lg-6 mb-3">
@@ -86,5 +85,9 @@
         </form>
     </div>
 </div>
-
+<footer class="pie">
+    <p>© 2026 Desafío Grupo 6 - Todos los derechos reservados</p>
+    <p>No nos hacemos responsables de que tengais ganas de jugar al mejor juego del mundo</p>
+    <p>Si lees esto debes 10 euros al proyecto para poder hacer mejoras y que sea mas entretenido</p>
+</footer>
 </body>
