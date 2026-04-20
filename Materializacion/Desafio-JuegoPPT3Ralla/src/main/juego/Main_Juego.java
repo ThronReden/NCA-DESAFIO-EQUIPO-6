@@ -3,6 +3,7 @@ package main.juego;
 import inicio.de.sesion.Inicio_Sesion;
 import java.awt.Color;
 import static java.awt.Color.green;
+import pantallas.juegos.Pantalla_3EnRaya;
 import perfil.usuario.Perfil_Usuario;
 
 /*
@@ -22,6 +23,7 @@ public class Main_Juego extends javax.swing.JFrame {
 
         initComponents();
         Menu_Ampliado.setVisible(false);
+        
 
     }
 
@@ -90,7 +92,7 @@ public class Main_Juego extends javax.swing.JFrame {
         jLabel7.setFont(new java.awt.Font("Century Gothic", 1, 18)); // NOI18N
         jLabel7.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/iconsX.png"))); // NOI18N
-        jLabel7.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jLabel7.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         jLabel7.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jLabel7MouseClicked(evt);
@@ -104,10 +106,8 @@ public class Main_Juego extends javax.swing.JFrame {
         });
 
         Cierre_de_Sesion.setBackground(new java.awt.Color(255, 255, 255));
-        Cierre_de_Sesion.setMaximumSize(new java.awt.Dimension(900, 560));
         Cierre_de_Sesion.setMinimumSize(new java.awt.Dimension(900, 560));
         Cierre_de_Sesion.setUndecorated(true);
-        Cierre_de_Sesion.setPreferredSize(new java.awt.Dimension(900, 560));
         Cierre_de_Sesion.setResizable(false);
         Cierre_de_Sesion.getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -120,7 +120,7 @@ public class Main_Juego extends javax.swing.JFrame {
         jLabel11.setForeground(new java.awt.Color(255, 255, 255));
         jLabel11.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel11.setText("Si, quiero cerrar sesión");
-        jLabel11.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jLabel11.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         jLabel11.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jLabel11MouseClicked(evt);
@@ -151,10 +151,9 @@ public class Main_Juego extends javax.swing.JFrame {
         Rechazar_CierreSesion.setLayout(new java.awt.CardLayout());
 
         jLabel12.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
-        jLabel12.setForeground(new java.awt.Color(0, 0, 0));
         jLabel12.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel12.setText("No, no quiero cerrar sesión");
-        jLabel12.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jLabel12.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         Rechazar_CierreSesion.add(jLabel12, "card2");
 
         Cierre_de_Sesion.getContentPane().add(Rechazar_CierreSesion, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 430, 280, 60));
@@ -163,7 +162,6 @@ public class Main_Juego extends javax.swing.JFrame {
         Mensaje_CierreSesion.setLayout(new java.awt.CardLayout());
 
         jLabel13.setFont(new java.awt.Font("Dialog", 1, 48)); // NOI18N
-        jLabel13.setForeground(new java.awt.Color(0, 0, 0));
         jLabel13.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel13.setText("¿QUIERES CERRAR SESIÓN?");
         Mensaje_CierreSesion.add(jLabel13, "card2");
@@ -171,12 +169,10 @@ public class Main_Juego extends javax.swing.JFrame {
         Cierre_de_Sesion.getContentPane().add(Mensaje_CierreSesion, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 880, 160));
 
         jLabel15.setBackground(new java.awt.Color(0, 0, 0));
-        jLabel15.setForeground(new java.awt.Color(0, 0, 0));
         jLabel15.setOpaque(true);
         Cierre_de_Sesion.getContentPane().add(jLabel15, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 550, 900, 10));
 
         jLabel16.setBackground(new java.awt.Color(0, 0, 0));
-        jLabel16.setForeground(new java.awt.Color(0, 0, 0));
         jLabel16.setOpaque(true);
         Cierre_de_Sesion.getContentPane().add(jLabel16, new org.netbeans.lib.awtextra.AbsoluteConstraints(-7, 160, 900, 20));
 
@@ -189,17 +185,14 @@ public class Main_Juego extends javax.swing.JFrame {
         Cierre_de_Sesion.getContentPane().add(jLabel18, new org.netbeans.lib.awtextra.AbsoluteConstraints(890, 0, 10, 570));
 
         jLabel19.setBackground(new java.awt.Color(0, 0, 0));
-        jLabel19.setForeground(new java.awt.Color(0, 0, 0));
         jLabel19.setOpaque(true);
         Cierre_de_Sesion.getContentPane().add(jLabel19, new org.netbeans.lib.awtextra.AbsoluteConstraints(-7, 160, 900, 20));
 
         jLabel20.setBackground(new java.awt.Color(0, 0, 0));
-        jLabel20.setForeground(new java.awt.Color(0, 0, 0));
         jLabel20.setOpaque(true);
         Cierre_de_Sesion.getContentPane().add(jLabel20, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 900, 10));
 
         jLabel14.setBackground(new java.awt.Color(0, 0, 0));
-        jLabel14.setForeground(new java.awt.Color(0, 0, 0));
         jLabel14.setOpaque(true);
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -212,7 +205,7 @@ public class Main_Juego extends javax.swing.JFrame {
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         Boton_Menu_Desplegable.setBackground(new java.awt.Color(102, 102, 102));
-        Boton_Menu_Desplegable.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        Boton_Menu_Desplegable.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         Boton_Menu_Desplegable.setLayout(new java.awt.CardLayout());
 
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -235,7 +228,7 @@ public class Main_Juego extends javax.swing.JFrame {
         Menu_Ampliado.setBackground(new java.awt.Color(51, 51, 51));
 
         Boton_Tienda.setBackground(new java.awt.Color(51, 51, 51));
-        Boton_Tienda.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        Boton_Tienda.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         Boton_Tienda.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 Boton_TiendaMouseClicked(evt);
@@ -263,7 +256,7 @@ public class Main_Juego extends javax.swing.JFrame {
         Boton_Tienda.add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 50, 350, 10));
 
         Boton_Ajuste.setBackground(new java.awt.Color(51, 51, 51));
-        Boton_Ajuste.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        Boton_Ajuste.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         Boton_Ajuste.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 Boton_AjusteMouseClicked(evt);
@@ -296,7 +289,7 @@ public class Main_Juego extends javax.swing.JFrame {
         jLabel6.setText("Menú de Opciones");
 
         Boton_CerrarSesion.setBackground(new java.awt.Color(51, 51, 51));
-        Boton_CerrarSesion.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        Boton_CerrarSesion.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         Boton_CerrarSesion.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 Boton_CerrarSesionMouseClicked(evt);
@@ -311,7 +304,6 @@ public class Main_Juego extends javax.swing.JFrame {
         Boton_CerrarSesion.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel9.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel9.setIcon(new javax.swing.ImageIcon("C:\\Users\\LENOVO\\Desktop\\Clase\\ImagenesProgramacion (Josep)\\DESAFIO_IMAGENES\\iconsCerrarSesion.png")); // NOI18N
         jLabel9.setToolTipText("");
         Boton_CerrarSesion.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 6, 70, 68));
 
@@ -385,7 +377,7 @@ public class Main_Juego extends javax.swing.JFrame {
 
         jLabel27.setBackground(new java.awt.Color(153, 153, 153));
         jLabel27.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel27.setIcon(new javax.swing.ImageIcon(getClass().getResource("/main/juego/PPT.png"))); // NOI18N
+        jLabel27.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/PPT.png"))); // NOI18N
         jLabel27.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 jLabel27MouseEntered(evt);
@@ -404,7 +396,7 @@ public class Main_Juego extends javax.swing.JFrame {
         PPTLS.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel25.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel25.setIcon(new javax.swing.ImageIcon("C:\\Users\\LENOVO\\Desktop\\Clase\\ImagenesProgramacion (Josep)\\DESAFIO_IMAGENES\\PPTLS.png")); // NOI18N
+        jLabel25.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/PPTLS.png"))); // NOI18N
         jLabel25.setToolTipText("");
         jLabel25.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseEntered(java.awt.event.MouseEvent evt) {
@@ -424,9 +416,12 @@ public class Main_Juego extends javax.swing.JFrame {
         Rayas.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel26.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel26.setIcon(new javax.swing.ImageIcon("C:\\Users\\LENOVO\\Desktop\\Clase\\ImagenesProgramacion (Josep)\\DESAFIO_IMAGENES\\3Raya.png")); // NOI18N
+        jLabel26.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/3Raya.png"))); // NOI18N
         jLabel26.setToolTipText("");
         jLabel26.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel26MouseClicked(evt);
+            }
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 jLabel26MouseEntered(evt);
             }
@@ -471,7 +466,6 @@ public class Main_Juego extends javax.swing.JFrame {
         jPanel1.add(PanelContenido, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 0, 1560, 1090));
 
         jLabel29.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel29.setIcon(new javax.swing.ImageIcon("C:\\Users\\LENOVO\\Downloads\\Sheldon.png")); // NOI18N
         jPanel1.add(jLabel29, new org.netbeans.lib.awtextra.AbsoluteConstraints(1370, 360, 730, 730));
 
         Boton_Cierre_Main.setBackground(new java.awt.Color(255, 255, 255));
@@ -660,6 +654,11 @@ public class Main_Juego extends javax.swing.JFrame {
     private void Boton_TiendaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Boton_TiendaMouseClicked
 
     }//GEN-LAST:event_Boton_TiendaMouseClicked
+
+    private void jLabel26MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel26MouseClicked
+        new Pantalla_3EnRaya().setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_jLabel26MouseClicked
 
     /**
      * @param args the command line arguments

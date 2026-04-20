@@ -1,4 +1,6 @@
-package logicajuegos;
+package logicajuegos.TresEnRaya;
+
+import logicajuegos.Jugador;
 
 /**
  *
