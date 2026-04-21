@@ -11,8 +11,8 @@ public class Perfil_Usuario extends javax.swing.JFrame {
 
     private final char EchoChar;
 
-    ImageIcon NoVer = new ImageIcon("imagenes\\iconsNoVer.png");
-    ImageIcon Ver = new ImageIcon("imagenes\\iconsVer.png");
+    ImageIcon NoVer = new ImageIcon("src\\imagenes\\iconsNoVer.png");
+    ImageIcon Ver = new ImageIcon("src\\imagenes\\iconsVer.png");
 
     /**
      * Creates new form Perfil_Usuario
