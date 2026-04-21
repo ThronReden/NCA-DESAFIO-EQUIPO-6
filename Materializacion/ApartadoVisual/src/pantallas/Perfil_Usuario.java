@@ -1,14 +1,7 @@
 package pantallas;
 
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
-
-
 import java.awt.Color;
 import javax.swing.ImageIcon;
-import pantallas.Main_Juego;
 
 /**
  *

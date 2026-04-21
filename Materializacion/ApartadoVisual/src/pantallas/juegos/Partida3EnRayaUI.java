@@ -3,7 +3,6 @@ package pantallas.juegos;
 import logicajuegos.TresEnRaya.Bot3EnRaya;
 import logicajuegos.TresEnRaya.Jugador3EnRaya;
 import logicajuegos.TresEnRaya.Partida3EnRaya;
-import logicajuegos.TresEnRaya.SupplierExcepcionesNoHayGanador;
 
 /**
  *

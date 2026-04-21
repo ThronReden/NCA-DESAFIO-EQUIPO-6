@@ -1,14 +1,8 @@
 package pantallas;
 
-import pantallas.Inicio_Sesion;
 import java.awt.Color;
-import static java.awt.Color.green;
 import pantallas.juegos.Pantalla_3EnRaya;
 
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
 /**
  *
  * @author LENOVO

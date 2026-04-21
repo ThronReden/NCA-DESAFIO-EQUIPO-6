@@ -1,13 +1,9 @@
 package pantallas.juegos;
 
-import java.awt.Color;
-import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import logicajuegos.TresEnRaya.EstadoTablero;
 import logicajuegos.TresEnRaya.Jugada3EnRaya;
-import logicajuegos.TresEnRaya.Jugador3EnRaya;
-import logicajuegos.TresEnRaya.Partida3EnRaya;
 
 /**
  *

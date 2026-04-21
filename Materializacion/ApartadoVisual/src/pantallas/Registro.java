@@ -1,18 +1,10 @@
 package pantallas;
 
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
-
-
-import pantallas.Inicio_Sesion;
 import java.awt.Color;
 import static java.awt.Color.black;
 import static java.awt.Color.red;
 import static java.awt.Color.white;
 import static java.awt.Color.yellow;
-import pantallas.Main_Juego;
 
 /**
  *
