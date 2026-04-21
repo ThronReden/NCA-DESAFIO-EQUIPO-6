@@ -1,0 +1,84 @@
+<mxfile host="Electron" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) draw.io/28.2.8 Chrome/140.0.7339.240 Electron/38.4.0 Safari/537.36" version="28.2.8">
+  <diagram name="Página-1" id="8hgEkPXSc6CNvEh8YjJG">
+    <mxGraphModel dx="1708" dy="880" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="2" value="Juego (abstract)" style="swimlane;startSize=30;fontStyle=1;fontSize=14;" vertex="1" parent="1">
+          <mxGeometry x="1400" y="460" width="220" height="200" as="geometry" />
+        </mxCell>
+        <mxCell id="3" value="jugador1 : J&#xa;jugador2 : J&#xa;partidaEnCurso : boolean&#xa;&#xa;getJugador1()&#xa;getJugador2()&#xa;isPartidaEnCurso()&#xa;iniciarJuego()&#xa;devolverResultado()" style="text;align=left;verticalAlign=top;spacingLeft=5;" vertex="1" parent="2">
+          <mxGeometry y="30" width="220" height="170" as="geometry" />
+        </mxCell>
+        <mxCell id="4" value="Partida3EnRaya" style="swimlane;startSize=30;fontStyle=1;fontSize=14;" vertex="1" parent="1">
+          <mxGeometry x="1131" y="460" width="220" height="200" as="geometry" />
+        </mxCell>
+        <mxCell id="5" value="jugadas : ArrayList&#xa;turno : int&#xa;&#xa;crearPartida()&#xa;iniciarJuego()&#xa;recibirJugada()&#xa;getTurno()&#xa;devolverResultado()&#xa;mostrarTableroTerminal()" style="text;align=left;verticalAlign=top;spacingLeft=5;" vertex="1" parent="4">
+          <mxGeometry y="30" width="220" height="170" as="geometry" />
+        </mxCell>
+        <mxCell id="6" value="EstadoTablero" style="swimlane;startSize=30;fontStyle=1;fontSize=14;" vertex="1" parent="1">
+          <mxGeometry x="490" y="445" width="220" height="240" as="geometry" />
+        </mxCell>
+        <mxCell id="7" value="tablero : int[]&#xa;ganador : int&#xa;VACIO : int&#xa;X : int&#xa;O : int&#xa;&#xa;getCasilla()&#xa;setCasilla()&#xa;getGanador()&#xa;existe3EnRaya()&#xa;tableroVacio()&#xa;tableroLleno()&#xa;getCasillasVacias()&#xa;mostrarEstadoTableroTerminal()" style="text;align=left;verticalAlign=top;spacingLeft=5;" vertex="1" parent="6">
+          <mxGeometry y="30" width="220" height="210" as="geometry" />
+        </mxCell>
+        <mxCell id="8" value="Jugador" style="swimlane;startSize=30;fontStyle=1;fontSize=14;" vertex="1" parent="1">
+          <mxGeometry x="800" y="60" width="220" height="120" as="geometry" />
+        </mxCell>
+        <mxCell id="9" value="nombre : String&#xa;&#xa;getNombre()&#xa;setNombre()" style="text;align=left;verticalAlign=top;spacingLeft=5;" vertex="1" parent="8">
+          <mxGeometry y="30" width="220" height="90" as="geometry" />
+        </mxCell>
+        <mxCell id="10" value="Jugador3EnRaya" style="swimlane;startSize=30;fontStyle=1;fontSize=14;" vertex="1" parent="1">
+          <mxGeometry x="800" y="330" width="220" height="160" as="geometry" />
+        </mxCell>
+        <mxCell id="11" value="estadoTablero : EstadoTablero&#xa;&#xa;getEstadoTablero()&#xa;recibirEstadoTablero()&#xa;pedirJugada()&#xa;hacerJugada()" style="text;align=left;verticalAlign=top;spacingLeft=5;" vertex="1" parent="10">
+          <mxGeometry y="30" width="220" height="130" as="geometry" />
+        </mxCell>
+        <mxCell id="12" value="Bot3EnRaya" style="swimlane;startSize=30;fontStyle=1;fontSize=14;" vertex="1" parent="1">
+          <mxGeometry x="490" y="730" width="220" height="150" as="geometry" />
+        </mxCell>
+        <mxCell id="13" value="marca : int&#xa;nombresBot : String[]&#xa;&#xa;crearBot3EnRaya()&#xa;pedirJugada()&#xa;calcularJugada()" style="text;align=left;verticalAlign=top;spacingLeft=5;" vertex="1" parent="12">
+          <mxGeometry y="30" width="220" height="120" as="geometry" />
+        </mxCell>
+        <mxCell id="14" value="Jugada3EnRaya" style="swimlane;startSize=30;fontStyle=1;fontSize=14;" vertex="1" parent="1">
+          <mxGeometry x="1131" y="40" width="220" height="160" as="geometry" />
+        </mxCell>
+        <mxCell id="15" value="turno : int&#xa;posicion : int&#xa;jugador : Jugador&#xa;&#xa;getTurno()&#xa;getPosicion()&#xa;getJugador()" style="text;align=left;verticalAlign=top;spacingLeft=5;" vertex="1" parent="14">
+          <mxGeometry y="30" width="220" height="130" as="geometry" />
+        </mxCell>
+        <mxCell id="20" style="edgeStyle=orthogonalEdgeStyle;endArrow=block;endFill=1;" edge="1" parent="1" source="4" target="2">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="21" style="edgeStyle=orthogonalEdgeStyle;endArrow=block;endFill=1;" edge="1" parent="1" source="10" target="8">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="22" style="edgeStyle=orthogonalEdgeStyle;endArrow=block;endFill=1;" edge="1" parent="1" source="12" target="10">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="23" style="edgeStyle=orthogonalEdgeStyle;endArrow=open;endFill=0;" edge="1" parent="1" source="4" target="10">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="24" style="edgeStyle=orthogonalEdgeStyle;endArrow=open;endFill=0;" edge="1" parent="1" source="4" target="14">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="25" style="edgeStyle=orthogonalEdgeStyle;endArrow=open;endFill=0;" edge="1" parent="1" source="4" target="6">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="860" y="580" />
+              <mxPoint x="860" y="580" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="26" style="edgeStyle=orthogonalEdgeStyle;endArrow=open;endFill=0;" edge="1" parent="1" source="10" target="6">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="28" style="edgeStyle=orthogonalEdgeStyle;endArrow=open;endFill=0;" edge="1" parent="1" source="14" target="8">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="29" style="edgeStyle=orthogonalEdgeStyle;endArrow=open;endFill=0;" edge="1" parent="1" source="12" target="6">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
