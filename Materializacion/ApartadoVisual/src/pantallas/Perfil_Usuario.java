@@ -78,7 +78,6 @@ public class Perfil_Usuario extends javax.swing.JFrame {
         jLabel18 = new javax.swing.JLabel();
 
         jLabel5.setFont(new java.awt.Font("Dubai", 1, 14)); // NOI18N
-        jLabel5.setForeground(new java.awt.Color(0, 0, 0));
         jLabel5.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel5.setText("Partidas ganadas al 3 en raya: {partidas_ganadas3Raya}");
 
@@ -287,56 +286,47 @@ public class Perfil_Usuario extends javax.swing.JFrame {
         Estadisticas.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel1.setFont(new java.awt.Font("Dubai", 1, 14)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(0, 0, 0));
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setText("Partidas ganadas al 3 en raya: {partidas_ganadas3Raya}");
         Estadisticas.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 140, -1, -1));
 
         jLabel2.setFont(new java.awt.Font("Dubai", 1, 14)); // NOI18N
-        jLabel2.setForeground(new java.awt.Color(0, 0, 0));
         jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel2.setText("Puntos: {numero_puntos}");
         Estadisticas.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 20, 160, 40));
 
         jLabel3.setFont(new java.awt.Font("Dubai", 1, 14)); // NOI18N
-        jLabel3.setForeground(new java.awt.Color(0, 0, 0));
         jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel3.setText("Ha sacado Lagarto: {numero_lagarto}");
         Estadisticas.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 220, 240, -1));
 
         jLabel4.setFont(new java.awt.Font("Dubai", 1, 14)); // NOI18N
-        jLabel4.setForeground(new java.awt.Color(0, 0, 0));
         jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel4.setText("Partidas ganadas PPTLS: {partidas_ganadasPPTLS}");
         Estadisticas.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 110, 320, -1));
 
         jLabel6.setFont(new java.awt.Font("Dubai", 1, 14)); // NOI18N
-        jLabel6.setForeground(new java.awt.Color(0, 0, 0));
         jLabel6.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel6.setText("Partidas ganadas PPT: {partidas_ganadasPPT}");
         Estadisticas.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 80, 290, -1));
 
         jLabel8.setFont(new java.awt.Font("Dubai", 1, 14)); // NOI18N
-        jLabel8.setForeground(new java.awt.Color(0, 0, 0));
         jLabel8.setText("Ha sacado Piedra: {numero_piedra}");
         Estadisticas.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 190, 290, -1));
 
         jLabel9.setFont(new java.awt.Font("Dubai", 1, 14)); // NOI18N
-        jLabel9.setForeground(new java.awt.Color(0, 0, 0));
         jLabel9.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel9.setText("Ha sacado Papel: {numero_papel}");
         jLabel9.setToolTipText("");
         Estadisticas.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 220, 210, -1));
 
         jLabel10.setFont(new java.awt.Font("Dubai", 1, 14)); // NOI18N
-        jLabel10.setForeground(new java.awt.Color(0, 0, 0));
         jLabel10.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel10.setText("Ha sacado Tijera: {numero_tijera}");
         jLabel10.setToolTipText("");
         Estadisticas.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 250, 210, -1));
 
         jLabel21.setFont(new java.awt.Font("Dubai", 1, 14)); // NOI18N
-        jLabel21.setForeground(new java.awt.Color(0, 0, 0));
         jLabel21.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel21.setText("Ha sacado Spock: {numero_spock}");
         Estadisticas.add(jLabel21, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 190, 220, -1));
@@ -356,13 +346,6 @@ public class Perfil_Usuario extends javax.swing.JFrame {
         jLabel19.setText("Estadísticas");
         PanelContenido.add(jLabel19, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 670, 110, -1));
 
-<<<<<<< HEAD:Materializacion/ApartadoVisual/src/pantallas/Perfil_Usuario.java
-        jLabel30.setFont(new java.awt.Font("Dubai Medium", 0, 14)); // NOI18N
-        jLabel30.setText("CORREO ELECTRÓNICO:");
-        PanelContenido.add(jLabel30, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 90, 190, -1));
-
-=======
->>>>>>> main:Materializacion/Desafio-JuegoPPT3Ralla/src/perfil/usuario/Perfil_Usuario.java
         jPanel2.add(PanelContenido, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 0, 1560, 1090));
 
         Boton_Cierre_Perfil.setBackground(new java.awt.Color(255, 255, 255));
