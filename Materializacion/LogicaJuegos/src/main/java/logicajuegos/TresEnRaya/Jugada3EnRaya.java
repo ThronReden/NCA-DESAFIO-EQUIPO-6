@@ -1,7 +1,5 @@
 package logicajuegos.TresEnRaya;
 
-import logicajuegos.Jugador;
-
 /**
  *
  * @author jsanchez
@@ -10,7 +8,7 @@ public class Jugada3EnRaya {
     
     private int turno;
     private int posicion;
-    private Jugador jugador;
+    private Jugador3EnRaya jugador;
     
     public static final int ARRIBA_IZQUIERDA = 0;
     public static final int ARRIBA = 1;
@@ -22,7 +20,7 @@ public class Jugada3EnRaya {
     public static final int ABAJO = 7;
     public static final int ABAJO_DERECHA = 8;
     
-    public Jugada3EnRaya(int turn, int pos, Jugador j) throws IllegalArgumentException {
+    public Jugada3EnRaya(int turn, int pos, Jugador3EnRaya j) throws IllegalArgumentException {
         if(pos < 0 || pos >= 9){
             throw new IllegalArgumentException("Posicion no valida");
         } else {
@@ -40,7 +38,7 @@ public class Jugada3EnRaya {
         return posicion;
     }
 
-    public Jugador getJugador() {
+    public Jugador3EnRaya getJugador() {
         return jugador;
     }
     

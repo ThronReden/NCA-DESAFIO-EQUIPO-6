@@ -1,12 +1,14 @@
+package pantallas;
+
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
-package perfil.usuario;
+
 
 import java.awt.Color;
 import javax.swing.ImageIcon;
-import main.juego.Main_Juego;
+import pantallas.Main_Juego;
 
 /**
  *
@@ -80,7 +82,7 @@ public class Perfil_Usuario extends javax.swing.JFrame {
         jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         Boton_Menu_Desplegable.setBackground(new java.awt.Color(102, 102, 102));
-        Boton_Menu_Desplegable.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        Boton_Menu_Desplegable.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         Boton_Menu_Desplegable.setLayout(new java.awt.CardLayout());
 
         jLabel7.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -103,7 +105,7 @@ public class Perfil_Usuario extends javax.swing.JFrame {
         Menu_Ampliado.setBackground(new java.awt.Color(51, 51, 51));
 
         Boton_Tienda.setBackground(new java.awt.Color(51, 51, 51));
-        Boton_Tienda.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        Boton_Tienda.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         Boton_Tienda.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 Boton_TiendaMouseClicked(evt);
@@ -131,7 +133,7 @@ public class Perfil_Usuario extends javax.swing.JFrame {
         Boton_Tienda.add(jSeparator7, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 50, 350, 10));
 
         Boton_Juego.setBackground(new java.awt.Color(51, 51, 51));
-        Boton_Juego.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        Boton_Juego.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         Boton_Juego.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 Boton_JuegoMouseClicked(evt);
@@ -216,17 +218,14 @@ public class Perfil_Usuario extends javax.swing.JFrame {
         DatosP.add(Visibilidad, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 170, -1, 20));
 
         jLabel20.setFont(new java.awt.Font("Dubai Medium", 0, 14)); // NOI18N
-        jLabel20.setForeground(new java.awt.Color(0, 0, 0));
         jLabel20.setText("CONTRASEÑA:");
         DatosP.add(jLabel20, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 170, 100, -1));
 
         jLabel28.setFont(new java.awt.Font("Dubai Medium", 0, 14)); // NOI18N
-        jLabel28.setForeground(new java.awt.Color(0, 0, 0));
         jLabel28.setText("NOMBRE DE USUARIO:");
         DatosP.add(jLabel28, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 50, 150, -1));
 
         jLabel31.setFont(new java.awt.Font("Dubai Medium", 0, 14)); // NOI18N
-        jLabel31.setForeground(new java.awt.Color(0, 0, 0));
         jLabel31.setText("CORREO ELECTRÓNICO:");
         DatosP.add(jLabel31, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 110, 160, 20));
 
@@ -262,7 +261,6 @@ public class Perfil_Usuario extends javax.swing.JFrame {
         PanelContenido.add(DatosP, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 380, 800, 250));
 
         jLabel17.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
-        jLabel17.setForeground(new java.awt.Color(0, 0, 0));
         jLabel17.setText("Datos Personales");
         PanelContenido.add(jLabel17, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 350, 160, -1));
 
@@ -288,7 +286,6 @@ public class Perfil_Usuario extends javax.swing.JFrame {
         PanelContenido.add(jLabel19, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 670, 110, -1));
 
         jLabel30.setFont(new java.awt.Font("Dubai Medium", 0, 14)); // NOI18N
-        jLabel30.setForeground(new java.awt.Color(0, 0, 0));
         jLabel30.setText("CORREO ELECTRÓNICO:");
         PanelContenido.add(jLabel30, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 90, 190, -1));
 

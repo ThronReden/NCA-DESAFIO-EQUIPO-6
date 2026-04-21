@@ -1,10 +1,9 @@
-package main.juego;
+package pantallas;
 
-import inicio.de.sesion.Inicio_Sesion;
+import pantallas.Inicio_Sesion;
 import java.awt.Color;
 import static java.awt.Color.green;
 import pantallas.juegos.Pantalla_3EnRaya;
-import perfil.usuario.Perfil_Usuario;
 
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
