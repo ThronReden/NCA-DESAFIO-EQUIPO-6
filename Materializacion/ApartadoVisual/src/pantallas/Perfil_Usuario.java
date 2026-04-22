@@ -1,12 +1,7 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
-package perfil.usuario;
+package pantallas;
 
 import java.awt.Color;
 import javax.swing.ImageIcon;
-import main.juego.Main_Juego;
 
 /**
  *
@@ -16,8 +11,8 @@ public class Perfil_Usuario extends javax.swing.JFrame {
 
     private final char EchoChar;
 
-    ImageIcon NoVer = new ImageIcon("imagenes\\iconsNoVer.png");
-    ImageIcon Ver = new ImageIcon("imagenes\\iconsVer.png");
+    ImageIcon NoVer = new ImageIcon("src\\imagenes\\iconsNoVer.png");
+    ImageIcon Ver = new ImageIcon("src\\imagenes\\iconsVer.png");
 
     /**
      * Creates new form Perfil_Usuario
@@ -83,7 +78,6 @@ public class Perfil_Usuario extends javax.swing.JFrame {
         jLabel18 = new javax.swing.JLabel();
 
         jLabel5.setFont(new java.awt.Font("Dubai", 1, 14)); // NOI18N
-        jLabel5.setForeground(new java.awt.Color(0, 0, 0));
         jLabel5.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel5.setText("Partidas ganadas al 3 en raya: {partidas_ganadas3Raya}");
 
@@ -96,7 +90,7 @@ public class Perfil_Usuario extends javax.swing.JFrame {
         jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         Boton_Menu_Desplegable.setBackground(new java.awt.Color(102, 102, 102));
-        Boton_Menu_Desplegable.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        Boton_Menu_Desplegable.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         Boton_Menu_Desplegable.setLayout(new java.awt.CardLayout());
 
         jLabel7.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -119,7 +113,7 @@ public class Perfil_Usuario extends javax.swing.JFrame {
         Menu_Ampliado.setBackground(new java.awt.Color(51, 51, 51));
 
         Boton_Tienda.setBackground(new java.awt.Color(51, 51, 51));
-        Boton_Tienda.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        Boton_Tienda.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         Boton_Tienda.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 Boton_TiendaMouseClicked(evt);
@@ -147,7 +141,7 @@ public class Perfil_Usuario extends javax.swing.JFrame {
         Boton_Tienda.add(jSeparator7, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 50, 350, 10));
 
         Boton_Juego.setBackground(new java.awt.Color(51, 51, 51));
-        Boton_Juego.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        Boton_Juego.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         Boton_Juego.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 Boton_JuegoMouseClicked(evt);
@@ -232,17 +226,14 @@ public class Perfil_Usuario extends javax.swing.JFrame {
         DatosP.add(Visibilidad, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 170, -1, 30));
 
         jLabel20.setFont(new java.awt.Font("Dubai Medium", 0, 14)); // NOI18N
-        jLabel20.setForeground(new java.awt.Color(0, 0, 0));
         jLabel20.setText("CONTRASEÑA:");
         DatosP.add(jLabel20, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 170, 100, -1));
 
         jLabel28.setFont(new java.awt.Font("Dubai Medium", 0, 14)); // NOI18N
-        jLabel28.setForeground(new java.awt.Color(0, 0, 0));
         jLabel28.setText("NOMBRE DE USUARIO:");
         DatosP.add(jLabel28, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 50, 150, -1));
 
         jLabel31.setFont(new java.awt.Font("Dubai Medium", 0, 14)); // NOI18N
-        jLabel31.setForeground(new java.awt.Color(0, 0, 0));
         jLabel31.setText("CORREO ELECTRÓNICO:");
         DatosP.add(jLabel31, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 110, 160, 20));
 
@@ -287,7 +278,6 @@ public class Perfil_Usuario extends javax.swing.JFrame {
         PanelContenido.add(DatosP, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 380, 800, 250));
 
         jLabel17.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
-        jLabel17.setForeground(new java.awt.Color(0, 0, 0));
         jLabel17.setText("Datos Personales");
         PanelContenido.add(jLabel17, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 350, 160, -1));
 
@@ -296,56 +286,47 @@ public class Perfil_Usuario extends javax.swing.JFrame {
         Estadisticas.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel1.setFont(new java.awt.Font("Dubai", 1, 14)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(0, 0, 0));
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setText("Partidas ganadas al 3 en raya: {partidas_ganadas3Raya}");
         Estadisticas.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 140, -1, -1));
 
         jLabel2.setFont(new java.awt.Font("Dubai", 1, 14)); // NOI18N
-        jLabel2.setForeground(new java.awt.Color(0, 0, 0));
         jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel2.setText("Puntos: {numero_puntos}");
         Estadisticas.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 20, 160, 40));
 
         jLabel3.setFont(new java.awt.Font("Dubai", 1, 14)); // NOI18N
-        jLabel3.setForeground(new java.awt.Color(0, 0, 0));
         jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel3.setText("Ha sacado Lagarto: {numero_lagarto}");
         Estadisticas.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 220, 240, -1));
 
         jLabel4.setFont(new java.awt.Font("Dubai", 1, 14)); // NOI18N
-        jLabel4.setForeground(new java.awt.Color(0, 0, 0));
         jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel4.setText("Partidas ganadas PPTLS: {partidas_ganadasPPTLS}");
         Estadisticas.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 110, 320, -1));
 
         jLabel6.setFont(new java.awt.Font("Dubai", 1, 14)); // NOI18N
-        jLabel6.setForeground(new java.awt.Color(0, 0, 0));
         jLabel6.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel6.setText("Partidas ganadas PPT: {partidas_ganadasPPT}");
         Estadisticas.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 80, 290, -1));
 
         jLabel8.setFont(new java.awt.Font("Dubai", 1, 14)); // NOI18N
-        jLabel8.setForeground(new java.awt.Color(0, 0, 0));
         jLabel8.setText("Ha sacado Piedra: {numero_piedra}");
         Estadisticas.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 190, 290, -1));
 
         jLabel9.setFont(new java.awt.Font("Dubai", 1, 14)); // NOI18N
-        jLabel9.setForeground(new java.awt.Color(0, 0, 0));
         jLabel9.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel9.setText("Ha sacado Papel: {numero_papel}");
         jLabel9.setToolTipText("");
         Estadisticas.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 220, 210, -1));
 
         jLabel10.setFont(new java.awt.Font("Dubai", 1, 14)); // NOI18N
-        jLabel10.setForeground(new java.awt.Color(0, 0, 0));
         jLabel10.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel10.setText("Ha sacado Tijera: {numero_tijera}");
         jLabel10.setToolTipText("");
         Estadisticas.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 250, 210, -1));
 
         jLabel21.setFont(new java.awt.Font("Dubai", 1, 14)); // NOI18N
-        jLabel21.setForeground(new java.awt.Color(0, 0, 0));
         jLabel21.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel21.setText("Ha sacado Spock: {numero_spock}");
         Estadisticas.add(jLabel21, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 190, 220, -1));

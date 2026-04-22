@@ -1,6 +1,4 @@
-package desafio.juegoppt3ralla;
-
-import inicio.de.sesion.Inicio_Sesion;
+package pantallas;
 
 /**
  *
