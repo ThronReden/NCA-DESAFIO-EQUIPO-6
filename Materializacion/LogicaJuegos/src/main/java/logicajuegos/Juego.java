@@ -7,31 +7,69 @@ import java.util.Optional;
  * padre de todos los tipos de juego implementados posteriormente.
  * 
  * <p>Es abstracta ya que no hay juegos que sean solo {@code Juego}, un juego debe ser
- * una implementacion de {@code Juego} para un tipo de resultado R y un tipo de
- * {@link Jugador} J propios.
+ * una implementacion de {@code Juego} para un tipo de resultado {@code R} y un tipo de
+ * {@link Jugador} {@code J} propios.
+ * 
+ * <p><b>Constructor:</b> #Juego(J,J)
+ * 
+ * @param <R> el tipo de dato del {@link #resultado} de la partida
+ * @param <J> el tipo de jugador para el juego concreto, debe heredar de {@link Jugador}
+ * 
+ * @see Jugador
  * 
  * @author jsanchez
- * @param <R> el tipo de dato del resultado de la partida
- * @param <J> el tipo de jugador para el juego concreto, 
- *              debe heredar de {@link Jugador}
- * @see Jugador
  */
 public abstract class Juego<R,J extends Jugador> {
-    
-    private final J jugador1; //Nuestro Jugador 1
-    private final J jugador2; //Nuestro Jugador 2
-    //Un Juego según nuestra definición por defecto tiene al menos 2 Jugadores
-    
-    private boolean partidaEnCurso; //Flag para almacenar el estado del juego
-    private R resultado; //El resultado de la partida (null si no ha terminado)
+    /**
+     * Nuestro Jugador 1.
+     * 
+     * <p>Un {@code Juego} según nuestra definición tiene por defecto al menos
+     * 2 Jugadores: {@link #jugador1} y {@link #jugador2}
+     * 
+     * @see Jugador
+     * @see #getJugador1()
+     */
+    private final J jugador1;
+    /**
+     * Nuestro Jugador 2.
+     * 
+     * <p>Un {@code Juego} según nuestra definición tiene por defecto al menos
+     * 2 Jugadores: {@link #jugador1} y {@link #jugador2}
+     * 
+     * @see Jugador
+     * @see #getJugador2()
+     */
+    private final J jugador2;
+    /**
+     * Flag para almacenar el estado del juego, por defecto es {@code false}.
+     * 
+     * <p>Será {@code true} cuando la partida esté siendo jugada y {@code false}
+     * en cualquier otro caso. (Partida sin iniciar, partida finalizada...)
+     * <p>Nos sirve para no permitir acciones a los jugadores cuando ya haya
+     * terminado el juego y cosas similares.
+     * 
+     * @see #isPartidaEnCurso()
+     * @see #setPartidaEnCurso(boolean)
+     */
+    private boolean partidaEnCurso = false;
+    /**
+     * El resultado de la partida.
+     * 
+     * <p>Seá {@code null} si la partida no ha comenzado o no ha terminado
+     * todavía.
+     * 
+     * @see #devolverResultado()
+     * @see #setResultado(R)
+     */
+    private R resultado;
     
     /**
-     * Constructor de la clase abstracta {@code Juego}.
+     * Constructor para la clase abstracta {@link Juego}.
      * 
      * <p>Recibe dos jugadores de clase {@code J} y los guarda como atributos.
      * 
-     * @param j1, el jugador1
-     * @param j2, el jugador2
+     * @param j1 el {@link #jugador1} del juego a crear
+     * @param j2 el {@link #jugador2} del juego a crear
      */
     protected Juego(J j1, J j2){
         this.jugador1 = j1;
@@ -39,33 +77,33 @@ public abstract class Juego<R,J extends Jugador> {
     }
 
     /**
-     * Getter para {@code jugador1}.
+     * Getter para {@link #jugador1}.
      * 
-     * <p>Cuidado porque devuelve el objeto como tal, no una copia.
+     * <p>Cuidado porque <b>devuelve el objeto como tal</b>, no una copia.
      * <p>El tipo de jugador dependerá de {@code J}.
      * 
-     * @return el jugador1 de esa instancia de {@code Juego}
+     * @return el {@link #jugador1} de esta instancia de {@link Juego}
      */
     public J getJugador1() {
         return jugador1;
     }
 
     /**
-     * Getter para {@code jugador2}.
+     * Getter para {@link #jugador2}.
      * 
-     * <p>Cuidado porque devuelve el objeto como tal, no una copia.
+     * <p>Cuidado porque <b>devuelve el objeto como tal</b>, no una copia.
      * <p>El tipo de jugador dependerá de {@code J}.
      * 
-     * @return el jugador2 de esa instancia de {@code Juego}
+     * @return el {@link #jugador2} de esta instancia de {@code Juego}
      */
     public J getJugador2() {
         return jugador2;
     }
     
     /**
-     * Getter para {@code partidaEnCurso}.
+     * Getter para {@link #partidaEnCurso}.
      * 
-     * <p>Nos sirve para no permitir acciones a los jugadores cuando ya haya
+     * <p>Nos sirve para no permitir acciones a los {@link #jugador1 jugadores} cuando ya haya
      * terminado el juego y cosas similares.
      * 
      * @return {@code true} si la partida está en curso,
@@ -78,7 +116,7 @@ public abstract class Juego<R,J extends Jugador> {
     /**
      * Setter para {@code partidaEnCurso}.
      * 
-     * @param isPartidaEnCurso, el estado de la partida a almacenar
+     * @param isPartidaEnCurso el estado de la partida
      */
     protected void setPartidaEnCurso(boolean isPartidaEnCurso) {
         this.partidaEnCurso = isPartidaEnCurso;
@@ -92,18 +130,18 @@ public abstract class Juego<R,J extends Jugador> {
     public abstract void iniciarJuego();
     
     /**
-     * Setter para {@code resultado}.
+     * Setter para {@link #resultado}.
      * 
      * <p>El tipo de dato del resultado dependerá de {@code R}
      * 
-     * @param unResultado, el resultado de la partida
+     * @param unResultado el resultado de la partida
      */
     protected void setResultado(R unResultado){
         this.resultado = unResultado;
     }
     
     /**
-     * Getter para {@code resultado} que devuelve un {@code Optional} para
+     * Getter para {@link #resultado} que devuelve un {@link Optional} para
      * gestionar la posibilidad de que no exista resultado todavía.
      * 
      * <p>En caso de no haber resultado (es {@code null}) se lanzará
@@ -116,17 +154,17 @@ public abstract class Juego<R,J extends Jugador> {
     }
     
     /**
-     * Getter para ganador que devuelve un {@code Optional} para gestionar la
+     * Getter para ganador que devuelve un {@link Optional} para gestionar la
      * posibilidad de que no exista ganador todavía.
      * 
-     * <p>Es abstracto, de implementación obligada.
+     * <p>Metodo abstracto, de implementación obligada.
      * 
-     * <p>En caso de no haber resultado (resultado es {@code null}) o no haber
-     * ganador por otra razón se lanzarán excepciones personalizadas.
+     * <p>En caso de no haber {@link #resultado} (resultado es {@code null}) o no haber
+     * ganador por cualquier otra razón se lanzarán excepciones personalizadas.
      * Ver {@link SupplierExcepcionesNoHayResultado} y
-     * {@link logicajuegos.SupplierExcepcionesNoHayResultado SupplierExcepcionesNoHayResultado}
+     * {@link logicajuegos.TresEnRaya.SupplierExcepcionesNoHayGanador SupplierExcepcionesNoHayGanador}
      * 
-     * @return el {@code Jugador} ganador de la partida
+     * @return el {@link Jugador} ganador de la partida en caso de haberlo ({@link Optional})
      */
     public abstract Optional<J> devolverGanador();
     
