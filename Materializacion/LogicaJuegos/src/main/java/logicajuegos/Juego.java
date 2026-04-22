@@ -8,7 +8,7 @@ import java.util.Optional;
  * 
  * <p>Es abstracta ya que no hay juegos que sean solo {@code Juego}, un juego debe ser
  * una implementacion de {@code Juego} para un tipo de resultado R y un tipo de
- * {@link Jugador} J.
+ * {@link Jugador} J propios.
  * 
  * @author jsanchez
  * @param <R> el tipo de dato del resultado de la partida
@@ -107,10 +107,9 @@ public abstract class Juego<R,J extends Jugador> {
      * gestionar la posibilidad de que no exista resultado todavía.
      * 
      * <p>En caso de no haber resultado (es {@code null}) se lanzará
-     * una excepción personalizada.
-     * @see SupplierExcepcionesNoHayResultado
+     * una excepción personalizada: {@link SupplierExcepcionesNoHayResultado}
      * 
-     * @return el resultado de la partida
+     * @return el {@code resultado} de la partida
      */
     public Optional<R> devolverResultado() {
         return Optional.ofNullable(resultado);
@@ -124,8 +123,8 @@ public abstract class Juego<R,J extends Jugador> {
      * 
      * <p>En caso de no haber resultado (resultado es {@code null}) o no haber
      * ganador por otra razón se lanzarán excepciones personalizadas.
-     * @see SupplierExcepcionesNoHayResultado
-     * @see logicajuegos.SupplierExcepcionesNoHayResultado
+     * Ver {@link SupplierExcepcionesNoHayResultado} y
+     * {@link logicajuegos.SupplierExcepcionesNoHayResultado SupplierExcepcionesNoHayResultado}
      * 
      * @return el {@code Jugador} ganador de la partida
      */
