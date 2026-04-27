@@ -10,7 +10,7 @@ import java.util.Optional;
  * una implementacion de {@code Juego} para un tipo de resultado {@code R} y un tipo de
  * {@link Jugador} {@code J} propios.
  * 
- * <p><b>Constructor:</b> #Juego(J,J)
+ * <p><b>Constructor:</b> {@link #Juego(J,J)}
  * 
  * @param <R> el tipo de dato del {@link #resultado} de la partida
  * @param <J> el tipo de jugador para el juego concreto, debe heredar de {@link Jugador}
