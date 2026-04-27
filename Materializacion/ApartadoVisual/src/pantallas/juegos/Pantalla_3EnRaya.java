@@ -354,16 +354,11 @@ public class Pantalla_3EnRaya extends javax.swing.JFrame {
         for (int i = 0; i < 9; i++) {
             estado = t.getCasilla(i);
             switch (estado) {
-                case 1:
-                    labelGrid[i].setIcon(X);
+                case 1 -> labelGrid[i].setIcon(X);
 //                    labelGrid[i].setEnabled(false);
-                    break;
-                case 2:
-                    labelGrid[i].setIcon(O);
+                case 2 -> labelGrid[i].setIcon(O);
 //                    labelGrid[i].setEnabled(false);
-                    break;
-                default:
-                    labelGrid[i].setIcon(VACIO);
+                default -> labelGrid[i].setIcon(VACIO);
 //                    labelGrid[i].setEnabled(true);
             }
         }

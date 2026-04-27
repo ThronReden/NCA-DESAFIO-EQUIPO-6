@@ -2,6 +2,8 @@ package logicajuegos.TresEnRaya;
 
 import java.util.Optional;
 import java.util.Random;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -40,30 +42,37 @@ public class Bot3EnRaya extends Jugador3EnRaya{
         if(marca == 0){
             marca = (p.getTurno()%2 == 1)? EstadoTablero.X : EstadoTablero.O;
         }
-//        getEstadoTablero().mostrarEstadoTableroTerminal();
+        if(p.getClass() == Partida3EnRaya.class){
+            getEstadoTablero().mostrarEstadoTableroTerminal();
+        }
         boolean bueno;
-        do{
+        do {
             bueno = false;
-            try{
-                hacerJugada(calcularJugada(),p);
+            try {
+                hacerJugada(calcularJugada(), p);
                 bueno = true;
-            } catch(IllegalArgumentException IAE){
+            } catch (IllegalArgumentException IAE) {
 //                System.out.println(IAE.getMessage());
             }
         } while(!bueno);
     }
 
     private int calcularJugada() {
+        try {
+            Thread.sleep(100);
+        } catch (InterruptedException ex) {
+            Logger.getLogger(Bot3EnRaya.class.getName()).log(Level.SEVERE, null, ex);
+        }
         int pos;
         Random r = new Random();
         
         if(getEstadoTablero().tableroVacio()){
             pos = r.nextInt(9);
-            if(pos == 4){
-                pos = r.nextInt(9);
-            }
+//            if(pos == 4){
+//                pos = r.nextInt(9);
+//            }
         } else if(existeAmenaza()){
-            if(r.nextInt(10)+1 > 3){
+            if(r.nextInt(10)+1 > 0){
                 pos = getTaparAmenaza();
                 return pos;
             } else {
@@ -130,8 +139,14 @@ public class Bot3EnRaya extends Jugador3EnRaya{
     private boolean comprobarDiagonales(int amenaza) {
         EstadoTablero t = getEstadoTablero();
         boolean existe;
-        existe = (t.getCasilla(0)+ t.getCasilla(4)+ t.getCasilla(8) == amenaza)
-            || (t.getCasilla(2) + t.getCasilla(4) + t.getCasilla(6) == amenaza);
+        existe = ((t.getCasilla(0)+ t.getCasilla(4)+ t.getCasilla(8) == amenaza)
+                && (t.getCasilla(0) == EstadoTablero.VACIO
+                    || t.getCasilla(4) == EstadoTablero.VACIO
+                    || t.getCasilla(8) == EstadoTablero.VACIO))
+            || ((t.getCasilla(2) + t.getCasilla(4) + t.getCasilla(6) == amenaza)
+                && (t.getCasilla(2) == EstadoTablero.VACIO
+                || t.getCasilla(4) == EstadoTablero.VACIO
+                || t.getCasilla(6) == EstadoTablero.VACIO));
         return existe;
     }
     
@@ -153,16 +168,19 @@ public class Bot3EnRaya extends Jugador3EnRaya{
         EstadoTablero t = getEstadoTablero();
         int sum;
         Optional<Integer> pos = Optional.empty();
+        boolean hayCasillaVacia;
         
         for(int fila = 0; fila < 3; fila++) {
             sum = 0;
+            hayCasillaVacia = false;
             for(int casilla = fila*3; casilla < fila*3+3; casilla++) {
                 sum += t.getCasilla(casilla);
                 if(t.getCasilla(casilla) == EstadoTablero.VACIO){
+                    hayCasillaVacia = true;
                     pos = Optional.of(casilla);
                 }
             }
-            if(sum == amenaza){
+            if(hayCasillaVacia && sum == amenaza){
                 return pos;
             }
             pos = Optional.empty();
@@ -174,16 +192,19 @@ public class Bot3EnRaya extends Jugador3EnRaya{
         EstadoTablero t = getEstadoTablero();
         int sum;
         Optional<Integer> pos = Optional.empty();
+        boolean hayCasillaVacia;
         
         for(int columna = 0; columna < 3; columna++) {
             sum = 0;
+            hayCasillaVacia = false;
             for(int casilla = columna; casilla < columna+7; casilla+=3) {
                 sum += t.getCasilla(casilla);
                 if(t.getCasilla(casilla) == EstadoTablero.VACIO){
+                    hayCasillaVacia = true;
                     pos = Optional.of(casilla);
                 }
             }
-            if(sum == amenaza){
+            if(hayCasillaVacia && sum == amenaza){
                 return pos;
             }
             pos = Optional.empty();
@@ -196,20 +217,21 @@ public class Bot3EnRaya extends Jugador3EnRaya{
         Optional<Integer> pos = Optional.empty();
         
         if(t.getCasilla(0) + t.getCasilla(4) + t.getCasilla(8) == amenaza){
-            if(t.getCasilla(0) + t.getCasilla(4) == amenaza){
-                pos = Optional.of(t.getCasilla(8));
+            if(t.getCasilla(8) == EstadoTablero.VACIO){
+                pos = Optional.of(8);
             } else if(t.getCasilla(4) == EstadoTablero.VACIO){
-                pos = Optional.of(t.getCasilla(4));
-            } else {
-                pos = Optional.of(t.getCasilla(0));
+                pos = Optional.of(4);
+            } else if (t.getCasilla(0) == EstadoTablero.VACIO) {
+                pos = Optional.of(0);
             }
-        } else if(t.getCasilla(2)+ t.getCasilla(4)+ t.getCasilla(6)== amenaza){
-            if(t.getCasilla(2) + t.getCasilla(4) == amenaza){
-                pos = Optional.of(t.getCasilla(6));
+        }
+        if(pos.isEmpty() && t.getCasilla(2)+ t.getCasilla(4)+ t.getCasilla(6)== amenaza){
+            if(t.getCasilla(6) == EstadoTablero.VACIO){
+                pos = Optional.of(6);
             } else if(t.getCasilla(4) == EstadoTablero.VACIO){
-                pos = Optional.of(t.getCasilla(4));
-            } else {
-                pos = Optional.of(t.getCasilla(2));
+                pos = Optional.of(4);
+            } else if (t.getCasilla(2) == EstadoTablero.VACIO) {
+                pos = Optional.of(2);
             }
         }
         return pos;

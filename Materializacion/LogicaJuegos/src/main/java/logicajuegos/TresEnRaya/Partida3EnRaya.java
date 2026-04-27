@@ -54,7 +54,7 @@ public class Partida3EnRaya extends Juego<Integer,Jugador3EnRaya> {
         return liJ.get(r.nextInt(2));
     }
     
-    protected Jugador3EnRaya getJugadorTurnoActual(){
+    public Jugador3EnRaya getJugadorTurnoActual(){
         Jugador3EnRaya j = null;
         if(isPartidaEnCurso()){
             switch (turno%2){
@@ -122,7 +122,9 @@ public class Partida3EnRaya extends Juego<Integer,Jugador3EnRaya> {
     }
     
     public void recibirJugada(Jugada3EnRaya jugada) throws IllegalArgumentException {
-        if(seHaJugado(jugada.getPosicion())){
+        if(!jugada.getJugador().equals((Jugador3EnRaya)getJugadorTurnoActual())){
+            throw new IllegalArgumentException("No es el turno de este jugador.");
+        } else if(seHaJugado(jugada.getPosicion())){
             throw new IllegalArgumentException("No se puede hacer otra jugada en esa casilla.");
         } else if(!isPartidaEnCurso()){
             throw new IllegalArgumentException("No se pueden hacer jugadas, la partida ha terminado.");
