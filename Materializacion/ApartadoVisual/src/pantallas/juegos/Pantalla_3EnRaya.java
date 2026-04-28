@@ -5,6 +5,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import logicajuegos.TresEnRaya.EstadoTablero;
 import logicajuegos.TresEnRaya.Jugada3EnRaya;
+import logicajuegos.TresEnRaya.Jugador3EnRaya;
 import logicajuegos.TresEnRaya.SupplierExcepcionesNoHayGanador;
 import pantallas.Inicio_Sesion;
 import pantallas.Main_Juego;
@@ -364,21 +365,23 @@ public class Pantalla_3EnRaya extends javax.swing.JFrame {
         }
     }
 
-    public void mostrarResultado() {
-
-        if (P.devolverGanador().isPresent()) {
-            if (P.devolverGanador().orElseThrow(new SupplierExcepcionesNoHayGanador()) instanceof Jugador3EnRayaUI) {
-                RESULTADO.setText("¡HAS GANADO!");
-                Resultado.setBackground(Color.green);
-            } else {
-                RESULTADO.setText("¡HAS PERDIDO!");
-                Resultado.setBackground(Color.red);
-            }
+    public void mostrarResultado(Jugador3EnRaya ganador) {
+        if (ganador instanceof Jugador3EnRayaUI) {
+            RESULTADO.setText("¡HAS GANADO!");
+            Resultado.setBackground(Color.green);
         } else {
-            RESULTADO.setText("¡EMPATE!");
-            Resultado.setBackground(Color.gray);
+            RESULTADO.setText("¡HAS PERDIDO!");
+            Resultado.setBackground(Color.red);
         }
-
+        mostrarDialogResultado();
+    }
+    public void mostrarResultado(){
+        RESULTADO.setText("¡EMPATE!");
+        Resultado.setBackground(Color.gray);
+        mostrarDialogResultado();
+    }
+    
+    private void mostrarDialogResultado(){
         jDialog1.setSize(850, 590);
         jDialog1.setLocationRelativeTo(this);
         jDialog1.setModal(true);

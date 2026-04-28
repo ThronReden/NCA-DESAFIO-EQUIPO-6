@@ -3,6 +3,7 @@ package pantallas.juegos;
 import logicajuegos.TresEnRaya.Bot3EnRaya;
 import logicajuegos.TresEnRaya.Jugador3EnRaya;
 import logicajuegos.TresEnRaya.Partida3EnRaya;
+import logicajuegos.TresEnRaya.SupplierExcepcionesNoHayGanador;
 
 /**
  *
@@ -28,7 +29,7 @@ public class Partida3EnRayaUI extends Partida3EnRaya {
         }
         return new Partida3EnRayaUI(J1, J2, p);
     }
-
+    
     @Override
     protected void nuevoTurno() {
         avanzarTurno();
@@ -40,7 +41,7 @@ public class Partida3EnRayaUI extends Partida3EnRaya {
     @Override
     public void mostrarGanador() {
 //        System.out.println("####\n\nGana "+devolverGanador().orElseThrow(new SupplierExcepcionesNoHayGanador()).getNombre()+"!");
-       Pantalla.mostrarResultado();
+       Pantalla.mostrarResultado(devolverGanador().orElseThrow(new SupplierExcepcionesNoHayGanador()));
     }
 
     @Override
