@@ -1,58 +1,74 @@
 <!DOCTYPE html>
-<HTML>
-    <head>
-        <title>Desafio 6</title>
-        <meta lang="es"></meta>
-        <meta charset="UTF-8"></meta>
-        <meta name="keywords" lang="es" content="Piedra Papel Tijera, Piedra papel tijera lagarto spock, 3 en raya"></meta>
-        <meta name="keywords" lang="Ro" content="Rock Paper Scissors, Rock Paper Scissors Lizard Spock, Tic-Tac-Toe"></meta>
-        <meta name="viewport" 
-        content="width=device-width initial-scale=1.0, shrink-to-fit=no"></meta>
-        <link href="Lenguaje de Marcas/CSS/Desafio6.css" rel="stylesheet" type="text/css">   
-        <link href="Lenguaje de Marcas/Frameworks/css/bootstrap.min.css" rel="stylesheet">
-    </head>
+<html lang="es">
+<head>
+  <title>Desafio 6</title>
+  <meta charset="UTF-8">
+  <meta name="keywords" lang="es" content="Piedra Papel Tijera, Piedra papel tijera lagarto spock, 3 en raya">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+  <link href="Lenguaje_de_Marcas/CSS/Desafio6.css" rel="stylesheet" type="text/css">
+  <link href="Lenguaje_de_Marcas/Frameworks/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body style="background-color: #3b4286;">
 
-                    <!-- col puede ser xxl,xl,lg,md,sm,vacia'-->
-                <!-- xxl significa que colapsa a los 1400px-->
-                <!-- xl significa que colapsa a los 1200px-->
-                <!-- lg significa que colapsa a los 992px-->
-                <!-- md significa que colapsa a los 768px-->
-                <!-- sd significa que colapsa a los 576px-->
-                <!-- vacia significa que NO colapsa-->
+<header>
+  <div class="container-fluid">
+    <div class="menu-responsive">
+      
+      <a href="index.html" class="animation titulo">Desafio Grupo 6</a>
 
-    <body>
-     <header>
-    <div class="container-fluid">
-        <div class="row ">
+      <input type="checkbox" id="menu-toggle">
+      <label for="menu-toggle" class="menu-icon">☰</label>
 
-            <div class="col-12 col-lg-3 text-lg-start">
-                <a href="index.html" class="animation titulo"> Desafio Grupo 6</a>
+      <nav class="menu-nav">
+        <a class="enlace-menu" href="Lenguaje_de_Marcas/HTML/Tutorial.html">Tutorial</a>
+        <a class="enlace-menu" href="Lenguaje_de_Marcas/HTML/QuienesSomos.html">¿Quiénes somos?</a>
+        <a class="enlace-menu" href="Lenguaje_de_Marcas/HTML/Descargar.html">Descargar</span></a>
+        <a class="enlace-menu" href="Lenguaje_de_Marcas/HTML/Contacta.html">Contacto</a>
+      </nav>
+
+    </div>
+  </div>
+</header>
+  <section class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-overlay"></div>
+  <div class="hero-content">
+    <div class="hero-tag">Proyecto Final  Grupo 6</div>
+    <h1 class="hero-title">DESAFIO<br><span>GRUPO 6</span></h1>
+    <p class="hero-subtitle">Tres juegos clásicos. Una sola aplicación.</p>
+    <a href="Lenguaje_de_Marcas/HTML/Tutorial.html" class="hero-cta">Ver juegos →</a>
+  </div>
+</section>
+
+<div class="features">
+    <div class="features-inner">
+        <h2 class="section-title">Tres juegos, infinita diversión</h2>
+        <div class="game-grid">
+            <div class="game-card featured">
+                <h3>3 en Raya</h3>
+                <p>Clásico juego de cuadrícula 3×3. Consigue tres en línea antes que tu rival.</p>
+                <a class="card-link color" href="Lenguaje_de_Marcas/HTML/Tutorial.html">Ver cómo jugar →</a>
             </div>
-
-            <div class="col-12 col-lg-9">
-                <nav class="nav flex-column flex-lg-row justify-content-center justify-content-lg-end text-center">
-                    <a class="enlace-menu" href="/Lenguaje de Marcas/HTML/Tutorial.html">Tutorial</a>
-                    <a class="enlace-menu" href="/Lenguaje de Marcas/HTML/QuienesSomos.html">¿Quienes somos?</a>
-                    <a class="enlace-menu" href="/Lenguaje de Marcas/HTML/Descargar.html">Descargar</a>
-                    <a class="enlace-menu" href="/Lenguaje de Marcas/HTML/Contacta.html">Contacto</a>
-                </nav>
+            <div class="game-card featured">
+                <div class="game-badge">Más popular</div>
+                <h3>Piedra Papel Tijera</h3>
+                <p>El clásico de siempre. Elige tu elemento y vence a la maquina.</p>
+                <a href="Lenguaje_de_Marcas/HTML/Tutorial.html" class="card-link color">Ver cómo jugar →</a>
             </div>
-
+            <div class="game-card featured">
+                <h3>Lagarto Spock</h3>
+                <p>La versión extendida con 5 elementos. Más estrategia, más diversión.</p>
+                <a href="Lenguaje_de_Marcas/HTML/Tutorial.html" class="card-link color">Ver cómo jugar →</a>
+            </div>
         </div>
     </div>
-</header>
+</div>
 
-
-        <div class="Contenedor">
-
-            <div class="imagenprincipal"></div>
-            <div class="TextoImagen">
-                <p>Desafio Grupo6</p>
-            </div>
-        </div>
 <footer class="pie">
-    <p>© 2026 Desafío Grupo 6 - Todos los derechos reservados</p>
-    <p>No nos hacemos responsables de que tengais ganas de jugar al mejor juego del mundo</p>
-    <p>Si lees esto debes 10 euros al proyecto para poder hacer mejoras y que sea mas entretenido</p>
+  <p>© 2026 Desafío Grupo 6 — Todos los derechos reservados</p>
+  <p>No nos hacemos responsables de que tengáis ganas de jugar al mejor juego del mundo</p>
+  <p>Si lees esto debes 10 euros al proyecto para hacer mejoras y que sea más entretenido</p>
 </footer>
-    </body>
+
+</body>
+</html>

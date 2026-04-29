@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <title>Contacto — Desafio 6</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+  <link href="../CSS/Desafio6.css" rel="stylesheet" type="text/css">
+  <link href="../Frameworks/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body style="background-color: #3b4286;">
+
+<header>
+  <div class="container-fluid">
+    <div class="menu-responsive">
+      
+      <a href="../../index.html" class="animation titulo">Desafio Grupo 6</a>
+
+      <input type="checkbox" id="menu-toggle">
+      <label for="menu-toggle" class="menu-icon">☰</label>
+
+      <nav class="menu-nav">
+        <a class="enlace-menu color" href="Tutorial.html">Tutorial</a>
+        <a class="enlace-menu color" href="QuienesSomos.html">¿Quiénes somos?</a>
+        <a class="enlace-menu color" href="Descargar.html">Descargar</a>
+        <a class="enlace-menu color" href="Contacta.html">Contacto</a>
+      </nav>
+
+    </div>
+  </div>
+</header>
+
+<div class="container mt-5 pt-4" style="max-width:860px;">
+  <h1 class="contact-title">Contacta con nosotros</h1>
+  <p class="contact-sub color">¿Tienes algún problema, sugerencia o simplemente quieres saludarnos? Rellena el formulario.</p>
+
+  <form action="https://formspree.io/f/xdaygogq" method="POST" class="Formulario">
+    <div class="row g-4">
+
+      <div class="col-12 col-lg-6">
+        <label for="nombre">Nombre</label>
+        <input type="text" id="nombre" name="nombre" class="form-control" placeholder="Tu nombre" required>
+      </div>
+
+      <div class="col-12 col-lg-6">
+        <label for="correo">Correo electrónico</label>
+        <input type="email" id="correo" name="email" class="form-control" placeholder="ejemplo@gmail.com" required>
+      </div>
+
+      <div class="col-12 col-lg-6">
+        <label for="asunto">Asunto</label>
+        <input type="text" id="asunto" name="asunto" class="form-control" placeholder="¿De qué trata?" required>
+      </div>
+
+      <div class="col-12 col-lg-6">
+        <label for="archivo">Adjuntar archivo (opcional)</label>
+        <input type="file" id="archivo" name="archivo" class="form-control">
+      </div>
+
+      <div class="col-12">
+        <label for="problema">Mensaje</label>
+        <textarea id="problema" name="message" rows="7" class="form-control" placeholder="Cuéntanos..." required></textarea>
+      </div>
+
+      <div class="col-12">
+        <button type="submit" class="btn-enviar">Enviar mensaje →</button>
+      </div>
+
+    </div>
+  </form>
+</div>
+
+<footer class="pie">
+  <p>© 2026 Desafío Grupo 6 — Todos los derechos reservados</p>
+  <p>No nos hacemos responsables de que tengáis ganas de jugar al mejor juego del mundo</p>
+  <p>Si lees esto debes 10 euros al proyecto para hacer mejoras y que sea más entretenido</p>
+</footer>
+
+</body>
+</html>

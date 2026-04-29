@@ -1,0 +1,806 @@
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Rajdhani:wght@300;400;600;700&display=swap');
+
+
+/* =====================================================
+   GLOBAL — Base, body y fondo
+   ===================================================== */
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  
+  color: #e0e0f0;
+  font-family: 'Rajdhani', sans-serif;
+  font-size: 17px;
+  line-height: 1.6;
+  overflow-x: hidden;
+  padding-top: 30px;
+}
+
+
+
+
+/* =====================================================
+   GLOBAL — Header (compartido por todas las páginas)
+   ===================================================== */
+
+header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 65px;
+  background: rgba(10,10,18,0.88);
+  display: flex;
+  align-items: center;
+  z-index: 1000;
+}
+
+header .container-fluid {
+  width: 100%;
+  padding: 0 24px;
+}
+
+.row {
+  align-items: center;
+}
+
+@media (max-width: 991.98px) {
+  header {
+    height: auto;
+  }
+
+}
+
+.titulo {
+  font-family: 'Orbitron';
+  font-weight: 900;
+  color: #00f5d4;
+  text-decoration: none;
+  display: inline-block;
+}
+
+.animation {
+  animation: glitch-loop 1s infinite;
+}
+
+@keyframes glitch-loop {
+  0%, 92%, 100% {
+    transform: none;
+    text-shadow: 0 0 20px rgba(0,245,212,0.4);
+    color: #00f5d4;
+  }
+  94% {
+    transform: translateX(-3px);
+    text-shadow: 3px 0 #f72585, -3px 0 #7209b7;
+    color: #fff;
+  }
+  96% {
+    transform: translateX(3px);
+    text-shadow: -3px 0 #f72585, 3px 0 #00f5d4;
+  }
+  98% {
+    transform: none;
+    color: #00f5d4;
+  }
+}
+
+.enlace-menu {
+  font-family: 'Orbitron';
+  font-weight: 700;
+  text-transform: uppercase;
+  color: #8888aa;
+  text-decoration: none;
+  padding: 8px 14px;
+  border-radius: 4px;
+  border: 1px solid transparent;
+  position: relative;
+  display: inline-block;
+  margin-left: 4px;
+}
+
+.enlace-menu:hover {
+  color: #00f5d4;
+  text-decoration:underline;
+  border-color: rgba(0,245,212,0.2);
+  background: rgba(0,245,212,0.05);
+  text-shadow: 0 0 20px rgba(0,245,212,0.4);
+}
+
+
+@media (max-width: 991.98px) {
+  .enlace-menu {
+    font-size: 15px;
+    padding: 6px 10px;
+  }
+}
+
+.menu-responsive {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    padding: 15px 0;
+    position: relative;
+}
+
+#menu-toggle {
+    display: none;
+}
+
+.menu-icon {
+    display: none;
+    font-size: 32px;
+    color: white;
+    cursor: pointer;
+    user-select: none;
+}
+
+.menu-nav {
+    display: flex;
+    gap: 20px;
+}
+
+@media (max-width: 991.98px) {
+    .menu-icon {
+        display: block;
+    }
+    .titulo{
+        align-items: center;
+        text-align: center;
+        width: 70%;
+    }
+
+    .menu-nav {
+        display: none;
+        flex-direction: column;
+        width: 100%;
+        margin-top: 5px;
+        text-align: center;
+        padding: 10px 0;
+        opacity: 0.6;
+
+            }
+      #menu-toggle:checked + .menu-icon + .menu-nav {
+        display: flex;
+    }
+}
+
+/* =====================================================
+   GLOBAL — Footer (compartido por todas las páginas)
+   ===================================================== */
+
+.pie {
+  background: #12121e;
+  border-top: 1px solid rgba(0,245,212,0.2);
+  color: #8888aa;
+  text-align: center;
+  padding: 32px 20px;
+  margin-top: 80px;
+}
+
+
+/* =====================================================
+   GLOBAL — Utilidades comunes
+   ===================================================== */
+
+.Margen {
+  padding-left: 20px;
+  padding-right: 20px;
+}
+
+.section-title {
+  font-family: 'Orbitron';
+  font-weight: 900;
+  color: black;
+}
+
+
+
+/* =====================================================
+   PÁGINA: index.html — Hero principal
+   ===================================================== */
+
+.hero {
+  position: relative;
+  min-height: 700px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.hero-bg {
+  position: absolute;
+  inset: 0;
+  background-image: url('../Imagenes/ImagenPrincipal.png');
+  background-size: cover;
+  background-position: center;
+  filter: brightness(0.30) saturate(1.3);
+}
+
+.hero-content {
+  position: relative;
+  text-align: center;
+  padding: 40px 20px;
+}
+
+.hero-tag {
+  display: inline-block;
+  font-size: 40px;
+  font-family: 'Orbitron';
+  color: #00f5d4;
+  border: 2px solid rgba(0,245,212,0.2);
+  padding: 6px 18px;
+  border-radius: 20px;
+  margin-bottom: 24px;
+}
+
+.hero-title {
+  font-family: 'Orbitron';
+  font-size: 100px;
+  font-weight: 900;
+  color: #fff;
+  margin-bottom: 10px;
+}
+@media (max-width: 991.98px) {
+  .hero-title {
+    font-size: 70px;
+  }
+}
+
+
+
+.hero-title span {
+  color: #00f5d4;
+  text-shadow: 0 0 20px rgba(0,245,212,0.4);
+}
+
+.hero-subtitle {
+  font-size: 20px;
+  color: #8888aa;
+  margin-bottom: 40px;
+}
+
+.hero-cta {
+  display: inline-block;
+  font-family: 'Orbitron';
+  font-weight: 700;
+  padding: 14px 38px;
+  border-radius: 4px;
+  text-decoration: none;
+  background: #00f5d4;
+  color: #0a0a12;
+  border: 1px solid transparent;
+}
+
+.hero-cta:hover {
+  background: transparent;
+  color: #00f5d4;
+  border-color: #00f5d4;
+}
+.features {
+    background: #3b4286;
+    padding: 80px 24px;
+    border-top: 1px solid #283593;
+    border-bottom: 1px solid #283593;
+}
+
+.features-inner {
+    max-width: 1100px;
+    margin: 0 auto;
+}
+
+.section-label {
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    color: #00f5d4;
+    margin-bottom: 12px;
+}
+
+.section-title {
+    font-family: 'Orbitron', monospace;
+    font-size: 54px;
+    letter-spacing: 0.03em;
+    margin-bottom: 48px;
+    color: #ffffff;
+}
+
+.game-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 20px;
+}
+
+.game-card {
+    background: linear-gradient(135deg, rgba(124,92,252,0.15), #e8e8f0);
+    border: 1px solid rgba(124,92,252,0.5);
+    border-radius: 12px;
+    padding: 32px;
+    position: relative;
+    transition: transform 0.25s ease, border-color 0.25s ease;
+}
+
+.game-card:hover {
+    transform: translateY(-4px);
+    border-color: #7c5cfc;
+}
+
+.game-card.featured {
+    background: linear-gradient(135deg, rgba(124,92,252,0.15), #e8e8f0);
+    border-color: rgba(124,92,252,0.5);
+}
+
+.game-badge {
+    position: absolute;
+    top: 16px;
+    right: 16px;
+    background: linear-gradient(135deg, #7c5cfc, #00f5d4);
+    color: #ffffff;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.05em;
+    padding: 4px 10px;
+    border-radius: 100px;
+}
+
+.game-card h3 {
+    font-family: 'Orbitron', monospace;
+    font-size: 28px;
+    letter-spacing: 0.03em;
+    margin-bottom: 10px;
+    color: #0a0a12;
+}
+
+.game-card p {
+    color: #333344;
+}
+
+.card-link {
+    color: #7c5cfc;
+    text-decoration: none;
+  position: relative;
+  z-index: 10;
+  cursor: pointer;
+}
+
+.card-link:hover {
+    color: #a78bfa;
+    text-decoration: none;
+}
+/* =====================================================
+   PÁGINA: Tutorial.html — Cards de juegos
+   ===================================================== */
+
+.games-section {
+  padding: 80px 0 60px;
+}
+
+.section-header {
+  text-align: center;
+  margin-bottom: 56px;
+}
+
+.game-card {
+  background: #12121e;
+  border: 1px solid rgba(0,245,212,0.2);
+  border-radius: 12px;
+  overflow: hidden;
+  height: 100%;
+  transition: all 0.4s cubic-bezier(0.23,1,0.32,1);
+  position: relative;
+}
+
+.game-card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, rgba(0,245,212,0.05), transparent);
+  opacity: 0;
+  transition: opacity 0.4s ease;
+}
+
+.game-card:hover {
+  transform: translateY(-8px);
+  border-color: #00f5d4;
+  box-shadow: 0 0 20px rgba(0,245,212,0.4), 0 24px 60px rgba(0,0,0,0.5);
+}
+
+.game-card:hover::before {
+  opacity: 1;
+}
+
+.game-card img {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+  filter: saturate(0.8) brightness(0.88);
+  transition: filter 0.4s ease;
+}
+
+.game-card:hover img {
+  filter: saturate(1.2) brightness(1);
+}
+
+.game-card .card-body {
+  padding: 24px;
+}
+
+.game-card .card-title {
+  font-family: 'Orbitron', monospace;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  color: #00f5d4;
+  margin-bottom: 12px;
+}
+
+.game-card .card-text {
+  color: #8888aa;
+  line-height: 1.6;
+  margin-bottom: 6px;
+}
+.altura{
+  height: 290px;
+}
+.btn-download,
+.btn.btn-success {
+  position: relative;
+  z-index: 10;
+  cursor: pointer;
+  margin-top: 16px;
+  padding: 10px 24px;
+  background: transparent;
+  border: 1px solid #00f5d4;
+  color: #00f5d4;
+  font-family: 'Orbitron';
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  text-decoration: none;
+  border-radius: 4px;
+  transition: all 0.25s ease;
+}
+
+.btn-download:hover,
+.btn.btn-success:hover {
+  background: #00f5d4;
+  color: #0a0a12;
+  box-shadow: 0 0 20px rgba(0,245,212,0.4);
+}
+
+.info-box {
+  margin-top: 60px;
+  padding: 32px;
+  background: #12121e;
+  border: 1px solid rgba(0,245,212,0.2);
+  border-radius: 12px;
+}
+
+.info-box p {
+  color: #8888aa;
+}
+
+.info-box strong {
+  color: #00f5d4;
+}
+
+
+/* =====================================================
+   PÁGINA: QuienesSomos.html — Fichas del equipo
+   ===================================================== */
+
+.equipo-grid {
+  width: 100%;
+  padding: 20px;
+}
+ 
+.equipo-grid input {
+  display: none;
+}
+ 
+.botones {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  justify-content: center;
+  margin-bottom: 36px;
+}
+ 
+.botones label {
+  font-family: 'Orbitron';
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  padding: 11px 22px;
+  border-radius: 6px;
+  border: 1px solid rgba(0,245,212,0.2);
+  background: #12121e;
+  color: #8888aa;
+  cursor: pointer;
+  transition: all 0.25s ease;
+}
+ 
+.botones label:hover {
+  border-color: #00f5d4;
+  color: #00f5d4;
+}
+ 
+#raul:checked ~ .botones label[for="raul"],
+#salvador:checked ~ .botones label[for="salvador"],
+#sanchez:checked ~ .botones label[for="sanchez"],
+#grupo:checked ~ .botones label[for="grupo"] {
+  background: #00f5d4;
+  color: #0a0a12;
+  border-color: #00f5d4;
+  box-shadow: 0 0 20px rgba(0,245,212,0.4);
+}
+ 
+.contenido {
+  display: none;
+  background: #12121e;
+  border: 1px solid rgba(0,245,212,0.2);
+  border-radius: 12px;
+  padding: 40px;
+  animation: fade-in 0.4s ease forwards;
+}
+ 
+@keyframes fade-in {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+ 
+.contenido img {
+  width: 130px;
+  height: 130px;
+  object-fit: cover;
+  border-radius: 50%;
+  border: 3px solid #00f5d4;
+  box-shadow: 0 0 20px rgba(0,245,212,0.4);
+  margin-bottom: 20px;
+  display: block;
+}
+ 
+.contenido h2 {
+  font-family: 'Orbitron';
+  font-size: 18px;
+  color: #00f5d4;
+  margin-bottom: 14px;
+}
+ 
+.contenido p,
+.contenido li {
+  color: #8888aa;
+  font-size: 16px;
+}
+ 
+.contenido ul {
+  margin-top: 12px;
+  padding-left: 20px;
+}
+ 
+.contenido ul li {
+  margin-bottom: 8px;
+}
+ 
+.contenido ul li::marker {
+  color: #00f5d4;
+}
+ 
+.contenido a {
+  color: #00f5d4;
+  text-decoration: none;
+}
+ 
+.contenido a:hover {
+  text-shadow: 0 0 20px rgba(0,245,212,0.4);
+}
+ 
+#raul:checked ~ .ficha-raul,
+#salvador:checked ~ .ficha-salvador,
+#sanchez:checked ~ .ficha-sanchez,
+#grupo:checked ~ .ficha-grupo {
+  display: block;
+}
+
+@media (max-width: 991.98px) {
+  .botones {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+  }
+}
+ 
+ 
+/* =====================================================
+   PÁGINA: Contacta.html — Formulario de contacto
+   ===================================================== */
+ 
+.contact-title {
+  font-family: 'Orbitron';
+  font-size: 38px;
+  font-weight: 900;
+  color: #00f5d4;
+  text-shadow: 0 0 20px rgba(0,245,212,0.4);
+  margin-bottom: 6px;
+}
+ 
+.contact-sub {
+  color: #8888aa;
+  font-size: 16px;
+  margin-bottom: 36px;
+}
+ 
+.color {
+  color: white;
+}
+ 
+.Formulario {
+  background: #12121e;
+  border: 1px solid rgba(0,245,212,0.2);
+  border-radius: 16px;
+  padding: 36px;
+}
+ 
+.Formulario label {
+  display: block;
+  font-family: 'Orbitron';
+  font-size: 11px;
+  letter-spacing: 0.15em;
+  color: white;
+  margin-bottom: 8px;
+  font-weight: 700;
+}
+ 
+.Formulario input,
+.Formulario textarea {
+  width: 100%;
+  background: #1a1a2e;
+  border: 1px solid rgba(0,245,212,0.2);
+  border-radius: 8px;
+  padding: 12px 16px;
+  color: #e0e0f0;
+  font-family: 'Rajdhani', sans-serif;
+  font-size: 16px;
+  transition: all 0.25s ease;
+  outline: none;
+  box-shadow: none;
+}
+ 
+.Formulario input:focus,
+.Formulario textarea:focus {
+  border-color: #00f5d4;
+  box-shadow: 0 0 20px rgba(0,245,212,0.4);  
+  color: white;
+  background: rgba(0,245,212,0.03);
+}
+ 
+.Formulario textarea {
+  min-height: 150px;
+  resize: vertical;
+}
+ 
+.btn-enviar {
+  font-family: 'Orbitron';
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.15em;
+  padding: 13px 40px;
+  background: #00f5d4;
+  color: #0a0a12;
+  border: 1px solid transparent;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 0 20px rgba(0,245,212,0.4);
+}
+ 
+.btn-enviar:hover {
+  background: transparent;
+  color: #00f5d4;
+  border-color: #00f5d4;
+  transform: translateY(-2px);
+  box-shadow: 0 0 40px rgba(0,245,212,0.5);
+}
+ 
+ 
+/* =====================================================
+   PÁGINA: Descargar.html — Tabla de versiones
+   ===================================================== */
+ 
+.tabla-descargas {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+  background: #12121e;
+  border-radius: 12px;
+  overflow: hidden;
+  border: 1px solid rgba(0,245,212,0.2);
+}
+ 
+.tabla-descargas th,
+.tabla-descargas td {
+  padding: 15px 20px;
+  text-align: center;
+  border-bottom: 1px solid rgba(0,245,212,0.2);
+}
+ 
+.tabla-descargas th {
+  font-family: 'Orbitron';
+  font-size: 11px;
+  letter-spacing: 0.15em;
+  color: #00f5d4;
+  background: #1a1a2e;
+}
+ 
+.tabla-descargas td {
+  color: #8888aa;
+  font-size: 15px;
+}
+ 
+tbody tr {
+  transition: background 0.2s;
+}
+ 
+tbody tr:hover {
+  background: rgba(0,245,212,0.05);
+}
+ 
+.tabla-descargas a,
+.Oscuro {
+  color: #00f5d4;
+  text-decoration: none;
+  font-weight: 700;
+  font-family: 'Orbitron';
+  font-size: 11px;
+  letter-spacing: 0.1em;
+}
+ 
+.tabla-descargas a:hover,
+.Oscuro:hover {
+  color: rgba(127,242,227,0.6);
+}
+ 
+#btnTroll {
+  font-family: 'Orbitron';
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  padding: 11px 26px;
+  background: transparent;
+  color: #f72585;
+  border: 1px solid #f72585;
+  border-radius: 6px;
+  cursor: pointer;
+  margin-top: 24px;
+  transition: all 0.25s ease;
+}
+ 
+#btnTroll:hover {
+  background: #f72585;
+  color: #fff;
+  box-shadow: 0 0 20px rgba(247,37,133,0.4);
+}
+ 
+#mensajeFinal {
+  font-family: 'Orbitron';
+  font-size: 18px;
+  font-weight: 700;
+  color: #f72585;
+  margin-top: 20px;
+  text-shadow: 0 0 20px rgba(247,37,133,0.4);
+  animation: blink 1s step-end infinite;
+}
+ 
+@keyframes blink {
+  50% { opacity: 0; }
+}
