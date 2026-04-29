@@ -16,6 +16,8 @@ public class Partida3EnRaya extends Juego<Integer,Jugador3EnRaya> {
     
     private int turno = 0;
     
+    private final EstadoTablero tablero = new EstadoTablero();
+    
     private static final Integer EMPATE = EstadoTablero.VACIO;
     private static final Integer GANA_J1 = EstadoTablero.X;
     private static final Integer GANA_J2 = EstadoTablero.O;
@@ -54,7 +56,7 @@ public class Partida3EnRaya extends Juego<Integer,Jugador3EnRaya> {
         return liJ.get(r.nextInt(2));
     }
     
-    protected Jugador3EnRaya getJugadorTurnoActual(){
+    public Jugador3EnRaya getJugadorTurnoActual(){
         Jugador3EnRaya j = null;
         if(isPartidaEnCurso()){
             switch (turno%2){
@@ -93,15 +95,14 @@ public class Partida3EnRaya extends Juego<Integer,Jugador3EnRaya> {
     }
 
     public EstadoTablero getEstadoTablero() {
-        EstadoTablero t = new EstadoTablero();
         for(Jugada3EnRaya j : jugadas){
             if(j.getJugador().equals(this.getJugador1())){
-                t.setCasilla(j.getPosicion(), EstadoTablero.X);
+                tablero.setCasilla(j.getPosicion(), EstadoTablero.X);
             } else {
-                t.setCasilla(j.getPosicion(), EstadoTablero.O);
+                tablero.setCasilla(j.getPosicion(), EstadoTablero.O);
             }
         }
-        return t;
+        return tablero;
     }
     
     @Override
@@ -122,7 +123,9 @@ public class Partida3EnRaya extends Juego<Integer,Jugador3EnRaya> {
     }
     
     public void recibirJugada(Jugada3EnRaya jugada) throws IllegalArgumentException {
-        if(seHaJugado(jugada.getPosicion())){
+        if(!jugada.getJugador().equals((Jugador3EnRaya)getJugadorTurnoActual())){
+            throw new IllegalArgumentException("No es el turno de este jugador.");
+        } else if(seHaJugado(jugada.getPosicion())){
             throw new IllegalArgumentException("No se puede hacer otra jugada en esa casilla.");
         } else if(!isPartidaEnCurso()){
             throw new IllegalArgumentException("No se pueden hacer jugadas, la partida ha terminado.");
@@ -139,14 +142,15 @@ public class Partida3EnRaya extends Juego<Integer,Jugador3EnRaya> {
                 case 1 -> setResultado(GANA_J1);
                 case 2 -> setResultado(GANA_J2);
             }
-            mostrarGanador();
             mostrarEstadoTablero();
+            mostrarGanador();
         } else if(tableroLleno()){
             setPartidaEnCurso(false);
             setResultado(EMPATE);
-            mostrarEmpate();
             mostrarEstadoTablero();
+            mostrarEmpate();
         } else {
+            mostrarEstadoTablero();
             nuevoTurno();
         }
     }

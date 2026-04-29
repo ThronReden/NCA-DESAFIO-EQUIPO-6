@@ -1,9 +1,14 @@
 package pantallas.juegos;
 
+import java.awt.Color;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import logicajuegos.TresEnRaya.EstadoTablero;
 import logicajuegos.TresEnRaya.Jugada3EnRaya;
+import logicajuegos.TresEnRaya.Jugador3EnRaya;
+import logicajuegos.TresEnRaya.SupplierExcepcionesNoHayGanador;
+import pantallas.Inicio_Sesion;
+import pantallas.Main_Juego;
 
 /**
  *
@@ -18,7 +23,7 @@ public class Pantalla_3EnRaya extends javax.swing.JFrame {
     private final JLabel[] labelGrid;
 
     private final Jugador3EnRayaUI J = new Jugador3EnRayaUI("Persona");
-    private final Partida3EnRayaUI P = Partida3EnRayaUI.crearPartida(J,this);
+    private Partida3EnRayaUI P = Partida3EnRayaUI.crearPartida(J, this);
 
     public Pantalla_3EnRaya() {
         initComponents();
@@ -27,7 +32,7 @@ public class Pantalla_3EnRaya extends javax.swing.JFrame {
         for (JLabel label : labelGrid) {
             label.setIcon(VACIO);
         }
-        
+
         jLabel13.setText("");
         setNombresJugadores();
         P.iniciarJuego();
@@ -42,6 +47,17 @@ public class Pantalla_3EnRaya extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jDialog1 = new javax.swing.JDialog();
+        Resultado = new javax.swing.JPanel();
+        RESULTADO = new javax.swing.JLabel();
+        Panel_Volver = new javax.swing.JPanel();
+        jLabel10 = new javax.swing.JLabel();
+        Panel_Salir = new javax.swing.JPanel();
+        jLabel14 = new javax.swing.JLabel();
+        jLabel15 = new javax.swing.JLabel();
+        jLabel16 = new javax.swing.JLabel();
+        jLabel17 = new javax.swing.JLabel();
+        jLabel18 = new javax.swing.JLabel();
         Panel_3EnRaya = new javax.swing.JPanel();
         Juego = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
@@ -56,6 +72,76 @@ public class Pantalla_3EnRaya extends javax.swing.JFrame {
         jLabel11 = new javax.swing.JLabel();
         jLabel12 = new javax.swing.JLabel();
         jLabel13 = new javax.swing.JLabel();
+
+        jDialog1.setUndecorated(true);
+        jDialog1.setResizable(false);
+        jDialog1.getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        Resultado.setBackground(new java.awt.Color(255, 255, 255));
+        Resultado.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        RESULTADO.setFont(new java.awt.Font("Dialog", 1, 60)); // NOI18N
+        RESULTADO.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        RESULTADO.setText("{mostrar_resultado}");
+        Resultado.add(RESULTADO, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 150, 620, 100));
+
+        Panel_Volver.setBackground(new java.awt.Color(255, 255, 102));
+        Panel_Volver.setLayout(new java.awt.CardLayout());
+
+        jLabel10.setFont(new java.awt.Font("Dubai", 1, 24)); // NOI18N
+        jLabel10.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel10.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel10.setText("Volver a Jugar");
+        jLabel10.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        jLabel10.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jLabel10.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel10MouseClicked(evt);
+            }
+        });
+        Panel_Volver.add(jLabel10, "card2");
+
+        Resultado.add(Panel_Volver, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 400, 260, 100));
+
+        Panel_Salir.setBackground(new java.awt.Color(0, 204, 255));
+        Panel_Salir.setLayout(new java.awt.CardLayout());
+
+        jLabel14.setFont(new java.awt.Font("Dubai", 1, 24)); // NOI18N
+        jLabel14.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel14.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel14.setText("Salir al Menú");
+        jLabel14.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        jLabel14.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jLabel14.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel14MouseClicked(evt);
+            }
+        });
+        Panel_Salir.add(jLabel14, "card2");
+
+        Resultado.add(Panel_Salir, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 400, 260, 100));
+
+        jLabel15.setBackground(new java.awt.Color(51, 51, 51));
+        jLabel15.setToolTipText("");
+        jLabel15.setOpaque(true);
+        Resultado.add(jLabel15, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 20, 20, 550));
+
+        jLabel16.setBackground(new java.awt.Color(51, 51, 51));
+        jLabel16.setToolTipText("");
+        jLabel16.setOpaque(true);
+        Resultado.add(jLabel16, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 850, 20));
+
+        jLabel17.setBackground(new java.awt.Color(51, 51, 51));
+        jLabel17.setToolTipText("");
+        jLabel17.setOpaque(true);
+        Resultado.add(jLabel17, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 570, 850, 20));
+
+        jLabel18.setBackground(new java.awt.Color(51, 51, 51));
+        jLabel18.setToolTipText("");
+        jLabel18.setOpaque(true);
+        Resultado.add(jLabel18, new org.netbeans.lib.awtextra.AbsoluteConstraints(830, 20, 20, 550));
+
+        jDialog1.getContentPane().add(Resultado, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 850, 590));
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setExtendedState(6);
@@ -76,6 +162,7 @@ public class Pantalla_3EnRaya extends javax.swing.JFrame {
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/iconsXJuego.png"))); // NOI18N
         jLabel1.setToolTipText("");
         jLabel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        jLabel1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jLabel1.setOpaque(true);
         jLabel1.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -88,6 +175,7 @@ public class Pantalla_3EnRaya extends javax.swing.JFrame {
         jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/iconsVACIOJuego.png"))); // NOI18N
         jLabel2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        jLabel2.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jLabel2.setOpaque(true);
         jLabel2.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -100,6 +188,7 @@ public class Pantalla_3EnRaya extends javax.swing.JFrame {
         jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/iconsVACIOJuego.png"))); // NOI18N
         jLabel3.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        jLabel3.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jLabel3.setOpaque(true);
         jLabel3.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -112,6 +201,7 @@ public class Pantalla_3EnRaya extends javax.swing.JFrame {
         jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/iconsVACIOJuego.png"))); // NOI18N
         jLabel4.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        jLabel4.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jLabel4.setOpaque(true);
         jLabel4.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -124,6 +214,7 @@ public class Pantalla_3EnRaya extends javax.swing.JFrame {
         jLabel5.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/iconsVACIOJuego.png"))); // NOI18N
         jLabel5.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        jLabel5.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jLabel5.setOpaque(true);
         jLabel5.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -136,6 +227,7 @@ public class Pantalla_3EnRaya extends javax.swing.JFrame {
         jLabel6.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/iconsVACIOJuego.png"))); // NOI18N
         jLabel6.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        jLabel6.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jLabel6.setOpaque(true);
         jLabel6.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -148,6 +240,7 @@ public class Pantalla_3EnRaya extends javax.swing.JFrame {
         jLabel7.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/iconsVACIOJuego.png"))); // NOI18N
         jLabel7.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        jLabel7.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jLabel7.setOpaque(true);
         jLabel7.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -160,6 +253,7 @@ public class Pantalla_3EnRaya extends javax.swing.JFrame {
         jLabel8.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/iconsVACIOJuego.png"))); // NOI18N
         jLabel8.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        jLabel8.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jLabel8.setOpaque(true);
         jLabel8.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -172,6 +266,7 @@ public class Pantalla_3EnRaya extends javax.swing.JFrame {
         jLabel9.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/iconsVACIOJuego.png"))); // NOI18N
         jLabel9.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        jLabel9.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jLabel9.setOpaque(true);
         jLabel9.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -182,17 +277,20 @@ public class Pantalla_3EnRaya extends javax.swing.JFrame {
 
         Panel_3EnRaya.add(Juego, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 190, 770, 740));
 
-        jLabel11.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
+        jLabel11.setFont(new java.awt.Font("Dialog", 1, 36)); // NOI18N
+        jLabel11.setForeground(new java.awt.Color(0, 0, 0));
         jLabel11.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel11.setText("{nombre_de_usuario}");
-        Panel_3EnRaya.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 400, -1, -1));
+        Panel_3EnRaya.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 390, 420, 90));
 
-        jLabel12.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
+        jLabel12.setFont(new java.awt.Font("Dialog", 1, 36)); // NOI18N
+        jLabel12.setForeground(new java.awt.Color(0, 0, 0));
         jLabel12.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel12.setText("{nombre_bot}");
-        Panel_3EnRaya.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 690, -1, -1));
+        Panel_3EnRaya.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 620, -1, -1));
 
         jLabel13.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
+        jLabel13.setForeground(new java.awt.Color(255, 0, 51));
         jLabel13.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel13.setText("{mensajes_error}");
         Panel_3EnRaya.add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(507, 960, 770, -1));
@@ -238,25 +336,56 @@ public class Pantalla_3EnRaya extends javax.swing.JFrame {
         J.hacerJugada(Jugada3EnRaya.ABAJO_DERECHA, P);
     }//GEN-LAST:event_jLabel9MouseClicked
 
+    private void jLabel10MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel10MouseClicked
+        P = Partida3EnRayaUI.crearPartida(J, this);
+        setNombresJugadores();
+        P.iniciarJuego();
+        jDialog1.dispose();
+    }//GEN-LAST:event_jLabel10MouseClicked
+
+    private void jLabel14MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel14MouseClicked
+       new Main_Juego().setVisible(true);
+        this.dispose();
+        jDialog1.setVisible(false);
+    }//GEN-LAST:event_jLabel14MouseClicked
+
     public void mostrarEstadoTablero() {
         EstadoTablero t = P.getEstadoTablero();
         int estado;
         for (int i = 0; i < 9; i++) {
             estado = t.getCasilla(i);
             switch (estado) {
-                case 1: 
-                    labelGrid[i].setIcon(X);
+                case 1 -> labelGrid[i].setIcon(X);
 //                    labelGrid[i].setEnabled(false);
-                    break;
-                case 2:
-                    labelGrid[i].setIcon(O);
+                case 2 -> labelGrid[i].setIcon(O);
 //                    labelGrid[i].setEnabled(false);
-                    break;
-                default:
-                    labelGrid[i].setIcon(VACIO);
+                default -> labelGrid[i].setIcon(VACIO);
 //                    labelGrid[i].setEnabled(true);
             }
         }
+    }
+
+    public void mostrarResultado(Jugador3EnRaya ganador) {
+        if (ganador instanceof Jugador3EnRayaUI) {
+            RESULTADO.setText("¡HAS GANADO!");
+            Resultado.setBackground(Color.green);
+        } else {
+            RESULTADO.setText("¡HAS PERDIDO!");
+            Resultado.setBackground(Color.red);
+        }
+        mostrarDialogResultado();
+    }
+    public void mostrarResultado(){
+        RESULTADO.setText("¡EMPATE!");
+        Resultado.setBackground(Color.gray);
+        mostrarDialogResultado();
+    }
+    
+    private void mostrarDialogResultado(){
+        jDialog1.setSize(850, 590);
+        jDialog1.setLocationRelativeTo(this);
+        jDialog1.setModal(true);
+        jDialog1.setVisible(true);
     }
 
     /**
@@ -297,10 +426,21 @@ public class Pantalla_3EnRaya extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel Juego;
     private javax.swing.JPanel Panel_3EnRaya;
+    private javax.swing.JPanel Panel_Salir;
+    private javax.swing.JPanel Panel_Volver;
+    private javax.swing.JLabel RESULTADO;
+    private javax.swing.JPanel Resultado;
+    private javax.swing.JDialog jDialog1;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
+    private javax.swing.JLabel jLabel14;
+    private javax.swing.JLabel jLabel15;
+    private javax.swing.JLabel jLabel16;
+    private javax.swing.JLabel jLabel17;
+    private javax.swing.JLabel jLabel18;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;

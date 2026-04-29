@@ -32,7 +32,6 @@ public class EstadoTablero {
         } else {
             this.tablero[i] = marca;
         }
-        existe3EnRaya();
     }
 
     public int getGanador() {
