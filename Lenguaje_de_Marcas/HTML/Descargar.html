@@ -1,0 +1,99 @@
+    <!DOCTYPE html>
+<html lang="es">
+<head>
+  <title>Descargar — Desafio 6</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+  <link href="../CSS/Desafio6.css" rel="stylesheet" type="text/css">
+  <link href="../Frameworks/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body style="background-color: #3b4286;">
+
+<header>
+  <div class="container-fluid">
+    <div class="menu-responsive">
+      
+      <a href="../../index.html" class="animation titulo">Desafio Grupo 6</a>
+
+      <input type="checkbox" id="menu-toggle">
+      <label for="menu-toggle" class="menu-icon">☰</label>
+
+      <nav class="menu-nav">
+        <a class="enlace-menu color" href="Tutorial.html">Tutorial</a>
+        <a class="enlace-menu color" href="QuienesSomos.html">¿Quiénes somos?</a>
+        <a class="enlace-menu color" href="Descargar.html">Descargar</a>
+        <a class="enlace-menu color" href="Contacta.html">Contacto</a>
+      </nav>
+
+    </div>
+  </div>
+</header>
+
+<div class="container mt-5 pt-4">
+  <h1 class="section-title">Versiones Anteriores</h1>
+
+  <table class="tabla-descargas">
+    <thead>
+      <tr>
+        <th>Versión</th>
+        <th>Fecha de lanzamiento</th>
+        <th>Instalable</th>
+        <th>Peso</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>1.0</td>
+        <td>17/04/2026</td>
+        <td><a href="../Descargas/instalable_v1.0.zip" download class="Oscuro ">Descargar</a></td>
+        <td>45 MB</td>
+      </tr>
+      <tr>
+        <td>1.1</td>
+        <td>25/04/2026</td>
+        <td><a href="../Descargas/instalable_v1.1.zip" download class="Oscuro">Descargar</a></td>
+        <td>52 MB</td>
+      </tr>
+      <tr>
+        <td>2.0</td>
+        <td>10/05/2026</td>
+        <td><a href="../Descargas/instalable_v2.0.zip" download class="Oscuro">Descargar</a></td>
+        <td>60 MB</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div style="margin-top:24px;">
+    <button id="btnTroll" type="button">Ver más versiones</button>
+    <p id="mensajeFinal" style="display:none;">No hay más versiones 💀</p>
+  </div>
+</div>
+
+<footer class="pie">
+  <p>© 2026 Desafío Grupo 6 — Todos los derechos reservados</p>
+  <p>No nos hacemos responsables de que tengáis ganas de jugar al mejor juego del mundo</p>
+  <p>Si lees esto debes 10 euros al proyecto para hacer mejoras y que sea más entretenido</p>
+</footer>
+
+<script>
+  const btn = document.getElementById("btnTroll");
+  const mensaje = document.getElementById("mensajeFinal");
+  let clicks = 0;
+
+  btn.addEventListener("click", () => {
+    clicks++;
+    if (clicks < 5) {
+      const x = Math.floor(Math.random() * 300);
+      const y = Math.floor(Math.random() * 120);
+      btn.style.position = "relative";
+      btn.style.left = x + "px";
+      btn.style.top = y + "px";
+    } else {
+      btn.style.display = "none";
+      mensaje.style.display = "block";
+    }
+  });
+</script>
+
+</body>
+</html>
