@@ -16,7 +16,6 @@ public class Main_Juego extends javax.swing.JFrame {
 
         initComponents();
         Menu_Ampliado.setVisible(false);
-        
 
     }
 
@@ -77,7 +76,7 @@ public class Main_Juego extends javax.swing.JFrame {
         jSeparator4 = new javax.swing.JSeparator();
         jSeparator5 = new javax.swing.JSeparator();
         jSeparator6 = new javax.swing.JSeparator();
-        jLabel29 = new javax.swing.JLabel();
+        Sheldon = new javax.swing.JLabel();
         Boton_Cierre_Main = new javax.swing.JPanel();
         jLabel8 = new javax.swing.JLabel();
 
@@ -458,8 +457,9 @@ public class Main_Juego extends javax.swing.JFrame {
 
         jPanel1.add(PanelContenido, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 0, 1560, 1090));
 
-        jLabel29.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jPanel1.add(jLabel29, new org.netbeans.lib.awtextra.AbsoluteConstraints(1370, 360, 730, 730));
+        Sheldon.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        Sheldon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/Sheldon.png"))); // NOI18N
+        jPanel1.add(Sheldon, new org.netbeans.lib.awtextra.AbsoluteConstraints(1370, 360, 730, 730));
 
         Boton_Cierre_Main.setBackground(new java.awt.Color(255, 255, 255));
         Boton_Cierre_Main.setLayout(new java.awt.CardLayout());
@@ -645,7 +645,8 @@ public class Main_Juego extends javax.swing.JFrame {
     }//GEN-LAST:event_jLabel26MouseExited
 
     private void Boton_TiendaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Boton_TiendaMouseClicked
-
+        new Tienda().setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_Boton_TiendaMouseClicked
 
     private void jLabel26MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel26MouseClicked
@@ -705,6 +706,7 @@ public class Main_Juego extends javax.swing.JFrame {
     private javax.swing.JPanel PanelContenido;
     private javax.swing.JPanel Rayas;
     private javax.swing.JPanel Rechazar_CierreSesion;
+    private javax.swing.JLabel Sheldon;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -725,7 +727,6 @@ public class Main_Juego extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel25;
     private javax.swing.JLabel jLabel26;
     private javax.swing.JLabel jLabel27;
-    private javax.swing.JLabel jLabel29;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;

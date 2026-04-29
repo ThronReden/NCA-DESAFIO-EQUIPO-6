@@ -7,19 +7,14 @@ import javax.swing.ImageIcon;
  *
  * @author LENOVO
  */
-public class Perfil_Usuario extends javax.swing.JFrame {
-
-    private final char EchoChar;
-
-    ImageIcon NoVer = new ImageIcon("src\\imagenes\\iconsNoVer.png");
-    ImageIcon Ver = new ImageIcon("src\\imagenes\\iconsVer.png");
+public class Tienda extends javax.swing.JFrame {
 
     /**
      * Creates new form Perfil_Usuario
      */
-    public Perfil_Usuario() {
+    public Tienda() {
         initComponents();
-        EchoChar = jPasswordField1.getEchoChar();
+
         Menu_Ampliado.setVisible(false);
     }
 
@@ -37,7 +32,7 @@ public class Perfil_Usuario extends javax.swing.JFrame {
         Boton_Menu_Desplegable = new javax.swing.JPanel();
         jLabel7 = new javax.swing.JLabel();
         Menu_Ampliado = new javax.swing.JPanel();
-        Boton_Tienda = new javax.swing.JPanel();
+        Boton_Perfil = new javax.swing.JPanel();
         jLabel11 = new javax.swing.JLabel();
         jLabel12 = new javax.swing.JLabel();
         jSeparator7 = new javax.swing.JSeparator();
@@ -48,35 +43,16 @@ public class Perfil_Usuario extends javax.swing.JFrame {
         jLabel15 = new javax.swing.JLabel();
         PanelContenido = new javax.swing.JPanel();
         Bienvenido1 = new javax.swing.JLabel();
-        jLabel16 = new javax.swing.JLabel();
-        DatosP = new javax.swing.JPanel();
-        Visibilidad = new javax.swing.JLabel();
-        jLabel20 = new javax.swing.JLabel();
-        jLabel28 = new javax.swing.JLabel();
-        jLabel31 = new javax.swing.JLabel();
-        jTextField2 = new javax.swing.JTextField();
-        jTextField4 = new javax.swing.JTextField();
-        jPasswordField1 = new javax.swing.JPasswordField();
-        jSeparator9 = new javax.swing.JSeparator();
-        jSeparator10 = new javax.swing.JSeparator();
-        jSeparator11 = new javax.swing.JSeparator();
-        jLabel17 = new javax.swing.JLabel();
-        Estadisticas = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
+        jPanel1 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
+        jPanel3 = new javax.swing.JPanel();
         jLabel3 = new javax.swing.JLabel();
+        jPanel4 = new javax.swing.JPanel();
         jLabel4 = new javax.swing.JLabel();
-        jLabel6 = new javax.swing.JLabel();
-        jLabel8 = new javax.swing.JLabel();
-        jLabel9 = new javax.swing.JLabel();
-        jLabel10 = new javax.swing.JLabel();
-        jLabel21 = new javax.swing.JLabel();
-        jSeparator1 = new javax.swing.JSeparator();
-        jSeparator2 = new javax.swing.JSeparator();
-        jLabel19 = new javax.swing.JLabel();
         Boton_Cierre_Perfil = new javax.swing.JPanel();
         jLabel18 = new javax.swing.JLabel();
-        jLabel23 = new javax.swing.JLabel();
+        Griff_Dineros = new javax.swing.JLabel();
 
         jLabel5.setFont(new java.awt.Font("Dubai", 1, 14)); // NOI18N
         jLabel5.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -113,33 +89,33 @@ public class Perfil_Usuario extends javax.swing.JFrame {
 
         Menu_Ampliado.setBackground(new java.awt.Color(51, 51, 51));
 
-        Boton_Tienda.setBackground(new java.awt.Color(51, 51, 51));
-        Boton_Tienda.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        Boton_Tienda.addMouseListener(new java.awt.event.MouseAdapter() {
+        Boton_Perfil.setBackground(new java.awt.Color(51, 51, 51));
+        Boton_Perfil.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        Boton_Perfil.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                Boton_TiendaMouseClicked(evt);
+                Boton_PerfilMouseClicked(evt);
             }
             public void mouseEntered(java.awt.event.MouseEvent evt) {
-                Boton_TiendaMouseEntered(evt);
+                Boton_PerfilMouseEntered(evt);
             }
             public void mouseExited(java.awt.event.MouseEvent evt) {
-                Boton_TiendaMouseExited(evt);
+                Boton_PerfilMouseExited(evt);
             }
         });
-        Boton_Tienda.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        Boton_Perfil.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel11.setFont(new java.awt.Font("Dialog", 1, 48)); // NOI18N
         jLabel11.setForeground(new java.awt.Color(255, 255, 255));
         jLabel11.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel11.setText("TIENDA");
-        Boton_Tienda.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 0, 220, 50));
+        jLabel11.setText("PERFIL");
+        Boton_Perfil.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 0, 220, 50));
 
         jLabel12.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel12.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/iconsTienda.png"))); // NOI18N
-        Boton_Tienda.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 0, 60, -1));
+        jLabel12.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/iconsAjustes.png"))); // NOI18N
+        Boton_Perfil.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 0, 60, -1));
 
         jSeparator7.setBackground(new java.awt.Color(255, 255, 255));
-        Boton_Tienda.add(jSeparator7, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 50, 350, 10));
+        Boton_Perfil.add(jSeparator7, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 50, 350, 10));
 
         Boton_Juego.setBackground(new java.awt.Color(51, 51, 51));
         Boton_Juego.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
@@ -178,7 +154,7 @@ public class Perfil_Usuario extends javax.swing.JFrame {
         Menu_Ampliado.setLayout(Menu_AmpliadoLayout);
         Menu_AmpliadoLayout.setHorizontalGroup(
             Menu_AmpliadoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(Boton_Tienda, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(Boton_Perfil, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(Boton_Juego, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, Menu_AmpliadoLayout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -191,13 +167,13 @@ public class Perfil_Usuario extends javax.swing.JFrame {
                 .addGap(32, 32, 32)
                 .addComponent(jLabel15)
                 .addGap(307, 307, 307)
-                .addComponent(Boton_Tienda, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(Boton_Perfil, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(47, 47, 47)
                 .addComponent(Boton_Juego, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        jPanel2.add(Menu_Ampliado, new org.netbeans.lib.awtextra.AbsoluteConstraints(-10, 0, -1, 1090));
+        jPanel2.add(Menu_Ampliado, new org.netbeans.lib.awtextra.AbsoluteConstraints(-10, 0, -1, 1130));
 
         PanelContenido.setBackground(new java.awt.Color(255, 255, 255));
         PanelContenido.setOpaque(false);
@@ -206,148 +182,74 @@ public class Perfil_Usuario extends javax.swing.JFrame {
         Bienvenido1.setFont(new java.awt.Font("Dialog", 1, 70)); // NOI18N
         Bienvenido1.setForeground(new java.awt.Color(0, 204, 102));
         Bienvenido1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        Bienvenido1.setText("Tu perfil");
-        PanelContenido.add(Bienvenido1, new org.netbeans.lib.awtextra.AbsoluteConstraints(770, 110, 340, 100));
+        Bienvenido1.setText("TIENDA");
+        PanelContenido.add(Bienvenido1, new org.netbeans.lib.awtextra.AbsoluteConstraints(710, 10, 340, 100));
 
-        jLabel16.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel16.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/iconsUsuarioPerfil.png"))); // NOI18N
-        PanelContenido.add(jLabel16, new org.netbeans.lib.awtextra.AbsoluteConstraints(890, 230, -1, -1));
-
-        DatosP.setBackground(new java.awt.Color(204, 204, 204));
-        DatosP.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        DatosP.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        Visibilidad.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        Visibilidad.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/iconsVer.png"))); // NOI18N
-        Visibilidad.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                VisibilidadMouseClicked(evt);
-            }
-        });
-        DatosP.add(Visibilidad, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 170, -1, 30));
-
-        jLabel20.setFont(new java.awt.Font("Dubai Medium", 0, 14)); // NOI18N
-        jLabel20.setText("CONTRASEÑA:");
-        DatosP.add(jLabel20, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 170, 100, -1));
-
-        jLabel28.setFont(new java.awt.Font("Dubai Medium", 0, 14)); // NOI18N
-        jLabel28.setText("NOMBRE DE USUARIO:");
-        DatosP.add(jLabel28, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 50, 150, -1));
-
-        jLabel31.setFont(new java.awt.Font("Dubai Medium", 0, 14)); // NOI18N
-        jLabel31.setText("CORREO ELECTRÓNICO:");
-        DatosP.add(jLabel31, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 110, 160, 20));
-
-        jTextField2.setBackground(new java.awt.Color(204, 204, 204));
-        jTextField2.setFont(new java.awt.Font("Dubai", 0, 14)); // NOI18N
-        jTextField2.setForeground(new java.awt.Color(102, 102, 102));
-        jTextField2.setText("{nombre_usuario}");
-        jTextField2.setBorder(null);
-        DatosP.add(jTextField2, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 40, 240, 40));
-
-        jTextField4.setBackground(new java.awt.Color(204, 204, 204));
-        jTextField4.setFont(new java.awt.Font("Dubai", 0, 14)); // NOI18N
-        jTextField4.setForeground(new java.awt.Color(102, 102, 102));
-        jTextField4.setText("{correo_electrónico}");
-        jTextField4.setBorder(null);
-        DatosP.add(jTextField4, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 100, 240, 40));
-
-        jPasswordField1.setBackground(new java.awt.Color(204, 204, 204));
-        jPasswordField1.setFont(new java.awt.Font("Dubai", 0, 14)); // NOI18N
-        jPasswordField1.setForeground(new java.awt.Color(102, 102, 102));
-        jPasswordField1.setText("jPasswor");
-        jPasswordField1.setBorder(null);
-        jPasswordField1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jPasswordField1ActionPerformed(evt);
-            }
-        });
-        DatosP.add(jPasswordField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 160, 150, 40));
-
-        jSeparator9.setBackground(new java.awt.Color(0, 0, 0));
-        jSeparator9.setForeground(new java.awt.Color(0, 0, 0));
-        DatosP.add(jSeparator9, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 80, 130, 10));
-
-        jSeparator10.setBackground(new java.awt.Color(0, 0, 0));
-        jSeparator10.setForeground(new java.awt.Color(0, 0, 0));
-        DatosP.add(jSeparator10, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 200, 130, 10));
-
-        jSeparator11.setBackground(new java.awt.Color(0, 0, 0));
-        jSeparator11.setForeground(new java.awt.Color(0, 0, 0));
-        DatosP.add(jSeparator11, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 140, 130, 10));
-
-        PanelContenido.add(DatosP, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 350, 800, 250));
-
-        jLabel17.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
-        jLabel17.setText("Datos Personales");
-        PanelContenido.add(jLabel17, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 320, 160, -1));
-
-        Estadisticas.setBackground(new java.awt.Color(204, 204, 204));
-        Estadisticas.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        Estadisticas.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        jLabel1.setFont(new java.awt.Font("Dubai", 1, 18)); // NOI18N
+        jLabel1.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel1.setText("Partidas ganadas al 3 en raya: {partidas_ganadas3Raya}");
-        Estadisticas.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 160, -1, -1));
+        jLabel1.setText("Fondos ");
+        PanelContenido.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 240, -1, -1));
 
-        jLabel2.setFont(new java.awt.Font("Dubai", 1, 18)); // NOI18N
+        jPanel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 918, Short.MAX_VALUE)
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 178, Short.MAX_VALUE)
+        );
+
+        PanelContenido.add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 280, 920, 180));
+
+        jLabel2.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel2.setText("Puntos: {numero_puntos}");
-        Estadisticas.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 20, 290, 40));
+        jLabel2.setText("Iconos de perfil");
+        PanelContenido.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 480, -1, -1));
 
-        jLabel3.setFont(new java.awt.Font("Dubai", 1, 18)); // NOI18N
+        jPanel3.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+
+        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
+        jPanel3.setLayout(jPanel3Layout);
+        jPanel3Layout.setHorizontalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 918, Short.MAX_VALUE)
+        );
+        jPanel3Layout.setVerticalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 178, Short.MAX_VALUE)
+        );
+
+        PanelContenido.add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 520, 920, 180));
+
+        jLabel3.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel3.setText("Ha sacado Lagarto: {numero_lagarto}");
-        Estadisticas.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 250, 320, -1));
+        jLabel3.setText("Personajes");
+        PanelContenido.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 720, -1, -1));
 
-        jLabel4.setFont(new java.awt.Font("Dubai", 1, 18)); // NOI18N
-        jLabel4.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel4.setText("Partidas ganadas PPTLS: {partidas_ganadasPPTLS}");
-        Estadisticas.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 120, 420, -1));
+        jPanel4.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
-        jLabel6.setFont(new java.awt.Font("Dubai", 1, 18)); // NOI18N
-        jLabel6.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel6.setText("Partidas ganadas PPT: {partidas_ganadasPPT}");
-        Estadisticas.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 80, 470, -1));
+        javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
+        jPanel4.setLayout(jPanel4Layout);
+        jPanel4Layout.setHorizontalGroup(
+            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 918, Short.MAX_VALUE)
+        );
+        jPanel4Layout.setVerticalGroup(
+            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 178, Short.MAX_VALUE)
+        );
 
-        jLabel8.setFont(new java.awt.Font("Dubai", 1, 18)); // NOI18N
-        jLabel8.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel8.setText("Ha sacado Piedra: {numero_piedra}");
-        Estadisticas.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 210, 370, -1));
+        PanelContenido.add(jPanel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 760, 920, 180));
 
-        jLabel9.setFont(new java.awt.Font("Dubai", 1, 18)); // NOI18N
-        jLabel9.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel9.setText("Ha sacado Papel: {numero_papel}");
-        jLabel9.setToolTipText("");
-        Estadisticas.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 250, 290, -1));
-
-        jLabel10.setFont(new java.awt.Font("Dubai", 1, 18)); // NOI18N
-        jLabel10.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel10.setText("Ha sacado Tijera: {numero_tijera}");
-        jLabel10.setToolTipText("");
-        Estadisticas.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 290, 290, -1));
-
-        jLabel21.setFont(new java.awt.Font("Dubai", 1, 18)); // NOI18N
-        jLabel21.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel21.setText("Ha sacado Spock: {numero_spock}");
-        Estadisticas.add(jLabel21, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 210, 300, -1));
-
-        jSeparator1.setBackground(new java.awt.Color(0, 0, 0));
-        jSeparator1.setForeground(new java.awt.Color(0, 0, 0));
-        Estadisticas.add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 70, 840, 10));
-
-        jSeparator2.setBackground(new java.awt.Color(0, 0, 0));
-        jSeparator2.setForeground(new java.awt.Color(0, 0, 0));
-        Estadisticas.add(jSeparator2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 190, 890, 10));
-
-        PanelContenido.add(Estadisticas, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 670, 840, 340));
-
-        jLabel19.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
-        jLabel19.setForeground(new java.awt.Color(102, 102, 102));
-        jLabel19.setText("Estadísticas");
-        PanelContenido.add(jLabel19, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 640, 110, -1));
+        jLabel4.setFont(new java.awt.Font("Dialog", 1, 48)); // NOI18N
+        jLabel4.setForeground(new java.awt.Color(204, 204, 0));
+        jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/Moneda.png"))); // NOI18N
+        jLabel4.setText("{puntuación_jugador}");
+        PanelContenido.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 90, 810, 180));
 
         jPanel2.add(PanelContenido, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 0, 1560, 1090));
 
@@ -372,9 +274,9 @@ public class Perfil_Usuario extends javax.swing.JFrame {
 
         jPanel2.add(Boton_Cierre_Perfil, new org.netbeans.lib.awtextra.AbsoluteConstraints(1830, 0, 90, 90));
 
-        jLabel23.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel23.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/MrNintendo.png"))); // NOI18N
-        jPanel2.add(jLabel23, new org.netbeans.lib.awtextra.AbsoluteConstraints(910, 40, 1260, 1070));
+        Griff_Dineros.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        Griff_Dineros.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/Griff.png"))); // NOI18N
+        jPanel2.add(Griff_Dineros, new org.netbeans.lib.awtextra.AbsoluteConstraints(1156, 266, 910, 840));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -388,11 +290,9 @@ public class Perfil_Usuario extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1105, Short.MAX_VALUE)
+            .addGap(0, 1136, Short.MAX_VALUE)
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(layout.createSequentialGroup()
-                    .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 1105, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(0, 0, Short.MAX_VALUE)))
+                .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
@@ -443,18 +343,18 @@ public class Perfil_Usuario extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_jLabel7MouseExited
 
-    private void Boton_TiendaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Boton_TiendaMouseClicked
-        new Tienda().setVisible(true);
+    private void Boton_PerfilMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Boton_PerfilMouseClicked
+        new Perfil_Usuario().setVisible(true);
         this.dispose();
-    }//GEN-LAST:event_Boton_TiendaMouseClicked
+    }//GEN-LAST:event_Boton_PerfilMouseClicked
 
-    private void Boton_TiendaMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Boton_TiendaMouseEntered
-        Boton_Tienda.setBackground(new Color(102, 102, 102));
-    }//GEN-LAST:event_Boton_TiendaMouseEntered
+    private void Boton_PerfilMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Boton_PerfilMouseEntered
+        Boton_Perfil.setBackground(new Color(102, 102, 102));
+    }//GEN-LAST:event_Boton_PerfilMouseEntered
 
-    private void Boton_TiendaMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Boton_TiendaMouseExited
-        Boton_Tienda.setBackground(new Color(51, 51, 51));
-    }//GEN-LAST:event_Boton_TiendaMouseExited
+    private void Boton_PerfilMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Boton_PerfilMouseExited
+        Boton_Perfil.setBackground(new Color(51, 51, 51));
+    }//GEN-LAST:event_Boton_PerfilMouseExited
 
     private void Boton_JuegoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Boton_JuegoMouseClicked
         new Main_Juego().setVisible(true);
@@ -483,21 +383,6 @@ public class Perfil_Usuario extends javax.swing.JFrame {
         Boton_Cierre_Perfil.setBackground(Color.white);
     }//GEN-LAST:event_jLabel18MouseExited
 
-    private void VisibilidadMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_VisibilidadMouseClicked
-        if (jPasswordField1.getEchoChar() == EchoChar) {
-            Visibilidad.setIcon(NoVer);
-            jPasswordField1.setEchoChar((char) 0);
-        } else {
-            Visibilidad.setIcon(Ver);
-            jPasswordField1.setEchoChar(EchoChar);
-        }
-
-    }//GEN-LAST:event_VisibilidadMouseClicked
-
-    private void jPasswordField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jPasswordField1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jPasswordField1ActionPerformed
-
     /**
      * @param args the command line arguments
      */
@@ -515,20 +400,21 @@ public class Perfil_Usuario extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Perfil_Usuario.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Tienda.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Perfil_Usuario.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Tienda.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Perfil_Usuario.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Tienda.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Perfil_Usuario.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Tienda.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Perfil_Usuario().setVisible(true);
+                new Tienda().setVisible(true);
             }
         });
     }
@@ -538,46 +424,27 @@ public class Perfil_Usuario extends javax.swing.JFrame {
     private javax.swing.JPanel Boton_Cierre_Perfil;
     private javax.swing.JPanel Boton_Juego;
     private javax.swing.JPanel Boton_Menu_Desplegable;
-    private javax.swing.JPanel Boton_Tienda;
-    private javax.swing.JPanel DatosP;
-    private javax.swing.JPanel Estadisticas;
+    private javax.swing.JPanel Boton_Perfil;
+    private javax.swing.JLabel Griff_Dineros;
     private javax.swing.JPanel Menu_Ampliado;
     private javax.swing.JPanel PanelContenido;
-    private javax.swing.JLabel Visibilidad;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel15;
-    private javax.swing.JLabel jLabel16;
-    private javax.swing.JLabel jLabel17;
     private javax.swing.JLabel jLabel18;
-    private javax.swing.JLabel jLabel19;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel20;
-    private javax.swing.JLabel jLabel21;
-    private javax.swing.JLabel jLabel23;
-    private javax.swing.JLabel jLabel28;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel31;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
-    private javax.swing.JLabel jLabel8;
-    private javax.swing.JLabel jLabel9;
+    private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
-    private javax.swing.JPasswordField jPasswordField1;
-    private javax.swing.JSeparator jSeparator1;
-    private javax.swing.JSeparator jSeparator10;
-    private javax.swing.JSeparator jSeparator11;
-    private javax.swing.JSeparator jSeparator2;
+    private javax.swing.JPanel jPanel3;
+    private javax.swing.JPanel jPanel4;
     private javax.swing.JSeparator jSeparator7;
     private javax.swing.JSeparator jSeparator8;
-    private javax.swing.JSeparator jSeparator9;
-    private javax.swing.JTextField jTextField2;
-    private javax.swing.JTextField jTextField4;
     // End of variables declaration//GEN-END:variables
 }
