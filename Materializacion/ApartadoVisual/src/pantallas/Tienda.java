@@ -45,10 +45,32 @@ public class Tienda extends javax.swing.JFrame {
         Bienvenido1 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
+        jLabel6 = new javax.swing.JLabel();
+        jLabel8 = new javax.swing.JLabel();
+        jLabel9 = new javax.swing.JLabel();
+        jLabel10 = new javax.swing.JLabel();
+        jLabel16 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jPanel3 = new javax.swing.JPanel();
+        jLabel19 = new javax.swing.JLabel();
+        jLabel20 = new javax.swing.JLabel();
+        jLabel21 = new javax.swing.JLabel();
+        jLabel22 = new javax.swing.JLabel();
+        jLabel23 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jPanel4 = new javax.swing.JPanel();
+        jLabel24 = new javax.swing.JLabel();
+        jLabel25 = new javax.swing.JLabel();
+        jLabel26 = new javax.swing.JLabel();
+        jLabel27 = new javax.swing.JLabel();
+        jLabel28 = new javax.swing.JLabel();
+        jLabel29 = new javax.swing.JLabel();
+        jLabel30 = new javax.swing.JLabel();
+        jLabel31 = new javax.swing.JLabel();
+        jLabel32 = new javax.swing.JLabel();
+        jLabel33 = new javax.swing.JLabel();
+        jLabel34 = new javax.swing.JLabel();
+        jLabel35 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         Boton_Cierre_Perfil = new javax.swing.JPanel();
         jLabel18 = new javax.swing.JLabel();
@@ -183,73 +205,272 @@ public class Tienda extends javax.swing.JFrame {
         Bienvenido1.setForeground(new java.awt.Color(0, 204, 102));
         Bienvenido1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         Bienvenido1.setText("TIENDA");
-        PanelContenido.add(Bienvenido1, new org.netbeans.lib.awtextra.AbsoluteConstraints(710, 10, 340, 100));
+        PanelContenido.add(Bienvenido1, new org.netbeans.lib.awtextra.AbsoluteConstraints(750, 10, 340, 100));
 
         jLabel1.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(0, 0, 0));
         jLabel1.setText("Fondos ");
-        PanelContenido.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 240, -1, -1));
+        PanelContenido.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 240, -1, -1));
 
+        jPanel1.setBackground(new java.awt.Color(51, 51, 51));
         jPanel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 918, Short.MAX_VALUE)
-        );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 178, Short.MAX_VALUE)
-        );
+        jLabel6.setBackground(new java.awt.Color(204, 204, 255));
+        jLabel6.setFont(new java.awt.Font("DialogInput", 1, 24)); // NOI18N
+        jLabel6.setForeground(new java.awt.Color(255, 255, 0));
+        jLabel6.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel6.setText("2000");
+        jLabel6.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        jLabel6.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jLabel6.setOpaque(true);
+        jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(760, 20, 133, 133));
 
-        PanelContenido.add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 280, 920, 180));
+        jLabel8.setBackground(new java.awt.Color(255, 255, 255));
+        jLabel8.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel8.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        jLabel8.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jLabel8.setOpaque(true);
+        jPanel1.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(32, 24, 133, 133));
+
+        jLabel9.setBackground(new java.awt.Color(204, 255, 255));
+        jLabel9.setFont(new java.awt.Font("DialogInput", 1, 24)); // NOI18N
+        jLabel9.setForeground(new java.awt.Color(204, 204, 0));
+        jLabel9.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel9.setText("250");
+        jLabel9.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        jLabel9.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jLabel9.setOpaque(true);
+        jPanel1.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 20, 133, 133));
+
+        jLabel10.setBackground(new java.awt.Color(255, 255, 204));
+        jLabel10.setFont(new java.awt.Font("DialogInput", 1, 24)); // NOI18N
+        jLabel10.setForeground(new java.awt.Color(204, 204, 0));
+        jLabel10.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel10.setText("500");
+        jLabel10.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        jLabel10.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jLabel10.setOpaque(true);
+        jPanel1.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 20, 133, 133));
+
+        jLabel16.setBackground(new java.awt.Color(204, 255, 204));
+        jLabel16.setFont(new java.awt.Font("DialogInput", 1, 24)); // NOI18N
+        jLabel16.setForeground(new java.awt.Color(204, 204, 0));
+        jLabel16.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel16.setText("750");
+        jLabel16.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        jLabel16.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jLabel16.setOpaque(true);
+        jPanel1.add(jLabel16, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 20, 133, 133));
+
+        PanelContenido.add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 280, 920, 180));
 
         jLabel2.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(0, 0, 0));
         jLabel2.setText("Iconos de perfil");
-        PanelContenido.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 480, -1, -1));
+        PanelContenido.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 480, -1, -1));
 
+        jPanel3.setBackground(new java.awt.Color(51, 51, 51));
         jPanel3.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        jPanel3.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
-        jPanel3.setLayout(jPanel3Layout);
-        jPanel3Layout.setHorizontalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 918, Short.MAX_VALUE)
-        );
-        jPanel3Layout.setVerticalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 178, Short.MAX_VALUE)
-        );
+        jLabel19.setBackground(new java.awt.Color(204, 204, 255));
+        jLabel19.setFont(new java.awt.Font("DialogInput", 1, 24)); // NOI18N
+        jLabel19.setForeground(new java.awt.Color(255, 255, 0));
+        jLabel19.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel19.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/Roca_Tienda.gif"))); // NOI18N
+        jLabel19.setText("1500");
+        jLabel19.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        jLabel19.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jLabel19.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        jPanel3.add(jLabel19, new org.netbeans.lib.awtextra.AbsoluteConstraints(750, 20, 133, 133));
 
-        PanelContenido.add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 520, 920, 180));
+        jLabel20.setBackground(new java.awt.Color(255, 255, 255));
+        jLabel20.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel20.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/iconsUsuarioPerfil_Tienda.png"))); // NOI18N
+        jLabel20.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        jLabel20.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jLabel20.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        jPanel3.add(jLabel20, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 20, 133, 133));
+
+        jLabel21.setBackground(new java.awt.Color(204, 255, 255));
+        jLabel21.setFont(new java.awt.Font("DialogInput", 1, 24)); // NOI18N
+        jLabel21.setForeground(new java.awt.Color(255, 255, 102));
+        jLabel21.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel21.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/PajaroLoco_Tienda.png"))); // NOI18N
+        jLabel21.setText("100");
+        jLabel21.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        jLabel21.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jLabel21.setFocusable(false);
+        jLabel21.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        jPanel3.add(jLabel21, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 20, 133, 133));
+
+        jLabel22.setBackground(new java.awt.Color(255, 255, 204));
+        jLabel22.setFont(new java.awt.Font("DialogInput", 1, 24)); // NOI18N
+        jLabel22.setForeground(new java.awt.Color(204, 204, 0));
+        jLabel22.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel22.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/Thron_Tienda.png"))); // NOI18N
+        jLabel22.setText("300");
+        jLabel22.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        jLabel22.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jLabel22.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        jPanel3.add(jLabel22, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 20, 133, 133));
+
+        jLabel23.setBackground(new java.awt.Color(204, 255, 204));
+        jLabel23.setFont(new java.awt.Font("DialogInput", 1, 24)); // NOI18N
+        jLabel23.setForeground(new java.awt.Color(204, 204, 0));
+        jLabel23.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel23.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/MonaChina_Tienda.png"))); // NOI18N
+        jLabel23.setText("550");
+        jLabel23.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        jLabel23.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jLabel23.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        jPanel3.add(jLabel23, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 20, 133, 133));
+
+        PanelContenido.add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 520, 920, 180));
 
         jLabel3.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(0, 0, 0));
         jLabel3.setText("Personajes");
-        PanelContenido.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 720, -1, -1));
+        PanelContenido.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 720, -1, -1));
 
+        jPanel4.setBackground(new java.awt.Color(51, 51, 51));
         jPanel4.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        jPanel4.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
-        jPanel4.setLayout(jPanel4Layout);
-        jPanel4Layout.setHorizontalGroup(
-            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 918, Short.MAX_VALUE)
-        );
-        jPanel4Layout.setVerticalGroup(
-            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 178, Short.MAX_VALUE)
-        );
+        jLabel24.setBackground(new java.awt.Color(204, 204, 255));
+        jLabel24.setFont(new java.awt.Font("DialogInput", 1, 24)); // NOI18N
+        jLabel24.setForeground(new java.awt.Color(255, 255, 0));
+        jLabel24.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel24.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/MrNintendoTienda.png"))); // NOI18N
+        jLabel24.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        jLabel24.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jLabel24.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        jPanel4.add(jLabel24, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 10, 133, 133));
 
-        PanelContenido.add(jPanel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 760, 920, 180));
+        jLabel25.setBackground(new java.awt.Color(255, 255, 255));
+        jLabel25.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel25.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/SheldonTienda.png"))); // NOI18N
+        jLabel25.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        jLabel25.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jLabel25.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        jPanel4.add(jLabel25, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 10, 133, 133));
+
+        jLabel26.setBackground(new java.awt.Color(204, 255, 255));
+        jLabel26.setFont(new java.awt.Font("DialogInput", 1, 24)); // NOI18N
+        jLabel26.setForeground(new java.awt.Color(255, 255, 102));
+        jLabel26.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel26.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/RickyMortyTienda.png"))); // NOI18N
+        jLabel26.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        jLabel26.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jLabel26.setFocusable(false);
+        jLabel26.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        jPanel4.add(jLabel26, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 10, 133, 133));
+
+        jLabel27.setBackground(new java.awt.Color(255, 255, 204));
+        jLabel27.setFont(new java.awt.Font("DialogInput", 1, 24)); // NOI18N
+        jLabel27.setForeground(new java.awt.Color(204, 204, 0));
+        jLabel27.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel27.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/GonPPTTienda.png"))); // NOI18N
+        jLabel27.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        jLabel27.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jLabel27.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        jPanel4.add(jLabel27, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 10, 133, 133));
+
+        jLabel28.setBackground(new java.awt.Color(204, 255, 204));
+        jLabel28.setFont(new java.awt.Font("DialogInput", 1, 24)); // NOI18N
+        jLabel28.setForeground(new java.awt.Color(204, 204, 0));
+        jLabel28.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel28.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/Master_HandTienda.png"))); // NOI18N
+        jLabel28.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        jLabel28.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jLabel28.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        jPanel4.add(jLabel28, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 10, 133, 133));
+
+        jLabel29.setBackground(new java.awt.Color(204, 204, 255));
+        jLabel29.setFont(new java.awt.Font("DialogInput", 1, 24)); // NOI18N
+        jLabel29.setForeground(new java.awt.Color(255, 255, 0));
+        jLabel29.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel29.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/BMOTienda.png"))); // NOI18N
+        jLabel29.setText("1000");
+        jLabel29.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        jLabel29.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jLabel29.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        jPanel4.add(jLabel29, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 160, 133, 133));
+
+        jLabel30.setBackground(new java.awt.Color(255, 255, 255));
+        jLabel30.setFont(new java.awt.Font("DialogInput", 1, 24)); // NOI18N
+        jLabel30.setForeground(new java.awt.Color(255, 255, 0));
+        jLabel30.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel30.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/GLaDOSTienda.png"))); // NOI18N
+        jLabel30.setText("1000");
+        jLabel30.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        jLabel30.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jLabel30.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        jPanel4.add(jLabel30, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 160, 133, 133));
+
+        jLabel31.setBackground(new java.awt.Color(204, 255, 255));
+        jLabel31.setFont(new java.awt.Font("DialogInput", 1, 24)); // NOI18N
+        jLabel31.setForeground(new java.awt.Color(255, 255, 0));
+        jLabel31.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel31.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/BillCipherTienda.png"))); // NOI18N
+        jLabel31.setText("1000");
+        jLabel31.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        jLabel31.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jLabel31.setFocusable(false);
+        jLabel31.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        jPanel4.add(jLabel31, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 160, 133, 133));
+
+        jLabel32.setBackground(new java.awt.Color(255, 255, 204));
+        jLabel32.setFont(new java.awt.Font("DialogInput", 1, 24)); // NOI18N
+        jLabel32.setForeground(new java.awt.Color(255, 255, 0));
+        jLabel32.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel32.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/JosephJoestarTienda.png"))); // NOI18N
+        jLabel32.setText("1000");
+        jLabel32.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        jLabel32.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jLabel32.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        jPanel4.add(jLabel32, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 160, 133, 133));
+
+        jLabel33.setBackground(new java.awt.Color(204, 255, 204));
+        jLabel33.setFont(new java.awt.Font("DialogInput", 1, 24)); // NOI18N
+        jLabel33.setForeground(new java.awt.Color(255, 255, 0));
+        jLabel33.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel33.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/SpockPPTLSTienda.png"))); // NOI18N
+        jLabel33.setText("1000");
+        jLabel33.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        jLabel33.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jLabel33.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        jPanel4.add(jLabel33, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 160, 133, 133));
+
+        jLabel34.setBackground(new java.awt.Color(204, 204, 255));
+        jLabel34.setFont(new java.awt.Font("DialogInput", 1, 24)); // NOI18N
+        jLabel34.setForeground(new java.awt.Color(255, 255, 0));
+        jLabel34.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel34.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/GriffTienda.png"))); // NOI18N
+        jLabel34.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        jLabel34.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jLabel34.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        jPanel4.add(jLabel34, new org.netbeans.lib.awtextra.AbsoluteConstraints(790, 10, 133, 133));
+
+        jLabel35.setBackground(new java.awt.Color(204, 204, 255));
+        jLabel35.setFont(new java.awt.Font("DialogInput", 1, 24)); // NOI18N
+        jLabel35.setForeground(new java.awt.Color(255, 255, 0));
+        jLabel35.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel35.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/TomNookTienda.png"))); // NOI18N
+        jLabel35.setText("1000");
+        jLabel35.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        jLabel35.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jLabel35.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        jPanel4.add(jLabel35, new org.netbeans.lib.awtextra.AbsoluteConstraints(790, 160, 133, 133));
+
+        PanelContenido.add(jPanel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 760, 940, 300));
 
         jLabel4.setFont(new java.awt.Font("Dialog", 1, 48)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(204, 204, 0));
         jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/Moneda.png"))); // NOI18N
         jLabel4.setText("{puntuación_jugador}");
-        PanelContenido.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 90, 810, 180));
+        PanelContenido.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 90, 810, 180));
 
         jPanel2.add(PanelContenido, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 0, 1560, 1090));
 
@@ -259,6 +480,7 @@ public class Tienda extends javax.swing.JFrame {
         jLabel18.setBackground(new java.awt.Color(255, 255, 255));
         jLabel18.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel18.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/iconsX.png"))); // NOI18N
+        jLabel18.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jLabel18.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jLabel18MouseClicked(evt);
@@ -429,17 +651,39 @@ public class Tienda extends javax.swing.JFrame {
     private javax.swing.JPanel Menu_Ampliado;
     private javax.swing.JPanel PanelContenido;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel15;
+    private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel18;
+    private javax.swing.JLabel jLabel19;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel20;
+    private javax.swing.JLabel jLabel21;
+    private javax.swing.JLabel jLabel22;
+    private javax.swing.JLabel jLabel23;
+    private javax.swing.JLabel jLabel24;
+    private javax.swing.JLabel jLabel25;
+    private javax.swing.JLabel jLabel26;
+    private javax.swing.JLabel jLabel27;
+    private javax.swing.JLabel jLabel28;
+    private javax.swing.JLabel jLabel29;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel30;
+    private javax.swing.JLabel jLabel31;
+    private javax.swing.JLabel jLabel32;
+    private javax.swing.JLabel jLabel33;
+    private javax.swing.JLabel jLabel34;
+    private javax.swing.JLabel jLabel35;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;

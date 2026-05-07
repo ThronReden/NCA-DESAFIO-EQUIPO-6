@@ -5,17 +5,24 @@ import static java.awt.Color.black;
 import static java.awt.Color.red;
 import static java.awt.Color.white;
 import static java.awt.Color.yellow;
+import javax.swing.ImageIcon;
 
 /**
  *
  * @author LENOVO
  */
 public class Registro extends javax.swing.JFrame {
+    
+    private final char EchoChar;
+
+    ImageIcon NoVer = new ImageIcon("src\\imagenes\\iconsNoVer.png");
+    ImageIcon Ver = new ImageIcon("src\\imagenes\\iconsVer.png");
 
     int xMouse, yMouse;
 
     public Registro() {
         initComponents();
+        EchoChar = contraseña.getEchoChar();
     }
 
     /**
@@ -30,8 +37,8 @@ public class Registro extends javax.swing.JFrame {
         PANELGRANDE_REGISTRO = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         PANEL_INICIO_SESION = new javax.swing.JPanel();
-        jPasswordField1 = new javax.swing.JPasswordField();
-        jTextField1 = new javax.swing.JTextField();
+        contraseña = new javax.swing.JPasswordField();
+        nombre = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         jSeparator2 = new javax.swing.JSeparator();
@@ -45,7 +52,7 @@ public class Registro extends javax.swing.JFrame {
         jLabel10 = new javax.swing.JLabel();
         BOTON_CERRAR_Registro = new javax.swing.JPanel();
         jLabel16 = new javax.swing.JLabel();
-        jTextField2 = new javax.swing.JTextField();
+        correo = new javax.swing.JTextField();
         jLabel11 = new javax.swing.JLabel();
         jSeparator4 = new javax.swing.JSeparator();
         jLabel12 = new javax.swing.JLabel();
@@ -53,6 +60,7 @@ public class Registro extends javax.swing.JFrame {
         jLabel13 = new javax.swing.JLabel();
         jLabel15 = new javax.swing.JLabel();
         jLabel17 = new javax.swing.JLabel();
+        Visibilidad = new javax.swing.JLabel();
         Panel_Arrastre = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -72,27 +80,37 @@ public class Registro extends javax.swing.JFrame {
         PANEL_INICIO_SESION.setBackground(new java.awt.Color(255, 255, 255));
         PANEL_INICIO_SESION.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jPasswordField1.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
-        jPasswordField1.setForeground(new java.awt.Color(204, 204, 204));
-        jPasswordField1.setText("********");
-        jPasswordField1.setBorder(null);
-        jPasswordField1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jPasswordField1ActionPerformed(evt);
+        contraseña.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
+        contraseña.setForeground(new java.awt.Color(204, 204, 204));
+        contraseña.setText("********");
+        contraseña.setBorder(null);
+        contraseña.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                contraseñaMouseClicked(evt);
             }
         });
-        PANEL_INICIO_SESION.add(jPasswordField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 390, 230, 40));
+        contraseña.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                contraseñaActionPerformed(evt);
+            }
+        });
+        PANEL_INICIO_SESION.add(contraseña, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 390, 230, 40));
 
-        jTextField1.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
-        jTextField1.setForeground(new java.awt.Color(204, 204, 204));
-        jTextField1.setText("Ingresar Nombre Aquí");
-        jTextField1.setBorder(null);
-        jTextField1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField1ActionPerformed(evt);
+        nombre.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
+        nombre.setForeground(new java.awt.Color(204, 204, 204));
+        nombre.setText("Ingresar Nombre Aquí");
+        nombre.setBorder(null);
+        nombre.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                nombreMouseClicked(evt);
             }
         });
-        PANEL_INICIO_SESION.add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 190, 230, 40));
+        nombre.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                nombreActionPerformed(evt);
+            }
+        });
+        PANEL_INICIO_SESION.add(nombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 190, 230, 40));
 
         jLabel4.setFont(new java.awt.Font("Leelawadee", 1, 50)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(0, 204, 204));
@@ -177,16 +195,21 @@ public class Registro extends javax.swing.JFrame {
 
         PANEL_INICIO_SESION.add(BOTON_CERRAR_Registro, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 40, 40));
 
-        jTextField2.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
-        jTextField2.setForeground(new java.awt.Color(204, 204, 204));
-        jTextField2.setText("Ingresar Aquí");
-        jTextField2.setBorder(null);
-        jTextField2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField2ActionPerformed(evt);
+        correo.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
+        correo.setForeground(new java.awt.Color(204, 204, 204));
+        correo.setText("Ingresar Aquí");
+        correo.setBorder(null);
+        correo.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                correoMouseClicked(evt);
             }
         });
-        PANEL_INICIO_SESION.add(jTextField2, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 290, 230, 40));
+        correo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                correoActionPerformed(evt);
+            }
+        });
+        PANEL_INICIO_SESION.add(correo, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 290, 230, 40));
 
         jLabel11.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel11.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/iconsMail.png"))); // NOI18N
@@ -230,6 +253,15 @@ public class Registro extends javax.swing.JFrame {
         jLabel17.setOpaque(true);
         PANEL_INICIO_SESION.add(jLabel17, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 570, 10));
 
+        Visibilidad.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        Visibilidad.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/iconsVer.png"))); // NOI18N
+        Visibilidad.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                VisibilidadMouseClicked(evt);
+            }
+        });
+        PANEL_INICIO_SESION.add(Visibilidad, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 390, -1, 40));
+
         PANELGRANDE_REGISTRO.add(PANEL_INICIO_SESION, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 570, 600));
 
         Panel_Arrastre.setBackground(new java.awt.Color(255, 255, 255));
@@ -250,13 +282,13 @@ public class Registro extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jPasswordField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jPasswordField1ActionPerformed
+    private void contraseñaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_contraseñaActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jPasswordField1ActionPerformed
+    }//GEN-LAST:event_contraseñaActionPerformed
 
-    private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
+    private void nombreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nombreActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField1ActionPerformed
+    }//GEN-LAST:event_nombreActionPerformed
 
     private void jLabel8MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel8MouseEntered
         PanelAcceso.setBackground(yellow);
@@ -278,9 +310,9 @@ public class Registro extends javax.swing.JFrame {
         BOTON_CERRAR_Registro.setBackground(white);
     }//GEN-LAST:event_jLabel16MouseExited
 
-    private void jTextField2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField2ActionPerformed
+    private void correoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_correoActionPerformed
 
-    }//GEN-LAST:event_jTextField2ActionPerformed
+    }//GEN-LAST:event_correoActionPerformed
 
     private void jLabel13MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel13MouseEntered
         PanelVolverIncio.setBackground(new Color(153, 204, 0));
@@ -314,6 +346,28 @@ public class Registro extends javax.swing.JFrame {
         new Main_Juego().setVisible(true);
         this.dispose();
     }//GEN-LAST:event_jLabel8MouseClicked
+
+    private void nombreMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_nombreMouseClicked
+        nombre.setText("");
+    }//GEN-LAST:event_nombreMouseClicked
+
+    private void correoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_correoMouseClicked
+        correo.setText("");
+    }//GEN-LAST:event_correoMouseClicked
+
+    private void VisibilidadMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_VisibilidadMouseClicked
+        if (contraseña.getEchoChar() == EchoChar) {
+            Visibilidad.setIcon(NoVer);
+            contraseña.setEchoChar((char) 0);
+        } else {
+            Visibilidad.setIcon(Ver);
+            contraseña.setEchoChar(EchoChar);
+        }
+    }//GEN-LAST:event_VisibilidadMouseClicked
+
+    private void contraseñaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_contraseñaMouseClicked
+        contraseña.setText("");
+    }//GEN-LAST:event_contraseñaMouseClicked
 
     /**
      * @param args the command line arguments
@@ -357,6 +411,9 @@ public class Registro extends javax.swing.JFrame {
     private javax.swing.JPanel PanelAcceso;
     private javax.swing.JPanel PanelVolverIncio;
     private javax.swing.JPanel Panel_Arrastre;
+    private javax.swing.JLabel Visibilidad;
+    private javax.swing.JPasswordField contraseña;
+    private javax.swing.JTextField correo;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -372,11 +429,9 @@ public class Registro extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
-    private javax.swing.JPasswordField jPasswordField1;
     private javax.swing.JSeparator jSeparator2;
     private javax.swing.JSeparator jSeparator3;
     private javax.swing.JSeparator jSeparator4;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
+    private javax.swing.JTextField nombre;
     // End of variables declaration//GEN-END:variables
 }

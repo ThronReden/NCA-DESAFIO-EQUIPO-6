@@ -3,13 +3,20 @@ package pantallas;
 import java.awt.Color;
 import static java.awt.Color.black;
 import static java.awt.Color.white;
+import javax.swing.ImageIcon;
 
 public class Inicio_Sesion extends javax.swing.JFrame {
+
+    private final char EchoChar;
+
+    ImageIcon NoVer = new ImageIcon("src\\imagenes\\iconsNoVer.png");
+    ImageIcon Ver = new ImageIcon("src\\imagenes\\iconsVer.png");
 
     int xMouse, yMouse;
 
     public Inicio_Sesion() {
         initComponents();
+        EchoChar = contraseña.getEchoChar();
     }
 
     /**
@@ -27,8 +34,8 @@ public class Inicio_Sesion extends javax.swing.JFrame {
         PANELGRANDE = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         PANEL_INICIO_SESION = new javax.swing.JPanel();
-        jPasswordField1 = new javax.swing.JPasswordField();
-        jTextField1 = new javax.swing.JTextField();
+        contraseña = new javax.swing.JPasswordField();
+        nombre = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         jSeparator1 = new javax.swing.JSeparator();
@@ -49,6 +56,7 @@ public class Inicio_Sesion extends javax.swing.JFrame {
         BOTON_CERRAR = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
         Panel_Arrastre = new javax.swing.JPanel();
+        Visibilidad = new javax.swing.JLabel();
 
         jScrollPane1.setViewportView(jEditorPane1);
 
@@ -71,27 +79,37 @@ public class Inicio_Sesion extends javax.swing.JFrame {
         PANEL_INICIO_SESION.setBackground(new java.awt.Color(255, 255, 255));
         PANEL_INICIO_SESION.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jPasswordField1.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
-        jPasswordField1.setForeground(new java.awt.Color(204, 204, 204));
-        jPasswordField1.setText("********");
-        jPasswordField1.setBorder(null);
-        jPasswordField1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jPasswordField1ActionPerformed(evt);
+        contraseña.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
+        contraseña.setForeground(new java.awt.Color(204, 204, 204));
+        contraseña.setText("********");
+        contraseña.setBorder(null);
+        contraseña.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                contraseñaMouseClicked(evt);
             }
         });
-        PANEL_INICIO_SESION.add(jPasswordField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 300, 230, 40));
+        contraseña.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                contraseñaActionPerformed(evt);
+            }
+        });
+        PANEL_INICIO_SESION.add(contraseña, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 300, 230, 40));
 
-        jTextField1.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
-        jTextField1.setForeground(new java.awt.Color(204, 204, 204));
-        jTextField1.setText("Ingresar Aquí");
-        jTextField1.setBorder(null);
-        jTextField1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField1ActionPerformed(evt);
+        nombre.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
+        nombre.setForeground(new java.awt.Color(204, 204, 204));
+        nombre.setText("Ingresar Aquí");
+        nombre.setBorder(null);
+        nombre.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                nombreMouseClicked(evt);
             }
         });
-        PANEL_INICIO_SESION.add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 190, 230, 40));
+        nombre.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                nombreActionPerformed(evt);
+            }
+        });
+        PANEL_INICIO_SESION.add(nombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 190, 230, 40));
 
         jLabel3.setFont(new java.awt.Font("Leelawadee", 1, 50)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(0, 204, 0));
@@ -234,6 +252,15 @@ public class Inicio_Sesion extends javax.swing.JFrame {
         });
         PANEL_INICIO_SESION.add(Panel_Arrastre, new org.netbeans.lib.awtextra.AbsoluteConstraints(-460, 0, 980, 30));
 
+        Visibilidad.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        Visibilidad.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/iconsVer.png"))); // NOI18N
+        Visibilidad.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                VisibilidadMouseClicked(evt);
+            }
+        });
+        PANEL_INICIO_SESION.add(Visibilidad, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 300, -1, 40));
+
         PANELGRANDE.add(PANEL_INICIO_SESION, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 0, 570, -1));
 
         getContentPane().add(PANELGRANDE, java.awt.BorderLayout.CENTER);
@@ -245,13 +272,13 @@ public class Inicio_Sesion extends javax.swing.JFrame {
         System.exit(0);
     }//GEN-LAST:event_jLabel2MouseClicked
 
-    private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
+    private void nombreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nombreActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField1ActionPerformed
+    }//GEN-LAST:event_nombreActionPerformed
 
-    private void jPasswordField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jPasswordField1ActionPerformed
+    private void contraseñaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_contraseñaActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jPasswordField1ActionPerformed
+    }//GEN-LAST:event_contraseñaActionPerformed
 
     private void jLabel2MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel2MouseEntered
         jLabel2.setBackground(Color.red);
@@ -299,7 +326,7 @@ public class Inicio_Sesion extends javax.swing.JFrame {
     }//GEN-LAST:event_Panel_ArrastreMouseDragged
 
     private void BOTON_REGISTROMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_BOTON_REGISTROMouseClicked
-    new Registro().setVisible(true);
+        new Registro().setVisible(true);
         this.dispose();
     }//GEN-LAST:event_BOTON_REGISTROMouseClicked
 
@@ -307,6 +334,24 @@ public class Inicio_Sesion extends javax.swing.JFrame {
         new Main_Juego().setVisible(true);
         this.dispose();
     }//GEN-LAST:event_jLabel7MouseClicked
+
+    private void VisibilidadMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_VisibilidadMouseClicked
+        if (contraseña.getEchoChar() == EchoChar) {
+            Visibilidad.setIcon(NoVer);
+            contraseña.setEchoChar((char) 0);
+        } else {
+            Visibilidad.setIcon(Ver);
+            contraseña.setEchoChar(EchoChar);
+        }
+    }//GEN-LAST:event_VisibilidadMouseClicked
+
+    private void nombreMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_nombreMouseClicked
+       nombre.setText("");
+    }//GEN-LAST:event_nombreMouseClicked
+
+    private void contraseñaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_contraseñaMouseClicked
+        contraseña.setText("");
+    }//GEN-LAST:event_contraseñaMouseClicked
 
     /**
      * @param args the command line arguments
@@ -351,6 +396,8 @@ public class Inicio_Sesion extends javax.swing.JFrame {
     private javax.swing.JPanel PANEL_MENSAJE_REGISTRO;
     private javax.swing.JPanel PanelAcceso;
     private javax.swing.JPanel Panel_Arrastre;
+    private javax.swing.JLabel Visibilidad;
+    private javax.swing.JPasswordField contraseña;
     private javax.swing.JEditorPane jEditorPane1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
@@ -367,10 +414,9 @@ public class Inicio_Sesion extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel9;
-    private javax.swing.JPasswordField jPasswordField1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator2;
-    private javax.swing.JTextField jTextField1;
+    private javax.swing.JTextField nombre;
     // End of variables declaration//GEN-END:variables
 }

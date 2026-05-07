@@ -60,6 +60,9 @@ public class Perfil_Usuario extends javax.swing.JFrame {
         jSeparator9 = new javax.swing.JSeparator();
         jSeparator10 = new javax.swing.JSeparator();
         jSeparator11 = new javax.swing.JSeparator();
+        actualizarContraseña = new javax.swing.JButton();
+        actualizarNombre = new javax.swing.JButton();
+        actualizarCorreo = new javax.swing.JButton();
         jLabel17 = new javax.swing.JLabel();
         Estadisticas = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
@@ -207,11 +210,11 @@ public class Perfil_Usuario extends javax.swing.JFrame {
         Bienvenido1.setForeground(new java.awt.Color(0, 204, 102));
         Bienvenido1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         Bienvenido1.setText("Tu perfil");
-        PanelContenido.add(Bienvenido1, new org.netbeans.lib.awtextra.AbsoluteConstraints(770, 110, 340, 100));
+        PanelContenido.add(Bienvenido1, new org.netbeans.lib.awtextra.AbsoluteConstraints(780, 30, 340, 100));
 
         jLabel16.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel16.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/iconsUsuarioPerfil.png"))); // NOI18N
-        PanelContenido.add(jLabel16, new org.netbeans.lib.awtextra.AbsoluteConstraints(890, 230, -1, -1));
+        PanelContenido.add(jLabel16, new org.netbeans.lib.awtextra.AbsoluteConstraints(890, 180, -1, -1));
 
         DatosP.setBackground(new java.awt.Color(204, 204, 204));
         DatosP.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
@@ -224,37 +227,37 @@ public class Perfil_Usuario extends javax.swing.JFrame {
                 VisibilidadMouseClicked(evt);
             }
         });
-        DatosP.add(Visibilidad, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 170, -1, 30));
+        DatosP.add(Visibilidad, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 200, -1, 40));
 
-        jLabel20.setFont(new java.awt.Font("Dubai Medium", 0, 14)); // NOI18N
+        jLabel20.setFont(new java.awt.Font("Dubai Medium", 0, 18)); // NOI18N
         jLabel20.setText("CONTRASEÑA:");
-        DatosP.add(jLabel20, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 170, 100, -1));
+        DatosP.add(jLabel20, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 200, 160, -1));
 
-        jLabel28.setFont(new java.awt.Font("Dubai Medium", 0, 14)); // NOI18N
+        jLabel28.setFont(new java.awt.Font("Dubai Medium", 0, 18)); // NOI18N
         jLabel28.setText("NOMBRE DE USUARIO:");
-        DatosP.add(jLabel28, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 50, 150, -1));
+        DatosP.add(jLabel28, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 50, 210, -1));
 
-        jLabel31.setFont(new java.awt.Font("Dubai Medium", 0, 14)); // NOI18N
+        jLabel31.setFont(new java.awt.Font("Dubai Medium", 0, 18)); // NOI18N
         jLabel31.setText("CORREO ELECTRÓNICO:");
-        DatosP.add(jLabel31, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 110, 160, 20));
+        DatosP.add(jLabel31, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 130, 230, 20));
 
         jTextField2.setBackground(new java.awt.Color(204, 204, 204));
-        jTextField2.setFont(new java.awt.Font("Dubai", 0, 14)); // NOI18N
-        jTextField2.setForeground(new java.awt.Color(102, 102, 102));
+        jTextField2.setFont(new java.awt.Font("Dubai", 0, 16)); // NOI18N
+        jTextField2.setForeground(new java.awt.Color(0, 0, 0));
         jTextField2.setText("{nombre_usuario}");
         jTextField2.setBorder(null);
-        DatosP.add(jTextField2, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 40, 240, 40));
+        DatosP.add(jTextField2, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 40, 210, 40));
 
         jTextField4.setBackground(new java.awt.Color(204, 204, 204));
-        jTextField4.setFont(new java.awt.Font("Dubai", 0, 14)); // NOI18N
-        jTextField4.setForeground(new java.awt.Color(102, 102, 102));
+        jTextField4.setFont(new java.awt.Font("Dubai", 0, 16)); // NOI18N
+        jTextField4.setForeground(new java.awt.Color(0, 0, 0));
         jTextField4.setText("{correo_electrónico}");
         jTextField4.setBorder(null);
-        DatosP.add(jTextField4, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 100, 240, 40));
+        DatosP.add(jTextField4, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 120, 210, 40));
 
         jPasswordField1.setBackground(new java.awt.Color(204, 204, 204));
         jPasswordField1.setFont(new java.awt.Font("Dubai", 0, 14)); // NOI18N
-        jPasswordField1.setForeground(new java.awt.Color(102, 102, 102));
+        jPasswordField1.setForeground(new java.awt.Color(0, 0, 0));
         jPasswordField1.setText("jPasswor");
         jPasswordField1.setBorder(null);
         jPasswordField1.addActionListener(new java.awt.event.ActionListener() {
@@ -262,25 +265,51 @@ public class Perfil_Usuario extends javax.swing.JFrame {
                 jPasswordField1ActionPerformed(evt);
             }
         });
-        DatosP.add(jPasswordField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 160, 150, 40));
+        DatosP.add(jPasswordField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 200, 150, 40));
 
         jSeparator9.setBackground(new java.awt.Color(0, 0, 0));
         jSeparator9.setForeground(new java.awt.Color(0, 0, 0));
-        DatosP.add(jSeparator9, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 80, 130, 10));
+        DatosP.add(jSeparator9, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 80, 420, 10));
 
         jSeparator10.setBackground(new java.awt.Color(0, 0, 0));
         jSeparator10.setForeground(new java.awt.Color(0, 0, 0));
-        DatosP.add(jSeparator10, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 200, 130, 10));
+        DatosP.add(jSeparator10, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 240, 270, 10));
 
         jSeparator11.setBackground(new java.awt.Color(0, 0, 0));
         jSeparator11.setForeground(new java.awt.Color(0, 0, 0));
-        DatosP.add(jSeparator11, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 140, 130, 10));
+        DatosP.add(jSeparator11, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 160, 420, 10));
 
-        PanelContenido.add(DatosP, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 350, 800, 250));
+        actualizarContraseña.setBackground(new java.awt.Color(153, 153, 153));
+        actualizarContraseña.setFont(new java.awt.Font("Dialog", 1, 12)); // NOI18N
+        actualizarContraseña.setForeground(new java.awt.Color(0, 0, 0));
+        actualizarContraseña.setText("Aceptar");
+        actualizarContraseña.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        actualizarContraseña.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                actualizarContraseñaActionPerformed(evt);
+            }
+        });
+        DatosP.add(actualizarContraseña, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 200, 90, 30));
+
+        actualizarNombre.setBackground(new java.awt.Color(153, 153, 153));
+        actualizarNombre.setFont(new java.awt.Font("Dialog", 1, 12)); // NOI18N
+        actualizarNombre.setForeground(new java.awt.Color(0, 0, 0));
+        actualizarNombre.setText("Aceptar");
+        actualizarNombre.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        DatosP.add(actualizarNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 50, 90, 30));
+
+        actualizarCorreo.setBackground(new java.awt.Color(153, 153, 153));
+        actualizarCorreo.setFont(new java.awt.Font("Dialog", 1, 12)); // NOI18N
+        actualizarCorreo.setForeground(new java.awt.Color(0, 0, 0));
+        actualizarCorreo.setText("Aceptar");
+        actualizarCorreo.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        DatosP.add(actualizarCorreo, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 130, 90, 30));
+
+        PanelContenido.add(DatosP, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 320, 810, 280));
 
         jLabel17.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
         jLabel17.setText("Datos Personales");
-        PanelContenido.add(jLabel17, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 320, 160, -1));
+        PanelContenido.add(jLabel17, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 290, 160, -1));
 
         Estadisticas.setBackground(new java.awt.Color(204, 204, 204));
         Estadisticas.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
@@ -300,7 +329,7 @@ public class Perfil_Usuario extends javax.swing.JFrame {
         jLabel3.setFont(new java.awt.Font("Dubai", 1, 18)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(0, 0, 0));
         jLabel3.setText("Ha sacado Lagarto: {numero_lagarto}");
-        Estadisticas.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 250, 320, -1));
+        Estadisticas.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 260, 320, -1));
 
         jLabel4.setFont(new java.awt.Font("Dubai", 1, 18)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(0, 0, 0));
@@ -315,24 +344,24 @@ public class Perfil_Usuario extends javax.swing.JFrame {
         jLabel8.setFont(new java.awt.Font("Dubai", 1, 18)); // NOI18N
         jLabel8.setForeground(new java.awt.Color(0, 0, 0));
         jLabel8.setText("Ha sacado Piedra: {numero_piedra}");
-        Estadisticas.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 210, 370, -1));
+        Estadisticas.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 220, 370, -1));
 
         jLabel9.setFont(new java.awt.Font("Dubai", 1, 18)); // NOI18N
         jLabel9.setForeground(new java.awt.Color(0, 0, 0));
         jLabel9.setText("Ha sacado Papel: {numero_papel}");
         jLabel9.setToolTipText("");
-        Estadisticas.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 250, 290, -1));
+        Estadisticas.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 260, 290, -1));
 
         jLabel10.setFont(new java.awt.Font("Dubai", 1, 18)); // NOI18N
         jLabel10.setForeground(new java.awt.Color(0, 0, 0));
         jLabel10.setText("Ha sacado Tijera: {numero_tijera}");
         jLabel10.setToolTipText("");
-        Estadisticas.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 290, 290, -1));
+        Estadisticas.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 300, 290, -1));
 
         jLabel21.setFont(new java.awt.Font("Dubai", 1, 18)); // NOI18N
         jLabel21.setForeground(new java.awt.Color(0, 0, 0));
         jLabel21.setText("Ha sacado Spock: {numero_spock}");
-        Estadisticas.add(jLabel21, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 210, 300, -1));
+        Estadisticas.add(jLabel21, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 220, 300, -1));
 
         jSeparator1.setBackground(new java.awt.Color(0, 0, 0));
         jSeparator1.setForeground(new java.awt.Color(0, 0, 0));
@@ -340,14 +369,14 @@ public class Perfil_Usuario extends javax.swing.JFrame {
 
         jSeparator2.setBackground(new java.awt.Color(0, 0, 0));
         jSeparator2.setForeground(new java.awt.Color(0, 0, 0));
-        Estadisticas.add(jSeparator2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 190, 890, 10));
+        Estadisticas.add(jSeparator2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 200, 890, 10));
 
-        PanelContenido.add(Estadisticas, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 670, 840, 340));
+        PanelContenido.add(Estadisticas, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 650, 810, 360));
 
         jLabel19.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
         jLabel19.setForeground(new java.awt.Color(102, 102, 102));
         jLabel19.setText("Estadísticas");
-        PanelContenido.add(jLabel19, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 640, 110, -1));
+        PanelContenido.add(jLabel19, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 620, 110, -1));
 
         jPanel2.add(PanelContenido, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 0, 1560, 1090));
 
@@ -498,6 +527,10 @@ public class Perfil_Usuario extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jPasswordField1ActionPerformed
 
+    private void actualizarContraseñaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_actualizarContraseñaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_actualizarContraseñaActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -544,6 +577,9 @@ public class Perfil_Usuario extends javax.swing.JFrame {
     private javax.swing.JPanel Menu_Ampliado;
     private javax.swing.JPanel PanelContenido;
     private javax.swing.JLabel Visibilidad;
+    private javax.swing.JButton actualizarContraseña;
+    private javax.swing.JButton actualizarCorreo;
+    private javax.swing.JButton actualizarNombre;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;

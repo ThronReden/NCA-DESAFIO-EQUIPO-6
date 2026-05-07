@@ -1,6 +1,8 @@
 package pantallas;
 
 import java.awt.Color;
+import pantallas.juegos.PPT;
+import pantallas.juegos.PPTLS;
 import pantallas.juegos.Pantalla_3EnRaya;
 
 /**
@@ -371,6 +373,9 @@ public class Main_Juego extends javax.swing.JFrame {
         jLabel27.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel27.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/PPT.png"))); // NOI18N
         jLabel27.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel27MouseClicked(evt);
+            }
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 jLabel27MouseEntered(evt);
             }
@@ -391,6 +396,9 @@ public class Main_Juego extends javax.swing.JFrame {
         jLabel25.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/PPTLS.png"))); // NOI18N
         jLabel25.setToolTipText("");
         jLabel25.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel25MouseClicked(evt);
+            }
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 jLabel25MouseEntered(evt);
             }
@@ -653,6 +661,16 @@ public class Main_Juego extends javax.swing.JFrame {
         new Pantalla_3EnRaya().setVisible(true);
         this.dispose();
     }//GEN-LAST:event_jLabel26MouseClicked
+
+    private void jLabel27MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel27MouseClicked
+        new PPT().setVisible(true);
+        this.dispose();        // TODO add your handling code here:
+    }//GEN-LAST:event_jLabel27MouseClicked
+
+    private void jLabel25MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel25MouseClicked
+        new PPTLS().setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_jLabel25MouseClicked
 
     /**
      * @param args the command line arguments
