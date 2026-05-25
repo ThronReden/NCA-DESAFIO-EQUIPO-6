@@ -1,0 +1,36 @@
+package logicajuegos.PPT;
+
+import logicajuegos.Jugador;
+import utilidades.Teclado;
+
+/**
+ *
+ * @author jsanchez
+ */
+class JugadorPPT extends Jugador {
+    
+    public JugadorPPT(String nombre) {
+        super(nombre);
+    }
+
+//    public JugadaPPT pedirJugada(PartidaPPT p) {
+//        int gesto;
+//        do{
+//            gesto = Teclado.leerEntero(getNombre() + " elige un gesto:"+"\n"
+//                +"0 -> PIEDRA"+"\n"+"1 -> PAPEL"+"\n"+"2 -> TIJERA"+"\n"+":");
+//        } while(gesto < 0 || gesto > 2);
+//        
+//        return new JugadaPPT(p.getTurno(),gesto,this);
+//    }
+    
+    public JugadaPPT pedirJugada(PartidaPPT p) {
+        int gesto;
+        do{
+            gesto = Teclado.leerEntero(getNombre() + " elige un gesto:"+"\n"
+                +"0 -> PIEDRA"+"\n"+"1 -> PAPEL"+"\n"+"2 -> TIJERA"+"\n"+":");
+        } while(gesto < 0 || gesto > 2);
+        
+        return JugadaPPT.crearJugada(p.getTurno(),gesto,this);
+    }
+    
+}

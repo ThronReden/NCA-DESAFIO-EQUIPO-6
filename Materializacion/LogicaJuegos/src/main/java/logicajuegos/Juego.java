@@ -61,7 +61,7 @@ public abstract class Juego<R,J extends Jugador> {
      * @see #devolverResultado()
      * @see #setResultado(R)
      */
-    private R resultado;
+    protected R resultado;
     
     /**
      * Constructor para la clase abstracta {@link Juego}.
