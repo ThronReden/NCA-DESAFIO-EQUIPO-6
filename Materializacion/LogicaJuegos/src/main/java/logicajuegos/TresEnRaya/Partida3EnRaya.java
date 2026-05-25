@@ -1,5 +1,6 @@
 package logicajuegos.TresEnRaya;
 
+import logicajuegos.SupplierExcepcionesNoHayGanador;
 import logicajuegos.SupplierExcepcionesNoHayResultado;
 import java.util.ArrayList;
 import java.util.Optional;

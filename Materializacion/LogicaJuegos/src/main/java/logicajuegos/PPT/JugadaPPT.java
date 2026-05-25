@@ -4,7 +4,7 @@ package logicajuegos.PPT;
  *
  * @author jsanchez
  */
-class JugadaPPT implements Comparable<JugadaPPT> {
+public class JugadaPPT implements Comparable<JugadaPPT> {
     
     private final int turno;
     private final int gesto;
@@ -14,7 +14,7 @@ class JugadaPPT implements Comparable<JugadaPPT> {
     public static final int PAPEL = 1;
     public static final int TIJERA = 2;
 
-    private JugadaPPT(int elTurno, int elGesto, JugadorPPT elJugador){
+    protected JugadaPPT(int elTurno, int elGesto, JugadorPPT elJugador){
         this.turno = elTurno;
         this.gesto = elGesto;
         this.jugador = elJugador;
@@ -44,25 +44,25 @@ class JugadaPPT implements Comparable<JugadaPPT> {
         int result = 0;
         
         switch(this.getGesto()){
-            case JugadaPPT.PIEDRA -> {
+            case PIEDRA -> {
                 switch(otraJugada.getGesto()){
-                    case JugadaPPT.PIEDRA -> result = 0;
-                    case JugadaPPT.PAPEL -> result = -1;
-                    case JugadaPPT.TIJERA -> result = 1;
+                    case PIEDRA -> result = 0;
+                    case PAPEL -> result = -1;
+                    case TIJERA -> result = 1;
                 }
             }
-            case JugadaPPT.PAPEL -> {
+            case PAPEL -> {
                 switch(otraJugada.getGesto()){
-                    case JugadaPPT.PIEDRA -> result = 1;
-                    case JugadaPPT.PAPEL -> result = 0;
-                    case JugadaPPT.TIJERA -> result = -1;
+                    case PIEDRA -> result = 1;
+                    case PAPEL -> result = 0;
+                    case TIJERA -> result = -1;
                 }
             }
-            case JugadaPPT.TIJERA -> {
+            case TIJERA -> {
                 switch(otraJugada.getGesto()){
-                    case JugadaPPT.PIEDRA -> result = -1;
-                    case JugadaPPT.PAPEL -> result = 1;
-                    case JugadaPPT.TIJERA -> result = 0;
+                    case PIEDRA -> result = -1;
+                    case PAPEL -> result = 1;
+                    case TIJERA -> result = 0;
                 }
             }
         }
@@ -80,6 +80,19 @@ class JugadaPPT implements Comparable<JugadaPPT> {
 
     public int getTIJERA() {
         return TIJERA;
+    }
+
+    public String getNombreGesto() {
+        String nombre;
+        
+        switch(this.gesto){
+            case PIEDRA -> nombre = "piedra";
+            case PAPEL -> nombre = "papel";
+            case TIJERA -> nombre = "tijera";
+            default -> nombre = "invalido";
+        }
+        
+        return nombre;
     }
     
 }
