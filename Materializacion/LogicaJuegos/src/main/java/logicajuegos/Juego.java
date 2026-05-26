@@ -1,6 +1,8 @@
 package logicajuegos;
 
+import java.util.ArrayList;
 import java.util.Optional;
+import java.util.Random;
 
 /**
  * Esta clase define nuestro arquetipo de juego en terminos generales y será
@@ -61,7 +63,7 @@ public abstract class Juego<R,J extends Jugador> {
      * @see #devolverResultado()
      * @see #setResultado(R)
      */
-    private R resultado;
+    protected R resultado;
     
     /**
      * Constructor para la clase abstracta {@link Juego}.
@@ -168,4 +170,11 @@ public abstract class Juego<R,J extends Jugador> {
      */
     public abstract Optional<J> devolverGanador();
     
+    public static <J extends Jugador> J elegirQuienComienza(J unJ, J otroJ){
+        ArrayList<J> liJ = new ArrayList<>();
+        liJ.add(unJ);
+        liJ.add(otroJ);
+        Random r = new Random();
+        return liJ.get(r.nextInt(2));
+    }
 }

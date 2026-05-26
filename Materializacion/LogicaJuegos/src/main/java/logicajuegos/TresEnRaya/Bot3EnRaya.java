@@ -28,11 +28,11 @@ public class Bot3EnRaya extends Jugador3EnRaya{
         super(nombre);
     }
     
-    public static Bot3EnRaya crearBot3EnRaya(){
+    public static Bot3EnRaya crearBot(){
         return new Bot3EnRaya(genNombreBot());
     }
 
-    private static String genNombreBot() {
+    public static String genNombreBot() {
         Random r = new Random();
         return nombresBot[r.nextInt(nombresBot.length)]+" (BOT)";
     }

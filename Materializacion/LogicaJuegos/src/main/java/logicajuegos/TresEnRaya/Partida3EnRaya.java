@@ -1,9 +1,9 @@
 package logicajuegos.TresEnRaya;
 
+import logicajuegos.SupplierExcepcionesNoHayGanador;
 import logicajuegos.SupplierExcepcionesNoHayResultado;
 import java.util.ArrayList;
 import java.util.Optional;
-import java.util.Random;
 import logicajuegos.Juego;
 
 /**
@@ -37,23 +37,15 @@ public class Partida3EnRaya extends Juego<Integer,Jugador3EnRaya> {
         return new Partida3EnRaya(J1,J2);
     }
     public static Partida3EnRaya crearPartida(Jugador3EnRaya personaJ) {
-        Jugador3EnRaya botJ = Bot3EnRaya.crearBot3EnRaya();
-        Jugador3EnRaya J1 = elegirQuienComienza(personaJ, botJ);
+        Jugador3EnRaya bot = Bot3EnRaya.crearBot();
+        Jugador3EnRaya J1 = elegirQuienComienza(personaJ, bot);
         Jugador3EnRaya J2;
         if(J1.equals(personaJ)){
-            J2 = botJ;
+            J2 = bot;
         } else {
             J2 = personaJ;
         }
         return new Partida3EnRaya(J1,J2);
-    }
-    
-    public static Jugador3EnRaya elegirQuienComienza(Jugador3EnRaya unJ, Jugador3EnRaya otroJ) {
-        ArrayList<Jugador3EnRaya> liJ = new ArrayList<>();
-        liJ.add(unJ);
-        liJ.add(otroJ);
-        Random r = new Random();
-        return liJ.get(r.nextInt(2));
     }
     
     public Jugador3EnRaya getJugadorTurnoActual(){
@@ -212,7 +204,7 @@ public class Partida3EnRaya extends Juego<Integer,Jugador3EnRaya> {
 //        Jugador3EnRaya unJ = new Jugador3EnRaya("Pepe");
         Jugador3EnRaya unJ = new Jugador3EnRaya("Persona");
 //        Jugador3EnRaya otroJ = new Jugador3EnRaya("Juan");
-        Bot3EnRaya otroJ = Bot3EnRaya.crearBot3EnRaya();
+        Bot3EnRaya otroJ = Bot3EnRaya.crearBot();
         
         Partida3EnRaya p = Partida3EnRaya.crearPartida(unJ, otroJ);
 //        try {
