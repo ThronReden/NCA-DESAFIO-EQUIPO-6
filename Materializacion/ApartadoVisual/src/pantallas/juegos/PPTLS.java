@@ -5,7 +5,10 @@
 package pantallas.juegos;
 
 import java.awt.Color;
+import java.awt.Font;
 import javax.swing.BorderFactory;
+import javax.swing.JLabel;
+import pantallas.AppTheme;
 
 /**
  *
@@ -18,7 +21,83 @@ public class PPTLS extends javax.swing.JFrame {
      */
     public PPTLS() {
         initComponents();
+        aplicarEstiloVisual();
 
+    }
+
+    private void aplicarEstiloVisual() {
+        Color fondo = AppTheme.getFondoActivo();
+        Color panel = new Color(10, 24, 27);
+        Color panel2 = new Color(18, 18, 24);
+        Color neon = new Color(0, 255, 160);
+        Color cyan = new Color(0, 210, 255);
+
+        Panel_PPT.setBackground(fondo);
+        iconoPerfil.setIcon(AppTheme.getIconoPerfilActivo());
+        master_hand.setIcon(AppTheme.getPersonajePptlsActivo());
+        bannerGris.setVisible(false);
+        separadorNegro.setVisible(false);
+
+        contador.setForeground(new Color(255, 0, 75));
+        contador.setFont(new Font("Dialog", Font.BOLD, 76));
+
+        JLabel[] nombres = {nombre_bot, nombre_de_usuario};
+        for (JLabel nombre : nombres) {
+            nombre.setForeground(Color.WHITE);
+            nombre.setFont(new Font("Dialog", Font.BOLD, 24));
+        }
+
+        JLabel[] etiquetas = {
+            jLabel1, jLabel3, jLabel4, jLabel10, jLabel11,
+            jLabel12, jLabel13, jLabel14, jLabel15, jLabel16
+        };
+        for (JLabel etiqueta : etiquetas) {
+            etiqueta.setForeground(Color.WHITE);
+            etiqueta.setFont(new Font("Dialog", Font.BOLD, 18));
+        }
+
+        JLabel[] opciones = {
+            piedraBot, papelBot, tijeraBot, lagartoBot, spockBot,
+            piedra, papel, tijera, lagarto, spock
+        };
+        for (JLabel opcion : opciones) {
+            opcion.setOpaque(true);
+            opcion.setBackground(panel);
+            opcion.setBorder(BorderFactory.createCompoundBorder(
+                    BorderFactory.createLineBorder(cyan, 2),
+                    BorderFactory.createEmptyBorder(10, 10, 10, 10)));
+        }
+
+        JLabel[] resultados = {resultadoBot, resultadoUser};
+        for (JLabel resultado : resultados) {
+            resultado.setOpaque(true);
+            resultado.setBackground(panel2);
+            resultado.setBorder(BorderFactory.createLineBorder(neon, 2));
+        }
+
+        jLabel2.setForeground(neon);
+        jLabel8.setForeground(neon);
+        jLabel5.setBackground(new Color(0, 0, 0));
+        jLabel5.setBorder(BorderFactory.createLineBorder(neon, 2));
+        jLabel6.setForeground(neon);
+        r1.setBackground(new Color(0, 170, 95));
+        r2.setBackground(new Color(120, 35, 55));
+        r3.setBackground(new Color(55, 60, 63));
+        for (JLabel ronda : new JLabel[]{r1, r2, r3}) {
+            ronda.setForeground(Color.WHITE);
+            ronda.setBorder(BorderFactory.createLineBorder(new Color(6, 6, 6), 2));
+        }
+
+        master_hand.setBounds(-150, -40, 900, 720);
+        Vs.setBounds(850, 10, 330, 230);
+        iconoBot.setBounds(680, 60, 80, 80);
+        iconoPerfil.setBounds(1210, 50, 90, 80);
+        nombre_bot.setBounds(560, 150, 320, 40);
+        nombre_de_usuario.setBounds(1090, 150, 330, 40);
+        contador.setBounds(750, 835, 460, 95);
+        panelRondas.setBounds(790, 990, 380, 85);
+        jLabel5.setBounds(780, 980, 400, 100);
+        jLabel6.setBounds(880, 940, 200, 40);
     }
 
     /**
@@ -38,7 +117,7 @@ public class PPTLS extends javax.swing.JFrame {
         contador = new javax.swing.JLabel();
         Vs = new javax.swing.JLabel();
         iconoBot = new javax.swing.JLabel();
-        bannerGris = new JLabelGradient();
+        bannerGris = new javax.swing.JLabel();
         separadorNegro = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
@@ -322,7 +401,7 @@ public class PPTLS extends javax.swing.JFrame {
 
         master_hand.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         master_hand.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/Master_Hand.png"))); // NOI18N
-        Panel_PPT.add(master_hand, new org.netbeans.lib.awtextra.AbsoluteConstraints(-130, -70, 940, 770));
+        Panel_PPT.add(master_hand, new org.netbeans.lib.awtextra.AbsoluteConstraints(-70, -60, 940, 910));
 
         jLabel2.setFont(new java.awt.Font("Dialog", 1, 70)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(0, 0, 0));
@@ -342,54 +421,56 @@ public class PPTLS extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void tijeraMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tijeraMouseEntered
-        tijera.setBorder(BorderFactory.createLineBorder(Color.BLUE, 2));
-        tijera.setBackground(Color.YELLOW);
+        tijera.setBorder(BorderFactory.createLineBorder(new Color(0, 255, 160), 3));
+        tijera.setBackground(new Color(18, 45, 43));
     }//GEN-LAST:event_tijeraMouseEntered
 
     private void tijeraMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tijeraMouseExited
-        tijera.setBorder(BorderFactory.createEmptyBorder(2, 2, 2, 2));
-        tijera.setBackground(Color.WHITE);
+        restaurarOpcion(tijera);
     }//GEN-LAST:event_tijeraMouseExited
 
     private void piedraMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_piedraMouseEntered
-        piedra.setBorder(BorderFactory.createLineBorder(Color.BLUE, 2));
-        piedra.setBackground(Color.YELLOW);
+        piedra.setBorder(BorderFactory.createLineBorder(new Color(0, 255, 160), 3));
+        piedra.setBackground(new Color(18, 45, 43));
     }//GEN-LAST:event_piedraMouseEntered
 
     private void piedraMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_piedraMouseExited
-        piedra.setBorder(BorderFactory.createEmptyBorder(2, 2, 2, 2));
-        piedra.setBackground(Color.WHITE);
+        restaurarOpcion(piedra);
     }//GEN-LAST:event_piedraMouseExited
 
     private void papelMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_papelMouseEntered
-        papel.setBorder(BorderFactory.createLineBorder(Color.BLUE, 2));
-        papel.setBackground(Color.YELLOW);
+        papel.setBorder(BorderFactory.createLineBorder(new Color(0, 255, 160), 3));
+        papel.setBackground(new Color(18, 45, 43));
     }//GEN-LAST:event_papelMouseEntered
 
     private void papelMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_papelMouseExited
-        papel.setBorder(BorderFactory.createEmptyBorder(2, 2, 2, 2));
-        papel.setBackground(Color.WHITE);
+        restaurarOpcion(papel);
     }//GEN-LAST:event_papelMouseExited
 
     private void lagartoMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lagartoMouseEntered
-        lagarto.setBorder(BorderFactory.createLineBorder(Color.BLUE, 2));
-        lagarto.setBackground(Color.YELLOW);
+        lagarto.setBorder(BorderFactory.createLineBorder(new Color(0, 255, 160), 3));
+        lagarto.setBackground(new Color(18, 45, 43));
     }//GEN-LAST:event_lagartoMouseEntered
 
     private void lagartoMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lagartoMouseExited
-        lagarto.setBorder(BorderFactory.createEmptyBorder(2, 2, 2, 2));
-        lagarto.setBackground(Color.WHITE);
+        restaurarOpcion(lagarto);
     }//GEN-LAST:event_lagartoMouseExited
 
     private void spockMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_spockMouseEntered
-        spock.setBorder(BorderFactory.createLineBorder(Color.BLUE, 2));
-        spock.setBackground(Color.YELLOW);
+        spock.setBorder(BorderFactory.createLineBorder(new Color(0, 255, 160), 3));
+        spock.setBackground(new Color(18, 45, 43));
     }//GEN-LAST:event_spockMouseEntered
 
     private void spockMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_spockMouseExited
-        spock.setBorder(BorderFactory.createEmptyBorder(2, 2, 2, 2));
-        spock.setBackground(Color.WHITE);
+        restaurarOpcion(spock);
     }//GEN-LAST:event_spockMouseExited
+
+    private void restaurarOpcion(JLabel opcion) {
+        opcion.setBorder(BorderFactory.createCompoundBorder(
+                BorderFactory.createLineBorder(new Color(0, 210, 255), 2),
+                BorderFactory.createEmptyBorder(10, 10, 10, 10)));
+        opcion.setBackground(new Color(10, 24, 27));
+    }
 
     /**
      * @param args the command line arguments

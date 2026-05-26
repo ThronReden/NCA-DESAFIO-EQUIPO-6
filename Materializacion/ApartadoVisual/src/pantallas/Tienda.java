@@ -1,7 +1,12 @@
 package pantallas;
 
 import java.awt.Color;
+import java.awt.Cursor;
 import javax.swing.ImageIcon;
+import javax.swing.BorderFactory;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -16,6 +21,241 @@ public class Tienda extends javax.swing.JFrame {
         initComponents();
 
         Menu_Ampliado.setVisible(false);
+        setExtendedState(JFrame.MAXIMIZED_BOTH);
+        prepararCompraFondos();
+        prepararCompraIconosPerfil();
+        prepararCompraPersonajes();
+        aplicarFondoActivo();
+        aplicarIconoPerfilActivo();
+        aplicarPersonajeTiendaActivo();
+    }
+
+    private void prepararCompraFondos() {
+        prepararFondo(Negro, "Negro", 0, new Color(15, 15, 15), null);
+        prepararFondo(Negro2, "Rojo oscuro", 100, new Color(54, 18, 18), precioRojo);
+        prepararFondo(Negro3, "Verde oscuro", 300, new Color(18, 36, 19), precioVerde);
+        prepararFondo(Negro4, "Azul oscuro", 700, new Color(18, 16, 49), precioAzul);
+        prepararFondo(Negro1, "Blanco", 1000, new Color(235, 235, 230), precioBlanco);
+    }
+
+    private void prepararFondo(JLabel fondo, String nombre, int precio, Color color, JLabel precioLabel) {
+        String articulo = "fondo:" + nombre;
+        fondo.setCursor(new Cursor(Cursor.HAND_CURSOR));
+        fondo.setToolTipText(nombre + " - " + precio + " monedas");
+        fondo.setBorder(BorderFactory.createEmptyBorder(5, 5, 5, 5));
+        if (AppTheme.estaComprado(articulo)) {
+            ocultarPrecio(precioLabel);
+        }
+        fondo.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                comprarFondo(nombre, precio, color, precioLabel);
+            }
+
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                actualizarBordesFondos();
+            }
+
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                actualizarBordesFondos();
+            }
+        });
+    }
+
+    private void comprarFondo(String nombre, int precio, Color color, JLabel precioLabel) {
+        String mensaje = "Vas a comprar este fondo: " + nombre + "\nPrecio: " + precio + " monedas\n\nQuieres aplicarlo?";
+        int respuesta = JOptionPane.showConfirmDialog(this, mensaje, "Comprar fondo", JOptionPane.YES_NO_OPTION);
+
+        if (respuesta == JOptionPane.YES_OPTION) {
+            AppTheme.setFondoActivo(color);
+            AppTheme.registrarCompra("fondo:" + nombre);
+            ocultarPrecio(precioLabel);
+            aplicarFondoActivo();
+        }
+    }
+
+    private void aplicarFondoActivo() {
+        Color fondo = AppTheme.getFondoActivo();
+        shop.setBackground(fondo);
+        PanelContenido.setBackground(fondo);
+        Boton_Menu_Desplegable.setBackground(fondo);
+        Boton_Cierre_Perfil.setBackground(fondo);
+        jLabel18.setBackground(fondo);
+        actualizarBordesFondos();
+    }
+
+    private void actualizarBordesFondos() {
+        marcarFondoActivo(Negro, new Color(15, 15, 15));
+        marcarFondoActivo(Negro2, new Color(54, 18, 18));
+        marcarFondoActivo(Negro3, new Color(18, 36, 19));
+        marcarFondoActivo(Negro4, new Color(18, 16, 49));
+        marcarFondoActivo(Negro1, new Color(235, 235, 230));
+    }
+
+    private void marcarFondoActivo(JLabel fondo, Color color) {
+        if (AppTheme.getFondoActivo().equals(color)) {
+            fondo.setBorder(BorderFactory.createLineBorder(new Color(0, 255, 130), 5));
+        } else {
+            fondo.setBorder(BorderFactory.createEmptyBorder(5, 5, 5, 5));
+        }
+    }
+
+    private void prepararCompraIconosPerfil() {
+        prepararIconoPerfil(Usuario, "Usuario", 0, "/imagenes/iconsUsuarioPerfil.png", null);
+        prepararIconoPerfil(PajaroLoco, "Pajaro Loco", 250, "/imagenes/PajaroLoco.png", precioPajaro);
+        prepararIconoPerfil(Thron, "Thron", 500, "/imagenes/Thron.png", precioThron);
+        prepararIconoPerfil(MonaChina, "Mona China", 1000, "/imagenes/MonaChina.png", precioMonaChina);
+        prepararIconoPerfil(TheRock, "The Rock", 2000, "/imagenes/Roca.gif", precioRoca);
+    }
+
+    private void prepararIconoPerfil(JLabel icono, String nombre, int precio, String ruta, JLabel precioLabel) {
+        String articulo = "icono:" + ruta;
+        icono.setCursor(new Cursor(Cursor.HAND_CURSOR));
+        icono.setToolTipText(nombre + " - " + precio + " monedas");
+        icono.setBorder(BorderFactory.createEmptyBorder(5, 5, 5, 5));
+        if (AppTheme.estaComprado(articulo)) {
+            ocultarPrecio(precioLabel);
+        }
+        icono.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                comprarIconoPerfil(nombre, precio, ruta, precioLabel);
+            }
+
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                actualizarBordesIconosPerfil();
+            }
+
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                actualizarBordesIconosPerfil();
+            }
+        });
+    }
+
+    private void comprarIconoPerfil(String nombre, int precio, String ruta, JLabel precioLabel) {
+        String mensaje = "Vas a comprar este icono de perfil: " + nombre + "\nPrecio: " + precio + " monedas\n\nQuieres aplicarlo?";
+        int respuesta = JOptionPane.showConfirmDialog(this, mensaje, "Comprar icono", JOptionPane.YES_NO_OPTION);
+
+        if (respuesta == JOptionPane.YES_OPTION) {
+            AppTheme.setIconoPerfilActivo(ruta);
+            AppTheme.registrarCompra("icono:" + ruta);
+            ocultarPrecio(precioLabel);
+            aplicarIconoPerfilActivo();
+        }
+    }
+
+    private void aplicarIconoPerfilActivo() {
+        actualizarBordesIconosPerfil();
+    }
+
+    private void actualizarBordesIconosPerfil() {
+        marcarIconoPerfilActivo(Usuario, "/imagenes/iconsUsuarioPerfil.png");
+        marcarIconoPerfilActivo(PajaroLoco, "/imagenes/PajaroLoco.png");
+        marcarIconoPerfilActivo(Thron, "/imagenes/Thron.png");
+        marcarIconoPerfilActivo(MonaChina, "/imagenes/MonaChina.png");
+        marcarIconoPerfilActivo(TheRock, "/imagenes/Roca.gif");
+    }
+
+    private void marcarIconoPerfilActivo(JLabel icono, String ruta) {
+        if (AppTheme.getIconoPerfilActivoRuta().equals(ruta)) {
+            icono.setBorder(BorderFactory.createLineBorder(new Color(0, 255, 130), 5));
+        } else {
+            icono.setBorder(BorderFactory.createEmptyBorder(5, 5, 5, 5));
+        }
+    }
+
+    private void prepararCompraPersonajes() {
+        prepararPersonaje(Sheldon, "Sheldon", 1000, "/imagenes/Sheldon.png", "main", null);
+        prepararPersonaje(GLaDOS, "GLaDOS", 1000, "/imagenes/GLaDOS.png", "main", precioGLaDOS);
+        prepararPersonaje(Griff, "Griff", 1000, "/imagenes/Griff.png", "tienda", null);
+        prepararPersonaje(ToomNook, "Tom Nook", 1000, "/imagenes/TomNook.png", "tienda", precioToom);
+        prepararPersonaje(MrNintendo, "Mr Nintendo", 1000, "/imagenes/MrNintendo.png", "perfil", null);
+        prepararPersonaje(Bmo, "BMO", 1000, "/imagenes/BMO.png", "perfil", precioBmo);
+        prepararPersonaje(Gon, "Gon", 1000, "/imagenes/GonPPT.png", "ppt", null);
+        prepararPersonaje(Josep, "Joseph Joestar", 1000, "/imagenes/JosephJoestar.png", "ppt", precioJosep);
+        prepararPersonaje(Hand, "Master Hand", 1000, "/imagenes/Master_Hand.png", "pptls", null);
+        prepararPersonaje(Spock, "Spock", 1000, "/imagenes/SpockPPTLS.png", "pptls", precioSpock);
+        prepararPersonaje(RickYMorty, "Rick y Morty", 1000, "/imagenes/RickyMorty .png", "raya", null);
+        prepararPersonaje(Bill, "Bill Cipher", 1000, "/imagenes/BillCipher.png", "raya", precioBill);
+    }
+
+    private void prepararPersonaje(JLabel personaje, String nombre, int precio, String ruta, String pantalla, JLabel precioLabel) {
+        String articulo = "personaje:" + pantalla + ":" + ruta;
+        personaje.setCursor(new Cursor(Cursor.HAND_CURSOR));
+        personaje.setToolTipText(nombre + " - " + precio + " monedas");
+        personaje.setBorder(BorderFactory.createEmptyBorder(5, 5, 5, 5));
+        if (AppTheme.estaComprado(articulo)) {
+            ocultarPrecio(precioLabel);
+        }
+        personaje.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                comprarPersonaje(nombre, precio, ruta, pantalla, precioLabel);
+            }
+
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                actualizarBordesPersonajes();
+            }
+
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                actualizarBordesPersonajes();
+            }
+        });
+    }
+
+    private void comprarPersonaje(String nombre, int precio, String ruta, String pantalla, JLabel precioLabel) {
+        String mensaje = "Vas a comprar este personaje: " + nombre + "\nPrecio: " + precio + " monedas\n\nQuieres aplicarlo?";
+        int respuesta = JOptionPane.showConfirmDialog(this, mensaje, "Comprar personaje", JOptionPane.YES_NO_OPTION);
+
+        if (respuesta == JOptionPane.YES_OPTION) {
+            switch (pantalla) {
+                case "main" -> AppTheme.setPersonajeMainActivo(ruta);
+                case "tienda" -> AppTheme.setPersonajeTiendaActivo(ruta);
+                case "perfil" -> AppTheme.setPersonajePerfilActivo(ruta);
+                case "ppt" -> AppTheme.setPersonajePptActivo(ruta);
+                case "pptls" -> AppTheme.setPersonajePptlsActivo(ruta);
+                case "raya" -> AppTheme.setPersonajeRayaActivo(ruta);
+                default -> {
+                }
+            }
+            AppTheme.registrarCompra("personaje:" + pantalla + ":" + ruta);
+            ocultarPrecio(precioLabel);
+            aplicarPersonajeTiendaActivo();
+            actualizarBordesPersonajes();
+        }
+    }
+
+    private void ocultarPrecio(JLabel precioLabel) {
+        if (precioLabel != null) {
+            precioLabel.setText("");
+            precioLabel.setVisible(false);
+        }
+    }
+
+    private void aplicarPersonajeTiendaActivo() {
+        Griff_Dineros.setIcon(AppTheme.getPersonajeTiendaActivo());
+        bocadilloText.setVisible(!AppTheme.getPersonajeTiendaActivoRuta().equals("/imagenes/TomNook.png"));
+        actualizarBordesPersonajes();
+    }
+
+    private void actualizarBordesPersonajes() {
+        marcarPersonajeActivo(Sheldon, AppTheme.getPersonajeMainActivoRuta(), "/imagenes/Sheldon.png");
+        marcarPersonajeActivo(GLaDOS, AppTheme.getPersonajeMainActivoRuta(), "/imagenes/GLaDOS.png");
+        marcarPersonajeActivo(Griff, AppTheme.getPersonajeTiendaActivoRuta(), "/imagenes/Griff.png");
+        marcarPersonajeActivo(ToomNook, AppTheme.getPersonajeTiendaActivoRuta(), "/imagenes/TomNook.png");
+        marcarPersonajeActivo(MrNintendo, AppTheme.getPersonajePerfilActivoRuta(), "/imagenes/MrNintendo.png");
+        marcarPersonajeActivo(Bmo, AppTheme.getPersonajePerfilActivoRuta(), "/imagenes/BMO.png");
+        marcarPersonajeActivo(Gon, AppTheme.getPersonajePptActivoRuta(), "/imagenes/GonPPT.png");
+        marcarPersonajeActivo(Josep, AppTheme.getPersonajePptActivoRuta(), "/imagenes/JosephJoestar.png");
+        marcarPersonajeActivo(Hand, AppTheme.getPersonajePptlsActivoRuta(), "/imagenes/Master_Hand.png");
+        marcarPersonajeActivo(Spock, AppTheme.getPersonajePptlsActivoRuta(), "/imagenes/SpockPPTLS.png");
+        marcarPersonajeActivo(RickYMorty, AppTheme.getPersonajeRayaActivoRuta(), "/imagenes/RickyMorty .png");
+        marcarPersonajeActivo(Bill, AppTheme.getPersonajeRayaActivoRuta(), "/imagenes/BillCipher.png");
+    }
+
+    private void marcarPersonajeActivo(JLabel personaje, String rutaActiva, String rutaPersonaje) {
+        if (rutaActiva.equals(rutaPersonaje)) {
+            personaje.setBorder(BorderFactory.createLineBorder(new Color(0, 255, 130), 5));
+        } else {
+            personaje.setBorder(BorderFactory.createEmptyBorder(5, 5, 5, 5));
+        }
     }
 
     /**
@@ -28,7 +268,7 @@ public class Tienda extends javax.swing.JFrame {
     private void initComponents() {
 
         jLabel5 = new javax.swing.JLabel();
-        jPanel2 = new javax.swing.JPanel();
+        shop = new javax.swing.JPanel();
         Boton_Menu_Desplegable = new javax.swing.JPanel();
         jLabel7 = new javax.swing.JLabel();
         Menu_Ampliado = new javax.swing.JPanel();
@@ -42,36 +282,49 @@ public class Tienda extends javax.swing.JFrame {
         jLabel14 = new javax.swing.JLabel();
         jLabel15 = new javax.swing.JLabel();
         PanelContenido = new javax.swing.JPanel();
-        Bienvenido1 = new javax.swing.JLabel();
-        jLabel1 = new javax.swing.JLabel();
-        jPanel1 = new javax.swing.JPanel();
-        jLabel6 = new javax.swing.JLabel();
-        jLabel8 = new javax.swing.JLabel();
-        jLabel9 = new javax.swing.JLabel();
-        jLabel10 = new javax.swing.JLabel();
-        jLabel16 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
-        jPanel3 = new javax.swing.JPanel();
-        jLabel19 = new javax.swing.JLabel();
-        jLabel20 = new javax.swing.JLabel();
-        jLabel21 = new javax.swing.JLabel();
-        jLabel22 = new javax.swing.JLabel();
-        jLabel23 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
-        jPanel4 = new javax.swing.JPanel();
-        jLabel24 = new javax.swing.JLabel();
-        jLabel25 = new javax.swing.JLabel();
-        jLabel26 = new javax.swing.JLabel();
-        jLabel27 = new javax.swing.JLabel();
-        jLabel28 = new javax.swing.JLabel();
-        jLabel29 = new javax.swing.JLabel();
-        jLabel30 = new javax.swing.JLabel();
-        jLabel31 = new javax.swing.JLabel();
-        jLabel32 = new javax.swing.JLabel();
-        jLabel33 = new javax.swing.JLabel();
-        jLabel34 = new javax.swing.JLabel();
-        jLabel35 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
+        tituloTienda = new javax.swing.JLabel();
+        iconMoneda = new javax.swing.JLabel();
+        panelPuntos = new javax.swing.JLabel();
+        Tienda = new javax.swing.JPanel();
+        precioBlanco = new javax.swing.JLabel();
+        precioAzul = new javax.swing.JLabel();
+        precioVerde = new javax.swing.JLabel();
+        precioRojo = new javax.swing.JLabel();
+        precioPajaro = new javax.swing.JLabel();
+        precioThron = new javax.swing.JLabel();
+        precioMonaChina = new javax.swing.JLabel();
+        precioRoca = new javax.swing.JLabel();
+        precioToom = new javax.swing.JLabel();
+        precioBmo = new javax.swing.JLabel();
+        precioSpock = new javax.swing.JLabel();
+        precioJosep = new javax.swing.JLabel();
+        precioBill = new javax.swing.JLabel();
+        ToomNook = new javax.swing.JLabel();
+        Usuario = new javax.swing.JLabel();
+        PajaroLoco = new javax.swing.JLabel();
+        Thron = new javax.swing.JLabel();
+        MonaChina = new javax.swing.JLabel();
+        TheRock = new javax.swing.JLabel();
+        Griff = new javax.swing.JLabel();
+        MrNintendo = new javax.swing.JLabel();
+        Hand = new javax.swing.JLabel();
+        Gon = new javax.swing.JLabel();
+        RickYMorty = new javax.swing.JLabel();
+        Sheldon = new javax.swing.JLabel();
+        GLaDOS = new javax.swing.JLabel();
+        Bill = new javax.swing.JLabel();
+        Josep = new javax.swing.JLabel();
+        Spock = new javax.swing.JLabel();
+        Bmo = new javax.swing.JLabel();
+        Negro = new javax.swing.JLabel();
+        Negro1 = new javax.swing.JLabel();
+        Negro2 = new javax.swing.JLabel();
+        Negro3 = new javax.swing.JLabel();
+        Negro4 = new javax.swing.JLabel();
+        precioGLaDOS = new javax.swing.JLabel();
+        tienda = new javax.swing.JLabel();
+        bocadilloText = new javax.swing.JLabel();
+        puntuacion_jugador1 = new javax.swing.JLabel();
         Boton_Cierre_Perfil = new javax.swing.JPanel();
         jLabel18 = new javax.swing.JLabel();
         Griff_Dineros = new javax.swing.JLabel();
@@ -85,10 +338,10 @@ public class Tienda extends javax.swing.JFrame {
         setUndecorated(true);
         setResizable(false);
 
-        jPanel2.setBackground(new java.awt.Color(255, 255, 255));
-        jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        shop.setBackground(new java.awt.Color(15, 15, 15));
+        shop.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        Boton_Menu_Desplegable.setBackground(new java.awt.Color(102, 102, 102));
+        Boton_Menu_Desplegable.setBackground(new java.awt.Color(15, 15, 15));
         Boton_Menu_Desplegable.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         Boton_Menu_Desplegable.setLayout(new java.awt.CardLayout());
 
@@ -107,11 +360,11 @@ public class Tienda extends javax.swing.JFrame {
         });
         Boton_Menu_Desplegable.add(jLabel7, "card2");
 
-        jPanel2.add(Boton_Menu_Desplegable, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 90, 80));
+        shop.add(Boton_Menu_Desplegable, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 90, 80));
 
-        Menu_Ampliado.setBackground(new java.awt.Color(51, 51, 51));
+        Menu_Ampliado.setBackground(new java.awt.Color(22, 22, 22));
 
-        Boton_Perfil.setBackground(new java.awt.Color(51, 51, 51));
+        Boton_Perfil.setBackground(new java.awt.Color(22, 22, 22));
         Boton_Perfil.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         Boton_Perfil.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -139,7 +392,7 @@ public class Tienda extends javax.swing.JFrame {
         jSeparator7.setBackground(new java.awt.Color(255, 255, 255));
         Boton_Perfil.add(jSeparator7, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 50, 350, 10));
 
-        Boton_Juego.setBackground(new java.awt.Color(51, 51, 51));
+        Boton_Juego.setBackground(new java.awt.Color(22, 22, 22));
         Boton_Juego.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         Boton_Juego.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -195,291 +448,228 @@ public class Tienda extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        jPanel2.add(Menu_Ampliado, new org.netbeans.lib.awtextra.AbsoluteConstraints(-10, 0, -1, 1130));
+        shop.add(Menu_Ampliado, new org.netbeans.lib.awtextra.AbsoluteConstraints(-10, 0, -1, 1130));
 
-        PanelContenido.setBackground(new java.awt.Color(255, 255, 255));
+        PanelContenido.setBackground(new java.awt.Color(15, 15, 15));
         PanelContenido.setOpaque(false);
         PanelContenido.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        Bienvenido1.setFont(new java.awt.Font("Dialog", 1, 70)); // NOI18N
-        Bienvenido1.setForeground(new java.awt.Color(0, 204, 102));
-        Bienvenido1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        Bienvenido1.setText("TIENDA");
-        PanelContenido.add(Bienvenido1, new org.netbeans.lib.awtextra.AbsoluteConstraints(750, 10, 340, 100));
+        tituloTienda.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        tituloTienda.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/TituloTienda.png"))); // NOI18N
+        PanelContenido.add(tituloTienda, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 30, -1, -1));
 
-        jLabel1.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel1.setText("Fondos ");
-        PanelContenido.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 240, -1, -1));
+        iconMoneda.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        iconMoneda.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/Moneda.png"))); // NOI18N
+        PanelContenido.add(iconMoneda, new org.netbeans.lib.awtextra.AbsoluteConstraints(880, 20, 150, 120));
 
-        jPanel1.setBackground(new java.awt.Color(51, 51, 51));
-        jPanel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        panelPuntos.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        panelPuntos.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/panelPuntos.png"))); // NOI18N
+        PanelContenido.add(panelPuntos, new org.netbeans.lib.awtextra.AbsoluteConstraints(820, 0, 550, 160));
 
-        jLabel6.setBackground(new java.awt.Color(204, 204, 255));
-        jLabel6.setFont(new java.awt.Font("DialogInput", 1, 24)); // NOI18N
-        jLabel6.setForeground(new java.awt.Color(255, 255, 0));
-        jLabel6.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel6.setText("2000");
-        jLabel6.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        jLabel6.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        jLabel6.setOpaque(true);
-        jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(760, 20, 133, 133));
+        Tienda.setOpaque(false);
+        Tienda.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel8.setBackground(new java.awt.Color(255, 255, 255));
-        jLabel8.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel8.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        jLabel8.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        jLabel8.setOpaque(true);
-        jPanel1.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(32, 24, 133, 133));
+        precioBlanco.setFont(new java.awt.Font("Impact", 1, 36)); // NOI18N
+        precioBlanco.setForeground(new java.awt.Color(204, 204, 0));
+        precioBlanco.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        precioBlanco.setText("1000");
+        Tienda.add(precioBlanco, new org.netbeans.lib.awtextra.AbsoluteConstraints(890, 210, 90, 50));
 
-        jLabel9.setBackground(new java.awt.Color(204, 255, 255));
-        jLabel9.setFont(new java.awt.Font("DialogInput", 1, 24)); // NOI18N
-        jLabel9.setForeground(new java.awt.Color(204, 204, 0));
-        jLabel9.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel9.setText("250");
-        jLabel9.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        jLabel9.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        jLabel9.setOpaque(true);
-        jPanel1.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 20, 133, 133));
+        precioAzul.setFont(new java.awt.Font("Impact", 1, 36)); // NOI18N
+        precioAzul.setForeground(new java.awt.Color(204, 204, 0));
+        precioAzul.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        precioAzul.setText("700");
+        Tienda.add(precioAzul, new org.netbeans.lib.awtextra.AbsoluteConstraints(690, 210, 90, 50));
 
-        jLabel10.setBackground(new java.awt.Color(255, 255, 204));
-        jLabel10.setFont(new java.awt.Font("DialogInput", 1, 24)); // NOI18N
-        jLabel10.setForeground(new java.awt.Color(204, 204, 0));
-        jLabel10.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel10.setText("500");
-        jLabel10.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        jLabel10.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        jLabel10.setOpaque(true);
-        jPanel1.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 20, 133, 133));
+        precioVerde.setFont(new java.awt.Font("Impact", 1, 36)); // NOI18N
+        precioVerde.setForeground(new java.awt.Color(204, 204, 0));
+        precioVerde.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        precioVerde.setText("300");
+        Tienda.add(precioVerde, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 210, 90, 50));
 
-        jLabel16.setBackground(new java.awt.Color(204, 255, 204));
-        jLabel16.setFont(new java.awt.Font("DialogInput", 1, 24)); // NOI18N
-        jLabel16.setForeground(new java.awt.Color(204, 204, 0));
-        jLabel16.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel16.setText("750");
-        jLabel16.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        jLabel16.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        jLabel16.setOpaque(true);
-        jPanel1.add(jLabel16, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 20, 133, 133));
+        precioRojo.setFont(new java.awt.Font("Impact", 1, 36)); // NOI18N
+        precioRojo.setForeground(new java.awt.Color(204, 204, 0));
+        precioRojo.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        precioRojo.setText("100");
+        Tienda.add(precioRojo, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 210, 110, 50));
 
-        PanelContenido.add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 280, 920, 180));
+        precioPajaro.setFont(new java.awt.Font("Impact", 1, 36)); // NOI18N
+        precioPajaro.setForeground(new java.awt.Color(204, 204, 0));
+        precioPajaro.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        precioPajaro.setText("250");
+        Tienda.add(precioPajaro, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 470, 100, 50));
 
-        jLabel2.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
-        jLabel2.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel2.setText("Iconos de perfil");
-        PanelContenido.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 480, -1, -1));
+        precioThron.setFont(new java.awt.Font("Impact", 1, 36)); // NOI18N
+        precioThron.setForeground(new java.awt.Color(204, 204, 0));
+        precioThron.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        precioThron.setText("500");
+        Tienda.add(precioThron, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 470, 110, 50));
 
-        jPanel3.setBackground(new java.awt.Color(51, 51, 51));
-        jPanel3.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        jPanel3.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        precioMonaChina.setFont(new java.awt.Font("Impact", 1, 36)); // NOI18N
+        precioMonaChina.setForeground(new java.awt.Color(204, 204, 0));
+        precioMonaChina.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        precioMonaChina.setText("1000");
+        Tienda.add(precioMonaChina, new org.netbeans.lib.awtextra.AbsoluteConstraints(690, 470, 90, 50));
 
-        jLabel19.setBackground(new java.awt.Color(204, 204, 255));
-        jLabel19.setFont(new java.awt.Font("DialogInput", 1, 24)); // NOI18N
-        jLabel19.setForeground(new java.awt.Color(255, 255, 0));
-        jLabel19.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel19.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/Roca_Tienda.gif"))); // NOI18N
-        jLabel19.setText("1500");
-        jLabel19.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        jLabel19.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        jLabel19.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jPanel3.add(jLabel19, new org.netbeans.lib.awtextra.AbsoluteConstraints(750, 20, 133, 133));
+        precioRoca.setFont(new java.awt.Font("Impact", 1, 36)); // NOI18N
+        precioRoca.setForeground(new java.awt.Color(204, 204, 0));
+        precioRoca.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        precioRoca.setText("2000");
+        Tienda.add(precioRoca, new org.netbeans.lib.awtextra.AbsoluteConstraints(890, 470, 90, 50));
 
-        jLabel20.setBackground(new java.awt.Color(255, 255, 255));
-        jLabel20.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel20.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/iconsUsuarioPerfil_Tienda.png"))); // NOI18N
-        jLabel20.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        jLabel20.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        jLabel20.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jPanel3.add(jLabel20, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 20, 133, 133));
+        precioToom.setFont(new java.awt.Font("Impact", 1, 36)); // NOI18N
+        precioToom.setForeground(new java.awt.Color(204, 204, 0));
+        precioToom.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        precioToom.setText("1000");
+        Tienda.add(precioToom, new org.netbeans.lib.awtextra.AbsoluteConstraints(890, 860, 90, 50));
 
-        jLabel21.setBackground(new java.awt.Color(204, 255, 255));
-        jLabel21.setFont(new java.awt.Font("DialogInput", 1, 24)); // NOI18N
-        jLabel21.setForeground(new java.awt.Color(255, 255, 102));
-        jLabel21.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel21.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/PajaroLoco_Tienda.png"))); // NOI18N
-        jLabel21.setText("100");
-        jLabel21.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        jLabel21.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        jLabel21.setFocusable(false);
-        jLabel21.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jPanel3.add(jLabel21, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 20, 133, 133));
+        precioBmo.setFont(new java.awt.Font("Impact", 1, 36)); // NOI18N
+        precioBmo.setForeground(new java.awt.Color(204, 204, 0));
+        precioBmo.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        precioBmo.setText("1000");
+        Tienda.add(precioBmo, new org.netbeans.lib.awtextra.AbsoluteConstraints(730, 860, 90, 50));
 
-        jLabel22.setBackground(new java.awt.Color(255, 255, 204));
-        jLabel22.setFont(new java.awt.Font("DialogInput", 1, 24)); // NOI18N
-        jLabel22.setForeground(new java.awt.Color(204, 204, 0));
-        jLabel22.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel22.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/Thron_Tienda.png"))); // NOI18N
-        jLabel22.setText("300");
-        jLabel22.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        jLabel22.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        jLabel22.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jPanel3.add(jLabel22, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 20, 133, 133));
+        precioSpock.setFont(new java.awt.Font("Impact", 1, 36)); // NOI18N
+        precioSpock.setForeground(new java.awt.Color(204, 204, 0));
+        precioSpock.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        precioSpock.setText("1000");
+        Tienda.add(precioSpock, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 860, 90, 50));
 
-        jLabel23.setBackground(new java.awt.Color(204, 255, 204));
-        jLabel23.setFont(new java.awt.Font("DialogInput", 1, 24)); // NOI18N
-        jLabel23.setForeground(new java.awt.Color(204, 204, 0));
-        jLabel23.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel23.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/MonaChina_Tienda.png"))); // NOI18N
-        jLabel23.setText("550");
-        jLabel23.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        jLabel23.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        jLabel23.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jPanel3.add(jLabel23, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 20, 133, 133));
+        precioJosep.setFont(new java.awt.Font("Impact", 1, 36)); // NOI18N
+        precioJosep.setForeground(new java.awt.Color(204, 204, 0));
+        precioJosep.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        precioJosep.setText("1000");
+        Tienda.add(precioJosep, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 860, 90, 50));
 
-        PanelContenido.add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 520, 920, 180));
+        precioBill.setFont(new java.awt.Font("Impact", 1, 36)); // NOI18N
+        precioBill.setForeground(new java.awt.Color(204, 204, 0));
+        precioBill.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        precioBill.setText("1000");
+        Tienda.add(precioBill, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 860, 90, 50));
 
-        jLabel3.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
-        jLabel3.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel3.setText("Personajes");
-        PanelContenido.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 720, -1, -1));
+        ToomNook.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/TomNookTienda.png"))); // NOI18N
+        Tienda.add(ToomNook, new org.netbeans.lib.awtextra.AbsoluteConstraints(870, 757, 133, -1));
 
-        jPanel4.setBackground(new java.awt.Color(51, 51, 51));
-        jPanel4.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        jPanel4.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        Usuario.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        Usuario.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/iconsUsuarioPerfil_Tienda.png"))); // NOI18N
+        Tienda.add(Usuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 350, 133, 133));
 
-        jLabel24.setBackground(new java.awt.Color(204, 204, 255));
-        jLabel24.setFont(new java.awt.Font("DialogInput", 1, 24)); // NOI18N
-        jLabel24.setForeground(new java.awt.Color(255, 255, 0));
-        jLabel24.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel24.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/MrNintendoTienda.png"))); // NOI18N
-        jLabel24.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        jLabel24.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        jLabel24.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jPanel4.add(jLabel24, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 10, 133, 133));
+        PajaroLoco.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        PajaroLoco.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/PajaroLoco_Tienda.png"))); // NOI18N
+        Tienda.add(PajaroLoco, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 350, 140, 133));
 
-        jLabel25.setBackground(new java.awt.Color(255, 255, 255));
-        jLabel25.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel25.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/SheldonTienda.png"))); // NOI18N
-        jLabel25.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        jLabel25.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        jLabel25.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jPanel4.add(jLabel25, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 10, 133, 133));
+        Thron.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        Thron.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/Thron_Tienda.png"))); // NOI18N
+        Tienda.add(Thron, new org.netbeans.lib.awtextra.AbsoluteConstraints(463, 350, 140, 133));
 
-        jLabel26.setBackground(new java.awt.Color(204, 255, 255));
-        jLabel26.setFont(new java.awt.Font("DialogInput", 1, 24)); // NOI18N
-        jLabel26.setForeground(new java.awt.Color(255, 255, 102));
-        jLabel26.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel26.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/RickyMortyTienda.png"))); // NOI18N
-        jLabel26.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        jLabel26.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        jLabel26.setFocusable(false);
-        jLabel26.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jPanel4.add(jLabel26, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 10, 133, 133));
+        MonaChina.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        MonaChina.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/MonaChina_Tienda.png"))); // NOI18N
+        Tienda.add(MonaChina, new org.netbeans.lib.awtextra.AbsoluteConstraints(670, 350, 133, 133));
 
-        jLabel27.setBackground(new java.awt.Color(255, 255, 204));
-        jLabel27.setFont(new java.awt.Font("DialogInput", 1, 24)); // NOI18N
-        jLabel27.setForeground(new java.awt.Color(204, 204, 0));
-        jLabel27.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel27.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/GonPPTTienda.png"))); // NOI18N
-        jLabel27.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        jLabel27.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        jLabel27.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jPanel4.add(jLabel27, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 10, 133, 133));
+        TheRock.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        TheRock.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/Roca_Tienda.gif"))); // NOI18N
+        Tienda.add(TheRock, new org.netbeans.lib.awtextra.AbsoluteConstraints(853, 350, 160, 133));
 
-        jLabel28.setBackground(new java.awt.Color(204, 255, 204));
-        jLabel28.setFont(new java.awt.Font("DialogInput", 1, 24)); // NOI18N
-        jLabel28.setForeground(new java.awt.Color(204, 204, 0));
-        jLabel28.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel28.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/Master_HandTienda.png"))); // NOI18N
-        jLabel28.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        jLabel28.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        jLabel28.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jPanel4.add(jLabel28, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 10, 133, 133));
+        Griff.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        Griff.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/GriffTienda.png"))); // NOI18N
+        Tienda.add(Griff, new org.netbeans.lib.awtextra.AbsoluteConstraints(870, 610, 140, 130));
 
-        jLabel29.setBackground(new java.awt.Color(204, 204, 255));
-        jLabel29.setFont(new java.awt.Font("DialogInput", 1, 24)); // NOI18N
-        jLabel29.setForeground(new java.awt.Color(255, 255, 0));
-        jLabel29.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel29.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/BMOTienda.png"))); // NOI18N
-        jLabel29.setText("1000");
-        jLabel29.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        jLabel29.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        jLabel29.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jPanel4.add(jLabel29, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 160, 133, 133));
+        MrNintendo.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        MrNintendo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/MrNintendoTienda.png"))); // NOI18N
+        Tienda.add(MrNintendo, new org.netbeans.lib.awtextra.AbsoluteConstraints(703, 610, 140, 130));
 
-        jLabel30.setBackground(new java.awt.Color(255, 255, 255));
-        jLabel30.setFont(new java.awt.Font("DialogInput", 1, 24)); // NOI18N
-        jLabel30.setForeground(new java.awt.Color(255, 255, 0));
-        jLabel30.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel30.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/GLaDOSTienda.png"))); // NOI18N
-        jLabel30.setText("1000");
-        jLabel30.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        jLabel30.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        jLabel30.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jPanel4.add(jLabel30, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 160, 133, 133));
+        Hand.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        Hand.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/Master_HandTienda.png"))); // NOI18N
+        Tienda.add(Hand, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 610, 140, 130));
 
-        jLabel31.setBackground(new java.awt.Color(204, 255, 255));
-        jLabel31.setFont(new java.awt.Font("DialogInput", 1, 24)); // NOI18N
-        jLabel31.setForeground(new java.awt.Color(255, 255, 0));
-        jLabel31.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel31.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/BillCipherTienda.png"))); // NOI18N
-        jLabel31.setText("1000");
-        jLabel31.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        jLabel31.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        jLabel31.setFocusable(false);
-        jLabel31.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jPanel4.add(jLabel31, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 160, 133, 133));
+        Gon.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        Gon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/GonPPTTienda.png"))); // NOI18N
+        Tienda.add(Gon, new org.netbeans.lib.awtextra.AbsoluteConstraints(373, 610, 140, 130));
 
-        jLabel32.setBackground(new java.awt.Color(255, 255, 204));
-        jLabel32.setFont(new java.awt.Font("DialogInput", 1, 24)); // NOI18N
-        jLabel32.setForeground(new java.awt.Color(255, 255, 0));
-        jLabel32.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel32.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/JosephJoestarTienda.png"))); // NOI18N
-        jLabel32.setText("1000");
-        jLabel32.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        jLabel32.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        jLabel32.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jPanel4.add(jLabel32, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 160, 133, 133));
+        RickYMorty.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        RickYMorty.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/RickyMortyTienda.png"))); // NOI18N
+        Tienda.add(RickYMorty, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 610, 133, 130));
 
-        jLabel33.setBackground(new java.awt.Color(204, 255, 204));
-        jLabel33.setFont(new java.awt.Font("DialogInput", 1, 24)); // NOI18N
-        jLabel33.setForeground(new java.awt.Color(255, 255, 0));
-        jLabel33.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel33.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/SpockPPTLSTienda.png"))); // NOI18N
-        jLabel33.setText("1000");
-        jLabel33.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        jLabel33.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        jLabel33.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jPanel4.add(jLabel33, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 160, 133, 133));
+        Sheldon.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        Sheldon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/SheldonTienda.png"))); // NOI18N
+        Tienda.add(Sheldon, new org.netbeans.lib.awtextra.AbsoluteConstraints(43, 610, 140, 130));
 
-        jLabel34.setBackground(new java.awt.Color(204, 204, 255));
-        jLabel34.setFont(new java.awt.Font("DialogInput", 1, 24)); // NOI18N
-        jLabel34.setForeground(new java.awt.Color(255, 255, 0));
-        jLabel34.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel34.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/GriffTienda.png"))); // NOI18N
-        jLabel34.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        jLabel34.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        jLabel34.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jPanel4.add(jLabel34, new org.netbeans.lib.awtextra.AbsoluteConstraints(790, 10, 133, 133));
+        GLaDOS.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        GLaDOS.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/GLaDOSTienda.png"))); // NOI18N
+        Tienda.add(GLaDOS, new org.netbeans.lib.awtextra.AbsoluteConstraints(43, 760, 140, 130));
 
-        jLabel35.setBackground(new java.awt.Color(204, 204, 255));
-        jLabel35.setFont(new java.awt.Font("DialogInput", 1, 24)); // NOI18N
-        jLabel35.setForeground(new java.awt.Color(255, 255, 0));
-        jLabel35.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel35.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/TomNookTienda.png"))); // NOI18N
-        jLabel35.setText("1000");
-        jLabel35.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        jLabel35.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        jLabel35.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jPanel4.add(jLabel35, new org.netbeans.lib.awtextra.AbsoluteConstraints(790, 160, 133, 133));
+        Bill.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        Bill.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/BillCipherTienda.png"))); // NOI18N
+        Tienda.add(Bill, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 760, 133, 130));
 
-        PanelContenido.add(jPanel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 760, 940, 300));
+        Josep.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        Josep.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/JosephJoestarTienda.png"))); // NOI18N
+        Tienda.add(Josep, new org.netbeans.lib.awtextra.AbsoluteConstraints(373, 757, 140, -1));
 
-        jLabel4.setFont(new java.awt.Font("Dialog", 1, 48)); // NOI18N
-        jLabel4.setForeground(new java.awt.Color(204, 204, 0));
-        jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/Moneda.png"))); // NOI18N
-        jLabel4.setText("{puntuación_jugador}");
-        PanelContenido.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 90, 810, 180));
+        Spock.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        Spock.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/SpockPPTLSTienda.png"))); // NOI18N
+        Tienda.add(Spock, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 760, 133, 120));
 
-        jPanel2.add(PanelContenido, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 0, 1560, 1090));
+        Bmo.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        Bmo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/BMOTienda.png"))); // NOI18N
+        Tienda.add(Bmo, new org.netbeans.lib.awtextra.AbsoluteConstraints(700, 757, 140, -1));
 
-        Boton_Cierre_Perfil.setBackground(new java.awt.Color(255, 255, 255));
+        Negro.setBackground(new java.awt.Color(18, 18, 18));
+        Negro.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        Negro.setOpaque(true);
+        Tienda.add(Negro, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 80, 140, 130));
+
+        Negro1.setBackground(new java.awt.Color(18, 18, 18));
+        Negro1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        Negro1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/blanco.png"))); // NOI18N
+        Tienda.add(Negro1, new org.netbeans.lib.awtextra.AbsoluteConstraints(850, 70, 160, 140));
+
+        Negro2.setBackground(new java.awt.Color(54, 18, 18));
+        Negro2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        Negro2.setOpaque(true);
+        Tienda.add(Negro2, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 80, 150, 130));
+
+        Negro3.setBackground(new java.awt.Color(18, 36, 19));
+        Negro3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        Negro3.setOpaque(true);
+        Tienda.add(Negro3, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 80, 150, 130));
+
+        Negro4.setBackground(new java.awt.Color(18, 16, 49));
+        Negro4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        Negro4.setOpaque(true);
+        Tienda.add(Negro4, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 80, 150, 130));
+
+        precioGLaDOS.setFont(new java.awt.Font("Impact", 1, 36)); // NOI18N
+        precioGLaDOS.setForeground(new java.awt.Color(204, 204, 0));
+        precioGLaDOS.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        precioGLaDOS.setText("1000");
+        Tienda.add(precioGLaDOS, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 860, 90, 50));
+
+        tienda.setBackground(new java.awt.Color(60, 25, 33));
+        tienda.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        tienda.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/Tienda.png"))); // NOI18N
+        Tienda.add(tienda, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1070, 930));
+
+        PanelContenido.add(Tienda, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 160, 1060, 910));
+
+        bocadilloText.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        bocadilloText.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/GriffTexto.png"))); // NOI18N
+        PanelContenido.add(bocadilloText, new org.netbeans.lib.awtextra.AbsoluteConstraints(1400, 210, 380, 230));
+
+        puntuacion_jugador1.setFont(new java.awt.Font("Impact", 1, 36)); // NOI18N
+        puntuacion_jugador1.setForeground(new java.awt.Color(204, 204, 0));
+        puntuacion_jugador1.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        puntuacion_jugador1.setText("{puntuacion_jugador}");
+        PanelContenido.add(puntuacion_jugador1, new org.netbeans.lib.awtextra.AbsoluteConstraints(1040, 30, -1, 110));
+
+        shop.add(PanelContenido, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 0, 1760, 1090));
+
+        Boton_Cierre_Perfil.setBackground(new java.awt.Color(15, 15, 15));
         Boton_Cierre_Perfil.setLayout(new java.awt.CardLayout());
 
-        jLabel18.setBackground(new java.awt.Color(255, 255, 255));
+        jLabel18.setBackground(new java.awt.Color(15, 15, 15));
         jLabel18.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel18.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/iconsX.png"))); // NOI18N
+        jLabel18.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/iconsX_Blanco.png"))); // NOI18N
         jLabel18.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jLabel18.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -494,11 +684,11 @@ public class Tienda extends javax.swing.JFrame {
         });
         Boton_Cierre_Perfil.add(jLabel18, "card2");
 
-        jPanel2.add(Boton_Cierre_Perfil, new org.netbeans.lib.awtextra.AbsoluteConstraints(1830, 0, 90, 90));
+        shop.add(Boton_Cierre_Perfil, new org.netbeans.lib.awtextra.AbsoluteConstraints(1830, 0, 90, 90));
 
         Griff_Dineros.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         Griff_Dineros.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/Griff.png"))); // NOI18N
-        jPanel2.add(Griff_Dineros, new org.netbeans.lib.awtextra.AbsoluteConstraints(1156, 266, 910, 840));
+        shop.add(Griff_Dineros, new org.netbeans.lib.awtextra.AbsoluteConstraints(1000, 230, 970, 980));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -507,14 +697,14 @@ public class Tienda extends javax.swing.JFrame {
             .addGap(0, 1932, Short.MAX_VALUE)
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(layout.createSequentialGroup()
-                    .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 1926, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(shop, javax.swing.GroupLayout.PREFERRED_SIZE, 1926, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGap(0, 6, Short.MAX_VALUE)))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1136, Short.MAX_VALUE)
+            .addGap(0, 1210, Short.MAX_VALUE)
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(shop, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
@@ -554,14 +744,14 @@ public class Tienda extends javax.swing.JFrame {
 
     private void jLabel7MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel7MouseEntered
         if (!Menu_Ampliado.isVisible()) {
-            Boton_Menu_Desplegable.setBackground(new Color(51, 51, 51));
+            Boton_Menu_Desplegable.setBackground(new Color(22,22,22));
 
         }
     }//GEN-LAST:event_jLabel7MouseEntered
 
     private void jLabel7MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel7MouseExited
         if (!Menu_Ampliado.isVisible()) {
-            Boton_Menu_Desplegable.setBackground(new Color(102, 102, 102));
+            Boton_Menu_Desplegable.setBackground(AppTheme.getFondoActivo());
         }
     }//GEN-LAST:event_jLabel7MouseExited
 
@@ -571,11 +761,11 @@ public class Tienda extends javax.swing.JFrame {
     }//GEN-LAST:event_Boton_PerfilMouseClicked
 
     private void Boton_PerfilMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Boton_PerfilMouseEntered
-        Boton_Perfil.setBackground(new Color(102, 102, 102));
+        Boton_Perfil.setBackground(new Color(45,45,45));
     }//GEN-LAST:event_Boton_PerfilMouseEntered
 
     private void Boton_PerfilMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Boton_PerfilMouseExited
-        Boton_Perfil.setBackground(new Color(51, 51, 51));
+        Boton_Perfil.setBackground(new Color(22,22,22));
     }//GEN-LAST:event_Boton_PerfilMouseExited
 
     private void Boton_JuegoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Boton_JuegoMouseClicked
@@ -584,11 +774,11 @@ public class Tienda extends javax.swing.JFrame {
     }//GEN-LAST:event_Boton_JuegoMouseClicked
 
     private void Boton_JuegoMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Boton_JuegoMouseEntered
-        Boton_Juego.setBackground(new Color(102, 102, 102));
+        Boton_Juego.setBackground(new Color(45,45,45));
     }//GEN-LAST:event_Boton_JuegoMouseEntered
 
     private void Boton_JuegoMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Boton_JuegoMouseExited
-        Boton_Juego.setBackground(new Color(51, 51, 51));
+        Boton_Juego.setBackground(new Color(22,22,22));
     }//GEN-LAST:event_Boton_JuegoMouseExited
 
     private void jLabel18MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel18MouseClicked
@@ -601,8 +791,8 @@ public class Tienda extends javax.swing.JFrame {
     }//GEN-LAST:event_jLabel18MouseEntered
 
     private void jLabel18MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel18MouseExited
-        jLabel18.setBackground(Color.white);
-        Boton_Cierre_Perfil.setBackground(Color.white);
+        jLabel18.setBackground(AppTheme.getFondoActivo());
+        Boton_Cierre_Perfil.setBackground(AppTheme.getFondoActivo());
     }//GEN-LAST:event_jLabel18MouseExited
 
     /**
@@ -642,53 +832,66 @@ public class Tienda extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel Bienvenido1;
+    private javax.swing.JLabel Bill;
+    private javax.swing.JLabel Bmo;
     private javax.swing.JPanel Boton_Cierre_Perfil;
     private javax.swing.JPanel Boton_Juego;
     private javax.swing.JPanel Boton_Menu_Desplegable;
     private javax.swing.JPanel Boton_Perfil;
+    private javax.swing.JLabel GLaDOS;
+    private javax.swing.JLabel Gon;
+    private javax.swing.JLabel Griff;
     private javax.swing.JLabel Griff_Dineros;
+    private javax.swing.JLabel Hand;
+    private javax.swing.JLabel Josep;
     private javax.swing.JPanel Menu_Ampliado;
+    private javax.swing.JLabel MonaChina;
+    private javax.swing.JLabel MrNintendo;
+    private javax.swing.JLabel Negro;
+    private javax.swing.JLabel Negro1;
+    private javax.swing.JLabel Negro2;
+    private javax.swing.JLabel Negro3;
+    private javax.swing.JLabel Negro4;
+    private javax.swing.JLabel PajaroLoco;
     private javax.swing.JPanel PanelContenido;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel RickYMorty;
+    private javax.swing.JLabel Sheldon;
+    private javax.swing.JLabel Spock;
+    private javax.swing.JLabel TheRock;
+    private javax.swing.JLabel Thron;
+    private javax.swing.JPanel Tienda;
+    private javax.swing.JLabel ToomNook;
+    private javax.swing.JLabel Usuario;
+    private javax.swing.JLabel bocadilloText;
+    private javax.swing.JLabel iconMoneda;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel15;
-    private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel18;
-    private javax.swing.JLabel jLabel19;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel20;
-    private javax.swing.JLabel jLabel21;
-    private javax.swing.JLabel jLabel22;
-    private javax.swing.JLabel jLabel23;
-    private javax.swing.JLabel jLabel24;
-    private javax.swing.JLabel jLabel25;
-    private javax.swing.JLabel jLabel26;
-    private javax.swing.JLabel jLabel27;
-    private javax.swing.JLabel jLabel28;
-    private javax.swing.JLabel jLabel29;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel30;
-    private javax.swing.JLabel jLabel31;
-    private javax.swing.JLabel jLabel32;
-    private javax.swing.JLabel jLabel33;
-    private javax.swing.JLabel jLabel34;
-    private javax.swing.JLabel jLabel35;
-    private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
-    private javax.swing.JLabel jLabel8;
-    private javax.swing.JLabel jLabel9;
-    private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanel2;
-    private javax.swing.JPanel jPanel3;
-    private javax.swing.JPanel jPanel4;
     private javax.swing.JSeparator jSeparator7;
     private javax.swing.JSeparator jSeparator8;
+    private javax.swing.JLabel panelPuntos;
+    private javax.swing.JLabel precioAzul;
+    private javax.swing.JLabel precioBill;
+    private javax.swing.JLabel precioBlanco;
+    private javax.swing.JLabel precioBmo;
+    private javax.swing.JLabel precioGLaDOS;
+    private javax.swing.JLabel precioJosep;
+    private javax.swing.JLabel precioMonaChina;
+    private javax.swing.JLabel precioPajaro;
+    private javax.swing.JLabel precioRoca;
+    private javax.swing.JLabel precioRojo;
+    private javax.swing.JLabel precioSpock;
+    private javax.swing.JLabel precioThron;
+    private javax.swing.JLabel precioToom;
+    private javax.swing.JLabel precioVerde;
+    private javax.swing.JLabel puntuacion_jugador1;
+    private javax.swing.JPanel shop;
+    private javax.swing.JLabel tienda;
+    private javax.swing.JLabel tituloTienda;
     // End of variables declaration//GEN-END:variables
 }

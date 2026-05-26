@@ -1,6 +1,10 @@
 package pantallas;
 
 import java.awt.Color;
+import java.awt.Dimension;
+import javax.swing.BorderFactory;
+import javax.swing.JFrame;
+import org.netbeans.lib.awtextra.AbsoluteConstraints;
 import pantallas.juegos.PPT;
 import pantallas.juegos.PPTLS;
 import pantallas.juegos.Pantalla_3EnRaya;
@@ -18,6 +22,14 @@ public class Main_Juego extends javax.swing.JFrame {
 
         initComponents();
         Menu_Ampliado.setVisible(false);
+
+        jPanel1.setBackground(AppTheme.getFondoActivo());
+        PanelContenido.setBackground(AppTheme.getFondoActivo());
+
+        Menu_Ampliado.setBackground(new Color(20, 20, 20));
+        Sheldon.setIcon(AppTheme.getPersonajeMainActivo());
+        
+        setExtendedState(JFrame.MAXIMIZED_BOTH);
 
     }
 
@@ -64,23 +76,24 @@ public class Main_Juego extends javax.swing.JFrame {
         jLabel10 = new javax.swing.JLabel();
         PanelContenido = new javax.swing.JPanel();
         Bienvenido = new javax.swing.JLabel();
-        Nombre_Usuario = new javax.swing.JLabel();
-        jLabel21 = new javax.swing.JLabel();
-        PPT = new javax.swing.JPanel();
-        jLabel27 = new javax.swing.JLabel();
-        PPTLS = new javax.swing.JPanel();
-        jLabel25 = new javax.swing.JLabel();
-        Rayas = new javax.swing.JPanel();
-        jLabel26 = new javax.swing.JLabel();
-        jLabel22 = new javax.swing.JLabel();
-        jLabel23 = new javax.swing.JLabel();
-        jLabel24 = new javax.swing.JLabel();
+        duda = new javax.swing.JLabel();
+        panelPPT = new javax.swing.JPanel();
+        botonJugarPPT = new javax.swing.JPanel();
+        ppt = new javax.swing.JLabel();
+        panelPPTLS = new javax.swing.JPanel();
+        botonJugarPPTLS = new javax.swing.JPanel();
+        pptls = new javax.swing.JLabel();
+        panelRAYA = new javax.swing.JPanel();
+        botonJugarRAYA = new javax.swing.JPanel();
+        ppt2 = new javax.swing.JLabel();
+        mensajito = new javax.swing.JLabel();
         jSeparator4 = new javax.swing.JSeparator();
         jSeparator5 = new javax.swing.JSeparator();
-        jSeparator6 = new javax.swing.JSeparator();
-        Sheldon = new javax.swing.JLabel();
+        mando = new javax.swing.JLabel();
         Boton_Cierre_Main = new javax.swing.JPanel();
         jLabel8 = new javax.swing.JLabel();
+        Sheldon = new javax.swing.JLabel();
+        saturno = new javax.swing.JLabel();
 
         jLabel7.setBackground(new java.awt.Color(255, 255, 255));
         jLabel7.setFont(new java.awt.Font("Century Gothic", 1, 18)); // NOI18N
@@ -195,15 +208,17 @@ public class Main_Juego extends javax.swing.JFrame {
         setResizable(false);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jPanel1.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel1.setBackground(new java.awt.Color(18, 18, 18));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        Boton_Menu_Desplegable.setBackground(new java.awt.Color(102, 102, 102));
+        Boton_Menu_Desplegable.setBackground(new java.awt.Color(18, 18, 18));
         Boton_Menu_Desplegable.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         Boton_Menu_Desplegable.setLayout(new java.awt.CardLayout());
 
+        jLabel1.setBackground(new java.awt.Color(18, 18, 18));
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/iconsMenu.png"))); // NOI18N
+        jLabel1.setOpaque(true);
         jLabel1.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jLabel1MouseClicked(evt);
@@ -219,9 +234,10 @@ public class Main_Juego extends javax.swing.JFrame {
 
         jPanel1.add(Boton_Menu_Desplegable, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 90, 80));
 
-        Menu_Ampliado.setBackground(new java.awt.Color(51, 51, 51));
+        Menu_Ampliado.setBackground(new java.awt.Color(22, 22, 22));
+        Menu_Ampliado.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        Boton_Tienda.setBackground(new java.awt.Color(51, 51, 51));
+        Boton_Tienda.setBackground(new java.awt.Color(22, 22, 22));
         Boton_Tienda.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         Boton_Tienda.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -249,7 +265,9 @@ public class Main_Juego extends javax.swing.JFrame {
         jSeparator1.setBackground(new java.awt.Color(255, 255, 255));
         Boton_Tienda.add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 50, 350, 10));
 
-        Boton_Ajuste.setBackground(new java.awt.Color(51, 51, 51));
+        Menu_Ampliado.add(Boton_Tienda, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 363, 360, 59));
+
+        Boton_Ajuste.setBackground(new java.awt.Color(22, 22, 22));
         Boton_Ajuste.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         Boton_Ajuste.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -277,12 +295,15 @@ public class Main_Juego extends javax.swing.JFrame {
         jLabel5.setText("PERFIL");
         Boton_Ajuste.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 0, -1, 50));
 
+        Menu_Ampliado.add(Boton_Ajuste, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 469, 360, -1));
+
         jLabel6.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
         jLabel6.setForeground(new java.awt.Color(255, 255, 255));
         jLabel6.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel6.setText("Menú de Opciones");
+        Menu_Ampliado.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(124, 32, 210, -1));
 
-        Boton_CerrarSesion.setBackground(new java.awt.Color(51, 51, 51));
+        Boton_CerrarSesion.setBackground(new java.awt.Color(22, 22, 22));
         Boton_CerrarSesion.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         Boton_CerrarSesion.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -298,6 +319,7 @@ public class Main_Juego extends javax.swing.JFrame {
         Boton_CerrarSesion.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel9.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/iconsCerrarSesion.png"))); // NOI18N
         jLabel9.setToolTipText("");
         Boton_CerrarSesion.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 6, 70, 68));
 
@@ -311,170 +333,115 @@ public class Main_Juego extends javax.swing.JFrame {
         jLabel10.setText("CERRAR SESIÓN");
         Boton_CerrarSesion.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 20, 260, 50));
 
-        javax.swing.GroupLayout Menu_AmpliadoLayout = new javax.swing.GroupLayout(Menu_Ampliado);
-        Menu_Ampliado.setLayout(Menu_AmpliadoLayout);
-        Menu_AmpliadoLayout.setHorizontalGroup(
-            Menu_AmpliadoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(Boton_Tienda, javax.swing.GroupLayout.DEFAULT_SIZE, 370, Short.MAX_VALUE)
-            .addComponent(Boton_Ajuste, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, Menu_AmpliadoLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(36, 36, 36))
-            .addGroup(Menu_AmpliadoLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(Boton_CerrarSesion, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
-        );
-        Menu_AmpliadoLayout.setVerticalGroup(
-            Menu_AmpliadoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(Menu_AmpliadoLayout.createSequentialGroup()
-                .addGap(32, 32, 32)
-                .addComponent(jLabel6)
-                .addGap(307, 307, 307)
-                .addComponent(Boton_Tienda, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(47, 47, 47)
-                .addComponent(Boton_Ajuste, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 443, Short.MAX_VALUE)
-                .addComponent(Boton_CerrarSesion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(34, 34, 34))
-        );
+        Menu_Ampliado.add(Boton_CerrarSesion, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 980, 360, -1));
 
         jPanel1.add(Menu_Ampliado, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 370, 1090));
 
-        PanelContenido.setBackground(new java.awt.Color(255, 255, 255));
+        PanelContenido.setBackground(new java.awt.Color(18, 18, 18));
         PanelContenido.setOpaque(false);
         PanelContenido.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        Bienvenido.setFont(new java.awt.Font("Dialog", 1, 70)); // NOI18N
-        Bienvenido.setForeground(new java.awt.Color(0, 204, 102));
+        Bienvenido.setFont(new java.awt.Font("Sans Serif Collection", 1, 54)); // NOI18N
+        Bienvenido.setForeground(new java.awt.Color(0, 255, 170));
         Bienvenido.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        Bienvenido.setText("BIENVENIDO ");
-        PanelContenido.add(Bienvenido, new org.netbeans.lib.awtextra.AbsoluteConstraints(680, 50, 500, 100));
+        Bienvenido.setText("BIENVENIDO {nombre_usuario} !");
+        PanelContenido.add(Bienvenido, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 10, 1100, 100));
 
-        Nombre_Usuario.setFont(new java.awt.Font("Dialog", 1, 65)); // NOI18N
-        Nombre_Usuario.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        Nombre_Usuario.setText("{nombre_usuario}");
-        PanelContenido.add(Nombre_Usuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 140, 580, 80));
+        duda.setBackground(new java.awt.Color(0, 255, 102));
+        duda.setFont(new java.awt.Font("Sans Serif Collection", 1, 36)); // NOI18N
+        duda.setForeground(new java.awt.Color(51, 255, 204));
+        duda.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        duda.setText("¿A que vamos a jugar hoy?");
+        PanelContenido.add(duda, new org.netbeans.lib.awtextra.AbsoluteConstraints(670, 110, 500, 50));
 
-        jLabel21.setBackground(new java.awt.Color(0, 255, 102));
-        jLabel21.setFont(new java.awt.Font("Corbel", 1, 36)); // NOI18N
-        jLabel21.setForeground(new java.awt.Color(51, 255, 204));
-        jLabel21.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel21.setText("¿A que vamos a jugar hoy?");
-        PanelContenido.add(jLabel21, new org.netbeans.lib.awtextra.AbsoluteConstraints(710, 410, 440, 50));
-
-        PPT.setBackground(new java.awt.Color(153, 153, 153));
-        PPT.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        PPT.setPreferredSize(new java.awt.Dimension(250, 250));
-        PPT.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        jLabel27.setBackground(new java.awt.Color(153, 153, 153));
-        jLabel27.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel27.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/PPT.png"))); // NOI18N
-        jLabel27.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jLabel27MouseClicked(evt);
-            }
+        panelPPT.setOpaque(false);
+        panelPPT.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseEntered(java.awt.event.MouseEvent evt) {
-                jLabel27MouseEntered(evt);
-            }
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                jLabel27MouseExited(evt);
+                panelPPTMouseEntered(evt);
             }
         });
-        PPT.add(jLabel27, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 250, 240));
+        panelPPT.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        PanelContenido.add(PPT, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 600, 250, 240));
-
-        PPTLS.setBackground(new java.awt.Color(153, 153, 153));
-        PPTLS.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        PPTLS.setPreferredSize(new java.awt.Dimension(250, 250));
-        PPTLS.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        jLabel25.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel25.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/PPTLS.png"))); // NOI18N
-        jLabel25.setToolTipText("");
-        jLabel25.addMouseListener(new java.awt.event.MouseAdapter() {
+        botonJugarPPT.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        botonJugarPPT.setOpaque(false);
+        botonJugarPPT.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jLabel25MouseClicked(evt);
-            }
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                jLabel25MouseEntered(evt);
-            }
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                jLabel25MouseExited(evt);
+                botonJugarPPTMouseClicked(evt);
             }
         });
-        PPTLS.add(jLabel25, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 250, 250));
+        panelPPT.add(botonJugarPPT, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 560, 250, 70));
 
-        PanelContenido.add(PPTLS, new org.netbeans.lib.awtextra.AbsoluteConstraints(810, 520, -1, -1));
+        ppt.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        ppt.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/PPT.png"))); // NOI18N
+        ppt.setText("jLabel22");
+        panelPPT.add(ppt, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 50, 420, -1));
 
-        Rayas.setBackground(new java.awt.Color(153, 153, 153));
-        Rayas.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        Rayas.setPreferredSize(new java.awt.Dimension(250, 250));
-        Rayas.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        PanelContenido.add(panelPPT, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 190, 430, 670));
 
-        jLabel26.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel26.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/3Raya.png"))); // NOI18N
-        jLabel26.setToolTipText("");
-        jLabel26.addMouseListener(new java.awt.event.MouseAdapter() {
+        panelPPTLS.setOpaque(false);
+        panelPPTLS.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        botonJugarPPTLS.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        botonJugarPPTLS.setOpaque(false);
+        botonJugarPPTLS.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jLabel26MouseClicked(evt);
-            }
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                jLabel26MouseEntered(evt);
-            }
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                jLabel26MouseExited(evt);
+                botonJugarPPTLSMouseClicked(evt);
             }
         });
-        Rayas.add(jLabel26, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 250, 250));
+        panelPPTLS.add(botonJugarPPTLS, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 560, 240, 70));
 
-        PanelContenido.add(Rayas, new org.netbeans.lib.awtextra.AbsoluteConstraints(1220, 600, -1, -1));
+        pptls.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        pptls.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/PPTLS.png"))); // NOI18N
+        panelPPTLS.add(pptls, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 50, 420, -1));
 
-        jLabel22.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
-        jLabel22.setForeground(new java.awt.Color(0, 153, 51));
-        jLabel22.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel22.setText("3 EN RAYA");
-        PanelContenido.add(jLabel22, new org.netbeans.lib.awtextra.AbsoluteConstraints(1270, 860, 150, -1));
+        PanelContenido.add(panelPPTLS, new org.netbeans.lib.awtextra.AbsoluteConstraints(700, 190, 440, 670));
 
-        jLabel23.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
-        jLabel23.setForeground(new java.awt.Color(0, 153, 51));
-        jLabel23.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel23.setText("PIEDRA PAPEL Y TIJERA");
-        PanelContenido.add(jLabel23, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 850, 390, -1));
+        panelRAYA.setOpaque(false);
+        panelRAYA.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel24.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
-        jLabel24.setForeground(new java.awt.Color(0, 153, 51));
-        jLabel24.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel24.setText("PIEDRA PAPEL TIJERA LAGARTO SPOCK");
-        PanelContenido.add(jLabel24, new org.netbeans.lib.awtextra.AbsoluteConstraints(700, 780, 500, -1));
+        botonJugarRAYA.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        botonJugarRAYA.setOpaque(false);
+        botonJugarRAYA.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                botonJugarRAYAMouseClicked(evt);
+            }
+        });
+        panelRAYA.add(botonJugarRAYA, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 560, 240, 70));
 
-        jSeparator4.setBackground(new java.awt.Color(51, 255, 0));
-        jSeparator4.setForeground(new java.awt.Color(51, 204, 0));
-        PanelContenido.add(jSeparator4, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 880, 290, 30));
+        ppt2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        ppt2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/RAYA.png"))); // NOI18N
+        ppt2.setText("jLabel22");
+        panelRAYA.add(ppt2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 50, 420, -1));
 
-        jSeparator5.setBackground(new java.awt.Color(51, 255, 0));
-        jSeparator5.setForeground(new java.awt.Color(51, 204, 0));
-        PanelContenido.add(jSeparator5, new org.netbeans.lib.awtextra.AbsoluteConstraints(710, 810, 480, 30));
+        PanelContenido.add(panelRAYA, new org.netbeans.lib.awtextra.AbsoluteConstraints(1160, 190, 430, 670));
 
-        jSeparator6.setBackground(new java.awt.Color(51, 255, 0));
-        jSeparator6.setForeground(new java.awt.Color(51, 204, 0));
-        PanelContenido.add(jSeparator6, new org.netbeans.lib.awtextra.AbsoluteConstraints(1280, 890, 140, 30));
+        mensajito.setFont(new java.awt.Font("Corbel Light", 0, 24)); // NOI18N
+        mensajito.setForeground(new java.awt.Color(153, 153, 153));
+        mensajito.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        mensajito.setText("Diviértete y desafía tu mente");
+        PanelContenido.add(mensajito, new org.netbeans.lib.awtextra.AbsoluteConstraints(790, 990, 300, 70));
 
-        jPanel1.add(PanelContenido, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 0, 1560, 1090));
+        jSeparator4.setBackground(new java.awt.Color(102, 102, 102));
+        jSeparator4.setForeground(new java.awt.Color(102, 102, 102));
+        PanelContenido.add(jSeparator4, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 1020, 170, 20));
 
-        Sheldon.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        Sheldon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/Sheldon.png"))); // NOI18N
-        jPanel1.add(Sheldon, new org.netbeans.lib.awtextra.AbsoluteConstraints(1370, 360, 730, 730));
+        jSeparator5.setBackground(new java.awt.Color(102, 102, 102));
+        jSeparator5.setForeground(new java.awt.Color(102, 102, 102));
+        PanelContenido.add(jSeparator5, new org.netbeans.lib.awtextra.AbsoluteConstraints(1100, 1020, 170, 20));
 
-        Boton_Cierre_Main.setBackground(new java.awt.Color(255, 255, 255));
+        mando.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        mando.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/iconsVidejuego.png"))); // NOI18N
+        PanelContenido.add(mando, new org.netbeans.lib.awtextra.AbsoluteConstraints(900, 930, 80, 70));
+
+        jPanel1.add(PanelContenido, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 0, 1700, 1090));
+
+        Boton_Cierre_Main.setBackground(new java.awt.Color(18, 18, 18));
         Boton_Cierre_Main.setLayout(new java.awt.CardLayout());
 
-        jLabel8.setBackground(new java.awt.Color(255, 255, 255));
+        jLabel8.setBackground(new java.awt.Color(18, 18, 18));
         jLabel8.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/iconsX.png"))); // NOI18N
+        jLabel8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/iconsX_Blanco.png"))); // NOI18N
+        jLabel8.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jLabel8.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jLabel8MouseClicked(evt);
@@ -490,6 +457,15 @@ public class Main_Juego extends javax.swing.JFrame {
 
         jPanel1.add(Boton_Cierre_Main, new org.netbeans.lib.awtextra.AbsoluteConstraints(1830, 0, 90, 90));
 
+        Sheldon.setBackground(new java.awt.Color(204, 204, 204));
+        Sheldon.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        Sheldon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/Sheldon.png"))); // NOI18N
+        jPanel1.add(Sheldon, new org.netbeans.lib.awtextra.AbsoluteConstraints(1230, 10, 1000, 1070));
+
+        saturno.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        saturno.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/saturno.png"))); // NOI18N
+        jPanel1.add(saturno, new org.netbeans.lib.awtextra.AbsoluteConstraints(-60, -180, -1, -1));
+
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1980, 1090));
 
         pack();
@@ -497,14 +473,14 @@ public class Main_Juego extends javax.swing.JFrame {
 
     private void jLabel1MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel1MouseEntered
         if (!Menu_Ampliado.isVisible()) {
-            Boton_Menu_Desplegable.setBackground(new Color(51, 51, 51));
+            Boton_Menu_Desplegable.setBackground(new Color(27,27,27));
 
         }
     }//GEN-LAST:event_jLabel1MouseEntered
 
     private void jLabel1MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel1MouseExited
         if (!Menu_Ampliado.isVisible()) {
-            Boton_Menu_Desplegable.setBackground(new Color(102, 102, 102));
+            Boton_Menu_Desplegable.setBackground(new Color(18,18,18));
         }
     }//GEN-LAST:event_jLabel1MouseExited
 
@@ -554,26 +530,12 @@ public class Main_Juego extends javax.swing.JFrame {
 
     }//GEN-LAST:event_jLabel7MouseExited
 
-    private void jLabel8MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel8MouseEntered
-        jLabel2.setBackground(Color.red);
-        Boton_Cierre_Main.setBackground(Color.red);
-    }//GEN-LAST:event_jLabel8MouseEntered
-
-    private void jLabel8MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel8MouseExited
-        jLabel2.setBackground(Color.white);
-        Boton_Cierre_Main.setBackground(Color.white);
-    }//GEN-LAST:event_jLabel8MouseExited
-
-    private void jLabel8MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel8MouseClicked
-        System.exit(0);
-    }//GEN-LAST:event_jLabel8MouseClicked
-
     private void Boton_TiendaMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Boton_TiendaMouseEntered
-        Boton_Tienda.setBackground(new Color(102, 102, 102));
+        Boton_Tienda.setBackground(new Color(45, 45, 45));
     }//GEN-LAST:event_Boton_TiendaMouseEntered
 
     private void Boton_TiendaMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Boton_TiendaMouseExited
-        Boton_Tienda.setBackground(new Color(51, 51, 51));
+        Boton_Tienda.setBackground(new Color(22,22,22));
     }//GEN-LAST:event_Boton_TiendaMouseExited
 
     private void Boton_AjusteMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Boton_AjusteMouseClicked
@@ -582,19 +544,19 @@ public class Main_Juego extends javax.swing.JFrame {
     }//GEN-LAST:event_Boton_AjusteMouseClicked
 
     private void Boton_AjusteMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Boton_AjusteMouseEntered
-        Boton_Ajuste.setBackground(new Color(102, 102, 102));
+        Boton_Ajuste.setBackground(new Color(45, 45, 45));
     }//GEN-LAST:event_Boton_AjusteMouseEntered
 
     private void Boton_AjusteMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Boton_AjusteMouseExited
-        Boton_Ajuste.setBackground(new Color(51, 51, 51));
+        Boton_Ajuste.setBackground(new Color(22,22,22));
     }//GEN-LAST:event_Boton_AjusteMouseExited
 
     private void Boton_CerrarSesionMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Boton_CerrarSesionMouseEntered
-        Boton_CerrarSesion.setBackground(new Color(102, 102, 102));
+        Boton_CerrarSesion.setBackground(new Color(45, 45, 45));
     }//GEN-LAST:event_Boton_CerrarSesionMouseEntered
 
     private void Boton_CerrarSesionMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Boton_CerrarSesionMouseExited
-        Boton_CerrarSesion.setBackground(new Color(51, 51, 51));
+        Boton_CerrarSesion.setBackground(new Color(22,22,22));
     }//GEN-LAST:event_Boton_CerrarSesionMouseExited
 
     private void jLabel11MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel11MouseClicked
@@ -628,49 +590,43 @@ public class Main_Juego extends javax.swing.JFrame {
         Rechazar_CierreSesion.setBackground(new Color(153, 153, 153));
     }//GEN-LAST:event_Rechazar_CierreSesionMouseExited
 
-    private void jLabel27MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel27MouseEntered
-        PPT.setBackground(new Color(153, 255, 153));
-    }//GEN-LAST:event_jLabel27MouseEntered
-
-    private void jLabel27MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel27MouseExited
-        PPT.setBackground(new Color(153, 153, 153));
-    }//GEN-LAST:event_jLabel27MouseExited
-
-    private void jLabel25MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel25MouseEntered
-        PPTLS.setBackground(new Color(153, 255, 153));
-    }//GEN-LAST:event_jLabel25MouseEntered
-
-    private void jLabel25MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel25MouseExited
-        PPTLS.setBackground(new Color(153, 153, 153));
-    }//GEN-LAST:event_jLabel25MouseExited
-
-    private void jLabel26MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel26MouseEntered
-        Rayas.setBackground(new Color(153, 255, 153));
-    }//GEN-LAST:event_jLabel26MouseEntered
-
-    private void jLabel26MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel26MouseExited
-        Rayas.setBackground(new Color(153, 153, 153));
-    }//GEN-LAST:event_jLabel26MouseExited
-
     private void Boton_TiendaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Boton_TiendaMouseClicked
         new Tienda().setVisible(true);
         this.dispose();
     }//GEN-LAST:event_Boton_TiendaMouseClicked
 
-    private void jLabel26MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel26MouseClicked
-        new Pantalla_3EnRaya().setVisible(true);
-        this.dispose();
-    }//GEN-LAST:event_jLabel26MouseClicked
+    private void jLabel8MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel8MouseExited
+        jLabel2.setBackground(new Color(18, 18, 18));
+        Boton_Cierre_Main.setBackground(new Color(18, 18, 18));
+    }//GEN-LAST:event_jLabel8MouseExited
 
-    private void jLabel27MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel27MouseClicked
+    private void jLabel8MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel8MouseEntered
+        jLabel2.setBackground(Color.red);
+        Boton_Cierre_Main.setBackground(Color.red);
+    }//GEN-LAST:event_jLabel8MouseEntered
+
+    private void jLabel8MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel8MouseClicked
+        System.exit(0);
+    }//GEN-LAST:event_jLabel8MouseClicked
+
+    private void panelPPTMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_panelPPTMouseEntered
+        // TODO add your handling code here:
+    }//GEN-LAST:event_panelPPTMouseEntered
+
+    private void botonJugarPPTMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonJugarPPTMouseClicked
         new PPT().setVisible(true);
-        this.dispose();        // TODO add your handling code here:
-    }//GEN-LAST:event_jLabel27MouseClicked
-
-    private void jLabel25MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel25MouseClicked
-        new PPTLS().setVisible(true);
         this.dispose();
-    }//GEN-LAST:event_jLabel25MouseClicked
+    }//GEN-LAST:event_botonJugarPPTMouseClicked
+
+    private void botonJugarPPTLSMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonJugarPPTLSMouseClicked
+        new PPTLS().setVisible(true);
+        this.dispose();        // TODO add your handling code here:
+    }//GEN-LAST:event_botonJugarPPTLSMouseClicked
+
+    private void botonJugarRAYAMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonJugarRAYAMouseClicked
+        new Pantalla_3EnRaya().setVisible(true);
+        this.dispose();        // TODO add your handling code here:
+    }//GEN-LAST:event_botonJugarRAYAMouseClicked
 
     /**
      * @param args the command line arguments
@@ -718,13 +674,13 @@ public class Main_Juego extends javax.swing.JFrame {
     private javax.swing.JPanel Confirmar;
     private javax.swing.JPanel Mensaje_CierreSesion;
     private javax.swing.JPanel Menu_Ampliado;
-    private javax.swing.JLabel Nombre_Usuario;
-    private javax.swing.JPanel PPT;
-    private javax.swing.JPanel PPTLS;
     private javax.swing.JPanel PanelContenido;
-    private javax.swing.JPanel Rayas;
     private javax.swing.JPanel Rechazar_CierreSesion;
     private javax.swing.JLabel Sheldon;
+    private javax.swing.JPanel botonJugarPPT;
+    private javax.swing.JPanel botonJugarPPTLS;
+    private javax.swing.JPanel botonJugarRAYA;
+    private javax.swing.JLabel duda;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -738,13 +694,6 @@ public class Main_Juego extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel19;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel20;
-    private javax.swing.JLabel jLabel21;
-    private javax.swing.JLabel jLabel22;
-    private javax.swing.JLabel jLabel23;
-    private javax.swing.JLabel jLabel24;
-    private javax.swing.JLabel jLabel25;
-    private javax.swing.JLabel jLabel26;
-    private javax.swing.JLabel jLabel27;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
@@ -758,6 +707,14 @@ public class Main_Juego extends javax.swing.JFrame {
     private javax.swing.JSeparator jSeparator3;
     private javax.swing.JSeparator jSeparator4;
     private javax.swing.JSeparator jSeparator5;
-    private javax.swing.JSeparator jSeparator6;
+    private javax.swing.JLabel mando;
+    private javax.swing.JLabel mensajito;
+    private javax.swing.JPanel panelPPT;
+    private javax.swing.JPanel panelPPTLS;
+    private javax.swing.JPanel panelRAYA;
+    private javax.swing.JLabel ppt;
+    private javax.swing.JLabel ppt2;
+    private javax.swing.JLabel pptls;
+    private javax.swing.JLabel saturno;
     // End of variables declaration//GEN-END:variables
 }

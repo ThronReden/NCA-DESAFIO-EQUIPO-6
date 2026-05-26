@@ -1,6 +1,7 @@
 package pantallas.juegos;
 
 import java.awt.Color;
+import java.awt.Font;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import logicajuegos.TresEnRaya.EstadoTablero;
@@ -9,6 +10,7 @@ import logicajuegos.TresEnRaya.Jugador3EnRaya;
 import logicajuegos.TresEnRaya.SupplierExcepcionesNoHayGanador;
 import pantallas.Inicio_Sesion;
 import pantallas.Main_Juego;
+import pantallas.AppTheme;
 
 /**
  *
@@ -30,6 +32,7 @@ public class Pantalla_3EnRaya extends javax.swing.JFrame {
         initComponents();
 
         labelGrid = new JLabel[]{jLabel1, jLabel2, jLabel3, jLabel4, jLabel5, jLabel6, jLabel7, jLabel8, jLabel9};
+        aplicarEstiloVisual();
         for (JLabel label : labelGrid) {
             label.setIcon(VACIO);
         }
@@ -37,6 +40,58 @@ public class Pantalla_3EnRaya extends javax.swing.JFrame {
         mensajeError.setText("");
         setNombresJugadores();
         P.iniciarJuego();
+    }
+
+    private void aplicarEstiloVisual() {
+        Color fondo = AppTheme.getFondoActivo();
+        Color tablero = new Color(10, 24, 27);
+        Color casilla = new Color(8, 18, 21);
+        Color neon = new Color(0, 255, 160);
+        Color cyan = new Color(0, 210, 255);
+
+        Panel_3EnRaya.setBackground(fondo);
+        iconoPerfil.setIcon(AppTheme.getIconoPerfilActivo());
+        jLabel19.setIcon(AppTheme.getPersonajeRayaActivo());
+        bannerGris.setVisible(false);
+        separadorNegro.setVisible(false);
+
+        Juego.setBackground(tablero);
+        Juego.setBorder(javax.swing.BorderFactory.createLineBorder(neon, 3));
+        for (JLabel casillaTablero : labelGrid) {
+            casillaTablero.setBackground(casilla);
+            casillaTablero.setBorder(javax.swing.BorderFactory.createLineBorder(cyan, 2));
+        }
+
+        nombreUsuario.setForeground(Color.WHITE);
+        nombreUsuario.setFont(new Font("Dialog", Font.BOLD, 30));
+        nombreBot.setForeground(Color.WHITE);
+        nombreBot.setFont(new Font("Dialog", Font.BOLD, 30));
+        mensajeError.setForeground(new Color(255, 70, 95));
+        mensajeError.setFont(new Font("Dialog", Font.BOLD, 24));
+
+        iconoPerfil.setBounds(215, 210, 90, 80);
+        nombreUsuario.setBounds(45, 295, 430, 60);
+        Vs.setBounds(95, 405, 330, 230);
+        nombreBot.setBounds(40, 690, 430, 55);
+        iconoBot.setBounds(220, 755, 80, 80);
+        Juego.setBounds(640, 170, 780, 780);
+        mensajeError.setBounds(650, 970, 760, 40);
+        jLabel19.setBounds(1320, 25, 820, 1030);
+
+        Resultado.setBackground(new Color(12, 18, 20));
+        Resultado.setBorder(javax.swing.BorderFactory.createLineBorder(neon, 3));
+        RESULTADO.setForeground(Color.WHITE);
+        RESULTADO.setFont(new Font("Dialog", Font.BOLD, 58));
+        Panel_Volver.setBackground(new Color(0, 110, 80));
+        Panel_Salir.setBackground(new Color(16, 28, 34));
+        jLabel10.setForeground(Color.WHITE);
+        jLabel10.setBorder(javax.swing.BorderFactory.createLineBorder(neon, 2));
+        jLabel14.setText("Salir al Menu");
+        jLabel14.setForeground(Color.WHITE);
+        jLabel14.setBorder(javax.swing.BorderFactory.createLineBorder(cyan, 2));
+        for (JLabel borde : new JLabel[]{jLabel15, jLabel16, jLabel17, jLabel18}) {
+            borde.setBackground(new Color(0, 0, 0));
+        }
     }
 
     /**
@@ -77,7 +132,7 @@ public class Pantalla_3EnRaya extends javax.swing.JFrame {
         jLabel19 = new javax.swing.JLabel();
         Vs = new javax.swing.JLabel();
         iconoBot = new javax.swing.JLabel();
-        bannerGris = new JLabelGradient();
+        bannerGris = new javax.swing.JLabel();
         separadorNegro = new javax.swing.JLabel();
 
         jDialog1.setUndecorated(true);
@@ -156,7 +211,7 @@ public class Pantalla_3EnRaya extends javax.swing.JFrame {
         setResizable(false);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        Panel_3EnRaya.setBackground(new java.awt.Color(255, 255, 255));
+        Panel_3EnRaya.setBackground(new java.awt.Color(25, 25, 25));
         Panel_3EnRaya.setMaximumSize(new java.awt.Dimension(1920, 1090));
         Panel_3EnRaya.setMinimumSize(new java.awt.Dimension(1920, 1090));
         Panel_3EnRaya.setPreferredSize(new java.awt.Dimension(1920, 1090));
@@ -397,17 +452,17 @@ public class Pantalla_3EnRaya extends javax.swing.JFrame {
 
     public void mostrarResultado(Jugador3EnRaya ganador) {
         if (ganador instanceof Jugador3EnRayaUI) {
-            RESULTADO.setText("¡HAS GANADO!");
-            Resultado.setBackground(Color.green);
+            RESULTADO.setText("HAS GANADO");
+            Resultado.setBackground(new Color(0, 90, 60));
         } else {
-            RESULTADO.setText("¡HAS PERDIDO!");
-            Resultado.setBackground(Color.red);
+            RESULTADO.setText("HAS PERDIDO");
+            Resultado.setBackground(new Color(95, 20, 36));
         }
         mostrarDialogResultado();
     }
     public void mostrarResultado(){
-        RESULTADO.setText("¡EMPATE!");
-        Resultado.setBackground(Color.gray);
+        RESULTADO.setText("EMPATE");
+        Resultado.setBackground(new Color(45, 50, 55));
         mostrarDialogResultado();
     }
     
