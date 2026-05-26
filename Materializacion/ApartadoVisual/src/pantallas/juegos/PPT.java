@@ -6,6 +6,7 @@ import java.util.concurrent.CompletableFuture;
 import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
+import javax.swing.SwingUtilities;
 import javax.swing.Timer;
 import logicajuegos.PPT.JugadaPPT;
 import pantallas.AppTheme;
@@ -36,6 +37,13 @@ public class PPT extends javax.swing.JFrame {
     public PPT() {
         initComponents();
         aplicarEstiloVisual();
+        activarBotones(false);
+        r1.setBackground(null);
+        r2.setBackground(null);
+        r3.setBackground(null);
+        setNombresJugadores();
+        mostrarPuntos();
+        iniciarJuego();
     }
 
     private void aplicarEstiloVisual() {
@@ -351,6 +359,20 @@ public class PPT extends javax.swing.JFrame {
         hacerJugada(JugadaPPT.PIEDRA);
     }//GEN-LAST:event_BotonPiedraActionPerformed
 
+    private void iniciarJuego(){
+        new Thread(() -> P.iniciarJuego()).start();
+    }
+    
+    private void setNombresJugadores() {
+        if (P.getJugador1() instanceof JugadorPPTUI) {
+            nombre_de_usuario.setText(P.getJugador1().getNombre());
+            nombre_bot.setText(P.getJugador2().getNombre());
+        } else {
+            nombre_de_usuario.setText(P.getJugador2().getNombre());
+            nombre_bot.setText(P.getJugador1().getNombre());
+        }
+    }
+    
     private void activarBotones(boolean activar) {
         BotonPiedra.setEnabled(activar);
         BotonPapel.setEnabled(activar);
@@ -358,30 +380,39 @@ public class PPT extends javax.swing.JFrame {
     }
     
     protected void pedirJugada(CompletableFuture<JugadaPPT> jugadaPedida) {
-        this.jugadaPedida = jugadaPedida;
-        activarBotones(true);
-        int[] segundos = {10}; // array para poder usarlo dentro del lambda
+        SwingUtilities.invokeLater(() -> {
+            pararCuentaAtras();
+            this.jugadaPedida = jugadaPedida;
+            activarBotones(true);
+            resultadoUser.setBorder(null);
+            resultadoBot.setBorder(null);
 
-        cuentaAtras = new Timer(1000, e -> {
-            segundos[0]--;
-            contador.setText(String.valueOf(segundos[0])+"s");
-
-            if (segundos[0] == 0) {
-                ((Timer) e.getSource()).stop();
-            }
+            int[] segundos = {10};
+            cuentaAtras = new Timer(1000, e -> {
+                segundos[0]--;
+                contador.setText(segundos[0] + "s");
+                if (segundos[0] == 0) {
+                    ((Timer) e.getSource()).stop();
+                }
+            });
+            cuentaAtras.start();
         });
-
-        cuentaAtras.start();
     }
     
     protected void pararCuentaAtras(){
-        if(cuentaAtras.isRunning()){
-            cuentaAtras.stop();
+        Runnable pararContador = () -> {
+            if (cuentaAtras != null) {
+                cuentaAtras.stop();
+                cuentaAtras = null;
+            }
+            contador.setText("-");
+        };
+
+        if (SwingUtilities.isEventDispatchThread()) {
+            pararContador.run();
+        } else {
+            SwingUtilities.invokeLater(pararContador);
         }
-        if(cuentaAtras != null){
-            cuentaAtras = null;
-        }
-        contador.setText("-");
     }
     
     private void hacerJugada(int gesto) {
@@ -395,11 +426,11 @@ public class PPT extends javax.swing.JFrame {
     }
     
     protected void mostrarJugadaPersona(int gesto){
-        resultadoUser.setIcon(getIconoGesto(gesto));
+        SwingUtilities.invokeLater(() -> resultadoUser.setIcon(getIconoGesto(gesto)));
     }
     
     protected void mostrarJugadaBot(int gesto){
-        resultadoBot.setIcon(getIconoGesto(gesto));
+        SwingUtilities.invokeLater(() -> resultadoBot.setIcon(getIconoGesto(gesto)));
     }
     
     private ImageIcon getIconoGesto(int gesto){
@@ -413,30 +444,51 @@ public class PPT extends javax.swing.JFrame {
         return ico;
     }
     
+    protected void mostrarPuntos(){
+        SwingUtilities.invokeLater(() -> {
+            int puntosUser = P.getJugador1().equals(J)? P.getPuntosJ1() : P.getPuntosJ2();
+            int puntosBot = P.getJugador2().equals(J)? P.getPuntosJ1() : P.getPuntosJ2();
+            marc_jug.setText(String.valueOf(puntosUser));
+            marc_bot.setText(String.valueOf(puntosBot));
+        });
+    }
+    
     protected void resultadoRondaEMPATE() {
-        switch(P.getTurno()){
-            case 1 -> r1.setBackground(GRIS);
-            case 2 -> r2.setBackground(GRIS);
-            case 3 -> r3.setBackground(GRIS);
-        }
+        SwingUtilities.invokeLater(() -> {
+            switch(P.getTurno()){
+                case 1 -> r1.setBackground(GRIS);
+                case 2 -> r2.setBackground(GRIS);
+                case 3 -> r3.setBackground(GRIS);
+            }
+            resultadoUser.setBorder(BorderFactory.createLineBorder(GRIS));
+            resultadoBot.setBorder(BorderFactory.createLineBorder(GRIS));
+        });
     }
     
     protected void resultadoRondaGANA_J1() {
-        Color c = P.getJugador1().equals(J)? VERDE : ROJO;
-        switch(P.getTurno()){
-            case 1 -> r1.setBackground(c);
-            case 2 -> r2.setBackground(c);
-            case 3 -> r3.setBackground(c);
-        }
+        SwingUtilities.invokeLater(() -> {
+            Color c = P.getJugador1().equals(J)? VERDE : ROJO;
+            switch(P.getTurno()){
+                case 1 -> r1.setBackground(c);
+                case 2 -> r2.setBackground(c);
+                case 3 -> r3.setBackground(c);
+            }
+            resultadoUser.setBorder(BorderFactory.createLineBorder(c));
+            resultadoBot.setBorder(BorderFactory.createLineBorder(c.equals(VERDE)? ROJO : VERDE));
+        });
     }
     
     protected void resultadoRondaGANA_J2() {
-        Color c = P.getJugador2().equals(J)? VERDE : ROJO;
-        switch(P.getTurno()){
-            case 1 -> r1.setBackground(c);
-            case 2 -> r2.setBackground(c);
-            case 3 -> r3.setBackground(c);
-        }
+        SwingUtilities.invokeLater(() -> {
+            Color c = P.getJugador2().equals(J)? VERDE : ROJO;
+            switch(P.getTurno()){
+                case 1 -> r1.setBackground(c);
+                case 2 -> r2.setBackground(c);
+                case 3 -> r3.setBackground(c);
+            }
+            resultadoUser.setBorder(BorderFactory.createLineBorder(c));
+            resultadoBot.setBorder(BorderFactory.createLineBorder(c.equals(VERDE)? ROJO : VERDE));
+        });
     }
     
     /**

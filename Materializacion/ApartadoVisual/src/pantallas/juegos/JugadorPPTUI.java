@@ -16,15 +16,9 @@ class JugadorPPTUI extends JugadorPPT {
         super(nombre);
     }
     
+    @Override
     public void pedirJugada(PartidaPPT p, CompletableFuture<JugadaPPT> jugadaPedida) {
         ((PartidaPPTUI)p).Pantalla.pedirJugada(jugadaPedida);
-        int gesto;
-        do{
-            gesto = Teclado.leerEntero(getNombre() + " elige un gesto:"+"\n"
-                +"0 -> PIEDRA"+"\n"+"1 -> PAPEL"+"\n"+"2 -> TIJERA"+"\n"+":");
-        } while(gesto < 0 || gesto > 2);
-        
-        jugadaPedida.complete(JugadaPPT.crearJugada(p.getTurno(),gesto,this));
     }
     
     protected void hacerJugada(int gesto, PartidaPPT p, CompletableFuture<JugadaPPT> jugadaPedida){

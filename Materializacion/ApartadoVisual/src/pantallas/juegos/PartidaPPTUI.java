@@ -47,6 +47,7 @@ public class PartidaPPTUI extends PartidaPPT {
             case GANA_J2 -> Pantalla.resultadoRondaGANA_J2();
             default -> throw new IllegalArgumentException();
         }
+        Pantalla.mostrarPuntos();
     }
     
     @Override
@@ -54,4 +55,11 @@ public class PartidaPPTUI extends PartidaPPT {
         Pantalla.pararCuentaAtras();
     }
     
+    public void mostrarGanador(){
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+    
+    public void mostrarEmpate(){
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
 }
