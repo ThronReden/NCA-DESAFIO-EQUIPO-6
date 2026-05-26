@@ -6,7 +6,6 @@ import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Future;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.TimeoutException;
 import java.util.logging.Level;
@@ -27,9 +26,9 @@ public class PartidaPPT extends Juego<Integer,JugadorPPT> {
     private int turno = 0;
     private final int rondas;
     
-    private static final Integer EMPATE = 0;
-    private static final Integer GANA_J1 = 1;
-    private static final Integer GANA_J2 = 2;
+    public static final int EMPATE = 0;
+    public static final int GANA_J1 = 1;
+    public static final int GANA_J2 = 2;
     
     private final ExecutorService poolHilos = Executors.newFixedThreadPool(2, r -> {
         Thread t = new Thread(r);
@@ -69,6 +68,10 @@ public class PartidaPPT extends Juego<Integer,JugadorPPT> {
         return turno;
     }
     
+    public void avanzarTurno(){
+        turno++;
+    }
+    
     @Override
     public void iniciarJuego() {
         setPartidaEnCurso(true);
@@ -76,7 +79,7 @@ public class PartidaPPT extends Juego<Integer,JugadorPPT> {
     }
 
     private void nuevoTurno() {
-        turno++;
+        avanzarTurno();
         
         CompletableFuture<JugadaPPT> pedirJugadaJ1 = new CompletableFuture<>();
         CompletableFuture<JugadaPPT> pedirJugadaJ2 = new CompletableFuture<>();
@@ -88,25 +91,41 @@ public class PartidaPPT extends Juego<Integer,JugadorPPT> {
         JugadaPPT jugadaJ2 = esperarJugada(pedirJugadaJ2, getJugador2());
         
         mostrarJugadas(jugadaJ1,jugadaJ2);
-        int resultadoComparar = jugadaJ1.compareTo(jugadaJ2);
         
-        if(resultadoComparar > 0){
-            addPuntoJ1();
-            System.out.println("Punto de "+getJugador1().getNombre()+".");
-        } else if(resultadoComparar < 0){
-            addPuntoJ2();
-            System.out.println("Punto de "+getJugador2().getNombre()+".");
-        } else {
-            System.out.println("Empate, no hay puntos.");
-        }
+        calcularResultadoRonda(jugadaJ1.compareTo(jugadaJ2));
         
         jugadas.add(jugadaJ1);
         jugadas.add(jugadaJ2);
         
         continuarTurno();
     }
+
+    protected void mostrarJugadas(JugadaPPT jugada1, JugadaPPT jugada2) {
+        System.out.println(getJugador1().getNombre()+" juega "+jugada1.getNombreGesto()+"\n"+getJugador2().getNombre()+" juega "+jugada2.getNombreGesto());
+    }
     
-    private JugadaPPT esperarJugada(Future<JugadaPPT> pedirJugada, JugadorPPT j){
+    private void calcularResultadoRonda(int resultadoComparar) {
+        if(resultadoComparar > 0){
+            addPuntoJ1();
+            mostrarResultadoRonda(GANA_J1);
+        } else if(resultadoComparar < 0){
+            addPuntoJ2();
+            mostrarResultadoRonda(GANA_J2);
+        } else {
+            mostrarResultadoRonda(EMPATE);
+        }
+    }
+    
+    public void mostrarResultadoRonda(int resultado){
+        switch(resultado){
+            case GANA_J1 -> System.out.println("Punto de "+getJugador1().getNombre()+".");
+            case GANA_J2 -> System.out.println("Punto de "+getJugador2().getNombre()+".");
+            case EMPATE -> System.out.println("Empate, no hay puntos.");
+            default -> throw new IllegalArgumentException();
+        }
+    }
+    
+    private JugadaPPT esperarJugada(CompletableFuture<JugadaPPT> pedirJugada, JugadorPPT j){
         JugadaPPT jugada = JugadaPPT.crearJugada(getTurno(),JugadaPPT.PIEDRA,j);
         try{
             jugada = pedirJugada.get(10, TimeUnit.SECONDS);
@@ -114,10 +133,16 @@ public class PartidaPPT extends Juego<Integer,JugadorPPT> {
             Logger.getLogger(PartidaPPT.class.getName()).log(Level.SEVERE, null, ex);
         } catch (TimeoutException ex) {
             //Logger.getLogger(PartidaPPT.class.getName()).log(Level.SEVERE, null, ex);
-            System.out.println("Se acabó el tiempo!");
-            jugada = JugadaPPT.crearJugada(getTurno(),JugadaPPT.PIEDRA,j);
+            mostrarSeAcaboElTiempo();
+            jugada = pedirJugada.getNow(JugadaPPT.crearJugada(getTurno(),JugadaPPT.PIEDRA,j));
+        } finally {
+            pedirJugada.cancel(true);
         }
         return jugada;
+    }
+    
+    public void mostrarSeAcaboElTiempo(){
+        System.out.println("Se acabó el tiempo!");
     }
 
     private void continuarTurno() {
@@ -144,10 +169,6 @@ public class PartidaPPT extends Juego<Integer,JugadorPPT> {
         } else {
             nuevoTurno();
         }
-    }
-
-    private void mostrarJugadas(JugadaPPT jugada1, JugadaPPT jugada2) {
-        System.out.println(getJugador1().getNombre()+" juega "+jugada1.getNombreGesto()+"\n"+getJugador2().getNombre()+" juega "+jugada2.getNombreGesto());
     }
     
     public void mostrarGanador(){

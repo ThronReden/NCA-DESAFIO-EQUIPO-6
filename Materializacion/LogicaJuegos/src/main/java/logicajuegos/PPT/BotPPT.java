@@ -9,7 +9,7 @@ import logicajuegos.TresEnRaya.Bot3EnRaya;
  *
  * @author jsanchez
  */
-class BotPPT extends JugadorPPT{
+public class BotPPT extends JugadorPPT{
     
     protected BotPPT(String nombre) {
         super(nombre);

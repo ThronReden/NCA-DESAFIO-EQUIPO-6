@@ -8,7 +8,7 @@ import utilidades.Teclado;
  *
  * @author jsanchez
  */
-class JugadorPPT extends Jugador {
+public class JugadorPPT extends Jugador {
     
     public JugadorPPT(String nombre) {
         super(nombre);
