@@ -4,7 +4,7 @@ package logicajuegos.PPT;
  *
  * @author jsanchez
  */
-public class JugadaPPTLS extends JugadaPPT{
+public class JugadaPPTLS extends JugadaPPT<JugadaPPTLS>{
     
     public static final int LAGARTO = 3;
     public static final int SPOCK = 4;
@@ -21,33 +21,33 @@ public class JugadaPPTLS extends JugadaPPT{
     }
     
     @Override
-    public int compareTo(JugadaPPT otraJugada) {
+    public int compareTo(JugadaPPTLS otraJugada) {
         int result = 0;
         
         switch(this.getGesto()){
             case PIEDRA -> {
                 switch(otraJugada.getGesto()){
-                    case PIEDRA -> result = 0;
-                    case PAPEL -> result = -1;
-                    case TIJERA -> result = 1;
+                    case PIEDRA -> super.compareTo(otraJugada);
+                    case PAPEL -> super.compareTo(otraJugada);
+                    case TIJERA -> super.compareTo(otraJugada);
                     case LAGARTO -> result = 1;
                     case SPOCK -> result = -1;
                 }
             }
             case PAPEL -> {
                 switch(otraJugada.getGesto()){
-                    case PIEDRA -> result = 1;
-                    case PAPEL -> result = 0;
-                    case TIJERA -> result = -1;
+                    case PIEDRA -> super.compareTo(otraJugada);
+                    case PAPEL -> super.compareTo(otraJugada);
+                    case TIJERA -> super.compareTo(otraJugada);
                     case LAGARTO -> result = -1;
                     case SPOCK -> result = 1;
                 }
             }
             case TIJERA -> {
                 switch(otraJugada.getGesto()){
-                    case PIEDRA -> result = -1;
-                    case PAPEL -> result = 1;
-                    case TIJERA -> result = 0;
+                    case PIEDRA -> super.compareTo(otraJugada);
+                    case PAPEL -> super.compareTo(otraJugada);
+                    case TIJERA -> super.compareTo(otraJugada);
                     case LAGARTO -> result = 1;
                     case SPOCK -> result = -1;
                 }
