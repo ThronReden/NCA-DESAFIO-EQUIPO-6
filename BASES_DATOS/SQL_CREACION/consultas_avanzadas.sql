@@ -1,0 +1,54 @@
+-- Hay un problema cuando hemos insertado datos, lo he hecho aposta para que se vea tambien que se puede modificar un dato ya creado con un update
+UPDATE JUGADOR SET ID_USUARIO = 5 WHERE ID_JUGADOR = 5;
+
+
+USE DESAFIO_GRUPO6;
+
+-- 1 - Aqui Vamos a ver el nombre de usuario, Los puntos que tiene cada uno en orden descendiente y La ultima Conexion
+SELECT U.NOMBRE_USUARIO, J.PUNTOS, J.ULTIMA_CONEXION
+FROM JUGADOR J JOIN USUARIO U ON J.ID_USUARIO = U.ID_USUARIO
+ORDER BY J.PUNTOS DESC;
+
+-- 2 - Se ve el nombre de usuario con las veces que has tirado piedra, Papel o Tijera con un total de tiradas  + El porcentaje de cada una
+
+SELECT U.NOMBRE_USUARIO, E.PIEDRA, E.PAPEL, E.TIJERA, (E.PIEDRA + E.PAPEL + E.TIJERA) AS TOTAL_TIRADAS, 
+	   ROUND(E.PIEDRA * 100.0 / (E.PIEDRA + E.PAPEL + E.TIJERA), 2) AS PORCENTAJE_PIEDRA, ROUND(E.PAPEL  * 100.0 / (E.PIEDRA + E.PAPEL + E.TIJERA), 2) AS PORCENTAJE_PAPEL,
+	   ROUND(E.TIJERA * 100.0 / (E.PIEDRA + E.PAPEL + E.TIJERA), 2) AS PORCENTAJE_TIJERA
+FROM ESTADISTICAS_PPT E JOIN JUGADOR J ON E.ID_JUGADOR = J.ID_JUGADOR JOIN USUARIO U ON J.ID_USUARIO = U.ID_USUARIO
+WHERE U.NOMBRE_USUARIO = 'Javiergamer';
+
+-- 3 - Aqui Se ve cuantas veces Se han tirado en total en el Piedra papel o tijera.
+
+SELECT  SUM(PIEDRA)  AS TOTAL_PIEDRA, SUM(PAPEL)   AS TOTAL_PAPEL, SUM(TIJERA)  AS TOTAL_TIJERA, ROUND(AVG(PIEDRA), 2) AS MEDIA_PIEDRA_POR_JUGADOR,
+		ROUND(AVG(PAPEL),  2) AS MEDIA_PAPEL_POR_JUGADOR, ROUND(AVG(TIJERA), 2) AS MEDIA_TIJERA_POR_JUGADOR
+FROM ESTADISTICAS_PPT;
+
+
+-- 4  Vemos el Nombre de usuario Partidas jugadas del 3 en raya con sus respectivas partidas ganadas / Perdidas y Empate, Con su % de victoria
+SELECT  U.NOMBRE_USUARIO, E.PARTIDAS_JUGADAS, E.PARTIDAS_GANADAS, E.PARTIDAS_PERDIDAS, E.EMPATES,
+		ROUND(E.PARTIDAS_GANADAS * 100.0 / E.PARTIDAS_JUGADAS, 2) AS PORCENTAJE_VICTORIAS
+FROM ESTADISTICAS_3_EN_RAYA E
+JOIN JUGADOR J ON E.ID_JUGADOR = J.ID_JUGADOR
+JOIN USUARIO U ON J.ID_USUARIO = U.ID_USUARIO
+ORDER BY PORCENTAJE_VICTORIAS DESC;
+
+
+-- 5 - Con una subconsulta basica hemos hecho para ver la media de los puntos para coger a los que tengan los que mas puntos 
+SELECT  U.NOMBRE_USUARIO, J.PUNTOS
+FROM JUGADOR J JOIN USUARIO U ON J.ID_USUARIO = U.ID_USUARIO
+WHERE J.PUNTOS > (
+    SELECT AVG(PUNTOS) 
+    FROM JUGADOR
+)
+ORDER BY J.PUNTOS DESC;
+
+
+-- 6 - El nombre de usuario con cuantos articulos ha comprado cada uno + El gasto total + Precio_Medio
+
+SELECT  U.NOMBRE_USUARIO, COUNT(AJ.ID_ARTICULOS) AS TOTAL_ARTICULOS_COMPRADOS, SUM(T.PRECIO) AS GASTO_TOTAL, ROUND(AVG(T.PRECIO), 2) AS PRECIO_MEDIO_ARTICULO
+FROM ARTICULOS_JUGADOR AJ
+JOIN JUGADOR J  ON AJ.ID_JUGADOR   = J.ID_JUGADOR
+JOIN USUARIO U  ON J.ID_USUARIO    = U.ID_USUARIO
+JOIN TIENDA  T  ON AJ.ID_ARTICULOS = T.ID_ARTICULOS
+GROUP BY U.NOMBRE_USUARIO
+ORDER BY GASTO_TOTAL DESC;
