@@ -6,8 +6,6 @@ import javax.swing.JLabel;
 import logicajuegos.TresEnRaya.EstadoTablero;
 import logicajuegos.TresEnRaya.Jugada3EnRaya;
 import logicajuegos.TresEnRaya.Jugador3EnRaya;
-import logicajuegos.TresEnRaya.SupplierExcepcionesNoHayGanador;
-import pantallas.Inicio_Sesion;
 import pantallas.Main_Juego;
 
 /**
