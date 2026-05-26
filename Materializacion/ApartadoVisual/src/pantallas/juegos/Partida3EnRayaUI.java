@@ -20,7 +20,7 @@ public class Partida3EnRayaUI extends Partida3EnRaya {
 
     public static Partida3EnRayaUI crearPartida(Jugador3EnRayaUI personaJ, Pantalla_3EnRaya p) {
         Jugador3EnRaya botJ = Bot3EnRaya.crearBot();
-        Jugador3EnRaya J1 = Partida3EnRaya.elegirQuienComienza(personaJ, botJ);
+        Jugador3EnRaya J1 = elegirQuienComienza(personaJ, botJ);
         Jugador3EnRaya J2;
         if (J1.equals(personaJ)) {
             J2 = botJ;

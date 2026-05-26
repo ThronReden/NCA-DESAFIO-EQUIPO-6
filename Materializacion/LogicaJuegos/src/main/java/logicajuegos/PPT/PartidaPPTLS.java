@@ -1,8 +1,5 @@
 package logicajuegos.PPT;
 
-import java.util.ArrayList;
-import java.util.Random;
-
 /**
  *
  * @author jsanchez
@@ -33,14 +30,6 @@ public class PartidaPPTLS extends PartidaPPT {
             J2 = unJ;
         }
         return new PartidaPPTLS(J1,J2,nRondas);
-    }
-    
-    public static JugadorPPTLS elegirQuienComienza(JugadorPPTLS unJ, JugadorPPTLS otroJ) {
-        ArrayList<JugadorPPTLS> liJ = new ArrayList<>();
-        liJ.add(unJ);
-        liJ.add(otroJ);
-        Random r = new Random();
-        return liJ.get(r.nextInt(2));
     }
     
     public static void main(String[] args){

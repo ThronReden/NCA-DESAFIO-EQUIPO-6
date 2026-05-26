@@ -2,7 +2,6 @@ package logicajuegos.PPT;
 
 import java.util.ArrayList;
 import java.util.Optional;
-import java.util.Random;
 import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.Executors;
@@ -64,14 +63,6 @@ public class PartidaPPT extends Juego<Integer,JugadorPPT> {
             J2 = unJ;
         }
         return new PartidaPPT(J1,J2,nRondas);
-    }
-    
-    public static JugadorPPT elegirQuienComienza(JugadorPPT unJ, JugadorPPT otroJ) {
-        ArrayList<JugadorPPT> liJ = new ArrayList<>();
-        liJ.add(unJ);
-        liJ.add(otroJ);
-        Random r = new Random();
-        return liJ.get(r.nextInt(2));
     }
 
     public int getTurno() {
