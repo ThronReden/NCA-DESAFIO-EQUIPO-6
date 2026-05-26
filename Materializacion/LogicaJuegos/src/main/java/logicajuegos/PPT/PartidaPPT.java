@@ -97,7 +97,7 @@ public class PartidaPPT extends Juego<Integer,JugadorPPT> {
         jugadas.add(jugadaJ1);
         jugadas.add(jugadaJ2);
         
-        continuarTurno();
+        esperarContinuarTurno();
     }
 
     protected void mostrarJugadas(JugadaPPT jugada1, JugadaPPT jugada2) {
@@ -145,7 +145,11 @@ public class PartidaPPT extends Juego<Integer,JugadorPPT> {
         System.out.println("Se acabó el tiempo!");
     }
 
-    private void continuarTurno() {
+    protected void esperarContinuarTurno(){
+        continuarTurno();
+    }
+    
+    protected void continuarTurno() {
         if(getPuntosJ1() > rondas/2){
             setPartidaEnCurso(false);
             setResultado(GANA_J1);

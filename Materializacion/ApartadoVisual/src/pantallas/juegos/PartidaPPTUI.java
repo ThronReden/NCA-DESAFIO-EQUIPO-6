@@ -32,9 +32,22 @@ public class PartidaPPTUI extends PartidaPPT {
     }
     
     @Override
+    protected void esperarContinuarTurno(){
+        Pantalla.continuarTurno.setEnabled(true);
+        Pantalla.continuarTurno.setVisible(true);
+    }
+    
+    @Override
+    protected void continuarTurno(){
+        Pantalla.continuarTurno.setEnabled(false);
+        Pantalla.continuarTurno.setVisible(false);
+        super.continuarTurno();
+    }
+    
+    @Override
     protected void mostrarJugadas(JugadaPPT jugada1, JugadaPPT jugada2) {
        JugadaPPT jugadaPersona = jugada1.getJugador() instanceof JugadorPPTUI? jugada1 : jugada2;
-       JugadaPPT jugadaBot = jugada1 == jugada1? jugada2 : jugada1;
+       JugadaPPT jugadaBot = jugadaPersona == jugada1? jugada2 : jugada1;
        Pantalla.mostrarJugadaPersona(jugadaPersona.getGesto());
        Pantalla.mostrarJugadaBot(jugadaBot.getGesto());
     }
