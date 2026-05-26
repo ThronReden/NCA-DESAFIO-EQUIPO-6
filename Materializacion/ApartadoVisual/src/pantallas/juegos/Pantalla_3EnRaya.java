@@ -1,6 +1,7 @@
 package pantallas.juegos;
 
 import java.awt.Color;
+import java.awt.Font;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import logicajuegos.TresEnRaya.EstadoTablero;
@@ -9,6 +10,7 @@ import logicajuegos.TresEnRaya.Jugador3EnRaya;
 import logicajuegos.TresEnRaya.SupplierExcepcionesNoHayGanador;
 import pantallas.Inicio_Sesion;
 import pantallas.Main_Juego;
+import pantallas.AppTheme;
 
 /**
  *
@@ -20,6 +22,7 @@ public class Pantalla_3EnRaya extends javax.swing.JFrame {
     private final ImageIcon X = new ImageIcon("src\\imagenes\\iconsXJuego.png");
     private final ImageIcon VACIO = new ImageIcon("src\\imagenes\\iconsVACIOJuego.png");
 
+
     private final JLabel[] labelGrid;
 
     private final Jugador3EnRayaUI J = new Jugador3EnRayaUI("Persona");
@@ -29,13 +32,66 @@ public class Pantalla_3EnRaya extends javax.swing.JFrame {
         initComponents();
 
         labelGrid = new JLabel[]{jLabel1, jLabel2, jLabel3, jLabel4, jLabel5, jLabel6, jLabel7, jLabel8, jLabel9};
+        aplicarEstiloVisual();
         for (JLabel label : labelGrid) {
             label.setIcon(VACIO);
         }
 
-        jLabel13.setText("");
+        mensajeError.setText("");
         setNombresJugadores();
         P.iniciarJuego();
+    }
+
+    private void aplicarEstiloVisual() {
+        Color fondo = AppTheme.getFondoActivo();
+        Color tablero = new Color(10, 24, 27);
+        Color casilla = new Color(8, 18, 21);
+        Color neon = new Color(0, 255, 160);
+        Color cyan = new Color(0, 210, 255);
+
+        Panel_3EnRaya.setBackground(fondo);
+        iconoPerfil.setIcon(AppTheme.getIconoPerfilActivo());
+        jLabel19.setIcon(AppTheme.getPersonajeRayaActivo());
+        bannerGris.setVisible(false);
+        separadorNegro.setVisible(false);
+
+        Juego.setBackground(tablero);
+        Juego.setBorder(javax.swing.BorderFactory.createLineBorder(neon, 3));
+        for (JLabel casillaTablero : labelGrid) {
+            casillaTablero.setBackground(casilla);
+            casillaTablero.setBorder(javax.swing.BorderFactory.createLineBorder(cyan, 2));
+        }
+
+        nombreUsuario.setForeground(Color.WHITE);
+        nombreUsuario.setFont(new Font("Dialog", Font.BOLD, 30));
+        nombreBot.setForeground(Color.WHITE);
+        nombreBot.setFont(new Font("Dialog", Font.BOLD, 30));
+        mensajeError.setForeground(new Color(255, 70, 95));
+        mensajeError.setFont(new Font("Dialog", Font.BOLD, 24));
+
+        iconoPerfil.setBounds(215, 210, 90, 80);
+        nombreUsuario.setBounds(45, 295, 430, 60);
+        Vs.setBounds(95, 405, 330, 230);
+        nombreBot.setBounds(40, 690, 430, 55);
+        iconoBot.setBounds(220, 755, 80, 80);
+        Juego.setBounds(640, 170, 780, 780);
+        mensajeError.setBounds(650, 970, 760, 40);
+        jLabel19.setBounds(1320, 25, 820, 1030);
+
+        Resultado.setBackground(new Color(12, 18, 20));
+        Resultado.setBorder(javax.swing.BorderFactory.createLineBorder(neon, 3));
+        RESULTADO.setForeground(Color.WHITE);
+        RESULTADO.setFont(new Font("Dialog", Font.BOLD, 58));
+        Panel_Volver.setBackground(new Color(0, 110, 80));
+        Panel_Salir.setBackground(new Color(16, 28, 34));
+        jLabel10.setForeground(Color.WHITE);
+        jLabel10.setBorder(javax.swing.BorderFactory.createLineBorder(neon, 2));
+        jLabel14.setText("Salir al Menu");
+        jLabel14.setForeground(Color.WHITE);
+        jLabel14.setBorder(javax.swing.BorderFactory.createLineBorder(cyan, 2));
+        for (JLabel borde : new JLabel[]{jLabel15, jLabel16, jLabel17, jLabel18}) {
+            borde.setBackground(new Color(0, 0, 0));
+        }
     }
 
     /**
@@ -69,9 +125,15 @@ public class Pantalla_3EnRaya extends javax.swing.JFrame {
         jLabel7 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
-        jLabel11 = new javax.swing.JLabel();
-        jLabel12 = new javax.swing.JLabel();
-        jLabel13 = new javax.swing.JLabel();
+        iconoPerfil = new javax.swing.JLabel();
+        nombreUsuario = new javax.swing.JLabel();
+        nombreBot = new javax.swing.JLabel();
+        mensajeError = new javax.swing.JLabel();
+        jLabel19 = new javax.swing.JLabel();
+        Vs = new javax.swing.JLabel();
+        iconoBot = new javax.swing.JLabel();
+        bannerGris = new javax.swing.JLabel();
+        separadorNegro = new javax.swing.JLabel();
 
         jDialog1.setUndecorated(true);
         jDialog1.setResizable(false);
@@ -149,7 +211,7 @@ public class Pantalla_3EnRaya extends javax.swing.JFrame {
         setResizable(false);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        Panel_3EnRaya.setBackground(new java.awt.Color(255, 255, 255));
+        Panel_3EnRaya.setBackground(new java.awt.Color(25, 25, 25));
         Panel_3EnRaya.setMaximumSize(new java.awt.Dimension(1920, 1090));
         Panel_3EnRaya.setMinimumSize(new java.awt.Dimension(1920, 1090));
         Panel_3EnRaya.setPreferredSize(new java.awt.Dimension(1920, 1090));
@@ -275,25 +337,48 @@ public class Pantalla_3EnRaya extends javax.swing.JFrame {
         });
         Juego.add(jLabel9);
 
-        Panel_3EnRaya.add(Juego, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 190, 770, 740));
+        Panel_3EnRaya.add(Juego, new org.netbeans.lib.awtextra.AbsoluteConstraints(680, 190, 820, 740));
 
-        jLabel11.setFont(new java.awt.Font("Dialog", 1, 36)); // NOI18N
-        jLabel11.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel11.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel11.setText("{nombre_de_usuario}");
-        Panel_3EnRaya.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 390, 420, 90));
+        iconoPerfil.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        iconoPerfil.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/iconsUsuarioPerfil.png"))); // NOI18N
+        Panel_3EnRaya.add(iconoPerfil, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 220, 90, 80));
 
-        jLabel12.setFont(new java.awt.Font("Dialog", 1, 36)); // NOI18N
-        jLabel12.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel12.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel12.setText("{nombre_bot}");
-        Panel_3EnRaya.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 620, -1, -1));
+        nombreUsuario.setFont(new java.awt.Font("Dialog", 1, 36)); // NOI18N
+        nombreUsuario.setForeground(new java.awt.Color(0, 0, 0));
+        nombreUsuario.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        nombreUsuario.setText("{nombre_de_usuario}");
+        Panel_3EnRaya.add(nombreUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 300, 420, 70));
 
-        jLabel13.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
-        jLabel13.setForeground(new java.awt.Color(255, 0, 51));
-        jLabel13.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel13.setText("{mensajes_error}");
-        Panel_3EnRaya.add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(507, 960, 770, -1));
+        nombreBot.setFont(new java.awt.Font("Dialog", 1, 36)); // NOI18N
+        nombreBot.setForeground(new java.awt.Color(0, 0, 0));
+        nombreBot.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        nombreBot.setText("{nombre_bot}");
+        Panel_3EnRaya.add(nombreBot, new org.netbeans.lib.awtextra.AbsoluteConstraints(25, 690, 480, -1));
+
+        mensajeError.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
+        mensajeError.setForeground(new java.awt.Color(255, 0, 51));
+        mensajeError.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        mensajeError.setText("{mensajes_error}");
+        Panel_3EnRaya.add(mensajeError, new org.netbeans.lib.awtextra.AbsoluteConstraints(710, 960, 770, 40));
+
+        jLabel19.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        jLabel19.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/RickyMorty .png"))); // NOI18N
+        Panel_3EnRaya.add(jLabel19, new org.netbeans.lib.awtextra.AbsoluteConstraints(1290, 10, 870, 1050));
+
+        Vs.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/Street_FighterVS.png"))); // NOI18N
+        Panel_3EnRaya.add(Vs, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 410, -1, -1));
+
+        iconoBot.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        iconoBot.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/iconsBot.png"))); // NOI18N
+        Panel_3EnRaya.add(iconoBot, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 760, 80, -1));
+
+        bannerGris.setOpaque(true);
+        Panel_3EnRaya.add(bannerGris, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 510, 1090));
+
+        separadorNegro.setBackground(new java.awt.Color(0, 0, 0));
+        separadorNegro.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        separadorNegro.setOpaque(true);
+        Panel_3EnRaya.add(separadorNegro, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, -4, 20, 1100));
 
         getContentPane().add(Panel_3EnRaya, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 2010, 1090));
 
@@ -367,17 +452,17 @@ public class Pantalla_3EnRaya extends javax.swing.JFrame {
 
     public void mostrarResultado(Jugador3EnRaya ganador) {
         if (ganador instanceof Jugador3EnRayaUI) {
-            RESULTADO.setText("¡HAS GANADO!");
-            Resultado.setBackground(Color.green);
+            RESULTADO.setText("HAS GANADO");
+            Resultado.setBackground(new Color(0, 90, 60));
         } else {
-            RESULTADO.setText("¡HAS PERDIDO!");
-            Resultado.setBackground(Color.red);
+            RESULTADO.setText("HAS PERDIDO");
+            Resultado.setBackground(new Color(95, 20, 36));
         }
         mostrarDialogResultado();
     }
     public void mostrarResultado(){
-        RESULTADO.setText("¡EMPATE!");
-        Resultado.setBackground(Color.gray);
+        RESULTADO.setText("EMPATE");
+        Resultado.setBackground(new Color(45, 50, 55));
         mostrarDialogResultado();
     }
     
@@ -430,17 +515,19 @@ public class Pantalla_3EnRaya extends javax.swing.JFrame {
     private javax.swing.JPanel Panel_Volver;
     private javax.swing.JLabel RESULTADO;
     private javax.swing.JPanel Resultado;
+    private javax.swing.JLabel Vs;
+    private javax.swing.JLabel bannerGris;
+    private javax.swing.JLabel iconoBot;
+    private javax.swing.JLabel iconoPerfil;
     private javax.swing.JDialog jDialog1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
-    private javax.swing.JLabel jLabel11;
-    private javax.swing.JLabel jLabel12;
-    private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel17;
     private javax.swing.JLabel jLabel18;
+    private javax.swing.JLabel jLabel19;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -449,19 +536,23 @@ public class Pantalla_3EnRaya extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
+    private javax.swing.JLabel mensajeError;
+    private javax.swing.JLabel nombreBot;
+    private javax.swing.JLabel nombreUsuario;
+    private javax.swing.JLabel separadorNegro;
     // End of variables declaration//GEN-END:variables
 
     public void setNombresJugadores() {
         if (P.getJugador1() instanceof Jugador3EnRayaUI) {
-            jLabel11.setText(P.getJugador1().getNombre());
-            jLabel12.setText(P.getJugador2().getNombre());
+            nombreUsuario.setText(P.getJugador1().getNombre());
+            nombreBot.setText(P.getJugador2().getNombre());
         } else {
-            jLabel11.setText(P.getJugador2().getNombre());
-            jLabel12.setText(P.getJugador1().getNombre());
+            nombreUsuario.setText(P.getJugador2().getNombre());
+            nombreBot.setText(P.getJugador1().getNombre());
         }
     }
 
     void mostrarError(String message) {
-        jLabel13.setText(message);
+        mensajeError.setText(message);
     }
 }
