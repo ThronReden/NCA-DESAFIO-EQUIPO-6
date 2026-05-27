@@ -3,6 +3,8 @@ package pantallas;
 import java.awt.Color;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
+import pantallas.juegos.Difuminar;
+
 
 /**
  *
@@ -25,6 +27,8 @@ public class Perfil_Usuario extends javax.swing.JFrame {
         PanelContenido.setBackground(AppTheme.getFondoActivo());
         jLabel16.setIcon(AppTheme.getIconoPerfilActivo());
         jLabel23.setIcon(AppTheme.getPersonajePerfilActivo());
+        ((Difuminar) jLabel23).setOpacity(0.75f);
+         ((Difuminar) fondo_hack).setOpacity(0.18f);
         setExtendedState(JFrame.MAXIMIZED_BOTH);
     }
 
@@ -69,7 +73,8 @@ public class Perfil_Usuario extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         Boton_Cierre_Perfil = new javax.swing.JPanel();
         jLabel18 = new javax.swing.JLabel();
-        jLabel23 = new javax.swing.JLabel();
+        jLabel23 = new Difuminar();
+        fondo_hack = new Difuminar();
 
         jLabel5.setFont(new java.awt.Font("Dubai", 1, 14)); // NOI18N
         jLabel5.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -335,19 +340,23 @@ public class Perfil_Usuario extends javax.swing.JFrame {
         jLabel23.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/MrNintendo.png"))); // NOI18N
         jPanel2.add(jLabel23, new org.netbeans.lib.awtextra.AbsoluteConstraints(1220, 90, 1000, 1060));
 
+        fondo_hack.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        fondo_hack.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/FondoPerfil.png"))); // NOI18N
+        jPanel2.add(fondo_hack, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 0, -1, -1));
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1932, Short.MAX_VALUE)
+            .addGap(0, 2001, Short.MAX_VALUE)
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(layout.createSequentialGroup()
                     .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 1926, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(0, 6, Short.MAX_VALUE)))
+                    .addGap(0, 75, Short.MAX_VALUE)))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1105, Short.MAX_VALUE)
+            .addGap(0, 1470, Short.MAX_VALUE)
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(layout.createSequentialGroup()
                     .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 1105, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -508,6 +517,7 @@ public class Perfil_Usuario extends javax.swing.JFrame {
     private javax.swing.JLabel datosPersonales;
     private javax.swing.JPanel editarCorreo;
     private javax.swing.JPanel editarNombre;
+    private javax.swing.JLabel fondo_hack;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;

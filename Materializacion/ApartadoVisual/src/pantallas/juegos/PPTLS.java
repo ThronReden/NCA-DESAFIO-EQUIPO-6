@@ -7,6 +7,7 @@ package pantallas.juegos;
 import java.awt.Color;
 import java.awt.Font;
 import javax.swing.BorderFactory;
+import javax.swing.JFrame;
 import javax.swing.JLabel;
 import pantallas.AppTheme;
 
@@ -27,16 +28,11 @@ public class PPTLS extends javax.swing.JFrame {
 
     private void aplicarEstiloVisual() {
         Color fondo = AppTheme.getFondoActivo();
-        Color panel = new Color(10, 24, 27);
-        Color panel2 = new Color(18, 18, 24);
-        Color neon = new Color(0, 255, 160);
-        Color cyan = new Color(0, 210, 255);
 
         Panel_PPT.setBackground(fondo);
         iconoPerfil.setIcon(AppTheme.getIconoPerfilActivo());
         master_hand.setIcon(AppTheme.getPersonajePptlsActivo());
-        bannerGris.setVisible(false);
-        separadorNegro.setVisible(false);
+     
 
         contador.setForeground(new Color(255, 0, 75));
         contador.setFont(new Font("Dialog", Font.BOLD, 76));
@@ -54,50 +50,24 @@ public class PPTLS extends javax.swing.JFrame {
         for (JLabel etiqueta : etiquetas) {
             etiqueta.setForeground(Color.WHITE);
             etiqueta.setFont(new Font("Dialog", Font.BOLD, 18));
+                   
         }
-
-        JLabel[] opciones = {
-            piedraBot, papelBot, tijeraBot, lagartoBot, spockBot,
-            piedra, papel, tijera, lagarto, spock
-        };
-        for (JLabel opcion : opciones) {
-            opcion.setOpaque(true);
-            opcion.setBackground(panel);
-            opcion.setBorder(BorderFactory.createCompoundBorder(
-                    BorderFactory.createLineBorder(cyan, 2),
-                    BorderFactory.createEmptyBorder(10, 10, 10, 10)));
-        }
-
-        JLabel[] resultados = {resultadoBot, resultadoUser};
-        for (JLabel resultado : resultados) {
-            resultado.setOpaque(true);
-            resultado.setBackground(panel2);
-            resultado.setBorder(BorderFactory.createLineBorder(neon, 2));
-        }
-
-        jLabel2.setForeground(neon);
-        jLabel8.setForeground(neon);
-        jLabel5.setBackground(new Color(0, 0, 0));
-        jLabel5.setBorder(BorderFactory.createLineBorder(neon, 2));
-        jLabel6.setForeground(neon);
-        r1.setBackground(new Color(0, 170, 95));
-        r2.setBackground(new Color(120, 35, 55));
-        r3.setBackground(new Color(55, 60, 63));
-        for (JLabel ronda : new JLabel[]{r1, r2, r3}) {
-            ronda.setForeground(Color.WHITE);
-            ronda.setBorder(BorderFactory.createLineBorder(new Color(6, 6, 6), 2));
-        }
+         setExtendedState(JFrame.MAXIMIZED_BOTH);
+//
+//        r1.setBackground(new Color(0, 170, 95));
+//        r2.setBackground(new Color(120, 35, 55));
+//        r3.setBackground(new Color(55, 60, 63));
+//        for (JLabel ronda : new JLabel[]{r1, r2, r3}) {
+//            ronda.setForeground(Color.WHITE);
+//            ronda.setBorder(BorderFactory.createLineBorder(new Color(6, 6, 6), 2));
+//        }
 
         master_hand.setBounds(-150, -40, 900, 720);
-        Vs.setBounds(850, 10, 330, 230);
         iconoBot.setBounds(680, 60, 80, 80);
         iconoPerfil.setBounds(1210, 50, 90, 80);
         nombre_bot.setBounds(560, 150, 320, 40);
         nombre_de_usuario.setBounds(1090, 150, 330, 40);
         contador.setBounds(750, 835, 460, 95);
-        panelRondas.setBounds(790, 990, 380, 85);
-        jLabel5.setBounds(780, 980, 400, 100);
-        jLabel6.setBounds(880, 940, 200, 40);
     }
 
     /**
@@ -115,10 +85,7 @@ public class PPTLS extends javax.swing.JFrame {
         nombre_de_usuario = new javax.swing.JLabel();
         nombre_bot = new javax.swing.JLabel();
         contador = new javax.swing.JLabel();
-        Vs = new javax.swing.JLabel();
         iconoBot = new javax.swing.JLabel();
-        bannerGris = new javax.swing.JLabel();
-        separadorNegro = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
@@ -127,12 +94,6 @@ public class PPTLS extends javax.swing.JFrame {
         tijeraBot = new javax.swing.JLabel();
         resultadoBot = new javax.swing.JLabel();
         resultadoUser = new javax.swing.JLabel();
-        panelRondas = new javax.swing.JPanel();
-        r1 = new javax.swing.JLabel();
-        r2 = new javax.swing.JLabel();
-        r3 = new javax.swing.JLabel();
-        jLabel5 = new javax.swing.JLabel();
-        jLabel6 = new javax.swing.JLabel();
         jLabel10 = new javax.swing.JLabel();
         lagartoBot = new javax.swing.JLabel();
         jLabel11 = new javax.swing.JLabel();
@@ -147,9 +108,8 @@ public class PPTLS extends javax.swing.JFrame {
         lagarto = new javax.swing.JLabel();
         jLabel16 = new javax.swing.JLabel();
         spock = new javax.swing.JLabel();
-        master_hand = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
-        jLabel8 = new javax.swing.JLabel();
+        fondoPPTLS = new javax.swing.JLabel();
+        master_hand = new Difuminar();
 
         jLabel7.setText("jLabel7");
 
@@ -166,164 +126,111 @@ public class PPTLS extends javax.swing.JFrame {
 
         iconoPerfil.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         iconoPerfil.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/iconsUsuarioPerfil.png"))); // NOI18N
-        Panel_PPT.add(iconoPerfil, new org.netbeans.lib.awtextra.AbsoluteConstraints(1210, 50, 90, 80));
+        Panel_PPT.add(iconoPerfil, new org.netbeans.lib.awtextra.AbsoluteConstraints(1430, 90, 110, 100));
 
         nombre_de_usuario.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
         nombre_de_usuario.setForeground(new java.awt.Color(0, 0, 0));
         nombre_de_usuario.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         nombre_de_usuario.setText("{nombre_de_usuario}");
-        Panel_PPT.add(nombre_de_usuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(1110, 150, 290, 40));
+        Panel_PPT.add(nombre_de_usuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(1520, 110, 330, 60));
 
         nombre_bot.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
         nombre_bot.setForeground(new java.awt.Color(0, 0, 0));
         nombre_bot.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         nombre_bot.setText("{nombre_bot}");
-        Panel_PPT.add(nombre_bot, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 150, 280, 30));
+        Panel_PPT.add(nombre_bot, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 110, 310, 60));
 
         contador.setFont(new java.awt.Font("Dialog", 1, 80)); // NOI18N
         contador.setForeground(new java.awt.Color(255, 0, 51));
         contador.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         contador.setText("{contador}");
-        Panel_PPT.add(contador, new org.netbeans.lib.awtextra.AbsoluteConstraints(750, 840, 460, 90));
-
-        Vs.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/Street_FighterVS.png"))); // NOI18N
-        Panel_PPT.add(Vs, new org.netbeans.lib.awtextra.AbsoluteConstraints(850, 0, -1, -1));
+        Panel_PPT.add(contador, new org.netbeans.lib.awtextra.AbsoluteConstraints(910, 810, 190, 90));
 
         iconoBot.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         iconoBot.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/iconsBot.png"))); // NOI18N
-        Panel_PPT.add(iconoBot, new org.netbeans.lib.awtextra.AbsoluteConstraints(680, 60, 80, -1));
-
-        bannerGris.setOpaque(true);
-        Panel_PPT.add(bannerGris, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 10, 820, 210));
-
-        separadorNegro.setBackground(new java.awt.Color(0, 0, 0));
-        separadorNegro.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        separadorNegro.setOpaque(true);
-        Panel_PPT.add(separadorNegro, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, -30, 840, 260));
+        Panel_PPT.add(iconoBot, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 100, 80, 80));
 
         jLabel1.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(0, 0, 0));
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setText("PAPEL");
-        Panel_PPT.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 580, 300, 30));
+        Panel_PPT.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 580, 100, 30));
 
         jLabel3.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(0, 0, 0));
         jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel3.setText("PIEDRA");
-        Panel_PPT.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 440, 280, 30));
+        Panel_PPT.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 380, 100, 30));
 
         jLabel4.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(0, 0, 0));
         jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel4.setText("TIJERA");
-        Panel_PPT.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 580, 280, 30));
+        Panel_PPT.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 590, 140, 30));
 
         piedraBot.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         piedraBot.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/roca.png"))); // NOI18N
         piedraBot.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        Panel_PPT.add(piedraBot, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 270, 200, 170));
+        Panel_PPT.add(piedraBot, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 200, 200, 170));
 
         papelBot.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         papelBot.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/papel.png"))); // NOI18N
-        Panel_PPT.add(papelBot, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 430, -1, -1));
+        Panel_PPT.add(papelBot, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 420, 190, 150));
 
         tijeraBot.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/tijera.png"))); // NOI18N
-        Panel_PPT.add(tijeraBot, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 420, -1, -1));
+        Panel_PPT.add(tijeraBot, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 430, -1, -1));
 
         resultadoBot.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         resultadoBot.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/roca.png"))); // NOI18N
-        Panel_PPT.add(resultadoBot, new org.netbeans.lib.awtextra.AbsoluteConstraints(750, 520, 200, 170));
+        Panel_PPT.add(resultadoBot, new org.netbeans.lib.awtextra.AbsoluteConstraints(690, 350, 220, 170));
 
         resultadoUser.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         resultadoUser.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/roca.png"))); // NOI18N
-        Panel_PPT.add(resultadoUser, new org.netbeans.lib.awtextra.AbsoluteConstraints(1010, 520, 200, 170));
-
-        panelRondas.setLayout(new java.awt.GridLayout(1, 3));
-
-        r1.setBackground(new java.awt.Color(0, 255, 0));
-        r1.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
-        r1.setForeground(new java.awt.Color(0, 0, 0));
-        r1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        r1.setText("RONDA 1");
-        r1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        r1.setOpaque(true);
-        panelRondas.add(r1);
-
-        r2.setBackground(new java.awt.Color(255, 0, 51));
-        r2.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
-        r2.setForeground(new java.awt.Color(0, 0, 0));
-        r2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        r2.setText("RONDA 2");
-        r2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        r2.setOpaque(true);
-        panelRondas.add(r2);
-
-        r3.setBackground(new java.awt.Color(153, 153, 153));
-        r3.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
-        r3.setForeground(new java.awt.Color(0, 0, 0));
-        r3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        r3.setText("RONDA 3");
-        r3.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        r3.setOpaque(true);
-        panelRondas.add(r3);
-
-        Panel_PPT.add(panelRondas, new org.netbeans.lib.awtextra.AbsoluteConstraints(790, 990, 380, 100));
-
-        jLabel5.setBackground(new java.awt.Color(0, 0, 0));
-        jLabel5.setOpaque(true);
-        Panel_PPT.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(780, 980, 400, 110));
-
-        jLabel6.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
-        jLabel6.setForeground(new java.awt.Color(255, 0, 255));
-        jLabel6.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel6.setText("RONDAS");
-        Panel_PPT.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(880, 940, 200, 40));
+        Panel_PPT.add(resultadoUser, new org.netbeans.lib.awtextra.AbsoluteConstraints(1110, 350, 200, 170));
 
         jLabel10.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
         jLabel10.setForeground(new java.awt.Color(0, 0, 0));
         jLabel10.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel10.setText("LAGARTO");
-        Panel_PPT.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 820, 280, 30));
+        Panel_PPT.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 790, 140, 30));
 
         lagartoBot.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/Lagarto.png"))); // NOI18N
-        Panel_PPT.add(lagartoBot, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 660, -1, -1));
+        Panel_PPT.add(lagartoBot, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 630, -1, -1));
 
         jLabel11.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
         jLabel11.setForeground(new java.awt.Color(0, 0, 0));
         jLabel11.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel11.setText("SPOCK");
-        Panel_PPT.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 820, 280, 30));
+        Panel_PPT.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 800, 100, 30));
 
         spockBot.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/spock.png"))); // NOI18N
-        Panel_PPT.add(spockBot, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 660, -1, -1));
+        Panel_PPT.add(spockBot, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 640, -1, -1));
 
         jLabel12.setBackground(new java.awt.Color(255, 255, 255));
         jLabel12.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
         jLabel12.setForeground(new java.awt.Color(0, 0, 0));
         jLabel12.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel12.setText("PAPEL");
-        Panel_PPT.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(1290, 590, 220, 30));
+        Panel_PPT.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(1440, 590, 120, 30));
 
         jLabel13.setBackground(new java.awt.Color(255, 255, 255));
         jLabel13.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
         jLabel13.setForeground(new java.awt.Color(0, 0, 0));
         jLabel13.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel13.setText("PIEDRA");
-        Panel_PPT.add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(1470, 440, 280, 30));
+        Panel_PPT.add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(1570, 370, 110, 30));
 
         jLabel14.setBackground(new java.awt.Color(255, 255, 255));
         jLabel14.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
         jLabel14.setForeground(new java.awt.Color(0, 0, 0));
         jLabel14.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel14.setText("TIJERA");
-        Panel_PPT.add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(1660, 580, 280, 30));
+        Panel_PPT.add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(1650, 590, 140, 30));
 
         piedra.setBackground(new java.awt.Color(255, 255, 255));
         piedra.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         piedra.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/roca.png"))); // NOI18N
         piedra.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        piedra.setOpaque(true);
         piedra.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 piedraMouseEntered(evt);
@@ -332,12 +239,11 @@ public class PPTLS extends javax.swing.JFrame {
                 piedraMouseExited(evt);
             }
         });
-        Panel_PPT.add(piedra, new org.netbeans.lib.awtextra.AbsoluteConstraints(1510, 270, 200, 170));
+        Panel_PPT.add(piedra, new org.netbeans.lib.awtextra.AbsoluteConstraints(1520, 200, 200, 170));
 
         papel.setBackground(new java.awt.Color(255, 255, 255));
         papel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         papel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/papel.png"))); // NOI18N
-        papel.setOpaque(true);
         papel.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 papelMouseEntered(evt);
@@ -346,11 +252,10 @@ public class PPTLS extends javax.swing.JFrame {
                 papelMouseExited(evt);
             }
         });
-        Panel_PPT.add(papel, new org.netbeans.lib.awtextra.AbsoluteConstraints(1320, 430, -1, -1));
+        Panel_PPT.add(papel, new org.netbeans.lib.awtextra.AbsoluteConstraints(1410, 430, 180, -1));
 
         tijera.setBackground(new java.awt.Color(255, 255, 255));
         tijera.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/Tijera.png"))); // NOI18N
-        tijera.setOpaque(true);
         tijera.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 tijeraMouseEntered(evt);
@@ -359,17 +264,16 @@ public class PPTLS extends javax.swing.JFrame {
                 tijeraMouseExited(evt);
             }
         });
-        Panel_PPT.add(tijera, new org.netbeans.lib.awtextra.AbsoluteConstraints(1720, 420, -1, -1));
+        Panel_PPT.add(tijera, new org.netbeans.lib.awtextra.AbsoluteConstraints(1660, 420, -1, -1));
 
         jLabel15.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
         jLabel15.setForeground(new java.awt.Color(0, 0, 0));
         jLabel15.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel15.setText("LAGARTO");
-        Panel_PPT.add(jLabel15, new org.netbeans.lib.awtextra.AbsoluteConstraints(1340, 820, 280, 30));
+        Panel_PPT.add(jLabel15, new org.netbeans.lib.awtextra.AbsoluteConstraints(1430, 790, 140, 30));
 
         lagarto.setBackground(new java.awt.Color(255, 255, 255));
         lagarto.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/Lagarto.png"))); // NOI18N
-        lagarto.setOpaque(true);
         lagarto.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 lagartoMouseEntered(evt);
@@ -378,17 +282,16 @@ public class PPTLS extends javax.swing.JFrame {
                 lagartoMouseExited(evt);
             }
         });
-        Panel_PPT.add(lagarto, new org.netbeans.lib.awtextra.AbsoluteConstraints(1400, 660, -1, -1));
+        Panel_PPT.add(lagarto, new org.netbeans.lib.awtextra.AbsoluteConstraints(1410, 630, 180, -1));
 
         jLabel16.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
         jLabel16.setForeground(new java.awt.Color(0, 0, 0));
         jLabel16.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel16.setText("SPOCK");
-        Panel_PPT.add(jLabel16, new org.netbeans.lib.awtextra.AbsoluteConstraints(1600, 820, 280, 30));
+        Panel_PPT.add(jLabel16, new org.netbeans.lib.awtextra.AbsoluteConstraints(1670, 790, 130, 30));
 
         spock.setBackground(new java.awt.Color(255, 255, 255));
         spock.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/spock.png"))); // NOI18N
-        spock.setOpaque(true);
         spock.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 spockMouseEntered(evt);
@@ -397,23 +300,16 @@ public class PPTLS extends javax.swing.JFrame {
                 spockMouseExited(evt);
             }
         });
-        Panel_PPT.add(spock, new org.netbeans.lib.awtextra.AbsoluteConstraints(1660, 660, -1, -1));
+        Panel_PPT.add(spock, new org.netbeans.lib.awtextra.AbsoluteConstraints(1660, 630, -1, -1));
+
+        fondoPPTLS.setBackground(new java.awt.Color(0, 0, 0));
+        fondoPPTLS.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        fondoPPTLS.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/fondoPPTLS.png"))); // NOI18N
+        Panel_PPT.add(fondoPPTLS, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 2, 2010, 1090));
 
         master_hand.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         master_hand.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/Master_Hand.png"))); // NOI18N
-        Panel_PPT.add(master_hand, new org.netbeans.lib.awtextra.AbsoluteConstraints(-70, -60, 940, 910));
-
-        jLabel2.setFont(new java.awt.Font("Dialog", 1, 70)); // NOI18N
-        jLabel2.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel2.setText("=");
-        Panel_PPT.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(700, 550, -1, -1));
-
-        jLabel8.setFont(new java.awt.Font("Dialog", 1, 70)); // NOI18N
-        jLabel8.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel8.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel8.setText("=");
-        Panel_PPT.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(1230, 540, -1, -1));
+        Panel_PPT.add(master_hand, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 30, 940, 1040));
 
         getContentPane().add(Panel_PPT, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 2010, 1090));
 
@@ -512,9 +408,8 @@ public class PPTLS extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel Panel_PPT;
-    private javax.swing.JLabel Vs;
-    private javax.swing.JLabel bannerGris;
     private javax.swing.JLabel contador;
+    private javax.swing.JLabel fondoPPTLS;
     private javax.swing.JLabel iconoBot;
     private javax.swing.JLabel iconoPerfil;
     private javax.swing.JLabel jLabel1;
@@ -525,29 +420,20 @@ public class PPTLS extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel16;
-    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
-    private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel lagarto;
     private javax.swing.JLabel lagartoBot;
     private javax.swing.JLabel master_hand;
     private javax.swing.JLabel nombre_bot;
     private javax.swing.JLabel nombre_de_usuario;
-    private javax.swing.JPanel panelRondas;
     private javax.swing.JLabel papel;
     private javax.swing.JLabel papelBot;
     private javax.swing.JLabel piedra;
     private javax.swing.JLabel piedraBot;
-    private javax.swing.JLabel r1;
-    private javax.swing.JLabel r2;
-    private javax.swing.JLabel r3;
     private javax.swing.JLabel resultadoBot;
     private javax.swing.JLabel resultadoUser;
-    private javax.swing.JLabel separadorNegro;
     private javax.swing.JLabel spock;
     private javax.swing.JLabel spockBot;
     private javax.swing.JLabel tijera;
