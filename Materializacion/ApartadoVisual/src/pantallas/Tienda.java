@@ -1,5 +1,7 @@
 package pantallas;
 
+import CRUD_bbdd.bbdd_TiendaUsuario;
+import CRUD_bbdd.bbdd_TiendaUsuario.ResultadoCompra;
 import java.awt.Color;
 import java.awt.Cursor;
 import javax.swing.ImageIcon;
@@ -28,24 +30,25 @@ public class Tienda extends javax.swing.JFrame {
         aplicarFondoActivo();
         aplicarIconoPerfilActivo();
         aplicarPersonajeTiendaActivo();
+        actualizarPuntosTienda();
     }
 
     private void prepararCompraFondos() {
-        prepararFondo(Negro, "Negro", 0, new Color(15, 15, 15), null);
-        prepararFondo(Negro2, "Rojo oscuro", 100, new Color(54, 18, 18), precioRojo);
-        prepararFondo(Negro3, "Verde oscuro", 300, new Color(18, 36, 19), precioVerde);
-        prepararFondo(Negro4, "Azul oscuro", 700, new Color(18, 16, 49), precioAzul);
-        prepararFondo(Negro1, "Blanco", 1000, new Color(235, 235, 230), precioBlanco);
+        prepararFondo(Negro, 0, "Negro", 0, new Color(15, 15, 15), null);
+        prepararFondo(Negro2, 1, "Rojo oscuro", 100, new Color(54, 18, 18), precioRojo);
+        prepararFondo(Negro3, 2, "Verde oscuro", 300, new Color(18, 36, 19), precioVerde);
+        prepararFondo(Negro4, 3, "Azul oscuro", 700, new Color(18, 16, 49), precioAzul);
+        prepararFondo(Negro1, 4, "Blanco", 1000, new Color(235, 235, 230), precioBlanco);
     }
     
     
 
-    private void prepararFondo(JLabel fondo, String nombre, int precio, Color color, JLabel precioLabel) {
+    private void prepararFondo(JLabel fondo, int idArticulo, String nombre, int precio, Color color, JLabel precioLabel) {
         String articulo = "fondo:" + nombre;
         fondo.setCursor(new Cursor(Cursor.HAND_CURSOR));
         fondo.setToolTipText(nombre + " - " + precio + " monedas");
         fondo.setBorder(BorderFactory.createEmptyBorder(5, 5, 5, 5));
-        if (AppTheme.estaComprado(articulo)) {
+        if (articuloComprado(idArticulo)) {
             ocultarPrecio(precioLabel);
         }
         
@@ -53,7 +56,7 @@ public class Tienda extends javax.swing.JFrame {
           
         fondo.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                comprarFondo(nombre, precio, color, precioLabel);
+                comprarFondo(idArticulo, nombre, precio, color, precioLabel);
             }
 
             public void mouseEntered(java.awt.event.MouseEvent evt) {
@@ -66,13 +69,9 @@ public class Tienda extends javax.swing.JFrame {
         });
     }
 
-    private void comprarFondo(String nombre, int precio, Color color, JLabel precioLabel) {
-        String mensaje = "Vas a comprar este fondo: " + nombre + "\nPrecio: " + precio + " monedas\n\nQuieres aplicarlo?";
-        int respuesta = JOptionPane.showConfirmDialog(this, mensaje, "Comprar fondo", JOptionPane.YES_NO_OPTION);
-
-        if (respuesta == JOptionPane.YES_OPTION) {
+    private void comprarFondo(int idArticulo, String nombre, int precio, Color color, JLabel precioLabel) {
+        if (articuloComprado(idArticulo) || comprarArticulo(idArticulo, nombre, precio)) {
             AppTheme.setFondoActivo(color);
-            AppTheme.registrarCompra("fondo:" + nombre);
             ocultarPrecio(precioLabel);
             aplicarFondoActivo();
         }
@@ -105,24 +104,24 @@ public class Tienda extends javax.swing.JFrame {
     }
 
     private void prepararCompraIconosPerfil() {
-        prepararIconoPerfil(Usuario, "Usuario", 0, "/imagenes/iconsUsuarioPerfil.png", null);
-        prepararIconoPerfil(PajaroLoco, "Pajaro Loco", 250, "/imagenes/PajaroLoco.png", precioPajaro);
-        prepararIconoPerfil(Thron, "Thron", 500, "/imagenes/Thron.png", precioThron);
-        prepararIconoPerfil(MonaChina, "Mona China", 1000, "/imagenes/MonaChina.png", precioMonaChina);
-        prepararIconoPerfil(TheRock, "The Rock", 2000, "/imagenes/Roca.gif", precioRoca);
+        prepararIconoPerfil(Usuario, 0, "Usuario", 0, "/imagenes/iconsUsuarioPerfil.png", null);
+        prepararIconoPerfil(PajaroLoco, 10, "Pajaro Loco", 250, "/imagenes/PajaroLoco.png", precioPajaro);
+        prepararIconoPerfil(Thron, 11, "Thron", 500, "/imagenes/Thron.png", precioThron);
+        prepararIconoPerfil(MonaChina, 12, "Mona China", 1000, "/imagenes/MonaChina.png", precioMonaChina);
+        prepararIconoPerfil(TheRock, 13, "The Rock", 2000, "/imagenes/Roca.gif", precioRoca);
     }
 
-    private void prepararIconoPerfil(JLabel icono, String nombre, int precio, String ruta, JLabel precioLabel) {
+    private void prepararIconoPerfil(JLabel icono, int idArticulo, String nombre, int precio, String ruta, JLabel precioLabel) {
         String articulo = "icono:" + ruta;
         icono.setCursor(new Cursor(Cursor.HAND_CURSOR));
         icono.setToolTipText(nombre + " - " + precio + " monedas");
         icono.setBorder(BorderFactory.createEmptyBorder(5, 5, 5, 5));
-        if (AppTheme.estaComprado(articulo)) {
+        if (articuloComprado(idArticulo)) {
             ocultarPrecio(precioLabel);
         }
         icono.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                comprarIconoPerfil(nombre, precio, ruta, precioLabel);
+                comprarIconoPerfil(idArticulo, nombre, precio, ruta, precioLabel);
             }
 
             public void mouseEntered(java.awt.event.MouseEvent evt) {
@@ -135,13 +134,9 @@ public class Tienda extends javax.swing.JFrame {
         });
     }
 
-    private void comprarIconoPerfil(String nombre, int precio, String ruta, JLabel precioLabel) {
-        String mensaje = "Vas a comprar este icono de perfil: " + nombre + "\nPrecio: " + precio + " monedas\n\nQuieres aplicarlo?";
-        int respuesta = JOptionPane.showConfirmDialog(this, mensaje, "Comprar icono", JOptionPane.YES_NO_OPTION);
-
-        if (respuesta == JOptionPane.YES_OPTION) {
+    private void comprarIconoPerfil(int idArticulo, String nombre, int precio, String ruta, JLabel precioLabel) {
+        if (articuloComprado(idArticulo) || comprarArticulo(idArticulo, nombre, precio)) {
             AppTheme.setIconoPerfilActivo(ruta);
-            AppTheme.registrarCompra("icono:" + ruta);
             ocultarPrecio(precioLabel);
             aplicarIconoPerfilActivo();
         }
@@ -168,31 +163,31 @@ public class Tienda extends javax.swing.JFrame {
     }
 
     private void prepararCompraPersonajes() {
-        prepararPersonaje(Sheldon, "Sheldon", 1000, "/imagenes/Sheldon.png", "main", null);
-        prepararPersonaje(GLaDOS, "GLaDOS", 1000, "/imagenes/GLaDOS.png", "main", precioGLaDOS);
-        prepararPersonaje(Griff, "Griff", 1000, "/imagenes/Griff.png", "tienda", null);
-        prepararPersonaje(ToomNook, "Tom Nook", 1000, "/imagenes/TomNook.png", "tienda", precioToom);
-        prepararPersonaje(MrNintendo, "Mr Nintendo", 1000, "/imagenes/MrNintendo.png", "perfil", null);
-        prepararPersonaje(Bmo, "BMO", 1000, "/imagenes/BMO.png", "perfil", precioBmo);
-        prepararPersonaje(Gon, "Gon", 1000, "/imagenes/GonPPT.png", "ppt", null);
-        prepararPersonaje(Josep, "Joseph Joestar", 1000, "/imagenes/JosephJoestar.png", "ppt", precioJosep);
-        prepararPersonaje(Hand, "Master Hand", 1000, "/imagenes/Master_Hand.png", "pptls", null);
-        prepararPersonaje(Spock, "Spock", 1000, "/imagenes/SpockPPTLS.png", "pptls", precioSpock);
-        prepararPersonaje(RickYMorty, "Rick y Morty", 1000, "/imagenes/RickMorty.png", "raya", null);
-        prepararPersonaje(Bill, "Bill Cipher", 1000, "/imagenes/BillCipher.png", "raya", precioBill);
+        prepararPersonaje(Sheldon, 0, "Sheldon", 0, "/imagenes/Sheldon.png", "main", null);
+        prepararPersonaje(GLaDOS, 20, "GLaDOS", 1000, "/imagenes/GLaDOS.png", "main", precioGLaDOS);
+        prepararPersonaje(Griff, 0, "Griff", 0, "/imagenes/Griff.png", "tienda", null);
+        prepararPersonaje(ToomNook, 21, "Tom Nook", 1000, "/imagenes/TomNook.png", "tienda", precioToom);
+        prepararPersonaje(MrNintendo, 0, "Mr Nintendo", 0, "/imagenes/MrNintendo.png", "perfil", null);
+        prepararPersonaje(Bmo, 22, "BMO", 1000, "/imagenes/BMO.png", "perfil", precioBmo);
+        prepararPersonaje(Gon, 0, "Gon", 0, "/imagenes/GonPPT.png", "ppt", null);
+        prepararPersonaje(Josep, 23, "Joseph Joestar", 1000, "/imagenes/JosephJoestar.png", "ppt", precioJosep);
+        prepararPersonaje(Hand, 0, "Master Hand", 0, "/imagenes/Master_Hand.png", "pptls", null);
+        prepararPersonaje(Spock, 24, "Spock", 1000, "/imagenes/SpockPPTLS.png", "pptls", precioSpock);
+        prepararPersonaje(RickYMorty, 0, "Rick y Morty", 0, "/imagenes/RickMorty.png", "raya", null);
+        prepararPersonaje(Bill, 25, "Bill Cipher", 1000, "/imagenes/BillCipher.png", "raya", precioBill);
     }
 
-    private void prepararPersonaje(JLabel personaje, String nombre, int precio, String ruta, String pantalla, JLabel precioLabel) {
+    private void prepararPersonaje(JLabel personaje, int idArticulo, String nombre, int precio, String ruta, String pantalla, JLabel precioLabel) {
         String articulo = "personaje:" + pantalla + ":" + ruta;
         personaje.setCursor(new Cursor(Cursor.HAND_CURSOR));
         personaje.setToolTipText(nombre + " - " + precio + " monedas");
         personaje.setBorder(BorderFactory.createEmptyBorder(5, 5, 5, 5));
-        if (AppTheme.estaComprado(articulo)) {
+        if (articuloComprado(idArticulo)) {
             ocultarPrecio(precioLabel);
         }
         personaje.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                comprarPersonaje(nombre, precio, ruta, pantalla, precioLabel);
+                comprarPersonaje(idArticulo, nombre, precio, ruta, pantalla, precioLabel);
             }
 
             public void mouseEntered(java.awt.event.MouseEvent evt) {
@@ -205,11 +200,8 @@ public class Tienda extends javax.swing.JFrame {
         });
     }
 
-    private void comprarPersonaje(String nombre, int precio, String ruta, String pantalla, JLabel precioLabel) {
-        String mensaje = "Vas a comprar este personaje: " + nombre + "\nPrecio: " + precio + " monedas\n\nQuieres aplicarlo?";
-        int respuesta = JOptionPane.showConfirmDialog(this, mensaje, "Comprar personaje", JOptionPane.YES_NO_OPTION);
-
-        if (respuesta == JOptionPane.YES_OPTION) {
+    private void comprarPersonaje(int idArticulo, String nombre, int precio, String ruta, String pantalla, JLabel precioLabel) {
+        if (articuloComprado(idArticulo) || comprarArticulo(idArticulo, nombre, precio)) {
             switch (pantalla) {
                 case "main" -> AppTheme.setPersonajeMainActivo(ruta);
                 case "tienda" -> AppTheme.setPersonajeTiendaActivo(ruta);
@@ -220,11 +212,43 @@ public class Tienda extends javax.swing.JFrame {
                 default -> {
                 }
             }
-            AppTheme.registrarCompra("personaje:" + pantalla + ":" + ruta);
             ocultarPrecio(precioLabel);
             aplicarPersonajeTiendaActivo();
             actualizarBordesPersonajes();
         }
+    }
+
+    private boolean articuloComprado(int idArticulo) {
+        return bbdd_TiendaUsuario.estaComprado(AppTheme.getNombreUsuarioActivo(), idArticulo);
+    }
+
+    private boolean comprarArticulo(int idArticulo, String nombre, int precio) {
+        String mensaje = "Vas a comprar: " + nombre + "\nPrecio: " + precio + " puntos\n\nQuieres comprarlo y aplicarlo?";
+        int respuesta = JOptionPane.showConfirmDialog(this, mensaje, "Comprar articulo", JOptionPane.YES_NO_OPTION);
+
+        if (respuesta != JOptionPane.YES_OPTION) {
+            return false;
+        }
+
+        ResultadoCompra resultado = bbdd_TiendaUsuario.comprarArticulo(AppTheme.getNombreUsuarioActivo(), idArticulo, nombre, precio);
+
+        if (resultado == ResultadoCompra.COMPRADO) {
+            actualizarPuntosTienda();
+            return true;
+        }
+
+        if (resultado == ResultadoCompra.SIN_PUNTOS) {
+            JOptionPane.showMessageDialog(this, "No tienes puntos suficientes para comprar este articulo.", "Tienda", JOptionPane.WARNING_MESSAGE);
+        } else {
+            JOptionPane.showMessageDialog(this, "No se pudo completar la compra.", "Tienda", JOptionPane.ERROR_MESSAGE);
+        }
+
+        return false;
+    }
+
+    private void actualizarPuntosTienda() {
+        int puntos = bbdd_TiendaUsuario.obtenerPuntos(AppTheme.getNombreUsuarioActivo());
+        puntuacion_jugador1.setText(String.valueOf(puntos));
     }
 
     private void ocultarPrecio(JLabel precioLabel) {

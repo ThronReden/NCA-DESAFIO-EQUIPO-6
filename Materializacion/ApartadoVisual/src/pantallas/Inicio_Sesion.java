@@ -366,6 +366,7 @@ public class Inicio_Sesion extends javax.swing.JFrame {
         String nombreUsuario = bbdd_inicioSesion.obtenerNombreUsuario(nombreOCorreo, contrasenaUsuario);
 
         if (nombreUsuario != null) {
+            AppTheme.resetPersonalizacionUsuario();
             AppTheme.setNombreUsuarioActivo(nombreUsuario);
             new Main_Juego().setVisible(true);
             this.dispose();

@@ -17,10 +17,10 @@ public class ConexionBBDD {
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
             con = DriverManager.getConnection(url, user, password);
-            System.out.println("Conectado!");
+
         } catch (SQLException | ClassNotFoundException e) {
             e.printStackTrace();
-             Logger.getLogger(ConexionBBDD.class.getName()).log(Level.SEVERE, null, e);
+            Logger.getLogger(ConexionBBDD.class.getName()).log(Level.SEVERE, null, e);
         }
         return con;
     }

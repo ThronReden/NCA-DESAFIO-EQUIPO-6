@@ -121,6 +121,18 @@ public final class AppTheme {
         nombreUsuarioActivo = nombreUsuario;
     }
 
+    public static void resetPersonalizacionUsuario() {
+        fondoActivo = new Color(15, 15, 15);
+        iconoPerfilActivo = "/imagenes/iconsUsuarioPerfil.png";
+        personajeMainActivo = "/imagenes/Sheldon.png";
+        personajeTiendaActivo = "/imagenes/Griff.png";
+        personajePerfilActivo = "/imagenes/MrNintendo.png";
+        personajePptActivo = "/imagenes/GonPPT.png";
+        personajePptlsActivo = "/imagenes/Master_Hand.png";
+        personajeRayaActivo = "/imagenes/RickMorty.png";
+        articulosComprados.clear();
+    }
+
     public static void registrarCompra(String articulo) {
         articulosComprados.add(articulo);
     }

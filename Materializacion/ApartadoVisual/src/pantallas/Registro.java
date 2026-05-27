@@ -388,6 +388,7 @@ public class Registro extends javax.swing.JFrame {
         boolean registrado = bbdd_registroUsuario.registrarUsuario(nombreUsuario, correoUsuario, contrasenaUsuario);
 
         if (registrado) {
+            AppTheme.resetPersonalizacionUsuario();
             AppTheme.setNombreUsuarioActivo(nombreUsuario);
             new Main_Juego().setVisible(true);
             this.dispose();
