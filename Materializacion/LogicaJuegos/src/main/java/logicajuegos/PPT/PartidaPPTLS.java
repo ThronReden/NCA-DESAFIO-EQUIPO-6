@@ -6,7 +6,7 @@ package logicajuegos.PPT;
  */
 public class PartidaPPTLS extends PartidaPPT {
     
-    private PartidaPPTLS(JugadorPPTLS j1, JugadorPPTLS j2, int nRondas) {
+    protected PartidaPPTLS(JugadorPPTLS j1, JugadorPPTLS j2, int nRondas) {
         super(j1, j2, nRondas);
     }
     

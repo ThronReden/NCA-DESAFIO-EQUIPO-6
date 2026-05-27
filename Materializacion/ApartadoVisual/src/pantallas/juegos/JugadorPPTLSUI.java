@@ -2,28 +2,30 @@ package pantallas.juegos;
 
 import java.util.concurrent.CompletableFuture;
 import logicajuegos.PPT.JugadaPPT;
-import logicajuegos.PPT.JugadorPPT;
+import logicajuegos.PPT.JugadaPPTLS;
+import logicajuegos.PPT.JugadorPPTLS;
 import logicajuegos.PPT.PartidaPPT;
+import logicajuegos.PPT.PartidaPPTLS;
 
 /**
  *
  * @author jsanchez
  */
-class JugadorPPTUI extends JugadorPPT {
+class JugadorPPTLSUI extends JugadorPPTLS {
     
-    public JugadorPPTUI(String nombre) {
+    public JugadorPPTLSUI(String nombre) {
         super(nombre);
     }
     
     @Override
     public void pedirJugada(PartidaPPT p, CompletableFuture<JugadaPPT> jugadaPedida) {
-        ((PartidaPPTUI)p).Pantalla.pedirJugada(jugadaPedida);
+        ((PartidaPPTLSUI)p).Pantalla.pedirJugada(jugadaPedida);
     }
     
-    protected void hacerJugada(int gesto, PartidaPPT p, CompletableFuture<JugadaPPT> jugadaPedida){
-        JugadaPPT jugada = null;
+    protected void hacerJugada(int gesto, PartidaPPTLS p, CompletableFuture<JugadaPPT> jugadaPedida){
+        JugadaPPTLS jugada = null;
         try{
-            jugada = JugadaPPT.crearJugada(p.getTurno(),gesto,this);
+            jugada = JugadaPPTLS.crearJugada(p.getTurno(),gesto,this);
         } catch (IllegalArgumentException IAEx){
             throw new IllegalArgumentException("¡Gesto no valido!");
         }
