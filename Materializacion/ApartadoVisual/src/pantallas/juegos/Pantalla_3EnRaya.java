@@ -3,6 +3,7 @@ package pantallas.juegos;
 import java.awt.Color;
 import java.awt.Font;
 import javax.swing.ImageIcon;
+import javax.swing.JFrame;
 import javax.swing.JLabel;
 import logicajuegos.TresEnRaya.EstadoTablero;
 import logicajuegos.TresEnRaya.Jugada3EnRaya;
@@ -28,6 +29,7 @@ public class Pantalla_3EnRaya extends javax.swing.JFrame {
 
     public Pantalla_3EnRaya() {
         initComponents();
+        setExtendedState(JFrame.MAXIMIZED_BOTH);
 
         labelGrid = new JLabel[]{jLabel1, jLabel2, jLabel3, jLabel4, jLabel5, jLabel6, jLabel7, jLabel8, jLabel9};
         aplicarEstiloVisual();
@@ -50,8 +52,7 @@ public class Pantalla_3EnRaya extends javax.swing.JFrame {
         Panel_3EnRaya.setBackground(fondo);
         iconoPerfil.setIcon(AppTheme.getIconoPerfilActivo());
         jLabel19.setIcon(AppTheme.getPersonajeRayaActivo());
-        bannerGris.setVisible(false);
-        separadorNegro.setVisible(false);
+
 
         Juego.setBackground(tablero);
         Juego.setBorder(javax.swing.BorderFactory.createLineBorder(neon, 3));
@@ -127,11 +128,10 @@ public class Pantalla_3EnRaya extends javax.swing.JFrame {
         nombreUsuario = new javax.swing.JLabel();
         nombreBot = new javax.swing.JLabel();
         mensajeError = new javax.swing.JLabel();
-        jLabel19 = new javax.swing.JLabel();
+        jLabel19 = new Difuminar();
         Vs = new javax.swing.JLabel();
         iconoBot = new javax.swing.JLabel();
-        bannerGris = new javax.swing.JLabel();
-        separadorNegro = new javax.swing.JLabel();
+        portal = new Difuminar();
 
         jDialog1.setUndecorated(true);
         jDialog1.setResizable(false);
@@ -149,11 +149,10 @@ public class Pantalla_3EnRaya extends javax.swing.JFrame {
         Panel_Volver.setLayout(new java.awt.CardLayout());
 
         jLabel10.setFont(new java.awt.Font("Dubai", 1, 24)); // NOI18N
-        jLabel10.setForeground(new java.awt.Color(0, 0, 0));
         jLabel10.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel10.setText("Volver a Jugar");
         jLabel10.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        jLabel10.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jLabel10.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         jLabel10.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jLabel10MouseClicked(evt);
@@ -171,7 +170,7 @@ public class Pantalla_3EnRaya extends javax.swing.JFrame {
         jLabel14.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel14.setText("Salir al Menú");
         jLabel14.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        jLabel14.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jLabel14.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         jLabel14.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jLabel14MouseClicked(evt);
@@ -222,7 +221,7 @@ public class Pantalla_3EnRaya extends javax.swing.JFrame {
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/iconsXJuego.png"))); // NOI18N
         jLabel1.setToolTipText("");
         jLabel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        jLabel1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jLabel1.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         jLabel1.setOpaque(true);
         jLabel1.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -235,7 +234,7 @@ public class Pantalla_3EnRaya extends javax.swing.JFrame {
         jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/iconsVACIOJuego.png"))); // NOI18N
         jLabel2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        jLabel2.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jLabel2.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         jLabel2.setOpaque(true);
         jLabel2.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -248,7 +247,7 @@ public class Pantalla_3EnRaya extends javax.swing.JFrame {
         jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/iconsVACIOJuego.png"))); // NOI18N
         jLabel3.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        jLabel3.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jLabel3.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         jLabel3.setOpaque(true);
         jLabel3.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -261,7 +260,7 @@ public class Pantalla_3EnRaya extends javax.swing.JFrame {
         jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/iconsVACIOJuego.png"))); // NOI18N
         jLabel4.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        jLabel4.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jLabel4.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         jLabel4.setOpaque(true);
         jLabel4.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -274,7 +273,7 @@ public class Pantalla_3EnRaya extends javax.swing.JFrame {
         jLabel5.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/iconsVACIOJuego.png"))); // NOI18N
         jLabel5.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        jLabel5.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jLabel5.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         jLabel5.setOpaque(true);
         jLabel5.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -287,7 +286,7 @@ public class Pantalla_3EnRaya extends javax.swing.JFrame {
         jLabel6.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/iconsVACIOJuego.png"))); // NOI18N
         jLabel6.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        jLabel6.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jLabel6.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         jLabel6.setOpaque(true);
         jLabel6.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -300,7 +299,7 @@ public class Pantalla_3EnRaya extends javax.swing.JFrame {
         jLabel7.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/iconsVACIOJuego.png"))); // NOI18N
         jLabel7.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        jLabel7.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jLabel7.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         jLabel7.setOpaque(true);
         jLabel7.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -313,7 +312,7 @@ public class Pantalla_3EnRaya extends javax.swing.JFrame {
         jLabel8.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/iconsVACIOJuego.png"))); // NOI18N
         jLabel8.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        jLabel8.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jLabel8.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         jLabel8.setOpaque(true);
         jLabel8.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -326,7 +325,7 @@ public class Pantalla_3EnRaya extends javax.swing.JFrame {
         jLabel9.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/iconsVACIOJuego.png"))); // NOI18N
         jLabel9.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        jLabel9.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jLabel9.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         jLabel9.setOpaque(true);
         jLabel9.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -342,13 +341,11 @@ public class Pantalla_3EnRaya extends javax.swing.JFrame {
         Panel_3EnRaya.add(iconoPerfil, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 220, 90, 80));
 
         nombreUsuario.setFont(new java.awt.Font("Dialog", 1, 36)); // NOI18N
-        nombreUsuario.setForeground(new java.awt.Color(0, 0, 0));
         nombreUsuario.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         nombreUsuario.setText("{nombre_de_usuario}");
         Panel_3EnRaya.add(nombreUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 300, 420, 70));
 
         nombreBot.setFont(new java.awt.Font("Dialog", 1, 36)); // NOI18N
-        nombreBot.setForeground(new java.awt.Color(0, 0, 0));
         nombreBot.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         nombreBot.setText("{nombre_bot}");
         Panel_3EnRaya.add(nombreBot, new org.netbeans.lib.awtextra.AbsoluteConstraints(25, 690, 480, -1));
@@ -360,7 +357,7 @@ public class Pantalla_3EnRaya extends javax.swing.JFrame {
         Panel_3EnRaya.add(mensajeError, new org.netbeans.lib.awtextra.AbsoluteConstraints(710, 960, 770, 40));
 
         jLabel19.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        jLabel19.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/RickyMorty .png"))); // NOI18N
+        jLabel19.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/RickMorty.png"))); // NOI18N
         Panel_3EnRaya.add(jLabel19, new org.netbeans.lib.awtextra.AbsoluteConstraints(1290, 10, 870, 1050));
 
         Vs.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/Street_FighterVS.png"))); // NOI18N
@@ -370,13 +367,9 @@ public class Pantalla_3EnRaya extends javax.swing.JFrame {
         iconoBot.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/iconsBot.png"))); // NOI18N
         Panel_3EnRaya.add(iconoBot, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 760, 80, -1));
 
-        bannerGris.setOpaque(true);
-        Panel_3EnRaya.add(bannerGris, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 510, 1090));
-
-        separadorNegro.setBackground(new java.awt.Color(0, 0, 0));
-        separadorNegro.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        separadorNegro.setOpaque(true);
-        Panel_3EnRaya.add(separadorNegro, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, -4, 20, 1100));
+        portal.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/portal.png"))); // NOI18N
+        portal.setText("jLabel11");
+        Panel_3EnRaya.add(portal, new org.netbeans.lib.awtextra.AbsoluteConstraints(-40, -160, -1, -1));
 
         getContentPane().add(Panel_3EnRaya, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 2010, 1090));
 
@@ -514,7 +507,6 @@ public class Pantalla_3EnRaya extends javax.swing.JFrame {
     private javax.swing.JLabel RESULTADO;
     private javax.swing.JPanel Resultado;
     private javax.swing.JLabel Vs;
-    private javax.swing.JLabel bannerGris;
     private javax.swing.JLabel iconoBot;
     private javax.swing.JLabel iconoPerfil;
     private javax.swing.JDialog jDialog1;
@@ -537,7 +529,7 @@ public class Pantalla_3EnRaya extends javax.swing.JFrame {
     private javax.swing.JLabel mensajeError;
     private javax.swing.JLabel nombreBot;
     private javax.swing.JLabel nombreUsuario;
-    private javax.swing.JLabel separadorNegro;
+    private javax.swing.JLabel portal;
     // End of variables declaration//GEN-END:variables
 
     public void setNombresJugadores() {

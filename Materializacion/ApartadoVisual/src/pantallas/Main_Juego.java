@@ -5,6 +5,7 @@ import java.awt.Dimension;
 import javax.swing.BorderFactory;
 import javax.swing.JFrame;
 import org.netbeans.lib.awtextra.AbsoluteConstraints;
+import pantallas.juegos.Difuminar;
 import pantallas.juegos.PPT;
 import pantallas.juegos.PPTLS;
 import pantallas.juegos.Pantalla_3EnRaya;
@@ -25,10 +26,12 @@ public class Main_Juego extends javax.swing.JFrame {
 
         jPanel1.setBackground(AppTheme.getFondoActivo());
         PanelContenido.setBackground(AppTheme.getFondoActivo());
-
+        ((Difuminar) saturno).setOpacity(0.50f);
+        ((Difuminar) Sheldon).setOpacity(0.80f);
+         ((Difuminar) fondoEstrellado).setOpacity(0.30f);
         Menu_Ampliado.setBackground(new Color(20, 20, 20));
         Sheldon.setIcon(AppTheme.getPersonajeMainActivo());
-        
+
         setExtendedState(JFrame.MAXIMIZED_BOTH);
 
     }
@@ -92,8 +95,9 @@ public class Main_Juego extends javax.swing.JFrame {
         mando = new javax.swing.JLabel();
         Boton_Cierre_Main = new javax.swing.JPanel();
         jLabel8 = new javax.swing.JLabel();
-        Sheldon = new javax.swing.JLabel();
-        saturno = new javax.swing.JLabel();
+        fondoEstrellado = new Difuminar();
+        Sheldon = new Difuminar();
+        saturno = new Difuminar();
 
         jLabel7.setBackground(new java.awt.Color(255, 255, 255));
         jLabel7.setFont(new java.awt.Font("Century Gothic", 1, 18)); // NOI18N
@@ -457,10 +461,14 @@ public class Main_Juego extends javax.swing.JFrame {
 
         jPanel1.add(Boton_Cierre_Main, new org.netbeans.lib.awtextra.AbsoluteConstraints(1830, 0, 90, 90));
 
+        fondoEstrellado.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        fondoEstrellado.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/fondoMain.png"))); // NOI18N
+        jPanel1.add(fondoEstrellado, new org.netbeans.lib.awtextra.AbsoluteConstraints(-360, -270, 2610, 1680));
+
         Sheldon.setBackground(new java.awt.Color(204, 204, 204));
         Sheldon.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         Sheldon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/Sheldon.png"))); // NOI18N
-        jPanel1.add(Sheldon, new org.netbeans.lib.awtextra.AbsoluteConstraints(1230, 10, 1000, 1070));
+        jPanel1.add(Sheldon, new org.netbeans.lib.awtextra.AbsoluteConstraints(1230, 10, 1000, 1140));
 
         saturno.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         saturno.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/saturno.png"))); // NOI18N
@@ -473,14 +481,14 @@ public class Main_Juego extends javax.swing.JFrame {
 
     private void jLabel1MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel1MouseEntered
         if (!Menu_Ampliado.isVisible()) {
-            Boton_Menu_Desplegable.setBackground(new Color(27,27,27));
+            Boton_Menu_Desplegable.setBackground(new Color(27, 27, 27));
 
         }
     }//GEN-LAST:event_jLabel1MouseEntered
 
     private void jLabel1MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel1MouseExited
         if (!Menu_Ampliado.isVisible()) {
-            Boton_Menu_Desplegable.setBackground(new Color(18,18,18));
+            Boton_Menu_Desplegable.setBackground(new Color(18, 18, 18));
         }
     }//GEN-LAST:event_jLabel1MouseExited
 
@@ -535,7 +543,7 @@ public class Main_Juego extends javax.swing.JFrame {
     }//GEN-LAST:event_Boton_TiendaMouseEntered
 
     private void Boton_TiendaMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Boton_TiendaMouseExited
-        Boton_Tienda.setBackground(new Color(22,22,22));
+        Boton_Tienda.setBackground(new Color(22, 22, 22));
     }//GEN-LAST:event_Boton_TiendaMouseExited
 
     private void Boton_AjusteMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Boton_AjusteMouseClicked
@@ -548,7 +556,7 @@ public class Main_Juego extends javax.swing.JFrame {
     }//GEN-LAST:event_Boton_AjusteMouseEntered
 
     private void Boton_AjusteMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Boton_AjusteMouseExited
-        Boton_Ajuste.setBackground(new Color(22,22,22));
+        Boton_Ajuste.setBackground(new Color(22, 22, 22));
     }//GEN-LAST:event_Boton_AjusteMouseExited
 
     private void Boton_CerrarSesionMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Boton_CerrarSesionMouseEntered
@@ -556,7 +564,7 @@ public class Main_Juego extends javax.swing.JFrame {
     }//GEN-LAST:event_Boton_CerrarSesionMouseEntered
 
     private void Boton_CerrarSesionMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Boton_CerrarSesionMouseExited
-        Boton_CerrarSesion.setBackground(new Color(22,22,22));
+        Boton_CerrarSesion.setBackground(new Color(22, 22, 22));
     }//GEN-LAST:event_Boton_CerrarSesionMouseExited
 
     private void jLabel11MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel11MouseClicked
@@ -681,6 +689,7 @@ public class Main_Juego extends javax.swing.JFrame {
     private javax.swing.JPanel botonJugarPPTLS;
     private javax.swing.JPanel botonJugarRAYA;
     private javax.swing.JLabel duda;
+    private javax.swing.JLabel fondoEstrellado;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
