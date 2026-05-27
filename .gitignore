@@ -28,8 +28,15 @@ buildNumber.properties
 # https://github.com/takari/maven-wrapper#usage-without-binary-jar
 .mvn/wrapper/maven-wrapper.jar
 
+# Ignorar configuraciones privadas de usuario en Netbeans
+**/nbproject/private/
+**/logicajuegos/nbproject/
+
+# Ignorar archivos temporales creados por el Makefile (si usas C/C++ en Netbeans)
+**/nbproject/Makefile-*.mk
+**/nbproject/Package-*.bash
+
 # Carpetas de configuración de Netbeans
-**/nbproject/
 **/nbbuild/
 **/nbdist/
 nb-configuration.xml
