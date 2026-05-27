@@ -8,7 +8,6 @@ import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
-
 /**
  *
  * @author LENOVO
@@ -32,7 +31,7 @@ public class Perfil_Usuario extends javax.swing.JFrame {
         jLabel16.setIcon(AppTheme.getIconoPerfilActivo());
         jLabel23.setIcon(AppTheme.getPersonajePerfilActivo());
         ((Difuminar) jLabel23).setOpacity(0.75f);
-         ((Difuminar) fondo_hack).setOpacity(0.18f);
+        ((Difuminar) fondo_hack).setOpacity(0.18f);
         prepararEdicionPerfil();
         cargarDatosPerfil();
         cargarEstadisticasPerfil();
@@ -100,6 +99,9 @@ public class Perfil_Usuario extends javax.swing.JFrame {
             contador_papel.setText("0");
             contador_tijera.setText("0");
             contador_3R.setText("0");
+            contador_ganadaPPTLS.setText("0");
+            contador_Lagartos.setText("0");
+            contador_Spock.setText("0");
             return;
         }
 
@@ -109,6 +111,9 @@ public class Perfil_Usuario extends javax.swing.JFrame {
         contador_papel.setText(String.valueOf(estadisticas.getPapel()));
         contador_tijera.setText(String.valueOf(estadisticas.getTijera()));
         contador_3R.setText(String.valueOf(estadisticas.getPartidasGanadas3R()));
+        contador_ganadaPPTLS.setText(String.valueOf(estadisticas.getPartidasGanadasPptls()));
+        contador_Lagartos.setText(String.valueOf(estadisticas.getLagarto()));
+        contador_Spock.setText(String.valueOf(estadisticas.getSpock()));
     }
 
     private void guardarCambiosPerfil() {

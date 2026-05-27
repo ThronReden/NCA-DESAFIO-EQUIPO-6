@@ -48,8 +48,7 @@ public class bbdd_operaciones {
 
                 asegurarEstadisticasPPT(con, idJugador);
 
-                try (PreparedStatement psJugador = con.prepareStatement(actualizarJugador);
-                     PreparedStatement psEstadisticas = con.prepareStatement(actualizarEstadisticas)) {
+                try (PreparedStatement psJugador = con.prepareStatement(actualizarJugador); PreparedStatement psEstadisticas = con.prepareStatement(actualizarEstadisticas)) {
 
                     psJugador.setInt(1, puntosGanados);
                     psJugador.setInt(2, idJugador);
@@ -121,8 +120,7 @@ public class bbdd_operaciones {
 
                 int puntosGanados = partidaGanada ? 40 : (empate ? 10 : 0);
 
-                try (PreparedStatement psJugador = con.prepareStatement(actualizarJugador);
-                     PreparedStatement psEstadisticas = con.prepareStatement(actualizarEstadisticas)) {
+                try (PreparedStatement psJugador = con.prepareStatement(actualizarJugador); PreparedStatement psEstadisticas = con.prepareStatement(actualizarEstadisticas)) {
 
                     psJugador.setInt(1, puntosGanados);
                     psJugador.setInt(2, idJugador);
@@ -150,10 +148,122 @@ public class bbdd_operaciones {
         }
     }
 
+    public static boolean registrarResultadoPPTLS(
+            String nombreUsuario,
+            int piedra,
+            int papel,
+            int tijera,
+            int lagarto,
+            int spock,
+            boolean partidaGanada,
+            int puntosGanados) {
+
+        String buscarJugador = """
+                           SELECT j.ID_JUGADOR
+                           FROM JUGADOR j
+                           JOIN USUARIO u ON u.ID_USUARIO = j.ID_USUARIO
+                           WHERE u.NOMBRE_USUARIO = ?
+                           """;
+
+        String actualizarJugador
+                = "UPDATE JUGADOR SET PUNTOS = PUNTOS + ? WHERE ID_JUGADOR = ?";
+
+        String actualizarEstadisticas = """
+                                    UPDATE ESTADISTICAS_PPTLS
+                                    SET PIEDRA = PIEDRA + ?,
+                                        PAPEL = PAPEL + ?,
+                                        TIJERA = TIJERA + ?,
+                                        LAGARTO = LAGARTO + ?,
+                                        SPOCK = SPOCK + ?,
+                                        PARTIDAS_GANADAS = PARTIDAS_GANADAS + ?
+                                    WHERE ID_JUGADOR = ?
+                                    """;
+
+        try (Connection con = ConexionBBDD.conexion()) {
+
+            if (con == null) {
+                return false;
+            }
+
+            con.setAutoCommit(false);
+
+            try {
+
+                int idJugador;
+
+                try (PreparedStatement psBuscar
+                        = con.prepareStatement(buscarJugador)) {
+
+                    psBuscar.setString(1, nombreUsuario);
+
+                    try (ResultSet rs = psBuscar.executeQuery()) {
+
+                        if (!rs.next()) {
+                            con.rollback();
+                            return false;
+                        }
+
+                        idJugador = rs.getInt("ID_JUGADOR");
+                    }
+                }
+
+                asegurarEstadisticasPPTLS(con, idJugador);
+
+                try (PreparedStatement psJugador
+                        = con.prepareStatement(actualizarJugador); PreparedStatement psEstadisticas
+                        = con.prepareStatement(actualizarEstadisticas)) {
+
+                    psJugador.setInt(1, puntosGanados);
+                    psJugador.setInt(2, idJugador);
+                    psJugador.executeUpdate();
+
+                    psEstadisticas.setInt(1, piedra);
+                    psEstadisticas.setInt(2, papel);
+                    psEstadisticas.setInt(3, tijera);
+                    psEstadisticas.setInt(4, lagarto);
+                    psEstadisticas.setInt(5, spock);
+                    psEstadisticas.setInt(6, partidaGanada ? 1 : 0);
+                    psEstadisticas.setInt(7, idJugador);
+
+                    psEstadisticas.executeUpdate();
+                }
+
+                con.commit();
+                return true;
+
+            } catch (SQLException e) {
+
+                con.rollback();
+                e.printStackTrace();
+                return false;
+
+            } finally {
+
+                con.setAutoCommit(true);
+            }
+
+        } catch (SQLException e) {
+
+            e.printStackTrace();
+            return false;
+        }
+    }
+
     private static void asegurarEstadisticasPPT(Connection con, int idJugador) throws SQLException {
         String sql = "INSERT IGNORE INTO ESTADISTICAS_PPT (ID_JUGADOR) VALUES (?)";
 
         try (PreparedStatement ps = con.prepareStatement(sql)) {
+            ps.setInt(1, idJugador);
+            ps.executeUpdate();
+        }
+    }
+
+    private static void asegurarEstadisticasPPTLS(Connection con, int idJugador) throws SQLException {
+
+        String sql = "INSERT IGNORE INTO ESTADISTICAS_PPTLS (ID_JUGADOR) VALUES (?)";
+
+        try (PreparedStatement ps = con.prepareStatement(sql)) {
+
             ps.setInt(1, idJugador);
             ps.executeUpdate();
         }

@@ -38,18 +38,35 @@ public class bbdd_PerfilUsuario {
 
     public static EstadisticasPerfil obtenerEstadisticasPerfil(String nombreUsuario) {
         String sql = """
-                     SELECT j.PUNTOS,
-                            COALESCE(e.PIEDRA, 0) AS PIEDRA,
-                            COALESCE(e.PAPEL, 0) AS PAPEL,
-                            COALESCE(e.TIJERA, 0) AS TIJERA,
-                            COALESCE(e.PARTIDAS_GANADAS, 0) AS PARTIDAS_GANADAS_PPT,
-                            COALESCE(r.PARTIDAS_GANADAS, 0) AS PARTIDAS_GANADAS_3R
-                     FROM JUGADOR j
-                     JOIN USUARIO u ON u.ID_USUARIO = j.ID_USUARIO
-                     LEFT JOIN ESTADISTICAS_PPT e ON e.ID_JUGADOR = j.ID_JUGADOR
-                     LEFT JOIN ESTADISTICAS_3_EN_RAYA r ON r.ID_JUGADOR = j.ID_JUGADOR
-                     WHERE u.NOMBRE_USUARIO = ?
-                     """;
+             SELECT j.PUNTOS,
+
+                    COALESCE(e.PIEDRA, 0) AS PIEDRA,
+                    COALESCE(e.PAPEL, 0) AS PAPEL,
+                    COALESCE(e.TIJERA, 0) AS TIJERA,
+                    COALESCE(e.PARTIDAS_GANADAS, 0) AS PARTIDAS_GANADAS_PPT,
+
+                    COALESCE(ls.LAGARTO, 0) AS LAGARTO,
+                    COALESCE(ls.SPOCK, 0) AS SPOCK,
+                    COALESCE(ls.PARTIDAS_GANADAS, 0) AS PARTIDAS_GANADAS_PPTLS,
+
+                    COALESCE(r.PARTIDAS_GANADAS, 0) AS PARTIDAS_GANADAS_3R
+
+             FROM JUGADOR j
+
+             JOIN USUARIO u
+             ON u.ID_USUARIO = j.ID_USUARIO
+
+             LEFT JOIN ESTADISTICAS_PPT e
+             ON e.ID_JUGADOR = j.ID_JUGADOR
+
+             LEFT JOIN ESTADISTICAS_PPTLS ls
+             ON ls.ID_JUGADOR = j.ID_JUGADOR
+
+             LEFT JOIN ESTADISTICAS_3_EN_RAYA r
+             ON r.ID_JUGADOR = j.ID_JUGADOR
+
+             WHERE u.NOMBRE_USUARIO = ?
+             """;
 
         try (Connection con = ConexionBBDD.conexion()) {
             if (con == null) {
@@ -67,6 +84,9 @@ public class bbdd_PerfilUsuario {
                                 rs.getInt("PAPEL"),
                                 rs.getInt("TIJERA"),
                                 rs.getInt("PARTIDAS_GANADAS_PPT"),
+                                rs.getInt("LAGARTO"),
+                                rs.getInt("SPOCK"),
+                                rs.getInt("PARTIDAS_GANADAS_PPTLS"),
                                 rs.getInt("PARTIDAS_GANADAS_3R")
                         );
                     }
@@ -162,13 +182,21 @@ public class bbdd_PerfilUsuario {
         private final int tijera;
         private final int partidasGanadasPpt;
         private final int partidasGanadas3R;
+        private final int lagarto;
+        private final int spock;
+        private final int partidasGanadasPptls;
 
-        public EstadisticasPerfil(int puntos, int piedra, int papel, int tijera, int partidasGanadasPpt, int partidasGanadas3R) {
+        public EstadisticasPerfil(int puntos, int piedra, int papel, int tijera, int partidasGanadasPpt, int lagarto, int spock, int partidasGanadasPptls, int partidasGanadas3R) {
             this.puntos = puntos;
             this.piedra = piedra;
             this.papel = papel;
             this.tijera = tijera;
             this.partidasGanadasPpt = partidasGanadasPpt;
+
+            this.lagarto = lagarto;
+            this.spock = spock;
+            this.partidasGanadasPptls = partidasGanadasPptls;
+
             this.partidasGanadas3R = partidasGanadas3R;
         }
 
@@ -194,6 +222,18 @@ public class bbdd_PerfilUsuario {
 
         public int getPartidasGanadas3R() {
             return partidasGanadas3R;
+        }
+
+        public int getLagarto() {
+            return lagarto;
+        }
+
+        public int getSpock() {
+            return spock;
+        }
+
+        public int getPartidasGanadasPptls() {
+            return partidasGanadasPptls;
         }
     }
 }

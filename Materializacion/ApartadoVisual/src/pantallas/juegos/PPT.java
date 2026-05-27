@@ -60,7 +60,7 @@ public class PPT extends javax.swing.JFrame {
         Color fondo = AppTheme.getFondoActivo();
         Color neon = new Color(0, 255, 160);
         Color cyan = new Color(0, 210, 255);
-        
+
         Panel_PPT.setBackground(fondo);
         iconoPerfil.setIcon(AppTheme.getIconoPerfilActivo());
         gon.setIcon(AppTheme.getPersonajePptActivo());
@@ -92,7 +92,7 @@ public class PPT extends javax.swing.JFrame {
         nombre_bot.setBounds(330, 950, 500, 60);
         nombre_de_usuario.setBounds(1130, 950, 440, 60);
         marc_bot.setBounds(750, 675, 460, 105);
-        
+
         Resultado.setBackground(new Color(12, 18, 20));
         Resultado.setBorder(javax.swing.BorderFactory.createLineBorder(neon, 3));
         RESULTADO.setForeground(Color.WHITE);
@@ -267,7 +267,7 @@ public class PPT extends javax.swing.JFrame {
                 BotonPiedraActionPerformed(evt);
             }
         });
-        Panel_PPT.add(BotonPiedra, new org.netbeans.lib.awtextra.AbsoluteConstraints(1450, 490, 350, 140));
+        Panel_PPT.add(BotonPiedra, new org.netbeans.lib.awtextra.AbsoluteConstraints(1470, 440, 350, 140));
 
         BotonPapel.setBorderPainted(false);
         BotonPapel.setContentAreaFilled(false);
@@ -284,7 +284,7 @@ public class PPT extends javax.swing.JFrame {
                 BotonPapelActionPerformed(evt);
             }
         });
-        Panel_PPT.add(BotonPapel, new org.netbeans.lib.awtextra.AbsoluteConstraints(1450, 650, 350, 140));
+        Panel_PPT.add(BotonPapel, new org.netbeans.lib.awtextra.AbsoluteConstraints(1470, 610, 350, 140));
 
         BotonTijera.setBorderPainted(false);
         BotonTijera.setContentAreaFilled(false);
@@ -301,7 +301,7 @@ public class PPT extends javax.swing.JFrame {
                 BotonTijeraActionPerformed(evt);
             }
         });
-        Panel_PPT.add(BotonTijera, new org.netbeans.lib.awtextra.AbsoluteConstraints(1450, 820, 350, 140));
+        Panel_PPT.add(BotonTijera, new org.netbeans.lib.awtextra.AbsoluteConstraints(1470, 780, 350, 140));
 
         iconoPerfil.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         iconoPerfil.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/iconsUsuarioPerfil.png"))); // NOI18N
@@ -747,17 +747,27 @@ public class PPT extends javax.swing.JFrame {
 
     protected void mostrarResultado(int EMPATE) {
         registrarResultadoPPT(false);
+
         RESULTADO.setText("¡EMPATE!");
+        Resultado.setBackground(new Color(45, 50, 55));
+
         mostrarDialogResultado();
     }
 
     protected void mostrarResultado(JugadorPPT ganador) {
         registrarResultadoPPT(ganador.equals(J));
+
         if (ganador.equals(J)) {
+
             RESULTADO.setText("¡HAS GANADO!");
+            Resultado.setBackground(new Color(0, 90, 60));
+
         } else {
+
             RESULTADO.setText("Has perdido...");
+            Resultado.setBackground(new Color(95, 20, 36));
         }
+
         mostrarDialogResultado();
     }
 
