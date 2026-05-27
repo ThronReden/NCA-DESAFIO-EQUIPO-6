@@ -30,7 +30,7 @@ buildNumber.properties
 
 # Ignorar configuraciones privadas de usuario en Netbeans
 **/nbproject/private/
-/logicajuegos/nbproject/
+**/logicajuegos/nbproject/
 
 # Ignorar archivos temporales creados por el Makefile (si usas C/C++ en Netbeans)
 **/nbproject/Makefile-*.mk
