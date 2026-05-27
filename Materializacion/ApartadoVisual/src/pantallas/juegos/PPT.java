@@ -1,5 +1,6 @@
 package pantallas.juegos;
 
+import pantallas.Difuminar;
 import java.awt.Color;
 import java.awt.Font;
 import java.util.concurrent.CompletableFuture;

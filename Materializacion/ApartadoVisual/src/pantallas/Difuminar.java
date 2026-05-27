@@ -1,4 +1,4 @@
-package pantallas.juegos;
+package pantallas;
 
 import java.awt.AlphaComposite;
 import java.awt.Graphics;

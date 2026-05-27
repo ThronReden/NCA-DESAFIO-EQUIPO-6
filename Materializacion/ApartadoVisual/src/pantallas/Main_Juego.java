@@ -5,7 +5,6 @@ import java.awt.Dimension;
 import javax.swing.BorderFactory;
 import javax.swing.JFrame;
 import org.netbeans.lib.awtextra.AbsoluteConstraints;
-import pantallas.juegos.Difuminar;
 import pantallas.juegos.PPT;
 import pantallas.juegos.PPTLS;
 import pantallas.juegos.Pantalla_3EnRaya;
