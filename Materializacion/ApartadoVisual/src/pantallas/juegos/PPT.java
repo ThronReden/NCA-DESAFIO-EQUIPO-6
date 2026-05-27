@@ -12,6 +12,7 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.Timer;
 import logicajuegos.PPT.JugadaPPT;
+import logicajuegos.PPT.JugadorPPT;
 import pantallas.AppTheme;
 import pantallas.Main_Juego;
 
@@ -42,9 +43,7 @@ public class PPT extends javax.swing.JFrame {
         initComponents();
         aplicarEstiloVisual();
         activarBotones(false);
-        r1.setBackground(null);
-        r2.setBackground(null);
-        r3.setBackground(null);
+        resetRondas();
         setNombresJugadores();
         mostrarPuntos();
         contador.setText("-");
@@ -480,7 +479,12 @@ public class PPT extends javax.swing.JFrame {
     private void jLabel10MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel10MouseClicked
         P = PartidaPPTUI.crearPartida(J, 3, this);
         setNombresJugadores();
-        P.iniciarJuego();
+        continuarTurno.setText("Empezar Partida");
+        continuarTurno.setVisible(true);
+        continuarTurno.setEnabled(true);
+        resetResultados();
+        resetRondas();
+        mostrarPuntos();
         jDialog1.dispose();
     }//GEN-LAST:event_jLabel10MouseClicked
 
@@ -523,6 +527,12 @@ public class PPT extends javax.swing.JFrame {
         resultadoUser.setIcon(null);
         resultadoBot.setBorder(null);
         resultadoBot.setIcon(null);
+    }
+    
+    private void resetRondas(){
+        r1.setBackground(null);
+        r2.setBackground(null);
+        r3.setBackground(null);
     }
 
     protected void pedirJugada(CompletableFuture<JugadaPPT> jugadaPedida) {
@@ -619,6 +629,8 @@ public class PPT extends javax.swing.JFrame {
                 r2.setBackground(GRIS);
             case 3 ->
                 r3.setBackground(GRIS);
+            default ->
+                throw new IllegalArgumentException("Turno no valido.");
         }
         try {
             Thread.sleep(80);
@@ -643,6 +655,8 @@ public class PPT extends javax.swing.JFrame {
                 r2.setBackground(c);
             case 3 ->
                 r3.setBackground(c);
+            default ->
+                throw new IllegalArgumentException("Turno no valido.");
         }
         try {
             Thread.sleep(80);
@@ -667,6 +681,8 @@ public class PPT extends javax.swing.JFrame {
                 r2.setBackground(c);
             case 3 ->
                 r3.setBackground(c);
+            default ->
+                throw new IllegalArgumentException("Turno no valido.");
         }
         try {
             Thread.sleep(80);
@@ -680,6 +696,26 @@ public class PPT extends javax.swing.JFrame {
             Logger.getLogger(PPT.class.getName()).log(Level.SEVERE, null, ex);
         }
         resultadoBot.setBorder(BorderFactory.createLineBorder(c.equals(VERDE) ? ROJO : VERDE));
+    }
+    
+    protected void mostrarResultado(int EMPATE){
+        RESULTADO.setText("¡EMPATE!");
+        mostrarDialogResultado();
+    }
+    protected void mostrarResultado(JugadorPPT ganador){
+        if(ganador.equals(J)){
+            RESULTADO.setText("¡HAS GANADO!");
+        } else {
+            RESULTADO.setText("Has perdido...");
+        }
+        mostrarDialogResultado();
+    }
+    
+    private void mostrarDialogResultado(){
+        jDialog1.setSize(850, 590);
+        jDialog1.setLocationRelativeTo(this);
+        jDialog1.setModal(true);
+        jDialog1.setVisible(true);
     }
 
     /**
