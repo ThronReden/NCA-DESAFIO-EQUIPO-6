@@ -37,6 +37,8 @@ public class Tienda extends javax.swing.JFrame {
         prepararFondo(Negro4, "Azul oscuro", 700, new Color(18, 16, 49), precioAzul);
         prepararFondo(Negro1, "Blanco", 1000, new Color(235, 235, 230), precioBlanco);
     }
+    
+    
 
     private void prepararFondo(JLabel fondo, String nombre, int precio, Color color, JLabel precioLabel) {
         String articulo = "fondo:" + nombre;
@@ -46,6 +48,9 @@ public class Tienda extends javax.swing.JFrame {
         if (AppTheme.estaComprado(articulo)) {
             ocultarPrecio(precioLabel);
         }
+        
+          ((Difuminar) fondoCallejon).setOpacity(0.10f);
+          
         fondo.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 comprarFondo(nombre, precio, color, precioLabel);
@@ -173,7 +178,7 @@ public class Tienda extends javax.swing.JFrame {
         prepararPersonaje(Josep, "Joseph Joestar", 1000, "/imagenes/JosephJoestar.png", "ppt", precioJosep);
         prepararPersonaje(Hand, "Master Hand", 1000, "/imagenes/Master_Hand.png", "pptls", null);
         prepararPersonaje(Spock, "Spock", 1000, "/imagenes/SpockPPTLS.png", "pptls", precioSpock);
-        prepararPersonaje(RickYMorty, "Rick y Morty", 1000, "/imagenes/RickyMorty .png", "raya", null);
+        prepararPersonaje(RickYMorty, "Rick y Morty", 1000, "/imagenes/RickMorty.png", "raya", null);
         prepararPersonaje(Bill, "Bill Cipher", 1000, "/imagenes/BillCipher.png", "raya", precioBill);
     }
 
@@ -246,7 +251,7 @@ public class Tienda extends javax.swing.JFrame {
         marcarPersonajeActivo(Josep, AppTheme.getPersonajePptActivoRuta(), "/imagenes/JosephJoestar.png");
         marcarPersonajeActivo(Hand, AppTheme.getPersonajePptlsActivoRuta(), "/imagenes/Master_Hand.png");
         marcarPersonajeActivo(Spock, AppTheme.getPersonajePptlsActivoRuta(), "/imagenes/SpockPPTLS.png");
-        marcarPersonajeActivo(RickYMorty, AppTheme.getPersonajeRayaActivoRuta(), "/imagenes/RickyMorty .png");
+        marcarPersonajeActivo(RickYMorty, AppTheme.getPersonajeRayaActivoRuta(), "/imagenes/RickMorty.png");
         marcarPersonajeActivo(Bill, AppTheme.getPersonajeRayaActivoRuta(), "/imagenes/BillCipher.png");
     }
 
@@ -324,11 +329,11 @@ public class Tienda extends javax.swing.JFrame {
         precioGLaDOS = new javax.swing.JLabel();
         tienda = new javax.swing.JLabel();
         puntuacion_jugador1 = new javax.swing.JLabel();
-        fondoCallejon = new javax.swing.JLabel();
         bocadilloText = new javax.swing.JLabel();
         Boton_Cierre_Perfil = new javax.swing.JPanel();
         jLabel18 = new javax.swing.JLabel();
         Griff_Dineros = new javax.swing.JLabel();
+        fondoCallejon = new Difuminar();
 
         jLabel5.setFont(new java.awt.Font("Dubai", 1, 14)); // NOI18N
         jLabel5.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -659,9 +664,6 @@ public class Tienda extends javax.swing.JFrame {
         puntuacion_jugador1.setText("{puntuacion_jugador}");
         PanelContenido.add(puntuacion_jugador1, new org.netbeans.lib.awtextra.AbsoluteConstraints(1040, 30, -1, 110));
 
-        fondoCallejon.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        PanelContenido.add(fondoCallejon, new org.netbeans.lib.awtextra.AbsoluteConstraints(-210, 30, 2180, 1530));
-
         bocadilloText.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         bocadilloText.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/GriffTexto.png"))); // NOI18N
         PanelContenido.add(bocadilloText, new org.netbeans.lib.awtextra.AbsoluteConstraints(1340, 170, 380, 230));
@@ -693,6 +695,10 @@ public class Tienda extends javax.swing.JFrame {
         Griff_Dineros.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         Griff_Dineros.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/Griff.png"))); // NOI18N
         shop.add(Griff_Dineros, new org.netbeans.lib.awtextra.AbsoluteConstraints(960, 210, 970, 980));
+
+        fondoCallejon.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        fondoCallejon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/fondoTienda.png"))); // NOI18N
+        shop.add(fondoCallejon, new org.netbeans.lib.awtextra.AbsoluteConstraints(-110, -30, 2180, 1180));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);

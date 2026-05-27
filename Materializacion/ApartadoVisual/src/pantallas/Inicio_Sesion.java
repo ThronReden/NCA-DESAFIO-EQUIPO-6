@@ -1,9 +1,11 @@
 package pantallas;
 
+import CRUD_bbdd.bbdd_inicioSesion;
 import java.awt.Color;
 import static java.awt.Color.black;
 import static java.awt.Color.white;
 import javax.swing.ImageIcon;
+import javax.swing.JOptionPane;
 
 public class Inicio_Sesion extends javax.swing.JFrame {
 
@@ -332,8 +334,7 @@ public class Inicio_Sesion extends javax.swing.JFrame {
     }//GEN-LAST:event_BOTON_REGISTROMouseClicked
 
     private void jLabel7MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel7MouseClicked
-        new Main_Juego().setVisible(true);
-        this.dispose();
+        iniciarSesion();
     }//GEN-LAST:event_jLabel7MouseClicked
 
     private void VisibilidadMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_VisibilidadMouseClicked
@@ -353,6 +354,39 @@ public class Inicio_Sesion extends javax.swing.JFrame {
     private void contraseñaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_contraseñaMouseClicked
         contraseña.setText("");
     }//GEN-LAST:event_contraseñaMouseClicked
+
+    private void iniciarSesion() {
+        String nombreOCorreo = nombre.getText().trim();
+        String contrasenaUsuario = new String(contraseña.getPassword()).trim();
+
+        if (!datosInicioSesionValidos(nombreOCorreo, contrasenaUsuario)) {
+            return;
+        }
+
+        String nombreUsuario = bbdd_inicioSesion.obtenerNombreUsuario(nombreOCorreo, contrasenaUsuario);
+
+        if (nombreUsuario != null) {
+            AppTheme.setNombreUsuarioActivo(nombreUsuario);
+            new Main_Juego().setVisible(true);
+            this.dispose();
+        } else {
+            JOptionPane.showMessageDialog(this, "Nombre, correo o contraseña incorrectos.", "Inicio de sesion", JOptionPane.WARNING_MESSAGE);
+        }
+    }
+
+    private boolean datosInicioSesionValidos(String nombreOCorreo, String contrasenaUsuario) {
+        if (nombreOCorreo.isEmpty() || nombreOCorreo.equals("Ingresar Aquí")) {
+            JOptionPane.showMessageDialog(this, "Introduce tu nombre o correo.", "Inicio de sesion", JOptionPane.WARNING_MESSAGE);
+            return false;
+        }
+
+        if (contrasenaUsuario.isEmpty() || contrasenaUsuario.equals("********")) {
+            JOptionPane.showMessageDialog(this, "Introduce tu contraseña.", "Inicio de sesion", JOptionPane.WARNING_MESSAGE);
+            return false;
+        }
+
+        return true;
+    }
 
     /**
      * @param args the command line arguments
