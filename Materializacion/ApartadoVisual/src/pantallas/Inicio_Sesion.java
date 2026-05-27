@@ -11,6 +11,7 @@ public class Inicio_Sesion extends javax.swing.JFrame {
 
     ImageIcon NoVer = new ImageIcon("src\\imagenes\\iconsNoVer.png");
     ImageIcon Ver = new ImageIcon("src\\imagenes\\iconsVer.png");
+    
 
     int xMouse, yMouse;
 

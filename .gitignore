@@ -28,14 +28,20 @@ buildNumber.properties
 # https://github.com/takari/maven-wrapper#usage-without-binary-jar
 .mvn/wrapper/maven-wrapper.jar
 
-**/nbproject/private/
-**/nbproject/Makefile-*.mk
-**/nbproject/Package-*.bash
+# Carpetas de configuración de Netbeans
+**/nbproject/
+**/nbbuild/
+**/nbdist/
+nb-configuration.xml
+
+# Carpetas de distribución y compilación (Ant/Generales)
+**/dist/
 build/
-nbbuild/
-dist/
-nbdist/
+
+# Configuración y acciones locales (Gradle/Maven, no usamos)
 .nb-gradle/
+nbactions.xml
+
 
 # End of https://mrkandreev.name/snippets/gitignore-generator/#Java,Maven,NetBeans
 

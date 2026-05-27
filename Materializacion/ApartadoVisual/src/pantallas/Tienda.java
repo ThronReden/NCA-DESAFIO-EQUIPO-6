@@ -323,8 +323,9 @@ public class Tienda extends javax.swing.JFrame {
         Negro4 = new javax.swing.JLabel();
         precioGLaDOS = new javax.swing.JLabel();
         tienda = new javax.swing.JLabel();
-        bocadilloText = new javax.swing.JLabel();
         puntuacion_jugador1 = new javax.swing.JLabel();
+        fondoCallejon = new javax.swing.JLabel();
+        bocadilloText = new javax.swing.JLabel();
         Boton_Cierre_Perfil = new javax.swing.JPanel();
         jLabel18 = new javax.swing.JLabel();
         Griff_Dineros = new javax.swing.JLabel();
@@ -448,7 +449,7 @@ public class Tienda extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        shop.add(Menu_Ampliado, new org.netbeans.lib.awtextra.AbsoluteConstraints(-10, 0, -1, 1130));
+        shop.add(Menu_Ampliado, new org.netbeans.lib.awtextra.AbsoluteConstraints(-10, 0, -1, 1110));
 
         PanelContenido.setBackground(new java.awt.Color(15, 15, 15));
         PanelContenido.setOpaque(false);
@@ -652,17 +653,20 @@ public class Tienda extends javax.swing.JFrame {
 
         PanelContenido.add(Tienda, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 160, 1060, 910));
 
-        bocadilloText.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        bocadilloText.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/GriffTexto.png"))); // NOI18N
-        PanelContenido.add(bocadilloText, new org.netbeans.lib.awtextra.AbsoluteConstraints(1400, 210, 380, 230));
-
         puntuacion_jugador1.setFont(new java.awt.Font("Impact", 1, 36)); // NOI18N
         puntuacion_jugador1.setForeground(new java.awt.Color(204, 204, 0));
         puntuacion_jugador1.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         puntuacion_jugador1.setText("{puntuacion_jugador}");
         PanelContenido.add(puntuacion_jugador1, new org.netbeans.lib.awtextra.AbsoluteConstraints(1040, 30, -1, 110));
 
-        shop.add(PanelContenido, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 0, 1760, 1090));
+        fondoCallejon.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        PanelContenido.add(fondoCallejon, new org.netbeans.lib.awtextra.AbsoluteConstraints(-210, 30, 2180, 1530));
+
+        bocadilloText.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        bocadilloText.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/GriffTexto.png"))); // NOI18N
+        PanelContenido.add(bocadilloText, new org.netbeans.lib.awtextra.AbsoluteConstraints(1340, 170, 380, 230));
+
+        shop.add(PanelContenido, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1760, 1090));
 
         Boton_Cierre_Perfil.setBackground(new java.awt.Color(15, 15, 15));
         Boton_Cierre_Perfil.setLayout(new java.awt.CardLayout());
@@ -688,7 +692,7 @@ public class Tienda extends javax.swing.JFrame {
 
         Griff_Dineros.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         Griff_Dineros.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/Griff.png"))); // NOI18N
-        shop.add(Griff_Dineros, new org.netbeans.lib.awtextra.AbsoluteConstraints(1000, 230, 970, 980));
+        shop.add(Griff_Dineros, new org.netbeans.lib.awtextra.AbsoluteConstraints(960, 210, 970, 980));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -702,7 +706,7 @@ public class Tienda extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1210, Short.MAX_VALUE)
+            .addGap(0, 2110, Short.MAX_VALUE)
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addComponent(shop, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -863,6 +867,7 @@ public class Tienda extends javax.swing.JFrame {
     private javax.swing.JLabel ToomNook;
     private javax.swing.JLabel Usuario;
     private javax.swing.JLabel bocadilloText;
+    private javax.swing.JLabel fondoCallejon;
     private javax.swing.JLabel iconMoneda;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;

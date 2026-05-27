@@ -21,13 +21,15 @@ public class Jugada3EnRaya {
     public static final int ABAJO_DERECHA = 8;
     
     public Jugada3EnRaya(int turn, int pos, Jugador3EnRaya j) throws IllegalArgumentException {
-        if(pos < 0 || pos >= 9){
-            throw new IllegalArgumentException("Posicion no valida");
-        } else {
-            this.turno = turn;
-            this.posicion = pos;
-            this.jugador = j;
+        if(pos < ARRIBA_IZQUIERDA || pos > ABAJO_DERECHA){
+            throw new IllegalArgumentException("Posicion no valida.");
         }
+        if(turn <= 0){
+            throw new IllegalArgumentException("Turno no valido.");
+        }
+        this.turno = turn;
+        this.posicion = pos;
+        this.jugador = j;
     }
 
     public int getTurno() {

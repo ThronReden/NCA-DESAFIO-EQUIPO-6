@@ -21,7 +21,7 @@ public class JugadaPPT implements Comparable<JugadaPPT> {
     }
     
     public static JugadaPPT crearJugada(int elTurno, int elGesto, JugadorPPT elJugador){
-        if(elGesto < 0 || elGesto > 2) {
+        if(elGesto < PIEDRA || elGesto > TIJERA) {
             throw new IllegalArgumentException("Gesto no valido");
         }
         return new JugadaPPT(elTurno,elGesto,elJugador);

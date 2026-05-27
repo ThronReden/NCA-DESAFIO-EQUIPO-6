@@ -27,27 +27,27 @@ public class JugadaPPTLS extends JugadaPPT{
         switch(this.getGesto()){
             case PIEDRA -> {
                 switch(otraJugada.getGesto()){
-                    case PIEDRA -> result = 0;
-                    case PAPEL -> result = -1;
-                    case TIJERA -> result = 1;
+                    case PIEDRA -> result = super.compareTo(otraJugada);
+                    case PAPEL -> result = super.compareTo(otraJugada);
+                    case TIJERA -> result = super.compareTo(otraJugada);
                     case LAGARTO -> result = 1;
                     case SPOCK -> result = -1;
                 }
             }
             case PAPEL -> {
                 switch(otraJugada.getGesto()){
-                    case PIEDRA -> result = 1;
-                    case PAPEL -> result = 0;
-                    case TIJERA -> result = -1;
+                    case PIEDRA -> result = super.compareTo(otraJugada);
+                    case PAPEL -> result = super.compareTo(otraJugada);
+                    case TIJERA -> result = super.compareTo(otraJugada);
                     case LAGARTO -> result = -1;
                     case SPOCK -> result = 1;
                 }
             }
             case TIJERA -> {
                 switch(otraJugada.getGesto()){
-                    case PIEDRA -> result = -1;
-                    case PAPEL -> result = 1;
-                    case TIJERA -> result = 0;
+                    case PIEDRA -> result = super.compareTo(otraJugada);
+                    case PAPEL -> result = super.compareTo(otraJugada);
+                    case TIJERA -> result = super.compareTo(otraJugada);
                     case LAGARTO -> result = 1;
                     case SPOCK -> result = -1;
                 }

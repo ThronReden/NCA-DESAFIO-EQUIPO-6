@@ -14,7 +14,7 @@ public final class AppTheme {
     private static String personajePerfilActivo = "/imagenes/MrNintendo.png";
     private static String personajePptActivo = "/imagenes/GonPPT.png";
     private static String personajePptlsActivo = "/imagenes/Master_Hand.png";
-    private static String personajeRayaActivo = "/imagenes/RickyMorty .png";
+    private static String personajeRayaActivo = "/imagenes/RickMorty.png";
     private static final Set<String> articulosComprados = new HashSet<>();
 
     private AppTheme() {
