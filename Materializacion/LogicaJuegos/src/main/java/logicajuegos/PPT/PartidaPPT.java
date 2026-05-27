@@ -78,7 +78,7 @@ public class PartidaPPT extends Juego<Integer,JugadorPPT> {
         nuevoTurno();
     }
 
-    private void nuevoTurno() {
+    protected void nuevoTurno() {
         avanzarTurno();
         
         CompletableFuture<JugadaPPT> pedirJugadaJ1 = new CompletableFuture<>();
@@ -97,7 +97,7 @@ public class PartidaPPT extends Juego<Integer,JugadorPPT> {
         jugadas.add(jugadaJ1);
         jugadas.add(jugadaJ2);
         
-        esperarContinuarTurno();
+        continuarTurno();
     }
 
     protected void mostrarJugadas(JugadaPPT jugada1, JugadaPPT jugada2) {
@@ -144,10 +144,6 @@ public class PartidaPPT extends Juego<Integer,JugadorPPT> {
     public void mostrarSeAcaboElTiempo(){
         System.out.println("Se acabó el tiempo!");
     }
-
-    protected void esperarContinuarTurno(){
-        continuarTurno();
-    }
     
     protected void continuarTurno() {
         if(getPuntosJ1() > rondas/2){
@@ -171,8 +167,12 @@ public class PartidaPPT extends Juego<Integer,JugadorPPT> {
                 mostrarGanador();
             }
         } else {
-            nuevoTurno();
+            esperarSiguienteTurno();
         }
+    }
+    
+    protected void esperarSiguienteTurno(){
+        nuevoTurno();
     }
     
     public void mostrarGanador(){

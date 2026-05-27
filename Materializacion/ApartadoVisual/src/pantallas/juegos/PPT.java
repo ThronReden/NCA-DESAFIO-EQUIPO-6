@@ -3,6 +3,8 @@ package pantallas.juegos;
 import java.awt.Color;
 import java.awt.Font;
 import java.util.concurrent.CompletableFuture;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
@@ -17,7 +19,7 @@ import pantallas.AppTheme;
 public class PPT extends javax.swing.JFrame {
 
     private final ImageIcon PIEDRA_ICO = new ImageIcon("src\\imagenes\\PiedraPPT.png");
-    private final ImageIcon PAPEL_ICO = new ImageIcon("src\\imagenes\\PapelPPT.png");
+    private final ImageIcon PAPEL_ICO = new ImageIcon("src\\imagenes\\PapelPPT.jpg");
     private final ImageIcon TIJERA_ICO = new ImageIcon("src\\imagenes\\TijeraPPT.png");
     
     public static final Color VERDE = new Color(0, 170, 95);
@@ -37,15 +39,15 @@ public class PPT extends javax.swing.JFrame {
     public PPT() {
         initComponents();
         aplicarEstiloVisual();
-        continuarTurno.setEnabled(false);
-        continuarTurno.setVisible(false);
         activarBotones(false);
         r1.setBackground(null);
         r2.setBackground(null);
         r3.setBackground(null);
         setNombresJugadores();
         mostrarPuntos();
-        iniciarJuego();
+        contador.setText("-");
+        continuarTurno.setText("Empezar Partida");
+//        iniciarJuego();
     }
 
     private void aplicarEstiloVisual() {
@@ -177,6 +179,11 @@ public class PPT extends javax.swing.JFrame {
                 papelMouseExited(evt);
             }
         });
+        BotonPapel.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BotonPapelActionPerformed(evt);
+            }
+        });
         Panel_PPT.add(BotonPapel, new org.netbeans.lib.awtextra.AbsoluteConstraints(1450, 650, 350, 140));
 
         BotonTijera.setBorderPainted(false);
@@ -187,6 +194,11 @@ public class PPT extends javax.swing.JFrame {
             }
             public void mouseExited(java.awt.event.MouseEvent evt) {
                 tijeraMouseExited(evt);
+            }
+        });
+        BotonTijera.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BotonTijeraActionPerformed(evt);
             }
         });
         Panel_PPT.add(BotonTijera, new org.netbeans.lib.awtextra.AbsoluteConstraints(1450, 820, 350, 140));
@@ -363,7 +375,7 @@ public class PPT extends javax.swing.JFrame {
     }//GEN-LAST:event_tijeraMouseEntered
 
     private void tijeraMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tijeraMouseExited
-        // TODO add your handling code here:
+        tijera.setBorder(null);
     }//GEN-LAST:event_tijeraMouseExited
 
     private void BotonPiedraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonPiedraActionPerformed
@@ -371,12 +383,34 @@ public class PPT extends javax.swing.JFrame {
     }//GEN-LAST:event_BotonPiedraActionPerformed
 
     private void continuarTurnoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_continuarTurnoActionPerformed
-        P.continuarTurno();
+        if(!P.isPartidaEnCurso() && P.devolverResultado().isEmpty()){
+            iniciarJuego();
+            continuarTurno.setText("Siguiente Turno");
+        } else {
+            siguienteTurno();
+        }
+        continuarTurno.setEnabled(false);
+        continuarTurno.setVisible(false);
     }//GEN-LAST:event_continuarTurnoActionPerformed
 
+    private void BotonPapelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonPapelActionPerformed
+        hacerJugada(JugadaPPT.PAPEL);
+    }//GEN-LAST:event_BotonPapelActionPerformed
+
+    private void BotonTijeraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonTijeraActionPerformed
+        hacerJugada(JugadaPPT.TIJERA);
+    }//GEN-LAST:event_BotonTijeraActionPerformed
+
     private void iniciarJuego(){
-        ejecucionJuego = new Thread(() -> P.iniciarJuego());
-        ejecucionJuego.start();
+        new Thread(() -> {
+            P.iniciarJuego();
+        }).start();
+    }
+    
+    private void siguienteTurno(){
+        new Thread(() -> {
+            P.siguienteTurno();
+        }).start();
     }
     
     private void setNombresJugadores() {
@@ -395,12 +429,18 @@ public class PPT extends javax.swing.JFrame {
         BotonTijera.setEnabled(activar);
     }
     
+    private void resetResultados(){
+        resultadoUser.setBorder(null);
+        resultadoUser.setIcon(null);
+        resultadoBot.setBorder(null);
+        resultadoBot.setIcon(null);
+    }
+    
     protected void pedirJugada(CompletableFuture<JugadaPPT> jugadaPedida) {
+        resetResultados();
         pararCuentaAtras();
         this.jugadaPedida = jugadaPedida;
         activarBotones(true);
-        resultadoUser.setBorder(null);
-        resultadoBot.setBorder(null);
 
         int[] segundos = {10};
         cuentaAtras = new Timer(1000, e -> {
@@ -433,10 +473,20 @@ public class PPT extends javax.swing.JFrame {
     }
     
     protected void mostrarJugadaPersona(int gesto){
+        try {
+            Thread.sleep(80);
+        } catch (InterruptedException ex) {
+            Logger.getLogger(PPT.class.getName()).log(Level.SEVERE, null, ex);
+        }
         resultadoUser.setIcon(getIconoGesto(gesto));
     }
     
     protected void mostrarJugadaBot(int gesto){
+        try {
+            Thread.sleep(160);
+        } catch (InterruptedException ex) {
+            Logger.getLogger(PPT.class.getName()).log(Level.SEVERE, null, ex);
+        }
         resultadoBot.setIcon(getIconoGesto(gesto));
     }
     
@@ -454,7 +504,17 @@ public class PPT extends javax.swing.JFrame {
     protected void mostrarPuntos(){
         int puntosUser = P.getJugador1().equals(J)? P.getPuntosJ1() : P.getPuntosJ2();
         int puntosBot = P.getJugador2().equals(J)? P.getPuntosJ1() : P.getPuntosJ2();
+        try {
+            Thread.sleep(80);
+        } catch (InterruptedException ex) {
+            Logger.getLogger(PPT.class.getName()).log(Level.SEVERE, null, ex);
+        }
         marc_jug.setText(String.valueOf(puntosUser));
+        try {
+            Thread.sleep(80);
+        } catch (InterruptedException ex) {
+            Logger.getLogger(PPT.class.getName()).log(Level.SEVERE, null, ex);
+        }
         marc_bot.setText(String.valueOf(puntosBot));
     }
     
@@ -464,7 +524,17 @@ public class PPT extends javax.swing.JFrame {
             case 2 -> r2.setBackground(GRIS);
             case 3 -> r3.setBackground(GRIS);
         }
+        try {
+            Thread.sleep(80);
+        } catch (InterruptedException ex) {
+            Logger.getLogger(PPT.class.getName()).log(Level.SEVERE, null, ex);
+        }
         resultadoUser.setBorder(BorderFactory.createLineBorder(GRIS));
+        try {
+            Thread.sleep(80);
+        } catch (InterruptedException ex) {
+            Logger.getLogger(PPT.class.getName()).log(Level.SEVERE, null, ex);
+        }
         resultadoBot.setBorder(BorderFactory.createLineBorder(GRIS));
     }
     
@@ -475,7 +545,17 @@ public class PPT extends javax.swing.JFrame {
             case 2 -> r2.setBackground(c);
             case 3 -> r3.setBackground(c);
         }
+        try {
+            Thread.sleep(80);
+        } catch (InterruptedException ex) {
+            Logger.getLogger(PPT.class.getName()).log(Level.SEVERE, null, ex);
+        }
         resultadoUser.setBorder(BorderFactory.createLineBorder(c));
+        try {
+            Thread.sleep(80);
+        } catch (InterruptedException ex) {
+            Logger.getLogger(PPT.class.getName()).log(Level.SEVERE, null, ex);
+        }
         resultadoBot.setBorder(BorderFactory.createLineBorder(c.equals(VERDE)? ROJO : VERDE));
     }
     
@@ -486,7 +566,17 @@ public class PPT extends javax.swing.JFrame {
             case 2 -> r2.setBackground(c);
             case 3 -> r3.setBackground(c);
         }
+        try {
+            Thread.sleep(80);
+        } catch (InterruptedException ex) {
+            Logger.getLogger(PPT.class.getName()).log(Level.SEVERE, null, ex);
+        }
         resultadoUser.setBorder(BorderFactory.createLineBorder(c));
+        try {
+            Thread.sleep(80);
+        } catch (InterruptedException ex) {
+            Logger.getLogger(PPT.class.getName()).log(Level.SEVERE, null, ex);
+        }
         resultadoBot.setBorder(BorderFactory.createLineBorder(c.equals(VERDE)? ROJO : VERDE));
     }
     
