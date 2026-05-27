@@ -20,17 +20,17 @@ public class EstadoTablero {
         }
     }
     
-    public int getCasilla(int i){
-        return this.tablero[i];
+    public int getCasilla(int posicion){
+        return this.tablero[posicion];
     }
     
-    public void setCasilla(int i, int marca) throws IllegalArgumentException {
+    public void setCasilla(int posicion, int marca) throws IllegalArgumentException {
         if(marca < 0 || marca > 2){
             throw new IllegalArgumentException(marca+" no es una marca valida.");
-        } else if (i < 0 || i >= this.tablero.length){
-            throw new IllegalArgumentException(i+" esta fuera de rango.");    
+        } else if (posicion < 0 || posicion >= this.tablero.length){
+            throw new IllegalArgumentException(posicion+" esta fuera de rango.");    
         } else {
-            this.tablero[i] = marca;
+            this.tablero[posicion] = marca;
         }
     }
 
