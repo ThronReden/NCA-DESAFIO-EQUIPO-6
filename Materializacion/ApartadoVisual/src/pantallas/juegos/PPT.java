@@ -32,7 +32,6 @@ public class PPT extends javax.swing.JFrame {
     
     private Timer cuentaAtras;
     private CompletableFuture<JugadaPPT> jugadaPedida;
-    private Thread ejecucionJuego;
     
     /**
      * Creates new form PPT
