@@ -22,12 +22,14 @@ public class Jugada3EnRaya {
     
     public Jugada3EnRaya(int turn, int pos, Jugador3EnRaya j) throws IllegalArgumentException {
         if(pos < ARRIBA_IZQUIERDA || pos > ABAJO_DERECHA){
-            throw new IllegalArgumentException("Posicion no valida");
-        } else {
-            this.turno = turn;
-            this.posicion = pos;
-            this.jugador = j;
+            throw new IllegalArgumentException("Posicion no valida.");
         }
+        if(turn <= 0){
+            throw new IllegalArgumentException("Turno no valido.");
+        }
+        this.turno = turn;
+        this.posicion = pos;
+        this.jugador = j;
     }
 
     public int getTurno() {
