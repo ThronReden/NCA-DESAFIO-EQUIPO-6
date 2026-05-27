@@ -15,6 +15,7 @@ public final class AppTheme {
     private static String personajePptActivo = "/imagenes/GonPPT.png";
     private static String personajePptlsActivo = "/imagenes/Master_Hand.png";
     private static String personajeRayaActivo = "/imagenes/RickMorty.png";
+    private static String nombreUsuarioActivo = "Jugador";
     private static final Set<String> articulosComprados = new HashSet<>();
 
     private AppTheme() {
@@ -110,6 +111,26 @@ public final class AppTheme {
 
     public static void setPersonajeRayaActivo(String ruta) {
         personajeRayaActivo = ruta;
+    }
+
+    public static String getNombreUsuarioActivo() {
+        return nombreUsuarioActivo;
+    }
+
+    public static void setNombreUsuarioActivo(String nombreUsuario) {
+        nombreUsuarioActivo = nombreUsuario;
+    }
+
+    public static void resetPersonalizacionUsuario() {
+        fondoActivo = new Color(15, 15, 15);
+        iconoPerfilActivo = "/imagenes/iconsUsuarioPerfil.png";
+        personajeMainActivo = "/imagenes/Sheldon.png";
+        personajeTiendaActivo = "/imagenes/Griff.png";
+        personajePerfilActivo = "/imagenes/MrNintendo.png";
+        personajePptActivo = "/imagenes/GonPPT.png";
+        personajePptlsActivo = "/imagenes/Master_Hand.png";
+        personajeRayaActivo = "/imagenes/RickMorty.png";
+        articulosComprados.clear();
     }
 
     public static void registrarCompra(String articulo) {

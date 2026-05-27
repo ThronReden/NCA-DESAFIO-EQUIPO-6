@@ -30,6 +30,7 @@ public class Main_Juego extends javax.swing.JFrame {
          ((Difuminar) fondoEstrellado).setOpacity(0.30f);
         Menu_Ampliado.setBackground(new Color(20, 20, 20));
         Sheldon.setIcon(AppTheme.getPersonajeMainActivo());
+        Bienvenido.setText("BIENVENIDO " + AppTheme.getNombreUsuarioActivo() + " !");
 
         setExtendedState(JFrame.MAXIMIZED_BOTH);
 

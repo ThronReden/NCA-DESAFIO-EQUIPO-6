@@ -1,18 +1,20 @@
 package pantallas;
 
+import CRUD_bbdd.bbdd_registroUsuario;
 import java.awt.Color;
 import static java.awt.Color.black;
 import static java.awt.Color.red;
 import static java.awt.Color.white;
 import static java.awt.Color.yellow;
 import javax.swing.ImageIcon;
+import javax.swing.JOptionPane;
 
 /**
  *
  * @author LENOVO
  */
 public class Registro extends javax.swing.JFrame {
-    
+
     private final char EchoChar;
 
     ImageIcon NoVer = new ImageIcon("src\\imagenes\\iconsNoVer.png");
@@ -343,9 +345,9 @@ public class Registro extends javax.swing.JFrame {
     }//GEN-LAST:event_Panel_ArrastreMousePressed
 
     private void jLabel8MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel8MouseClicked
-        new Main_Juego().setVisible(true);
-        this.dispose();
+        registrarUsuario();
     }//GEN-LAST:event_jLabel8MouseClicked
+
 
     private void nombreMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_nombreMouseClicked
         nombre.setText("");
@@ -369,7 +371,73 @@ public class Registro extends javax.swing.JFrame {
         contraseña.setText("");
     }//GEN-LAST:event_contraseñaMouseClicked
 
+    private void registrarUsuario() {
+        String nombreUsuario = nombre.getText().trim();
+        String correoUsuario = correo.getText().trim();
+        String contrasenaUsuario = new String(contraseña.getPassword()).trim();
+
+        if (!datosRegistroValidos(nombreUsuario, correoUsuario, contrasenaUsuario)) {
+            return;
+        }
+
+        if (bbdd_registroUsuario.existeUsuarioOCorreo(nombreUsuario, correoUsuario)) {
+            JOptionPane.showMessageDialog(this, "Ese nombre o correo ya esta registrado.", "Registro", JOptionPane.WARNING_MESSAGE);
+            return;
+        }
+
+        boolean registrado = bbdd_registroUsuario.registrarUsuario(nombreUsuario, correoUsuario, contrasenaUsuario);
+
+        if (registrado) {
+            AppTheme.resetPersonalizacionUsuario();
+            AppTheme.setNombreUsuarioActivo(nombreUsuario);
+            new Main_Juego().setVisible(true);
+            this.dispose();
+        } else {
+            JOptionPane.showMessageDialog(this, "No se pudo registrar el usuario. Revisa la conexion con la base de datos.", "Registro", JOptionPane.ERROR_MESSAGE);
+        }
+    }
+
+    private boolean datosRegistroValidos(String nombreUsuario, String correoUsuario, String contrasenaUsuario) {
+        if (nombreUsuario.isEmpty() || nombreUsuario.equals("Ingresar Nombre Aquí")) {
+            JOptionPane.showMessageDialog(this, "Introduce un nombre de usuario.", "Registro", JOptionPane.WARNING_MESSAGE);
+            return false;
+        }
+
+        if (correoUsuario.isEmpty() || correoUsuario.equals("Ingresar Aquí")) {
+            JOptionPane.showMessageDialog(this, "Introduce un correo electronico.", "Registro", JOptionPane.WARNING_MESSAGE);
+            return false;
+        }
+
+        if (!correoUsuario.contains("@") || !correoUsuario.contains(".")) {
+            JOptionPane.showMessageDialog(this, "Introduce un correo electronico valido.", "Registro", JOptionPane.WARNING_MESSAGE);
+            return false;
+        }
+
+        if (contrasenaUsuario.isEmpty() || contrasenaUsuario.equals("********")) {
+            JOptionPane.showMessageDialog(this, "Introduce una contraseña.", "Registro", JOptionPane.WARNING_MESSAGE);
+            return false;
+        }
+
+        if (nombreUsuario.length() > 20) {
+            JOptionPane.showMessageDialog(this, "El nombre no puede superar 20 caracteres.", "Registro", JOptionPane.WARNING_MESSAGE);
+            return false;
+        }
+
+        if (correoUsuario.length() > 50) {
+            JOptionPane.showMessageDialog(this, "El correo no puede superar 50 caracteres.", "Registro", JOptionPane.WARNING_MESSAGE);
+            return false;
+        }
+
+        if (contrasenaUsuario.length() > 45) {
+            JOptionPane.showMessageDialog(this, "La contraseña no puede superar 45 caracteres.", "Registro", JOptionPane.WARNING_MESSAGE);
+            return false;
+        }
+
+        return true;
+    }
+
     /**
+     *
      * @param args the command line arguments
      */
     public static void main(String args[]) {

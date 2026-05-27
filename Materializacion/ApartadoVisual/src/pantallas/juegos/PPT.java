@@ -1,5 +1,6 @@
 package pantallas.juegos;
 
+import CRUD_bbdd.bbdd_operaciones;
 import pantallas.Difuminar;
 import java.awt.Color;
 import java.awt.Font;
@@ -30,11 +31,15 @@ public class PPT extends javax.swing.JFrame {
     public static final Color ROJO = new Color(120, 35, 55);
     public static final Color GRIS = new Color(55, 60, 63);
 
-    private final JugadorPPTUI J = new JugadorPPTUI("Persona");
+    private final JugadorPPTUI J = new JugadorPPTUI(AppTheme.getNombreUsuarioActivo());
     private PartidaPPTUI P = PartidaPPTUI.crearPartida(J, 3, this);
 
     private Timer cuentaAtras;
     private CompletableFuture<JugadaPPT> jugadaPedida;
+    private int vecesPiedra;
+    private int vecesPapel;
+    private int vecesTijera;
+    private boolean resultadoRegistrado;
 
     /**
      * Creates new form PPT
@@ -53,6 +58,8 @@ public class PPT extends javax.swing.JFrame {
 
     private void aplicarEstiloVisual() {
         Color fondo = AppTheme.getFondoActivo();
+        Color neon = new Color(0, 255, 160);
+        Color cyan = new Color(0, 210, 255);
 
         Panel_PPT.setBackground(fondo);
         iconoPerfil.setIcon(AppTheme.getIconoPerfilActivo());
@@ -85,6 +92,21 @@ public class PPT extends javax.swing.JFrame {
         nombre_bot.setBounds(330, 950, 500, 60);
         nombre_de_usuario.setBounds(1130, 950, 440, 60);
         marc_bot.setBounds(750, 675, 460, 105);
+
+        Resultado.setBackground(new Color(12, 18, 20));
+        Resultado.setBorder(javax.swing.BorderFactory.createLineBorder(neon, 3));
+        RESULTADO.setForeground(Color.WHITE);
+        RESULTADO.setFont(new Font("Dialog", Font.BOLD, 58));
+        Panel_Volver.setBackground(new Color(0, 110, 80));
+        Panel_Salir.setBackground(new Color(16, 28, 34));
+        jLabel10.setForeground(Color.WHITE);
+        jLabel10.setBorder(javax.swing.BorderFactory.createLineBorder(neon, 2));
+        jLabel14.setText("Salir al Menu");
+        jLabel14.setForeground(Color.WHITE);
+        jLabel14.setBorder(javax.swing.BorderFactory.createLineBorder(cyan, 2));
+        for (JLabel borde : new JLabel[]{jLabel15, jLabel16, jLabel17, jLabel18}) {
+            borde.setBackground(new Color(0, 0, 0));
+        }
 
     }
 
@@ -142,6 +164,9 @@ public class PPT extends javax.swing.JFrame {
         gon = new Difuminar();
 
         jLabel7.setText("jLabel7");
+
+        jDialog1.setUndecorated(true);
+        jDialog1.setResizable(false);
 
         Resultado.setBackground(new java.awt.Color(255, 255, 255));
         Resultado.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -242,7 +267,7 @@ public class PPT extends javax.swing.JFrame {
                 BotonPiedraActionPerformed(evt);
             }
         });
-        Panel_PPT.add(BotonPiedra, new org.netbeans.lib.awtextra.AbsoluteConstraints(1450, 490, 350, 140));
+        Panel_PPT.add(BotonPiedra, new org.netbeans.lib.awtextra.AbsoluteConstraints(1470, 440, 350, 140));
 
         BotonPapel.setBorderPainted(false);
         BotonPapel.setContentAreaFilled(false);
@@ -259,7 +284,7 @@ public class PPT extends javax.swing.JFrame {
                 BotonPapelActionPerformed(evt);
             }
         });
-        Panel_PPT.add(BotonPapel, new org.netbeans.lib.awtextra.AbsoluteConstraints(1450, 650, 350, 140));
+        Panel_PPT.add(BotonPapel, new org.netbeans.lib.awtextra.AbsoluteConstraints(1470, 610, 350, 140));
 
         BotonTijera.setBorderPainted(false);
         BotonTijera.setContentAreaFilled(false);
@@ -276,7 +301,7 @@ public class PPT extends javax.swing.JFrame {
                 BotonTijeraActionPerformed(evt);
             }
         });
-        Panel_PPT.add(BotonTijera, new org.netbeans.lib.awtextra.AbsoluteConstraints(1450, 820, 350, 140));
+        Panel_PPT.add(BotonTijera, new org.netbeans.lib.awtextra.AbsoluteConstraints(1470, 780, 350, 140));
 
         iconoPerfil.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         iconoPerfil.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/iconsUsuarioPerfil.png"))); // NOI18N
@@ -478,6 +503,7 @@ public class PPT extends javax.swing.JFrame {
 
     private void jLabel10MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel10MouseClicked
         P = PartidaPPTUI.crearPartida(J, 3, this);
+        resetEstadisticasPartida();
         setNombresJugadores();
         continuarTurno.setText("Empezar Partida");
         continuarTurno.setVisible(true);
@@ -528,8 +554,8 @@ public class PPT extends javax.swing.JFrame {
         resultadoBot.setBorder(null);
         resultadoBot.setIcon(null);
     }
-    
-    private void resetRondas(){
+
+    private void resetRondas() {
         r1.setBackground(null);
         r2.setBackground(null);
         r3.setBackground(null);
@@ -562,6 +588,7 @@ public class PPT extends javax.swing.JFrame {
 
     private void hacerJugada(int gesto) {
         try {
+            registrarGestoUsuario(gesto);
             J.hacerJugada(gesto, P, jugadaPedida);
             this.jugadaPedida = null;
             activarBotones(false);
@@ -569,6 +596,26 @@ public class PPT extends javax.swing.JFrame {
         } catch (IllegalArgumentException IAEx) {
             throw new IllegalArgumentException("Jugada no valida.");
         }
+    }
+
+    private void registrarGestoUsuario(int gesto) {
+        switch (gesto) {
+            case JugadaPPT.PIEDRA ->
+                vecesPiedra++;
+            case JugadaPPT.PAPEL ->
+                vecesPapel++;
+            case JugadaPPT.TIJERA ->
+                vecesTijera++;
+            default ->
+                throw new IllegalArgumentException("Gesto no valido.");
+        }
+    }
+
+    private void resetEstadisticasPartida() {
+        vecesPiedra = 0;
+        vecesPapel = 0;
+        vecesTijera = 0;
+        resultadoRegistrado = false;
     }
 
     protected void mostrarJugadaPersona(int gesto) {
@@ -697,21 +744,48 @@ public class PPT extends javax.swing.JFrame {
         }
         resultadoBot.setBorder(BorderFactory.createLineBorder(c.equals(VERDE) ? ROJO : VERDE));
     }
-    
-    protected void mostrarResultado(int EMPATE){
+
+    protected void mostrarResultado(int EMPATE) {
+        registrarResultadoPPT(false);
+
         RESULTADO.setText("¡EMPATE!");
+        Resultado.setBackground(new Color(45, 50, 55));
+
         mostrarDialogResultado();
     }
-    protected void mostrarResultado(JugadorPPT ganador){
-        if(ganador.equals(J)){
+
+    protected void mostrarResultado(JugadorPPT ganador) {
+        registrarResultadoPPT(ganador.equals(J));
+
+        if (ganador.equals(J)) {
+
             RESULTADO.setText("¡HAS GANADO!");
+            Resultado.setBackground(new Color(0, 90, 60));
+
         } else {
+
             RESULTADO.setText("Has perdido...");
+            Resultado.setBackground(new Color(95, 20, 36));
         }
+
         mostrarDialogResultado();
     }
-    
-    private void mostrarDialogResultado(){
+
+    private void registrarResultadoPPT(boolean partidaGanada) {
+        if (resultadoRegistrado) {
+            return;
+        }
+        int puntosUsuario = (vecesPiedra + vecesPapel + vecesTijera) * 2;
+        if (partidaGanada) {
+            puntosUsuario += 25;
+        } else if (P.devolverGanador().isEmpty()) {
+            puntosUsuario += 10;
+        }
+        bbdd_operaciones.registrarResultadoPPT(AppTheme.getNombreUsuarioActivo(), vecesPiedra, vecesPapel, vecesTijera, partidaGanada, puntosUsuario);
+        resultadoRegistrado = true;
+    }
+
+    private void mostrarDialogResultado() {
         jDialog1.setSize(850, 590);
         jDialog1.setLocationRelativeTo(this);
         jDialog1.setModal(true);

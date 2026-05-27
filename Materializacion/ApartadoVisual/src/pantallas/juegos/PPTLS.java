@@ -1,7 +1,9 @@
 package pantallas.juegos;
 
+import CRUD_bbdd.bbdd_operaciones;
 import pantallas.Difuminar;
 import java.awt.Color;
+import static java.awt.Color.cyan;
 import java.awt.Font;
 import java.util.concurrent.CompletableFuture;
 import java.util.logging.Level;
@@ -31,13 +33,19 @@ public class PPTLS extends javax.swing.JFrame {
     private final ImageIcon TIJERA_ICO = new ImageIcon("src\\imagenes\\tijera.png");
     private final ImageIcon LAGARTO_ICO = new ImageIcon("src\\imagenes\\Lagarto.png");
     private final ImageIcon SPOCK_ICO = new ImageIcon("src\\imagenes\\spock.png");
-    
+
     private final JugadorPPTLSUI J = new JugadorPPTLSUI("Persona");
     private PartidaPPTLSUI P = PartidaPPTLSUI.crearPartida(J, 3, this);
 
     private Timer cuentaAtras;
     private CompletableFuture<JugadaPPT> jugadaPedida;
-    
+    private int vecesPiedra;
+    private int vecesPapel;
+    private int vecesTijera;
+    private int vecesLagarto;
+    private int vecesSpock;
+    private boolean resultadoRegistrado;
+
     /**
      * Creates new form PPTLS
      */
@@ -47,6 +55,7 @@ public class PPTLS extends javax.swing.JFrame {
         activarBotones(false);
         resetRondas();
         setNombresJugadores();
+
         //mostrarPuntos();
         contador.setText("-");
         continuarTurno.setText("Empezar Partida");
@@ -54,11 +63,12 @@ public class PPTLS extends javax.swing.JFrame {
 
     private void aplicarEstiloVisual() {
         Color fondo = AppTheme.getFondoActivo();
+        Color neon = new Color(0, 255, 160);
+        Color cyan = new Color(0, 210, 255);
 
         Panel_PPT.setBackground(fondo);
         iconoPerfil.setIcon(AppTheme.getIconoPerfilActivo());
         master_hand.setIcon(AppTheme.getPersonajePptlsActivo());
-     
 
         contador.setForeground(new Color(255, 0, 75));
         contador.setFont(new Font("Dialog", Font.BOLD, 76));
@@ -71,14 +81,14 @@ public class PPTLS extends javax.swing.JFrame {
 
         JLabel[] etiquetas = {
             jLabel1, jLabel3, jLabel4, jLabel10, jLabel11,
-            jLabel12, jLabel13, jLabel14, jLabel15, jLabel16
+            jLabel12, jLabel13, jLabel67, jLabel15, jLabel16
         };
         for (JLabel etiqueta : etiquetas) {
             etiqueta.setForeground(Color.WHITE);
             etiqueta.setFont(new Font("Dialog", Font.BOLD, 18));
-                   
+
         }
-         setExtendedState(JFrame.MAXIMIZED_BOTH);
+        setExtendedState(JFrame.MAXIMIZED_BOTH);
 //
 //        r1.setBackground(new Color(0, 170, 95));
 //        r2.setBackground(new Color(120, 35, 55));
@@ -94,7 +104,22 @@ public class PPTLS extends javax.swing.JFrame {
         nombre_bot.setBounds(560, 150, 320, 40);
         nombre_de_usuario.setBounds(1090, 150, 330, 40);
         contador.setBounds(750, 835, 460, 95);
-        
+
+        Resultado.setBackground(new Color(12, 18, 20));
+        Resultado.setBorder(javax.swing.BorderFactory.createLineBorder(neon, 3));
+        RESULTADO.setForeground(Color.WHITE);
+        RESULTADO.setFont(new Font("Dialog", Font.BOLD, 58));
+        Panel_Volver.setBackground(new Color(0, 110, 80));
+        Panel_Salir.setBackground(new Color(16, 28, 34));
+        jLabel10.setForeground(Color.WHITE);
+        jLabel10.setBorder(javax.swing.BorderFactory.createLineBorder(neon, 2));
+        jLabel67.setText("Salir al Menu");
+        jLabel67.setForeground(Color.WHITE);
+        jLabel67.setBorder(javax.swing.BorderFactory.createLineBorder(cyan, 2));
+        for (JLabel borde : new JLabel[]{jLabel15, jLabel16, jLabel17, jLabel18}) {
+            borde.setBackground(new Color(0, 0, 0));
+        }
+
         restaurarOpcion(piedra);
         restaurarOpcion(papel);
         restaurarOpcion(tijera);
@@ -147,7 +172,7 @@ public class PPTLS extends javax.swing.JFrame {
         spockBot = new javax.swing.JLabel();
         jLabel12 = new javax.swing.JLabel();
         jLabel13 = new javax.swing.JLabel();
-        jLabel14 = new javax.swing.JLabel();
+        jLabel67 = new javax.swing.JLabel();
         piedra = new javax.swing.JLabel();
         papel = new javax.swing.JLabel();
         tijera = new javax.swing.JLabel();
@@ -159,6 +184,9 @@ public class PPTLS extends javax.swing.JFrame {
         master_hand = new Difuminar();
 
         jLabel7.setText("jLabel7");
+
+        jDialog1.setUndecorated(true);
+        jDialog1.setResizable(false);
 
         Resultado.setBackground(new java.awt.Color(255, 255, 255));
         Resultado.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -352,11 +380,11 @@ public class PPTLS extends javax.swing.JFrame {
         jLabel13.setText("PIEDRA");
         Panel_PPT.add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(1570, 370, 110, 30));
 
-        jLabel14.setBackground(new java.awt.Color(255, 255, 255));
-        jLabel14.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
-        jLabel14.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel14.setText("TIJERA");
-        Panel_PPT.add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(1650, 590, 140, 30));
+        jLabel67.setBackground(new java.awt.Color(255, 255, 255));
+        jLabel67.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
+        jLabel67.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel67.setText("TIJERA");
+        Panel_PPT.add(jLabel67, new org.netbeans.lib.awtextra.AbsoluteConstraints(1650, 590, 140, 30));
 
         piedra.setBackground(new java.awt.Color(255, 255, 255));
         piedra.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -560,7 +588,7 @@ public class PPTLS extends javax.swing.JFrame {
                 BorderFactory.createEmptyBorder(10, 10, 10, 10)));
         opcion.setBackground(new Color(10, 24, 27));
     }
-    
+
     private void iniciarJuego() {
         new Thread(() -> {
             P.iniciarJuego();
@@ -597,8 +625,8 @@ public class PPTLS extends javax.swing.JFrame {
         resultadoBot.setBorder(null);
         resultadoBot.setIcon(null);
     }
-    
-    private void resetRondas(){
+
+    private void resetRondas() {
         r1.setBackground(null);
         r2.setBackground(null);
         r3.setBackground(null);
@@ -631,6 +659,7 @@ public class PPTLS extends javax.swing.JFrame {
 
     private void hacerJugada(int gesto) {
         try {
+            registrarGestoUsuario(gesto);
             J.hacerJugada(gesto, P, jugadaPedida);
             this.jugadaPedida = null;
             activarBotones(false);
@@ -770,25 +799,103 @@ public class PPTLS extends javax.swing.JFrame {
         }
         resultadoBot.setBorder(BorderFactory.createLineBorder(c.equals(VERDE) ? ROJO : VERDE));
     }
-    
-    protected void mostrarResultado(int EMPATE){
+
+    protected void mostrarResultado(int EMPATE) {
+        registrarResultadoPPTLS(false);
+
         RESULTADO.setText("¡EMPATE!");
+        Resultado.setBackground(new Color(45, 50, 55));
+
         mostrarDialogResultado();
     }
-    protected void mostrarResultado(JugadorPPTLS ganador){
-        if(ganador.equals(J)){
+
+    protected void mostrarResultado(JugadorPPTLS ganador) {
+        registrarResultadoPPTLS(ganador.equals(J));
+
+        if (ganador.equals(J)) {
+
             RESULTADO.setText("¡HAS GANADO!");
+            Resultado.setBackground(new Color(0, 90, 60));
+
         } else {
+
             RESULTADO.setText("Has perdido...");
+            Resultado.setBackground(new Color(95, 20, 36));
         }
+
         mostrarDialogResultado();
     }
-    
-    private void mostrarDialogResultado(){
+
+    private void mostrarDialogResultado() {
         jDialog1.setSize(850, 590);
         jDialog1.setLocationRelativeTo(this);
         jDialog1.setModal(true);
         jDialog1.setVisible(true);
+    }
+
+    private void resetEstadisticasPartida() {
+        vecesPiedra = 0;
+        vecesPapel = 0;
+        vecesTijera = 0;
+        vecesLagarto = 0;
+        vecesSpock = 0;
+        resultadoRegistrado = false;
+    }
+
+    private void registrarGestoUsuario(int gesto) {
+        switch (gesto) {
+            case JugadaPPTLS.PIEDRA ->
+                vecesPiedra++;
+
+            case JugadaPPTLS.PAPEL ->
+                vecesPapel++;
+
+            case JugadaPPTLS.TIJERA ->
+                vecesTijera++;
+
+            case JugadaPPTLS.LAGARTO ->
+                vecesLagarto++;
+
+            case JugadaPPTLS.SPOCK ->
+                vecesSpock++;
+
+            default ->
+                throw new IllegalArgumentException("Gesto no valido.");
+        }
+    }
+
+    private void registrarResultadoPPTLS(boolean partidaGanada) {
+
+        if (resultadoRegistrado) {
+            return;
+        }
+
+        int puntosUsuario
+                = (vecesPiedra
+                + vecesPapel
+                + vecesTijera
+                + vecesLagarto
+                + vecesSpock) * 2;
+
+        if (partidaGanada) {
+            puntosUsuario += 25;
+
+        } else if (P.devolverGanador().isEmpty()) {
+            puntosUsuario += 10;
+        }
+
+        bbdd_operaciones.registrarResultadoPPTLS(
+                AppTheme.getNombreUsuarioActivo(),
+                vecesPiedra,
+                vecesPapel,
+                vecesTijera,
+                vecesLagarto,
+                vecesSpock,
+                partidaGanada,
+                puntosUsuario
+        );
+
+        resultadoRegistrado = true;
     }
 
     /**
@@ -846,7 +953,6 @@ public class PPTLS extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
-    private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel17;
@@ -857,6 +963,7 @@ public class PPTLS extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel22;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel67;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel lagarto;
     private javax.swing.JLabel lagartoBot;

@@ -1,5 +1,6 @@
 package pantallas.juegos;
 
+import CRUD_bbdd.bbdd_operaciones;
 import pantallas.Difuminar;
 import java.awt.Color;
 import java.awt.Font;
@@ -25,8 +26,9 @@ public class Pantalla_3EnRaya extends javax.swing.JFrame {
 
     private final JLabel[] labelGrid;
 
-    private final Jugador3EnRayaUI J = new Jugador3EnRayaUI("Persona");
+    private final Jugador3EnRayaUI J = new Jugador3EnRayaUI(AppTheme.getNombreUsuarioActivo());
     private Partida3EnRayaUI P = Partida3EnRayaUI.crearPartida(J, this);
+    private boolean resultadoRegistrado;
 
     public Pantalla_3EnRaya() {
         initComponents();
@@ -415,6 +417,7 @@ public class Pantalla_3EnRaya extends javax.swing.JFrame {
 
     private void jLabel10MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel10MouseClicked
         P = Partida3EnRayaUI.crearPartida(J, this);
+        resultadoRegistrado = false;
         setNombresJugadores();
         P.iniciarJuego();
         jDialog1.dispose();
@@ -443,7 +446,9 @@ public class Pantalla_3EnRaya extends javax.swing.JFrame {
     }
 
     public void mostrarResultado(Jugador3EnRaya ganador) {
-        if (ganador instanceof Jugador3EnRayaUI) {
+        boolean ganaUsuario = ganador instanceof Jugador3EnRayaUI;
+        registrarResultado3EnRaya(ganaUsuario, false);
+        if (ganaUsuario) {
             RESULTADO.setText("HAS GANADO");
             Resultado.setBackground(new Color(0, 90, 60));
         } else {
@@ -453,9 +458,19 @@ public class Pantalla_3EnRaya extends javax.swing.JFrame {
         mostrarDialogResultado();
     }
     public void mostrarResultado(){
+        registrarResultado3EnRaya(false, true);
         RESULTADO.setText("EMPATE");
         Resultado.setBackground(new Color(45, 50, 55));
         mostrarDialogResultado();
+    }
+
+    private void registrarResultado3EnRaya(boolean partidaGanada, boolean empate) {
+        if (resultadoRegistrado) {
+            return;
+        }
+
+        bbdd_operaciones.registrarResultado3EnRaya(AppTheme.getNombreUsuarioActivo(), partidaGanada, empate);
+        resultadoRegistrado = true;
     }
     
     private void mostrarDialogResultado(){

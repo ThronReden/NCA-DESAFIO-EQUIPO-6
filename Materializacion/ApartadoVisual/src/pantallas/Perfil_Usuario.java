@@ -1,9 +1,12 @@
 package pantallas;
 
+import CRUD_bbdd.bbdd_PerfilUsuario;
+import CRUD_bbdd.bbdd_PerfilUsuario.DatosPerfil;
+import CRUD_bbdd.bbdd_PerfilUsuario.EstadisticasPerfil;
 import java.awt.Color;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
-
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -12,6 +15,7 @@ import javax.swing.JFrame;
 public class Perfil_Usuario extends javax.swing.JFrame {
 
     private final char EchoChar;
+    private DatosPerfil datosOriginales;
     ImageIcon NoVer = new ImageIcon("src\\imagenes\\iconsNoVer.png");
     ImageIcon Ver = new ImageIcon("src\\imagenes\\iconsVer.png");
 
@@ -27,8 +31,180 @@ public class Perfil_Usuario extends javax.swing.JFrame {
         jLabel16.setIcon(AppTheme.getIconoPerfilActivo());
         jLabel23.setIcon(AppTheme.getPersonajePerfilActivo());
         ((Difuminar) jLabel23).setOpacity(0.75f);
-         ((Difuminar) fondo_hack).setOpacity(0.18f);
+        ((Difuminar) fondo_hack).setOpacity(0.18f);
+        prepararEdicionPerfil();
+        cargarDatosPerfil();
+        cargarEstadisticasPerfil();
         setExtendedState(JFrame.MAXIMIZED_BOTH);
+    }
+
+    private void prepararEdicionPerfil() {
+        nombre_usuario.setEditable(false);
+        correo_electronico.setEditable(false);
+        contraseña.setEditable(false);
+
+        editarNombre.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                habilitarCampo(nombre_usuario);
+            }
+        });
+
+        editarCorreo.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                habilitarCampo(correo_electronico);
+            }
+        });
+
+        botonContraseña.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                habilitarCampo(contraseña);
+            }
+        });
+
+        botonGuardarCambios.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                guardarCambiosPerfil();
+            }
+        });
+    }
+
+    private void habilitarCampo(javax.swing.text.JTextComponent campo) {
+        campo.setEditable(true);
+        campo.requestFocus();
+        campo.selectAll();
+    }
+
+    private void cargarDatosPerfil() {
+        datosOriginales = bbdd_PerfilUsuario.obtenerDatosPerfil(AppTheme.getNombreUsuarioActivo());
+
+        if (datosOriginales == null) {
+            nombre_usuario.setText(AppTheme.getNombreUsuarioActivo());
+            correo_electronico.setText("");
+            contraseña.setText("");
+            return;
+        }
+
+        nombre_usuario.setText(datosOriginales.getNombreUsuario());
+        correo_electronico.setText(datosOriginales.getCorreo());
+        contraseña.setText(datosOriginales.getContrasena());
+    }
+
+    private void cargarEstadisticasPerfil() {
+        EstadisticasPerfil estadisticas = bbdd_PerfilUsuario.obtenerEstadisticasPerfil(AppTheme.getNombreUsuarioActivo());
+
+        if (estadisticas == null) {
+            contador_puntos.setText("0");
+            contador_ganadaPPT.setText("0");
+            contador_piedra.setText("0");
+            contador_papel.setText("0");
+            contador_tijera.setText("0");
+            contador_3R.setText("0");
+            contador_ganadaPPTLS.setText("0");
+            contador_Lagartos.setText("0");
+            contador_Spock.setText("0");
+            return;
+        }
+
+        contador_puntos.setText(String.valueOf(estadisticas.getPuntos()));
+        contador_ganadaPPT.setText(String.valueOf(estadisticas.getPartidasGanadasPpt()));
+        contador_piedra.setText(String.valueOf(estadisticas.getPiedra()));
+        contador_papel.setText(String.valueOf(estadisticas.getPapel()));
+        contador_tijera.setText(String.valueOf(estadisticas.getTijera()));
+        contador_3R.setText(String.valueOf(estadisticas.getPartidasGanadas3R()));
+        contador_ganadaPPTLS.setText(String.valueOf(estadisticas.getPartidasGanadasPptls()));
+        contador_Lagartos.setText(String.valueOf(estadisticas.getLagarto()));
+        contador_Spock.setText(String.valueOf(estadisticas.getSpock()));
+    }
+
+    private void guardarCambiosPerfil() {
+        if (datosOriginales == null) {
+            return;
+        }
+
+        String nuevoNombre = nombre_usuario.getText().trim();
+        String nuevoCorreo = correo_electronico.getText().trim();
+        String nuevaContrasena = new String(contraseña.getPassword()).trim();
+
+        if (!hayCambios(nuevoNombre, nuevoCorreo, nuevaContrasena)) {
+            bloquearCamposPerfil();
+            return;
+        }
+
+        if (!datosPerfilValidos(nuevoNombre, nuevoCorreo, nuevaContrasena)) {
+            return;
+        }
+
+        if (bbdd_PerfilUsuario.existeOtroUsuarioOCorreo(datosOriginales.getIdUsuario(), nuevoNombre, nuevoCorreo)) {
+            JOptionPane.showMessageDialog(this, "Ese nombre o correo ya esta en uso.", "Perfil", JOptionPane.WARNING_MESSAGE);
+            return;
+        }
+
+        boolean actualizado = bbdd_PerfilUsuario.actualizarDatosPerfil(
+                datosOriginales.getIdUsuario(),
+                nuevoNombre,
+                nuevoCorreo,
+                nuevaContrasena
+        );
+
+        if (actualizado) {
+            AppTheme.setNombreUsuarioActivo(nuevoNombre);
+            datosOriginales = new DatosPerfil(datosOriginales.getIdUsuario(), nuevoNombre, nuevoCorreo, nuevaContrasena);
+            bloquearCamposPerfil();
+            JOptionPane.showMessageDialog(this, "Datos actualizados correctamente.", "Perfil", JOptionPane.INFORMATION_MESSAGE);
+        } else {
+            JOptionPane.showMessageDialog(this, "No se pudieron actualizar los datos.", "Perfil", JOptionPane.ERROR_MESSAGE);
+        }
+    }
+
+    private boolean hayCambios(String nuevoNombre, String nuevoCorreo, String nuevaContrasena) {
+        return !nuevoNombre.equals(datosOriginales.getNombreUsuario())
+                || !nuevoCorreo.equals(datosOriginales.getCorreo())
+                || !nuevaContrasena.equals(datosOriginales.getContrasena());
+    }
+
+    private boolean datosPerfilValidos(String nombre, String correo, String contrasena) {
+        if (nombre.isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Introduce un nombre de usuario.", "Perfil", JOptionPane.WARNING_MESSAGE);
+            return false;
+        }
+
+        if (correo.isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Introduce un correo electronico.", "Perfil", JOptionPane.WARNING_MESSAGE);
+            return false;
+        }
+
+        if (!correo.contains("@") || !correo.contains(".")) {
+            JOptionPane.showMessageDialog(this, "Introduce un correo electronico valido.", "Perfil", JOptionPane.WARNING_MESSAGE);
+            return false;
+        }
+
+        if (contrasena.isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Introduce una contraseña.", "Perfil", JOptionPane.WARNING_MESSAGE);
+            return false;
+        }
+
+        if (nombre.length() > 20) {
+            JOptionPane.showMessageDialog(this, "El nombre no puede superar 20 caracteres.", "Perfil", JOptionPane.WARNING_MESSAGE);
+            return false;
+        }
+
+        if (correo.length() > 50) {
+            JOptionPane.showMessageDialog(this, "El correo no puede superar 50 caracteres.", "Perfil", JOptionPane.WARNING_MESSAGE);
+            return false;
+        }
+
+        if (contrasena.length() > 45) {
+            JOptionPane.showMessageDialog(this, "La contraseña no puede superar 45 caracteres.", "Perfil", JOptionPane.WARNING_MESSAGE);
+            return false;
+        }
+
+        return true;
+    }
+
+    private void bloquearCamposPerfil() {
+        nombre_usuario.setEditable(false);
+        correo_electronico.setEditable(false);
+        contraseña.setEditable(false);
     }
 
     /**
@@ -69,6 +245,15 @@ public class Perfil_Usuario extends javax.swing.JFrame {
         botonGuardarCambios = new javax.swing.JPanel();
         datoPersonales = new javax.swing.JLabel();
         panelEstadisticas = new javax.swing.JPanel();
+        contador_puntos = new javax.swing.JLabel();
+        contador_ganadaPPT = new javax.swing.JLabel();
+        contador_Spock = new javax.swing.JLabel();
+        contador_ganadaPPTLS = new javax.swing.JLabel();
+        contador_3R = new javax.swing.JLabel();
+        contador_Lagartos = new javax.swing.JLabel();
+        contador_piedra = new javax.swing.JLabel();
+        contador_papel = new javax.swing.JLabel();
+        contador_tijera = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
         Boton_Cierre_Perfil = new javax.swing.JPanel();
         jLabel18 = new javax.swing.JLabel();
@@ -259,6 +444,7 @@ public class Perfil_Usuario extends javax.swing.JFrame {
         });
         panelDatos.add(Visibilidad, new org.netbeans.lib.awtextra.AbsoluteConstraints(840, 250, 50, 50));
 
+        nombre_usuario.setEditable(false);
         nombre_usuario.setFont(new java.awt.Font("Leelawadee UI", 0, 24)); // NOI18N
         nombre_usuario.setForeground(new java.awt.Color(255, 255, 255));
         nombre_usuario.setText("{nombre_usuario}");
@@ -266,6 +452,7 @@ public class Perfil_Usuario extends javax.swing.JFrame {
         nombre_usuario.setOpaque(false);
         panelDatos.add(nombre_usuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 120, 520, 40));
 
+        correo_electronico.setEditable(false);
         correo_electronico.setFont(new java.awt.Font("Leelawadee UI", 0, 24)); // NOI18N
         correo_electronico.setForeground(new java.awt.Color(255, 255, 255));
         correo_electronico.setText("{correo_electronico}");
@@ -273,6 +460,7 @@ public class Perfil_Usuario extends javax.swing.JFrame {
         correo_electronico.setOpaque(false);
         panelDatos.add(correo_electronico, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 190, 520, 40));
 
+        contraseña.setEditable(false);
         contraseña.setFont(new java.awt.Font("Gadugi", 0, 24)); // NOI18N
         contraseña.setForeground(new java.awt.Color(255, 255, 255));
         contraseña.setText("{contraseña}");
@@ -304,6 +492,51 @@ public class Perfil_Usuario extends javax.swing.JFrame {
 
         panelEstadisticas.setOpaque(false);
         panelEstadisticas.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        contador_puntos.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
+        contador_puntos.setForeground(new java.awt.Color(51, 255, 0));
+        contador_puntos.setText("{contador_puntos}");
+        panelEstadisticas.add(contador_puntos, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 120, 140, 30));
+
+        contador_ganadaPPT.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
+        contador_ganadaPPT.setForeground(new java.awt.Color(51, 255, 0));
+        contador_ganadaPPT.setText("{contador_puntos}");
+        panelEstadisticas.add(contador_ganadaPPT, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 190, 140, 40));
+
+        contador_Spock.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
+        contador_Spock.setForeground(new java.awt.Color(51, 255, 0));
+        contador_Spock.setText("{contador_puntos}");
+        panelEstadisticas.add(contador_Spock, new org.netbeans.lib.awtextra.AbsoluteConstraints(820, 260, 140, 70));
+
+        contador_ganadaPPTLS.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
+        contador_ganadaPPTLS.setForeground(new java.awt.Color(51, 255, 0));
+        contador_ganadaPPTLS.setText("{contador_puntos}");
+        panelEstadisticas.add(contador_ganadaPPTLS, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 270, 140, 40));
+
+        contador_3R.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
+        contador_3R.setForeground(new java.awt.Color(51, 255, 0));
+        contador_3R.setText("{contador_puntos}");
+        panelEstadisticas.add(contador_3R, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 350, 140, 40));
+
+        contador_Lagartos.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
+        contador_Lagartos.setForeground(new java.awt.Color(51, 255, 0));
+        contador_Lagartos.setText("{contador_puntos}");
+        panelEstadisticas.add(contador_Lagartos, new org.netbeans.lib.awtextra.AbsoluteConstraints(820, 340, 140, 50));
+
+        contador_piedra.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
+        contador_piedra.setForeground(new java.awt.Color(51, 255, 0));
+        contador_piedra.setText("{contador_puntos}");
+        panelEstadisticas.add(contador_piedra, new org.netbeans.lib.awtextra.AbsoluteConstraints(820, 70, 140, 50));
+
+        contador_papel.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
+        contador_papel.setForeground(new java.awt.Color(51, 255, 0));
+        contador_papel.setText("{contador_puntos}");
+        panelEstadisticas.add(contador_papel, new org.netbeans.lib.awtextra.AbsoluteConstraints(820, 130, 140, 60));
+
+        contador_tijera.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
+        contador_tijera.setForeground(new java.awt.Color(51, 255, 0));
+        contador_tijera.setText("{contador_puntos}");
+        panelEstadisticas.add(contador_tijera, new org.netbeans.lib.awtextra.AbsoluteConstraints(820, 200, 140, 60));
 
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/Estadisticas.png"))); // NOI18N
@@ -510,6 +743,15 @@ public class Perfil_Usuario extends javax.swing.JFrame {
     private javax.swing.JLabel Visibilidad;
     private javax.swing.JPanel botonContraseña;
     private javax.swing.JPanel botonGuardarCambios;
+    private javax.swing.JLabel contador_3R;
+    private javax.swing.JLabel contador_Lagartos;
+    private javax.swing.JLabel contador_Spock;
+    private javax.swing.JLabel contador_ganadaPPT;
+    private javax.swing.JLabel contador_ganadaPPTLS;
+    private javax.swing.JLabel contador_papel;
+    private javax.swing.JLabel contador_piedra;
+    private javax.swing.JLabel contador_puntos;
+    private javax.swing.JLabel contador_tijera;
     private javax.swing.JPasswordField contraseña;
     private javax.swing.JTextField correo_electronico;
     private javax.swing.JLabel datoPersonales;
