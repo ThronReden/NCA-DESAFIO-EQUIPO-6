@@ -21,7 +21,7 @@ public class Jugada3EnRaya {
     public static final int ABAJO_DERECHA = 8;
     
     public Jugada3EnRaya(int turn, int pos, Jugador3EnRaya j) throws IllegalArgumentException {
-        if(pos < 0 || pos >= 9){
+        if(pos < ARRIBA_IZQUIERDA || pos > ABAJO_DERECHA){
             throw new IllegalArgumentException("Posicion no valida");
         } else {
             this.turno = turn;

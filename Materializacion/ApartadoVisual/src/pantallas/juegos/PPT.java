@@ -1,14 +1,16 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
 package pantallas.juegos;
 
 import java.awt.Color;
 import java.awt.Font;
+import java.util.concurrent.CompletableFuture;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.BorderFactory;
+import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.Timer;
+import logicajuegos.PPT.JugadaPPT;
 import pantallas.AppTheme;
 
 /**
@@ -17,12 +19,35 @@ import pantallas.AppTheme;
  */
 public class PPT extends javax.swing.JFrame {
 
+    private final ImageIcon PIEDRA_ICO = new ImageIcon("src\\imagenes\\PiedraPPT.png");
+    private final ImageIcon PAPEL_ICO = new ImageIcon("src\\imagenes\\PapelPPT.png");
+    private final ImageIcon TIJERA_ICO = new ImageIcon("src\\imagenes\\TijeraPPT.png");
+    
+    public static final Color VERDE = new Color(0, 170, 95);
+    public static final Color ROJO = new Color(120, 35, 55);
+    public static final Color GRIS = new Color(55, 60, 63);
+    
+    private final JugadorPPTUI J = new JugadorPPTUI("Persona");
+    private PartidaPPTUI P = PartidaPPTUI.crearPartida(J, 3, this);
+    
+    private Timer cuentaAtras;
+    private CompletableFuture<JugadaPPT> jugadaPedida;
+    
     /**
      * Creates new form PPT
      */
     public PPT() {
         initComponents();
         aplicarEstiloVisual();
+        activarBotones(false);
+        r1.setBackground(null);
+        r2.setBackground(null);
+        r3.setBackground(null);
+        setNombresJugadores();
+        mostrarPuntos();
+        contador.setText("-");
+        continuarTurno.setText("Empezar Partida");
+//        iniciarJuego();
     }
 
     private void aplicarEstiloVisual() {
@@ -73,6 +98,10 @@ public class PPT extends javax.swing.JFrame {
 
         jLabel7 = new javax.swing.JLabel();
         Panel_PPT = new javax.swing.JPanel();
+        continuarTurno = new javax.swing.JButton();
+        BotonPiedra = new javax.swing.JButton();
+        BotonPapel = new javax.swing.JButton();
+        BotonTijera = new javax.swing.JButton();
         iconoPerfil = new javax.swing.JLabel();
         nombre_de_usuario = new javax.swing.JLabel();
         nombre_bot = new javax.swing.JLabel();
@@ -112,6 +141,65 @@ public class PPT extends javax.swing.JFrame {
         Panel_PPT.setMinimumSize(new java.awt.Dimension(1920, 1090));
         Panel_PPT.setPreferredSize(new java.awt.Dimension(1920, 1090));
         Panel_PPT.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        continuarTurno.setText("Continuar Turno");
+        continuarTurno.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                continuarTurnoActionPerformed(evt);
+            }
+        });
+        Panel_PPT.add(continuarTurno, new org.netbeans.lib.awtextra.AbsoluteConstraints(860, 710, 280, 100));
+
+        BotonPiedra.setBorderPainted(false);
+        BotonPiedra.setContentAreaFilled(false);
+        BotonPiedra.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                piedraMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                piedraMouseExited(evt);
+            }
+        });
+        BotonPiedra.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BotonPiedraActionPerformed(evt);
+            }
+        });
+        Panel_PPT.add(BotonPiedra, new org.netbeans.lib.awtextra.AbsoluteConstraints(1450, 490, 350, 140));
+
+        BotonPapel.setBorderPainted(false);
+        BotonPapel.setContentAreaFilled(false);
+        BotonPapel.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                papelMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                papelMouseExited(evt);
+            }
+        });
+        BotonPapel.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BotonPapelActionPerformed(evt);
+            }
+        });
+        Panel_PPT.add(BotonPapel, new org.netbeans.lib.awtextra.AbsoluteConstraints(1450, 650, 350, 140));
+
+        BotonTijera.setBorderPainted(false);
+        BotonTijera.setContentAreaFilled(false);
+        BotonTijera.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                tijeraMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                tijeraMouseExited(evt);
+            }
+        });
+        BotonTijera.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BotonTijeraActionPerformed(evt);
+            }
+        });
+        Panel_PPT.add(BotonTijera, new org.netbeans.lib.awtextra.AbsoluteConstraints(1450, 820, 350, 140));
 
         iconoPerfil.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         iconoPerfil.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/iconsUsuarioPerfil.png"))); // NOI18N
@@ -199,9 +287,6 @@ public class PPT extends javax.swing.JFrame {
         papel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/PapelPPT.png"))); // NOI18N
         papel.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         papel.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                papelMouseClicked(evt);
-            }
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 papelMouseEntered(evt);
             }
@@ -244,7 +329,6 @@ public class PPT extends javax.swing.JFrame {
 
         r1.setBackground(new java.awt.Color(0, 255, 0));
         r1.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
-        r1.setForeground(new java.awt.Color(0, 0, 0));
         r1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         r1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         r1.setOpaque(true);
@@ -252,7 +336,6 @@ public class PPT extends javax.swing.JFrame {
 
         r2.setBackground(new java.awt.Color(255, 0, 51));
         r2.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
-        r2.setForeground(new java.awt.Color(0, 0, 0));
         r2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         r2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         r2.setOpaque(true);
@@ -260,7 +343,6 @@ public class PPT extends javax.swing.JFrame {
 
         r3.setBackground(new java.awt.Color(153, 153, 153));
         r3.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
-        r3.setForeground(new java.awt.Color(0, 0, 0));
         r3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         r3.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         r3.setOpaque(true);
@@ -300,10 +382,6 @@ public class PPT extends javax.swing.JFrame {
         piedra.setBorder(null);
     }//GEN-LAST:event_piedraMouseExited
 
-    private void papelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_papelMouseClicked
-
-    }//GEN-LAST:event_papelMouseClicked
-
     private void papelMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_papelMouseEntered
         papel.setBorder(BorderFactory.createLineBorder(new Color(0, 255, 160), 3));
         papel.setBackground(new Color(18, 45, 43));
@@ -322,6 +400,208 @@ public class PPT extends javax.swing.JFrame {
         tijera.setBorder(null);
     }//GEN-LAST:event_tijeraMouseExited
 
+    private void BotonPiedraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonPiedraActionPerformed
+        hacerJugada(JugadaPPT.PIEDRA);
+    }//GEN-LAST:event_BotonPiedraActionPerformed
+
+    private void continuarTurnoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_continuarTurnoActionPerformed
+        if(!P.isPartidaEnCurso() && P.devolverResultado().isEmpty()){
+            iniciarJuego();
+            continuarTurno.setText("Siguiente Turno");
+        } else {
+            siguienteTurno();
+        }
+        continuarTurno.setEnabled(false);
+        continuarTurno.setVisible(false);
+    }//GEN-LAST:event_continuarTurnoActionPerformed
+
+    private void BotonPapelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonPapelActionPerformed
+        hacerJugada(JugadaPPT.PAPEL);
+    }//GEN-LAST:event_BotonPapelActionPerformed
+
+    private void BotonTijeraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonTijeraActionPerformed
+        hacerJugada(JugadaPPT.TIJERA);
+    }//GEN-LAST:event_BotonTijeraActionPerformed
+
+    private void iniciarJuego(){
+        new Thread(() -> {
+            P.iniciarJuego();
+        }).start();
+    }
+    
+    private void siguienteTurno(){
+        new Thread(() -> {
+            P.siguienteTurno();
+        }).start();
+    }
+    
+    private void setNombresJugadores() {
+        if (P.getJugador1() instanceof JugadorPPTUI) {
+            nombre_de_usuario.setText(P.getJugador1().getNombre());
+            nombre_bot.setText(P.getJugador2().getNombre());
+        } else {
+            nombre_de_usuario.setText(P.getJugador2().getNombre());
+            nombre_bot.setText(P.getJugador1().getNombre());
+        }
+    }
+    
+    private void activarBotones(boolean activar) {
+        BotonPiedra.setEnabled(activar);
+        BotonPapel.setEnabled(activar);
+        BotonTijera.setEnabled(activar);
+    }
+    
+    private void resetResultados(){
+        resultadoUser.setBorder(null);
+        resultadoUser.setIcon(null);
+        resultadoBot.setBorder(null);
+        resultadoBot.setIcon(null);
+    }
+    
+    protected void pedirJugada(CompletableFuture<JugadaPPT> jugadaPedida) {
+        resetResultados();
+        pararCuentaAtras();
+        this.jugadaPedida = jugadaPedida;
+        activarBotones(true);
+
+        int[] segundos = {10};
+        cuentaAtras = new Timer(1000, e -> {
+            segundos[0]--;
+            contador.setText(segundos[0] + "s");
+            if (segundos[0] == 0) {
+                ((Timer) e.getSource()).stop();
+            }
+        });
+        cuentaAtras.start();
+    }
+    
+    protected void pararCuentaAtras(){
+        if (cuentaAtras != null) {
+            cuentaAtras.stop();
+            cuentaAtras = null;
+        }
+        contador.setText("-");
+    }
+    
+    private void hacerJugada(int gesto) {
+        try{
+            J.hacerJugada(gesto, P, jugadaPedida);
+            this.jugadaPedida = null;
+            activarBotones(false);
+            pararCuentaAtras();
+        } catch(IllegalArgumentException IAEx) {
+            //NO HACEMOS NA
+        }
+    }
+    
+    protected void mostrarJugadaPersona(int gesto){
+        try {
+            Thread.sleep(80);
+        } catch (InterruptedException ex) {
+            Logger.getLogger(PPT.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        resultadoUser.setIcon(getIconoGesto(gesto));
+    }
+    
+    protected void mostrarJugadaBot(int gesto){
+        try {
+            Thread.sleep(160);
+        } catch (InterruptedException ex) {
+            Logger.getLogger(PPT.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        resultadoBot.setIcon(getIconoGesto(gesto));
+    }
+    
+    private ImageIcon getIconoGesto(int gesto){
+        ImageIcon ico = PIEDRA_ICO;
+        switch(gesto){
+            case JugadaPPT.PIEDRA -> ico = PIEDRA_ICO;
+            case JugadaPPT.PAPEL -> ico = PAPEL_ICO;
+            case JugadaPPT.TIJERA -> ico = TIJERA_ICO;
+            default -> throw new IllegalArgumentException("Gesto no valido.");
+        }
+        return ico;
+    }
+    
+    protected void mostrarPuntos(){
+        int puntosUser = P.getJugador1().equals(J)? P.getPuntosJ1() : P.getPuntosJ2();
+        int puntosBot = P.getJugador2().equals(J)? P.getPuntosJ1() : P.getPuntosJ2();
+        try {
+            Thread.sleep(80);
+        } catch (InterruptedException ex) {
+            Logger.getLogger(PPT.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        marc_jug.setText(String.valueOf(puntosUser));
+        try {
+            Thread.sleep(80);
+        } catch (InterruptedException ex) {
+            Logger.getLogger(PPT.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        marc_bot.setText(String.valueOf(puntosBot));
+    }
+    
+    protected void resultadoRondaEMPATE() {
+        switch(P.getTurno()){
+            case 1 -> r1.setBackground(GRIS);
+            case 2 -> r2.setBackground(GRIS);
+            case 3 -> r3.setBackground(GRIS);
+        }
+        try {
+            Thread.sleep(80);
+        } catch (InterruptedException ex) {
+            Logger.getLogger(PPT.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        resultadoUser.setBorder(BorderFactory.createLineBorder(GRIS));
+        try {
+            Thread.sleep(80);
+        } catch (InterruptedException ex) {
+            Logger.getLogger(PPT.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        resultadoBot.setBorder(BorderFactory.createLineBorder(GRIS));
+    }
+    
+    protected void resultadoRondaGANA_J1() {
+        Color c = P.getJugador1().equals(J)? VERDE : ROJO;
+        switch(P.getTurno()){
+            case 1 -> r1.setBackground(c);
+            case 2 -> r2.setBackground(c);
+            case 3 -> r3.setBackground(c);
+        }
+        try {
+            Thread.sleep(80);
+        } catch (InterruptedException ex) {
+            Logger.getLogger(PPT.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        resultadoUser.setBorder(BorderFactory.createLineBorder(c));
+        try {
+            Thread.sleep(80);
+        } catch (InterruptedException ex) {
+            Logger.getLogger(PPT.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        resultadoBot.setBorder(BorderFactory.createLineBorder(c.equals(VERDE)? ROJO : VERDE));
+    }
+    
+    protected void resultadoRondaGANA_J2() {
+        Color c = P.getJugador2().equals(J)? VERDE : ROJO;
+        switch(P.getTurno()){
+            case 1 -> r1.setBackground(c);
+            case 2 -> r2.setBackground(c);
+            case 3 -> r3.setBackground(c);
+        }
+        try {
+            Thread.sleep(80);
+        } catch (InterruptedException ex) {
+            Logger.getLogger(PPT.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        resultadoUser.setBorder(BorderFactory.createLineBorder(c));
+        try {
+            Thread.sleep(80);
+        } catch (InterruptedException ex) {
+            Logger.getLogger(PPT.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        resultadoBot.setBorder(BorderFactory.createLineBorder(c.equals(VERDE)? ROJO : VERDE));
+    }
+    
     /**
      * @param args the command line arguments
      */
@@ -358,8 +638,12 @@ public class PPT extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton BotonPapel;
+    private javax.swing.JButton BotonPiedra;
+    private javax.swing.JButton BotonTijera;
     private javax.swing.JPanel Panel_PPT;
     private javax.swing.JLabel contador;
+    protected javax.swing.JButton continuarTurno;
     private javax.swing.JLabel fondo;
     private javax.swing.JLabel gon;
     private javax.swing.JLabel iconoBot;
