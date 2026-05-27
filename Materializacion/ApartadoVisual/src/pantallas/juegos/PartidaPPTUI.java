@@ -5,6 +5,7 @@ import logicajuegos.PPT.BotPPT;
 import logicajuegos.PPT.JugadaPPT;
 import logicajuegos.PPT.JugadorPPT;
 import logicajuegos.PPT.PartidaPPT;
+import logicajuegos.SupplierExcepcionesNoHayGanador;
 
 /**
  *
@@ -70,11 +71,13 @@ public class PartidaPPTUI extends PartidaPPT {
         Pantalla.pararCuentaAtras();
     }
     
+    @Override
     public void mostrarGanador(){
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        Pantalla.mostrarResultado(devolverGanador().orElseThrow(new SupplierExcepcionesNoHayGanador()));
     }
     
+    @Override
     public void mostrarEmpate(){
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        Pantalla.mostrarResultado(EMPATE);
     }
 }
