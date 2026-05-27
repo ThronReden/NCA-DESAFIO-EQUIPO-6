@@ -4,7 +4,7 @@ package logicajuegos.PPT;
  *
  * @author jsanchez
  */
-public class JugadaPPT<G extends JugadaPPT> implements Comparable<G> {
+public class JugadaPPT implements Comparable<JugadaPPT> {
     
     private final int turno;
     private final int gesto;
@@ -40,7 +40,7 @@ public class JugadaPPT<G extends JugadaPPT> implements Comparable<G> {
     }
     
     @Override
-    public int compareTo(G otraJugada) {
+    public int compareTo(JugadaPPT otraJugada) {
         int result = 0;
         
         switch(this.getGesto()){

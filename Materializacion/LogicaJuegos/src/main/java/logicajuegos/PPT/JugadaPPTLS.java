@@ -4,7 +4,7 @@ package logicajuegos.PPT;
  *
  * @author jsanchez
  */
-public class JugadaPPTLS extends JugadaPPT<JugadaPPTLS>{
+public class JugadaPPTLS extends JugadaPPT{
     
     public static final int LAGARTO = 3;
     public static final int SPOCK = 4;
@@ -21,33 +21,33 @@ public class JugadaPPTLS extends JugadaPPT<JugadaPPTLS>{
     }
     
     @Override
-    public int compareTo(JugadaPPTLS otraJugada) {
+    public int compareTo(JugadaPPT otraJugada) {
         int result = 0;
         
         switch(this.getGesto()){
             case PIEDRA -> {
                 switch(otraJugada.getGesto()){
-                    case PIEDRA -> super.compareTo(otraJugada);
-                    case PAPEL -> super.compareTo(otraJugada);
-                    case TIJERA -> super.compareTo(otraJugada);
+                    case PIEDRA -> result = super.compareTo(otraJugada);
+                    case PAPEL -> result = super.compareTo(otraJugada);
+                    case TIJERA -> result = super.compareTo(otraJugada);
                     case LAGARTO -> result = 1;
                     case SPOCK -> result = -1;
                 }
             }
             case PAPEL -> {
                 switch(otraJugada.getGesto()){
-                    case PIEDRA -> super.compareTo(otraJugada);
-                    case PAPEL -> super.compareTo(otraJugada);
-                    case TIJERA -> super.compareTo(otraJugada);
+                    case PIEDRA -> result = super.compareTo(otraJugada);
+                    case PAPEL -> result = super.compareTo(otraJugada);
+                    case TIJERA -> result = super.compareTo(otraJugada);
                     case LAGARTO -> result = -1;
                     case SPOCK -> result = 1;
                 }
             }
             case TIJERA -> {
                 switch(otraJugada.getGesto()){
-                    case PIEDRA -> super.compareTo(otraJugada);
-                    case PAPEL -> super.compareTo(otraJugada);
-                    case TIJERA -> super.compareTo(otraJugada);
+                    case PIEDRA -> result = super.compareTo(otraJugada);
+                    case PAPEL -> result = super.compareTo(otraJugada);
+                    case TIJERA -> result = super.compareTo(otraJugada);
                     case LAGARTO -> result = 1;
                     case SPOCK -> result = -1;
                 }

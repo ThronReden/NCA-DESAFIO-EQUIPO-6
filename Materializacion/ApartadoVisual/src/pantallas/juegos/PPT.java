@@ -594,7 +594,7 @@ public class PPT extends javax.swing.JFrame {
             activarBotones(false);
             pararCuentaAtras();
         } catch (IllegalArgumentException IAEx) {
-            //NO HACEMOS NA
+            throw new IllegalArgumentException("Jugada no valida.");
         }
     }
 
