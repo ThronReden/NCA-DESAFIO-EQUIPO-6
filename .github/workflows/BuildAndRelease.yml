@@ -47,7 +47,7 @@ jobs:
         ant -Dplatforms.JDK_22.home=$JAVA_HOME \
             -Dlibs.absolutelayout.classpath=lib/AbsoluteLayout.jar \
             -Dlibs.mysql-connector-j-9.7.0.classpath=lib/mysql-connector-j-9.7.0.jar \
-            clean jar
+            clean default
         ls -al dist
 
     # Comprimir
