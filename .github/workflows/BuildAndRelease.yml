@@ -13,7 +13,7 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - name: Checkout del código
+    - name: Checkout del codigo
       uses: actions/checkout@v4
 
     - name: Configurar Java JDK
@@ -23,7 +23,7 @@ jobs:
         distribution: 'temurin'
         cache: 'maven'
 
-    # Compilar lógica (Maven):
+    # Compilar logica (Maven):
     - name: Compilar LogicaJuegos
       run: |
         cd Materializacion/LogicaJuegos
