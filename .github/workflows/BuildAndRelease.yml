@@ -42,7 +42,7 @@ jobs:
     - name: Compilar ApartadoVisual y empaquetar
       run: |
         cd Materializacion/ApartadoVisual
-        ant dist
+        ant ./dist
 
     # Comprimir
     - name: Comprimir carpeta dist a ZIP
