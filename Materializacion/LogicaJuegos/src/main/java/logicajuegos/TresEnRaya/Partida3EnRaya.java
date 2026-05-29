@@ -49,15 +49,17 @@ public class Partida3EnRaya extends Juego<Integer,Jugador3EnRaya> {
     }
     
     public Jugador3EnRaya getJugadorTurnoActual(){
-        Jugador3EnRaya j = null;
-        if(isPartidaEnCurso()){
-            switch (turno%2){
-                case 1 -> j = getJugador1();
-                case 0 -> j = getJugador2();
-                default -> j = null;
-            }
+        if(!isPartidaEnCurso()){
+            throw new IllegalArgumentException("La partida no está en curso.");
         }
-        return j;
+        
+        Jugador3EnRaya jugadorActual;
+        switch (turno%2){
+            case 1 -> jugadorActual = getJugador1();
+            case 0 -> jugadorActual = getJugador2();
+            default -> jugadorActual = null;
+        }
+        return jugadorActual;
     }
     
     public int getTurno() {
@@ -65,6 +67,9 @@ public class Partida3EnRaya extends Juego<Integer,Jugador3EnRaya> {
     }
     
     private int getTurnoJugada(int pos) {
+        if(pos < Jugada3EnRaya.ARRIBA_IZQUIERDA || pos > Jugada3EnRaya.ABAJO_DERECHA){
+            throw new IllegalArgumentException("Posicion no valida.");
+        }
         for(Jugada3EnRaya j : jugadas){
             if(j.getPosicion() == pos){
                 return j.getTurno();
@@ -78,6 +83,9 @@ public class Partida3EnRaya extends Juego<Integer,Jugador3EnRaya> {
     }
     
     private boolean seHaJugado(int pos) {
+        if(pos < Jugada3EnRaya.ARRIBA_IZQUIERDA || pos > Jugada3EnRaya.ABAJO_DERECHA){
+            throw new IllegalArgumentException("Posicion no valida.");
+        }
         for(Jugada3EnRaya j: jugadas){
             if(j.getPosicion() == pos){
                 return true;
@@ -117,13 +125,14 @@ public class Partida3EnRaya extends Juego<Integer,Jugador3EnRaya> {
     public void recibirJugada(Jugada3EnRaya jugada) throws IllegalArgumentException {
         if(!jugada.getJugador().equals((Jugador3EnRaya)getJugadorTurnoActual())){
             throw new IllegalArgumentException("No es el turno de este jugador.");
-        } else if(seHaJugado(jugada.getPosicion())){
-            throw new IllegalArgumentException("No se puede hacer otra jugada en esa casilla.");
-        } else if(!isPartidaEnCurso()){
-            throw new IllegalArgumentException("No se pueden hacer jugadas, la partida ha terminado.");
-        } else {
-            this.jugadas.add(jugada);
         }
+        if(seHaJugado(jugada.getPosicion())){
+            throw new IllegalArgumentException("No se puede hacer otra jugada en esa casilla.");
+        }
+        if(!isPartidaEnCurso()){
+            throw new IllegalArgumentException("No se pueden hacer jugadas, la partida no está en curso.");
+        }
+        this.jugadas.add(jugada);
         continuarTurno();
     }
     
