@@ -48,13 +48,13 @@ jobs:
     - name: Comprimir carpeta dist a ZIP
       run: |
         cd Materializacion/ApartadoVisual
-        zip -r ../../DESAFIO_GRUPO6.zip dist/*
+        zip -r ../../DESAFIO-EQUIPO-6.zip dist/*
 
     # Crear Release
     - name: Crear GitHub Release
       uses: softprops/action-gh-release@v2
       with:
-        files: DESAFIO_GRUPO6.zip
+        files: DESAFIO-EQUIPO-6.zip
         name: Release ${{ github.ref_name }}
         draft: true
         prerelease: ${{ startsWith(github.ref_name, 'v0') }}
