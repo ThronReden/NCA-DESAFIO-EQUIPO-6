@@ -30,21 +30,25 @@ jobs:
         mvn clean package
         ls -al target
 
+    # Preparar dependencias:
+    - name: Obtener otras dependencias
+      run: |
+        cd Materializacion/LogicaJuegos
+        mkdir -p lib
+        
+        # nos bajamos AbsoluteLayout y el jdbc desde maven.org:
+        wget -O lib/mysql-connector-j-9.7.0.jar https://repo1.maven.org/maven2/com/mysql/mysql-connector-j/9.7.0/mysql-connector-j-9.7.0.jar
+        wget -O lib/AbsoluteLayout.jar https://repo1.maven.org/maven2/org/netbeans/external/AbsoluteLayout/RELEASE140/AbsoluteLayout-RELEASE140.jar
+
     # Compilar y empaquetar (Ant):
     - name: Compilar ApartadoVisual y empaquetar
       run: |
         cd Materializacion/ApartadoVisual
-        ant -Dplatforms.JDK_22.home=$JAVA_HOME clean jar
+        ant -Dplatforms.JDK_22.home=$JAVA_HOME \
+            -Dlibs.absolutelayout.classpath=lib/AbsoluteLayout.jar \
+            -Dlibs.mysql-connector-j-9.7.0.classpath=lib/mysql-connector-j-9.7.0.jar \
+            clean jar
         ls -al dist
-
-    # Preparar dependencias:
-    - name: Mover JAR LogicaJuegos a lib
-      run: |
-        mkdir -p Materializacion/ApartadoVisual/dist/lib
-        cp Materializacion/LogicaJuegos/target/*.jar Materializacion/ApartadoVisual/dist/lib/
-
-        # nos bajamos el jdbc desde maven.org:
-        wget -O Materializacion/ApartadoVisual/dist/lib/mysql-connector-j-9.7.0.jar https://repo1.maven.org/maven2/com/mysql/mysql-connector-j/9.7.0/mysql-connector-j-9.7.0.jar
 
     # Comprimir
     - name: Comprimir carpeta dist a ZIP
