@@ -41,7 +41,7 @@ jobs:
         wget -O lib/AbsoluteLayout.jar https://repo1.maven.org/maven2/org/netbeans/external/AbsoluteLayout/RELEASE140/AbsoluteLayout-RELEASE140.jar
 
         # y otra movida para que el target por defecto de netbeans funcione bien:
-        wget -O lib/CopyLibs.jar https://repo1.maven.org/maven2/org/netbeans/modules/org-netbeans-modules-java-j2seproject/RELEASE140/org-netbeans-modules-java-j2seproject-RELEASE140.jar
+        wget -O lib/CopyLibs.jar https://repo1.maven.org/maven2/org/netbeans/modules/org-netbeans-modules-java-j2seproject-copylibstask/RELEASE140/org-netbeans-modules-java-j2seproject-copylibstask-RELEASE140.jar
 
     # Compilar y empaquetar (Ant):
     - name: Compilar ApartadoVisual y empaquetar
