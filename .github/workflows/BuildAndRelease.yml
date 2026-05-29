@@ -40,6 +40,9 @@ jobs:
         wget -O lib/mysql-connector-j-9.7.0.jar https://repo1.maven.org/maven2/com/mysql/mysql-connector-j/9.7.0/mysql-connector-j-9.7.0.jar
         wget -O lib/AbsoluteLayout.jar https://repo1.maven.org/maven2/org/netbeans/external/AbsoluteLayout/RELEASE140/AbsoluteLayout-RELEASE140.jar
 
+        # y otra movida para que el target por defecto de netbeans funcione bien:
+        wget -O lib/CopyLibs.jar https://repo1.maven.org/maven2/org/netbeans/modules/org-netbeans-modules-java-j2seproject/RELEASE140/org-netbeans-modules-java-j2seproject-RELEASE140.jar
+
     # Compilar y empaquetar (Ant):
     - name: Compilar ApartadoVisual y empaquetar
       run: |
@@ -47,6 +50,7 @@ jobs:
         ant -Dplatforms.JDK_22.home=$JAVA_HOME \
             -Dlibs.absolutelayout.classpath=lib/AbsoluteLayout.jar \
             -Dlibs.mysql-connector-j-9.7.0.classpath=lib/mysql-connector-j-9.7.0.jar \
+            -Dlibs.CopyLibs.classpath=lib/CopyLibs.jar \
             clean default
         ls -al dist
 
