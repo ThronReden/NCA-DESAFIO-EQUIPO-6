@@ -34,7 +34,7 @@ jobs:
     - name: Compilar ApartadoVisual y empaquetar
       run: |
         cd Materializacion/ApartadoVisual
-        ant clean jar
+        ant -Dplatforms.JDK_22.home=$JAVA_HOME -f Materializacion/ApartadoVisual/build.xml clean jar
         ls -al dist
 
     # Preparar dependencias:
