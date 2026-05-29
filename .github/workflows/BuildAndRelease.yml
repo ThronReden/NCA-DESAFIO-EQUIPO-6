@@ -32,11 +32,11 @@ jobs:
     # Preparar dependencias:
     - name: Mover JAR LogicaJuegos a lib
       run: |
-        mkdir -p Materializacion/ApartadoVisual/lib
-        cp Materializacion/LogicaJuegos/target/*.jar Materializacion/ApartadoVisual/lib/
+        mkdir -p Materializacion/ApartadoVisual/dist/lib
+        cp Materializacion/LogicaJuegos/target/*.jar Materializacion/ApartadoVisual/dist/lib/
 
         # nos bajamos el jdbc desde maven.org:
-        wget -O Materializacion/ApartadoVisual/lib/mysql-connector-j-9.7.0.jar https://repo1.maven.org/maven2/com/mysql/mysql-connector-j/9.7.0/mysql-connector-j-9.7.0.jar
+        wget -O Materializacion/ApartadoVisual/dist/lib/mysql-connector-j-9.7.0.jar https://repo1.maven.org/maven2/com/mysql/mysql-connector-j/9.7.0/mysql-connector-j-9.7.0.jar
     
     # Compilar y empaquetar (Ant):
     - name: Compilar ApartadoVisual y empaquetar
