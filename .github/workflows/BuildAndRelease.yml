@@ -1,0 +1,62 @@
+name: Java Hybrid Build (Maven + Ant) & Release
+
+on:
+  push:
+    tags:
+      - 'v*'
+
+permissions:
+  contents: write
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout del código
+      uses: actions/checkout@v4
+
+    - name: Configurar Java JDK
+      uses: actions/setup-java@v4
+      with:
+        java-version: '22'
+        distribution: 'temurin'
+        cache: 'maven'
+
+    # Compilar lógica (Maven):
+    - name: Compilar LogicaJuegos
+      run: |
+        cd Materializacion/LogicaJuegos
+        mvn clean package
+
+    # Preparar dependencias:
+    - name: Mover JAR LogicaJuegos a lib
+      run: |
+        mkdir -p Materializacion/ApartadoVisual/lib
+        cp Materializacion/LogicaJuegos/target/*.jar Materializacion/ApartadoVisual/lib/
+
+        # nos bajamos el jdbc desde maven.org:
+        wget -O Materializacion/ApartadoVisual/lib/mysql-connector-j-9.7.0.jar https://repo1.maven.org/maven2/com/mysql/mysql-connector-j/9.7.0/mysql-connector-j-9.7.0.jar
+    
+    # Compilar y empaquetar (Ant):
+    - name: Compilar ApartadoVisual y empaquetar
+      run: |
+        cd Materializacion/ApartadoVisual
+        ant dist
+
+    # Comprimir
+    - name: Comprimir carpeta dist a ZIP
+      run: |
+        cd Materializacion/ApartadoVisual
+        zip -r ../../DESAFIO_GRUPO6.zip dist/*
+
+    # Crear Release
+    - name: Crear GitHub Release
+      uses: softprops/action-gh-release@v2
+      with:
+        files: DESAFIO_GRUPO6.zip
+        name: Release ${{ github.ref_name }}
+        draft: true
+        prerelease: ${{ startsWith(github.ref_name, 'v0') }}
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
