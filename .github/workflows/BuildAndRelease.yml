@@ -28,6 +28,14 @@ jobs:
       run: |
         cd Materializacion/LogicaJuegos
         mvn clean package
+        ls -al target
+
+    # Compilar y empaquetar (Ant):
+    - name: Compilar ApartadoVisual y empaquetar
+      run: |
+        cd Materializacion/ApartadoVisual
+        ant clean jar
+        ls -al dist
 
     # Preparar dependencias:
     - name: Mover JAR LogicaJuegos a lib
@@ -37,12 +45,6 @@ jobs:
 
         # nos bajamos el jdbc desde maven.org:
         wget -O Materializacion/ApartadoVisual/dist/lib/mysql-connector-j-9.7.0.jar https://repo1.maven.org/maven2/com/mysql/mysql-connector-j/9.7.0/mysql-connector-j-9.7.0.jar
-    
-    # Compilar y empaquetar (Ant):
-    - name: Compilar ApartadoVisual y empaquetar
-      run: |
-        cd Materializacion/ApartadoVisual
-        ant ./dist
 
     # Comprimir
     - name: Comprimir carpeta dist a ZIP
