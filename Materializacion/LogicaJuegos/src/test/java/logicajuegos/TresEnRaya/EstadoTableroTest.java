@@ -99,7 +99,7 @@ public class EstadoTableroTest {
     
     @ParameterizedTest(name = "En {0} la posicion {1} debe ser {2}")
     @MethodSource("casosComprobarGetCasillaCorrecto")
-    void comprobarGetCasillaCorrecto(EstadoTablero tablero, int posicion, int marcaEsperada){
+    void getCasillaCorrecto(EstadoTablero tablero, int posicion, int marcaEsperada){
         assertEquals(marcaEsperada, tablero.getCasilla(posicion));
     }
     
@@ -116,7 +116,7 @@ public class EstadoTableroTest {
     
     @ParameterizedTest(name = "La posicion {1} ahora debe ser {2}")
     @MethodSource("casosComprobarSetCasillaCorrecto")
-    void comprobarSetCasillaCorrecto(EstadoTablero tablero, int posicion, int nuevaMarca){
+    void setCasillaCorrecto(EstadoTablero tablero, int posicion, int nuevaMarca){
         tablero.setCasilla(posicion, nuevaMarca);
         var marcaEsperada = nuevaMarca;
         assertEquals(marcaEsperada, tablero.getCasilla(posicion));
@@ -137,4 +137,6 @@ public class EstadoTableroTest {
             getTableroVacio().setCasilla(posicion, R.nextInt(3));
         },posicion+" esta fuera de rango.");
     }
+    
+    //FALTAN
 }
