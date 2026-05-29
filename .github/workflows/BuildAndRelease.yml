@@ -33,7 +33,7 @@ jobs:
     # Preparar dependencias:
     - name: Obtener otras dependencias
       run: |
-        cd Materializacion/LogicaJuegos
+        cd Materializacion/ApartadoVisual
         mkdir -p lib
         
         # nos bajamos AbsoluteLayout y el jdbc desde maven.org:
