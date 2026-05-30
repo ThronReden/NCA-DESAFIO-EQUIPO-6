@@ -4,11 +4,15 @@ on:
   push:
     tags:
       - 'v*'
+      - 'V*'
+      - '[0-9]*'
 
 permissions:
   contents: write
 
 jobs:
+
+  # BUILD
   build:
     runs-on: ubuntu-latest
 
@@ -48,6 +52,7 @@ jobs:
             -Dlibs.absolutelayout.classpath=lib/AbsoluteLayout.jar \
             -Dlibs.mysql-connector-j-9.7.0.classpath=lib/mysql-connector-j-9.7.0.jar \
             -Dmkdist.disabled=true \
+            -Ddist.jar=dist/NCA-DESAFIO-EQUIPO-6-$GITHUB_REF_NAME.jar \
             clean jar
         ls -al dist
     #  y empaquetar
@@ -59,6 +64,13 @@ jobs:
         cp lib/*.jar dist/lib/
         cp ../../README.txt dist/
         ls -al dist dist/lib
+
+    # Nos guardamos dist para el empaquetado
+    - name: Subir dist como artefacto
+      uses: actions/upload-artifact@v4
+      with:
+        name: dist
+        path: Materializacion/ApartadoVisual/dist/
 
     # Comprimir
     - name: Comprimir carpeta dist a ZIP
@@ -73,6 +85,39 @@ jobs:
         files: DESAFIO-EQUIPO-6.zip
         name: Release ${{ github.ref_name }}
         draft: true
-        prerelease: ${{ startsWith(github.ref_name, 'v0') }}
+        prerelease: ${{ startsWith(github.ref_name, 'v0') || startsWith(github.ref_name, 'V0') || startsWith(github.ref_name, '0') }}
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+  # PACKAGE
+  package:
+    needs: build
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os: [ubuntu-latest, windows-latest]
+    steps:
+      - name: Descargar dist
+        uses: actions/download-artifact@v4
+        with:
+          name: dist
+          path: dist/
+
+      - name: Generar instalador con jpackage
+        shell: bash
+        run: |
+          VERSION=${GITHUB_REF_NAME#v}
+          VERSION=${VERSION#V}
+          jpackage --input dist/ \
+                   --dest instalador/ \
+                   --main-jar NCA-DESAFIO-EQUIPO-6-$GITHUB_REF_NAME.jar \
+                   --main-class pantallas.DesafioJuegoPPT3Ralla \
+                   --name "NCA-DESAFIO-EQUIPO-6" \
+                   --app-version $VERSION
+
+      - name: Subir instalador al Release
+        uses: softprops/action-gh-release@v2
+        with:
+          files: instalador/*
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
