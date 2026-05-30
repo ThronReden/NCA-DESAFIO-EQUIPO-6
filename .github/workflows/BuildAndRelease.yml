@@ -12,16 +12,16 @@ permissions:
 
 jobs:
 
-  # BUILD
+  # BUILD ##############################################################################
   build:
     runs-on: ubuntu-latest
 
     steps:
     - name: Checkout del codigo
-      uses: actions/checkout@v4
+      uses: actions/checkout@v6
 
     - name: Configurar Java JDK
-      uses: actions/setup-java@v4
+      uses: actions/setup-java@v5
       with:
         java-version: '22'
         distribution: 'temurin'
@@ -55,6 +55,7 @@ jobs:
             -Ddist.jar=dist/NCA-DESAFIO-EQUIPO-6.jar \
             clean jar
         ls -al dist
+        
     #  y empaquetar
     - name: Empaquetar
       run: |
@@ -66,7 +67,7 @@ jobs:
 
     # Nos guardamos dist para el empaquetado
     - name: Subir dist como artefacto
-      uses: actions/upload-artifact@v4
+      uses: actions/upload-artifact@v7
       with:
         name: dist
         path: Materializacion/ApartadoVisual/dist/
@@ -80,7 +81,7 @@ jobs:
 
     # Crear Release
     - name: Crear GitHub Release
-      uses: softprops/action-gh-release@v2
+      uses: softprops/action-gh-release@v3
       with:
         files: DESAFIO-EQUIPO-6-$GITHUB_REF_NAME.zip
         name: Release ${{ github.ref_name }}
@@ -89,7 +90,8 @@ jobs:
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
-  # PACKAGE
+  # PACKAGE ##############################################################################
+
   package:
     needs: build
     runs-on: ${{ matrix.os }}
@@ -100,13 +102,13 @@ jobs:
     steps:
     # Nos bajamos la carpeta dist
     - name: Descargar dist
-      uses: actions/download-artifact@v4
+      uses: actions/download-artifact@v8
       with:
         name: dist
         path: dist/
 
     - name: Configurar Java JDK
-      uses: actions/setup-java@v4
+      uses: actions/setup-java@v5
       with:
         java-version: '22'
         distribution: 'temurin'
@@ -114,17 +116,28 @@ jobs:
     - name: Generar instalador con jpackage
       shell: bash
       run: |
+        # Definimos el tipo de release:
+        if [[ "$RUNNER_OS" == "Windows" ]]; then
+          TYPE="exe"
+        else
+          TYPE="deb"
+        fi
+
+        # Aseguramos que la version tenga el formato adecuado:
         VERSION=${GITHUB_REF_NAME#v}
         VERSION=${VERSION#V}
+
+        # Empaquetamos:
         jpackage --input dist/ \
                   --dest instalador/ \
                   --main-jar NCA-DESAFIO-EQUIPO-6.jar \
                   --main-class pantallas.DesafioJuegoPPT3Ralla \
                   --name "NCA-DESAFIO-EQUIPO-6-$GITHUB_REF_NAME" \
-                  --app-version "$VERSION"
+                  --app-version "$VERSION" \
+                  --type "$TYPE"
 
     - name: Subir instalador al Release
-      uses: softprops/action-gh-release@v2
+      uses: softprops/action-gh-release@v3
       with:
         files: instalador/*
         draft: true
