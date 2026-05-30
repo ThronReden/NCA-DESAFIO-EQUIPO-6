@@ -83,7 +83,7 @@ jobs:
     - name: Crear GitHub Release
       uses: softprops/action-gh-release@v3
       with:
-        files: DESAFIO-EQUIPO-6-$GITHUB_REF_NAME.zip
+        files: DESAFIO-EQUIPO-6-${{ github.ref_name }}.zip
         name: Release ${{ github.ref_name }}
         draft: true
         prerelease: ${{ startsWith(github.ref_name, 'v0') || startsWith(github.ref_name, 'V0') || startsWith(github.ref_name, '0') }}
