@@ -1,4 +1,4 @@
-name: Java Hybrid Build (Maven + Ant) & Release
+name: Java Hybrid Build (Maven + Ant), Package & Release
 
 on:
   push:
