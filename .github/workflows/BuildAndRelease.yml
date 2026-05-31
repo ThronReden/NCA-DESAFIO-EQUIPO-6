@@ -53,7 +53,7 @@ jobs:
             -Dlibs.mysql-connector-j-9.7.0.classpath=lib/mysql-connector-j-9.7.0.jar \
             -Dmkdist.disabled=true \
             -Ddist.jar=dist/NCA-DESAFIO-EQUIPO-6.jar \
-            clean jar
+            clean default
         ls -al dist
         
     #  y empaquetar
