@@ -11,7 +11,7 @@ package logicajuegos;
  * 
  * @author jsanchez
  */
-public class Jugador{
+public abstract class Jugador{
     
     /**
      * El nombre del jugador.
