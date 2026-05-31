@@ -31,6 +31,7 @@ public class Tienda extends javax.swing.JFrame {
         aplicarIconoPerfilActivo();
         aplicarPersonajeTiendaActivo();
         actualizarPuntosTienda();
+        ((Difuminar) fondoCallejon).setOpacity(0.10f);
     }
 
     private void prepararCompraFondos() {
@@ -40,8 +41,6 @@ public class Tienda extends javax.swing.JFrame {
         prepararFondo(Negro4, 3, "Azul oscuro", 700, new Color(18, 16, 49), precioAzul);
         prepararFondo(Negro1, 4, "Blanco", 1000, new Color(235, 235, 230), precioBlanco);
     }
-    
-    
 
     private void prepararFondo(JLabel fondo, int idArticulo, String nombre, int precio, Color color, JLabel precioLabel) {
         String articulo = "fondo:" + nombre;
@@ -51,9 +50,7 @@ public class Tienda extends javax.swing.JFrame {
         if (articuloComprado(idArticulo)) {
             ocultarPrecio(precioLabel);
         }
-        
-          ((Difuminar) fondoCallejon).setOpacity(0.10f);
-          
+
         fondo.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 comprarFondo(idArticulo, nombre, precio, color, precioLabel);
@@ -203,12 +200,18 @@ public class Tienda extends javax.swing.JFrame {
     private void comprarPersonaje(int idArticulo, String nombre, int precio, String ruta, String pantalla, JLabel precioLabel) {
         if (articuloComprado(idArticulo) || comprarArticulo(idArticulo, nombre, precio)) {
             switch (pantalla) {
-                case "main" -> AppTheme.setPersonajeMainActivo(ruta);
-                case "tienda" -> AppTheme.setPersonajeTiendaActivo(ruta);
-                case "perfil" -> AppTheme.setPersonajePerfilActivo(ruta);
-                case "ppt" -> AppTheme.setPersonajePptActivo(ruta);
-                case "pptls" -> AppTheme.setPersonajePptlsActivo(ruta);
-                case "raya" -> AppTheme.setPersonajeRayaActivo(ruta);
+                case "main" ->
+                    AppTheme.setPersonajeMainActivo(ruta);
+                case "tienda" ->
+                    AppTheme.setPersonajeTiendaActivo(ruta);
+                case "perfil" ->
+                    AppTheme.setPersonajePerfilActivo(ruta);
+                case "ppt" ->
+                    AppTheme.setPersonajePptActivo(ruta);
+                case "pptls" ->
+                    AppTheme.setPersonajePptlsActivo(ruta);
+                case "raya" ->
+                    AppTheme.setPersonajeRayaActivo(ruta);
                 default -> {
                 }
             }
@@ -778,7 +781,7 @@ public class Tienda extends javax.swing.JFrame {
 
     private void jLabel7MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel7MouseEntered
         if (!Menu_Ampliado.isVisible()) {
-            Boton_Menu_Desplegable.setBackground(new Color(22,22,22));
+            Boton_Menu_Desplegable.setBackground(new Color(22, 22, 22));
 
         }
     }//GEN-LAST:event_jLabel7MouseEntered
@@ -795,11 +798,11 @@ public class Tienda extends javax.swing.JFrame {
     }//GEN-LAST:event_Boton_PerfilMouseClicked
 
     private void Boton_PerfilMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Boton_PerfilMouseEntered
-        Boton_Perfil.setBackground(new Color(45,45,45));
+        Boton_Perfil.setBackground(new Color(45, 45, 45));
     }//GEN-LAST:event_Boton_PerfilMouseEntered
 
     private void Boton_PerfilMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Boton_PerfilMouseExited
-        Boton_Perfil.setBackground(new Color(22,22,22));
+        Boton_Perfil.setBackground(new Color(22, 22, 22));
     }//GEN-LAST:event_Boton_PerfilMouseExited
 
     private void Boton_JuegoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Boton_JuegoMouseClicked
@@ -808,11 +811,11 @@ public class Tienda extends javax.swing.JFrame {
     }//GEN-LAST:event_Boton_JuegoMouseClicked
 
     private void Boton_JuegoMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Boton_JuegoMouseEntered
-        Boton_Juego.setBackground(new Color(45,45,45));
+        Boton_Juego.setBackground(new Color(45, 45, 45));
     }//GEN-LAST:event_Boton_JuegoMouseEntered
 
     private void Boton_JuegoMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Boton_JuegoMouseExited
-        Boton_Juego.setBackground(new Color(22,22,22));
+        Boton_Juego.setBackground(new Color(22, 22, 22));
     }//GEN-LAST:event_Boton_JuegoMouseExited
 
     private void jLabel18MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel18MouseClicked
