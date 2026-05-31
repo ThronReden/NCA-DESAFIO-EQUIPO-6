@@ -1,23 +1,27 @@
-name: Java Hybrid Build (Maven + Ant) & Release
+name: Java Hybrid Build (Maven + Ant), Package & Release
 
 on:
   push:
     tags:
-      - 'v*'
+      - 'v[0-9]+.[0-9]+.[0-9]+'
+      - 'V[0-9]+.[0-9]+.[0-9]+'
+      - '[0-9]+.[0-9]+.[0-9]+'
 
 permissions:
   contents: write
 
 jobs:
+
+  # BUILD ##############################################################################
   build:
     runs-on: ubuntu-latest
 
     steps:
     - name: Checkout del codigo
-      uses: actions/checkout@v4
+      uses: actions/checkout@v6
 
     - name: Configurar Java JDK
-      uses: actions/setup-java@v4
+      uses: actions/setup-java@v5
       with:
         java-version: '22'
         distribution: 'temurin'
@@ -28,35 +32,114 @@ jobs:
       run: |
         cd Materializacion/LogicaJuegos
         mvn clean package
+        ls -al target
 
     # Preparar dependencias:
-    - name: Mover JAR LogicaJuegos a lib
-      run: |
-        mkdir -p Materializacion/ApartadoVisual/lib
-        cp Materializacion/LogicaJuegos/target/*.jar Materializacion/ApartadoVisual/lib/
-
-        # nos bajamos el jdbc desde maven.org:
-        wget -O Materializacion/ApartadoVisual/lib/mysql-connector-j-9.7.0.jar https://repo1.maven.org/maven2/com/mysql/mysql-connector-j/9.7.0/mysql-connector-j-9.7.0.jar
-    
-    # Compilar y empaquetar (Ant):
-    - name: Compilar ApartadoVisual y empaquetar
+    - name: Empaquetar dependencias
       run: |
         cd Materializacion/ApartadoVisual
-        ant dist
+        mkdir -p lib
+        
+        # nos bajamos AbsoluteLayout y el jdbc desde maven.org:
+        wget -O lib/mysql-connector-j-9.7.0.jar https://repo1.maven.org/maven2/com/mysql/mysql-connector-j/9.7.0/mysql-connector-j-9.7.0.jar
+        wget -O lib/AbsoluteLayout.jar https://repo1.maven.org/maven2/org/netbeans/external/AbsoluteLayout/RELEASE140/AbsoluteLayout-RELEASE140.jar        
+
+    # Compilar (Ant):
+    - name: Compilar ApartadoVisual
+      run: |
+        cd Materializacion/ApartadoVisual
+        ant -Dplatforms.JDK_22.home=$JAVA_HOME \
+            -Dlibs.absolutelayout.classpath=lib/AbsoluteLayout.jar \
+            -Dlibs.mysql-connector-j-9.7.0.classpath=lib/mysql-connector-j-9.7.0.jar \
+            -Dmkdist.disabled=true \
+            -Ddist.jar=dist/NCA-DESAFIO-EQUIPO-6.jar \
+            clean jar
+        ls -al dist
+        
+    #  y empaquetar
+    - name: Empaquetar
+      run: |
+        cd Materializacion/ApartadoVisual
+        mkdir -p dist/lib
+        cp ../LogicaJuegos/target/*.jar dist/lib/
+        cp lib/*.jar dist/lib/
+        ls -al dist dist/lib
+
+    # Nos guardamos dist para el empaquetado
+    - name: Subir dist como artefacto
+      uses: actions/upload-artifact@v7
+      with:
+        name: dist
+        path: Materializacion/ApartadoVisual/dist/
 
     # Comprimir
     - name: Comprimir carpeta dist a ZIP
       run: |
-        cd Materializacion/ApartadoVisual
-        zip -r ../../DESAFIO-EQUIPO-6.zip dist/*
+        cd Materializacion/ApartadoVisual/dist
+        cp ../../../README.txt ./
+        zip -r ../../../DESAFIO-EQUIPO-6-$GITHUB_REF_NAME.zip *
 
     # Crear Release
     - name: Crear GitHub Release
-      uses: softprops/action-gh-release@v2
+      uses: softprops/action-gh-release@v3
       with:
-        files: DESAFIO-EQUIPO-6.zip
+        files: DESAFIO-EQUIPO-6-${{ github.ref_name }}.zip
         name: Release ${{ github.ref_name }}
         draft: true
-        prerelease: ${{ startsWith(github.ref_name, 'v0') }}
+        prerelease: ${{ startsWith(github.ref_name, 'v0') || startsWith(github.ref_name, 'V0') || startsWith(github.ref_name, '0') }}
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+  # PACKAGE ##############################################################################
+
+  package:
+    needs: build
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os: [ubuntu-latest, windows-latest]
+
+    steps:
+    # Nos bajamos la carpeta dist
+    - name: Descargar dist
+      uses: actions/download-artifact@v8
+      with:
+        name: dist
+        path: dist/
+
+    - name: Configurar Java JDK
+      uses: actions/setup-java@v5
+      with:
+        java-version: '22'
+        distribution: 'temurin'
+
+    - name: Generar instalador con jpackage
+      shell: bash
+      run: |
+        # Definimos el tipo de release:
+        if [[ "$RUNNER_OS" == "Windows" ]]; then
+          TYPE="exe"
+        else
+          TYPE="deb"
+        fi
+
+        # Aseguramos que la version tenga el formato adecuado:
+        VERSION=${GITHUB_REF_NAME#v}
+        VERSION=${VERSION#V}
+
+        # Empaquetamos:
+        jpackage --input dist/ \
+                  --dest instalador/ \
+                  --main-jar NCA-DESAFIO-EQUIPO-6.jar \
+                  --main-class pantallas.DesafioJuegoPPT3Ralla \
+                  --name "NCA-DESAFIO-EQUIPO-6-$GITHUB_REF_NAME" \
+                  --app-version "$VERSION" \
+                  --type "$TYPE"
+
+    - name: Subir instalador al Release
+      uses: softprops/action-gh-release@v3
+      with:
+        files: instalador/*
+        draft: true
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
