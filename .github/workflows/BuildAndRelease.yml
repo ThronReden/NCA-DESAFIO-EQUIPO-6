@@ -57,7 +57,7 @@ jobs:
         ls -al dist
         
     #  y empaquetar
-    - name: Empaquetar
+    - name: Construir paquete para el ZIP
       run: |
         cd Materializacion/ApartadoVisual
         mkdir -p dist/lib
@@ -65,12 +65,19 @@ jobs:
         cp lib/*.jar dist/lib/
         ls -al dist dist/lib
 
-    # Nos guardamos dist para el empaquetado
+    # Subimos dist para el empaquetado multiplataforma posterior
     - name: Subir dist como artefacto
       uses: actions/upload-artifact@v7
       with:
         name: dist
         path: Materializacion/ApartadoVisual/dist/
+
+    # Subimos tambien la carpeta recursos con los iconos para la app
+    - name: Subir recursos como artefacto
+      uses: actions/upload-artifact@v7
+      with:
+        name: recursos
+        path: recursos/
 
     # Comprimir
     - name: Comprimir carpeta dist a ZIP
@@ -100,11 +107,18 @@ jobs:
 
     steps:
     # Nos bajamos la carpeta dist
-    - name: Descargar dist
+    - name: Descargar artefacto dist
       uses: actions/download-artifact@v8
       with:
         name: dist
         path: dist/
+
+    # Y la carpeta recursos
+    - name: Descargar artefacto recursos
+      uses: actions/download-artifact@v8
+      with:
+        name: recursos
+        path: recursos/
 
     - name: Configurar Java JDK
       uses: actions/setup-java@v5
@@ -118,10 +132,12 @@ jobs:
         # Definimos el tipo de release:
         if [[ "$RUNNER_OS" == "Windows" ]]; then
           TYPE="exe"
-          EXTRA_OPTIONS="--win-shortcut --win-menu"
+          ICON="recursos/icon.ico"
+          OPCIONES_ESPECIFICAS_OS="--win-shortcut --win-menu"
         else
           TYPE="deb"
-          EXTRA_OPTIONS="--linux-shortcut --linux-menu-group Game"
+          ICON="recursos/icon.png"
+          OPCIONES_ESPECIFICAS_OS="--linux-shortcut --linux-menu-group Game"
         fi
 
         # Aseguramos que la version tenga el formato adecuado:
@@ -133,10 +149,11 @@ jobs:
                   --dest instalador/ \
                   --main-jar NCA-DESAFIO-EQUIPO-6.jar \
                   --main-class pantallas.DesafioJuegoPPT3Ralla \
-                  --name "NCA-DESAFIO-EQUIPO-6-$GITHUB_REF_NAME" \
+                  --name "NCA-DESAFIO-EQUIPO-6" \
                   --app-version "$VERSION" \
                   --type "$TYPE" \
-                  $EXTRA_OPTIONS
+                  --icon "$ICON" \
+                  $OPCIONES_ESPECIFICAS_OS
 
     - name: Subir instalador al Release
       uses: softprops/action-gh-release@v3
