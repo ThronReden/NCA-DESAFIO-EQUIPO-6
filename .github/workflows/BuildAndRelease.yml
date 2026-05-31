@@ -119,8 +119,10 @@ jobs:
         # Definimos el tipo de release:
         if [[ "$RUNNER_OS" == "Windows" ]]; then
           TYPE="exe"
+          EXTRA_OPTIONS="--win-shortcut --win-menu"
         else
           TYPE="deb"
+          EXTRA_OPTIONS="--linux-shortcut --linux-menu-group Game"
         fi
 
         # Aseguramos que la version tenga el formato adecuado:
@@ -134,7 +136,8 @@ jobs:
                   --main-class pantallas.DesafioJuegoPPT3Ralla \
                   --name "NCA-DESAFIO-EQUIPO-6-$GITHUB_REF_NAME" \
                   --app-version "$VERSION" \
-                  --type "$TYPE"
+                  --type "$TYPE" \
+                  $EXTRA_OPTIONS
 
     - name: Subir instalador al Release
       uses: softprops/action-gh-release@v3
