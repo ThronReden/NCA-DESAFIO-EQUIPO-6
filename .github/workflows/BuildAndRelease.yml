@@ -35,7 +35,7 @@ jobs:
         ls -al target
 
     # Preparar dependencias:
-    - name: Empaquetar dependencias
+    - name: Preparar dependencias
       run: |
         cd Materializacion/ApartadoVisual
         mkdir -p lib
@@ -57,7 +57,7 @@ jobs:
         ls -al dist
         
     #  y empaquetar
-    - name: Construir paquete para el ZIP
+    - name: Añadir dependencias a dist/lib
       run: |
         cd Materializacion/ApartadoVisual
         mkdir -p dist/lib
