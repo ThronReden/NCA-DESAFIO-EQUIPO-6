@@ -91,7 +91,6 @@ jobs:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
   # PACKAGE ##############################################################################
-
   package:
     needs: build
     runs-on: ${{ matrix.os }}
