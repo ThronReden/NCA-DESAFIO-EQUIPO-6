@@ -13,7 +13,6 @@ public class Inicio_Sesion extends javax.swing.JFrame {
 
     ImageIcon NoVer = new ImageIcon("src\\imagenes\\iconsNoVer.png");
     ImageIcon Ver = new ImageIcon("src\\imagenes\\iconsVer.png");
-    
 
     int xMouse, yMouse;
 
@@ -348,11 +347,13 @@ public class Inicio_Sesion extends javax.swing.JFrame {
     }//GEN-LAST:event_VisibilidadMouseClicked
 
     private void nombreMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_nombreMouseClicked
-       nombre.setText("");
+        nombre.setText("");
+        nombre.setForeground(black);
     }//GEN-LAST:event_nombreMouseClicked
 
     private void contraseñaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_contraseñaMouseClicked
         contraseña.setText("");
+        contraseña.setForeground(black);
     }//GEN-LAST:event_contraseñaMouseClicked
 
     private void iniciarSesion() {

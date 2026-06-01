@@ -351,10 +351,12 @@ public class Registro extends javax.swing.JFrame {
 
     private void nombreMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_nombreMouseClicked
         nombre.setText("");
+        nombre.setForeground(black);
     }//GEN-LAST:event_nombreMouseClicked
 
     private void correoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_correoMouseClicked
         correo.setText("");
+        correo.setForeground(black);
     }//GEN-LAST:event_correoMouseClicked
 
     private void VisibilidadMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_VisibilidadMouseClicked
@@ -369,6 +371,7 @@ public class Registro extends javax.swing.JFrame {
 
     private void contraseñaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_contraseñaMouseClicked
         contraseña.setText("");
+        contraseña.setForeground(black);
     }//GEN-LAST:event_contraseñaMouseClicked
 
     private void registrarUsuario() {

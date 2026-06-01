@@ -52,7 +52,7 @@ public class PPT extends javax.swing.JFrame {
         setNombresJugadores();
         mostrarPuntos();
         contador.setText("-");
-        continuarTurno.setText("Empezar Partida");
+        textoInit.setText("Empezar Partida");
 //        iniciarJuego();
     }
 
@@ -132,7 +132,6 @@ public class PPT extends javax.swing.JFrame {
         jLabel17 = new javax.swing.JLabel();
         jLabel18 = new javax.swing.JLabel();
         Panel_PPT = new javax.swing.JPanel();
-        continuarTurno = new javax.swing.JButton();
         BotonPiedra = new javax.swing.JButton();
         BotonPapel = new javax.swing.JButton();
         BotonTijera = new javax.swing.JButton();
@@ -160,6 +159,12 @@ public class PPT extends javax.swing.JFrame {
         r3 = new javax.swing.JLabel();
         marc_jug = new javax.swing.JLabel();
         contador = new javax.swing.JLabel();
+        continuarTurno = new javax.swing.JPanel();
+        textoInit = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
+        jLabel6 = new javax.swing.JLabel();
+        jLabel11 = new javax.swing.JLabel();
+        jLabel12 = new javax.swing.JLabel();
         fondo = new javax.swing.JLabel();
         gon = new Difuminar();
 
@@ -243,14 +248,6 @@ public class PPT extends javax.swing.JFrame {
         Panel_PPT.setMinimumSize(new java.awt.Dimension(1920, 1090));
         Panel_PPT.setPreferredSize(new java.awt.Dimension(1920, 1090));
         Panel_PPT.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        continuarTurno.setText("Continuar Turno");
-        continuarTurno.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                continuarTurnoActionPerformed(evt);
-            }
-        });
-        Panel_PPT.add(continuarTurno, new org.netbeans.lib.awtextra.AbsoluteConstraints(860, 710, 280, 100));
 
         BotonPiedra.setBorderPainted(false);
         BotonPiedra.setContentAreaFilled(false);
@@ -438,6 +435,39 @@ public class PPT extends javax.swing.JFrame {
         contador.setText("{contador}");
         Panel_PPT.add(contador, new org.netbeans.lib.awtextra.AbsoluteConstraints(900, 920, 210, 90));
 
+        continuarTurno.setBackground(new java.awt.Color(0, 102, 102));
+        continuarTurno.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                continuarTurnoMouseClicked(evt);
+            }
+        });
+        continuarTurno.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        textoInit.setFont(new java.awt.Font("Dubai", 1, 18)); // NOI18N
+        textoInit.setForeground(new java.awt.Color(0, 204, 204));
+        textoInit.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        textoInit.setText("EMPEZAR PARTIDA");
+        textoInit.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        continuarTurno.add(textoInit, new org.netbeans.lib.awtextra.AbsoluteConstraints(8, 12, 250, 90));
+
+        jLabel5.setBackground(new java.awt.Color(51, 51, 51));
+        jLabel5.setOpaque(true);
+        continuarTurno.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 100, 270, 10));
+
+        jLabel6.setBackground(new java.awt.Color(51, 51, 51));
+        jLabel6.setOpaque(true);
+        continuarTurno.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 270, 10));
+
+        jLabel11.setBackground(new java.awt.Color(51, 51, 51));
+        jLabel11.setOpaque(true);
+        continuarTurno.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 0, 10, 110));
+
+        jLabel12.setBackground(new java.awt.Color(51, 51, 51));
+        jLabel12.setOpaque(true);
+        continuarTurno.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 10, 10, 100));
+
+        Panel_PPT.add(continuarTurno, new org.netbeans.lib.awtextra.AbsoluteConstraints(860, 680, 270, 110));
+
         fondo.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         fondo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/fondoPPT.png"))); // NOI18N
         Panel_PPT.add(fondo, new org.netbeans.lib.awtextra.AbsoluteConstraints(-10, -80, 2030, 1230));
@@ -482,17 +512,6 @@ public class PPT extends javax.swing.JFrame {
         hacerJugada(JugadaPPT.PIEDRA);
     }//GEN-LAST:event_BotonPiedraActionPerformed
 
-    private void continuarTurnoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_continuarTurnoActionPerformed
-        if (!P.isPartidaEnCurso() && P.devolverResultado().isEmpty()) {
-            iniciarJuego();
-            continuarTurno.setText("Siguiente Turno");
-        } else {
-            siguienteTurno();
-        }
-        continuarTurno.setEnabled(false);
-        continuarTurno.setVisible(false);
-    }//GEN-LAST:event_continuarTurnoActionPerformed
-
     private void BotonPapelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonPapelActionPerformed
         hacerJugada(JugadaPPT.PAPEL);
     }//GEN-LAST:event_BotonPapelActionPerformed
@@ -505,7 +524,7 @@ public class PPT extends javax.swing.JFrame {
         P = PartidaPPTUI.crearPartida(J, 3, this);
         resetEstadisticasPartida();
         setNombresJugadores();
-        continuarTurno.setText("Empezar Partida");
+        textoInit.setText("Empezar Partida");
         continuarTurno.setVisible(true);
         continuarTurno.setEnabled(true);
         resetResultados();
@@ -519,6 +538,17 @@ public class PPT extends javax.swing.JFrame {
         this.dispose();
         jDialog1.setVisible(false);
     }//GEN-LAST:event_jLabel14MouseClicked
+
+    private void continuarTurnoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_continuarTurnoMouseClicked
+        if (!P.isPartidaEnCurso() && P.devolverResultado().isEmpty()) {
+            iniciarJuego();
+            textoInit.setText("Siguiente Turno");
+        } else {
+            siguienteTurno();
+        }
+        continuarTurno.setEnabled(false);
+        continuarTurno.setVisible(false);        // TODO add your handling code here:
+    }//GEN-LAST:event_continuarTurnoMouseClicked
 
     private void iniciarJuego() {
         new Thread(() -> {
@@ -792,6 +822,11 @@ public class PPT extends javax.swing.JFrame {
         jDialog1.setVisible(true);
     }
 
+    public void mostrarBotonContinuar() {
+        continuarTurno.setEnabled(true);
+        continuarTurno.setVisible(true);
+    }
+
     /**
      * @param args the command line arguments
      */
@@ -837,7 +872,7 @@ public class PPT extends javax.swing.JFrame {
     private javax.swing.JLabel RESULTADO;
     private javax.swing.JPanel Resultado;
     private javax.swing.JLabel contador;
-    protected javax.swing.JButton continuarTurno;
+    private javax.swing.JPanel continuarTurno;
     private javax.swing.JLabel fondo;
     private javax.swing.JLabel gon;
     private javax.swing.JLabel iconoBot;
@@ -845,6 +880,8 @@ public class PPT extends javax.swing.JFrame {
     private javax.swing.JDialog jDialog1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel11;
+    private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel16;
@@ -853,6 +890,8 @@ public class PPT extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
@@ -869,6 +908,7 @@ public class PPT extends javax.swing.JFrame {
     private javax.swing.JLabel r3;
     private javax.swing.JLabel resultadoBot;
     private javax.swing.JLabel resultadoUser;
+    private javax.swing.JLabel textoInit;
     private javax.swing.JLabel tijera;
     private javax.swing.JLabel tijeraBot;
     // End of variables declaration//GEN-END:variables
