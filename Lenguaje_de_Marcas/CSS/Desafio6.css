@@ -612,6 +612,71 @@ header .container-fluid {
   display: block;
 }
 
+
+.contenido-grupo {
+  display: none;
+  background: #12121e;
+  border: 1px solid rgba(0,245,212,0.2);
+  border-radius: 12px;
+  padding: 40px;
+  animation: fade-in 0.4s ease forwards;
+}
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.contenido-grupo img {
+  width: 100% ;
+  height: 530px;
+  border: 3px solid #00f5d4;
+  box-shadow: 0 0 20px rgba(0,245,212,0.4);
+  margin-bottom: 20px;
+  display: block;
+}
+
+.contenido-grupo h2 {
+  font-family: 'Orbitron';
+  font-size: 18px;
+  color: #00f5d4;
+  margin-bottom: 14px;
+}
+
+.contenido-grupo p,
+.contenido-grupo li {
+  color: #8888aa;
+  font-size: 16px;
+}
+
+.contenido-grupo ul {
+  margin-top: 12px;
+  padding-left: 20px;
+}
+
+.contenido-grupo ul li {
+  margin-bottom: 8px;
+}
+
+.contenido-grupo ul li::marker {
+  color: #00f5d4;
+}
+
+.contenido-grupo a {
+  color: #00f5d4;
+  text-decoration: none;
+}
+
+.contenido-grupo a:hover {
+  text-shadow: 0 0 20px rgba(0,245,212,0.4);
+}
+
 @media (max-width: 991.98px) {
   .botones {
     display: grid;
@@ -619,7 +684,7 @@ header .container-fluid {
     gap: 12px;
   }
 }
- 
+
  
 /* =====================================================
    PÁGINA: Contacta.html — Formulario de contacto

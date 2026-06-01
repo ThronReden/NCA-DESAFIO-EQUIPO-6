@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<Empresa>
+    <Persona id="1">
+        <nombre>Raul</nombre>
+        <edad>19</edad>
+        <correo>mv.raul06@gmail.com</correo>
+    </Persona>
+    <Persona id="2">
+        <nombre>Jorge</nombre>
+        <edad>20</edad>
+        <correo>JorgeFerrandolafarga@lasallesantoangel.es</correo>
+    </Persona>
+    <Persona id="3">
+        <nombre>Joseluis</nombre>
+        <edad>22</edad>
+        <correo>Joseluyeah@lasallesantoangel.es</correo>
+    </Persona>
+    <Persona id="4">
+        <nombre>Tibu.shark</nombre>
+        <edad>19</edad>
+        <correo>superraulitoman@gmail.com</correo>
+    </Persona>
+</Empresa>
