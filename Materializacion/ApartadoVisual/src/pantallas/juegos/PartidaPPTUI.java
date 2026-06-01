@@ -33,9 +33,8 @@ public class PartidaPPTUI extends PartidaPPT {
     }
     
     @Override
-    protected void esperarSiguienteTurno(){
-        Pantalla.continuarTurno.setEnabled(true);
-        Pantalla.continuarTurno.setVisible(true);
+    protected void esperarSiguienteTurno() {
+        Pantalla.mostrarBotonContinuar();
     }
     
     @Override

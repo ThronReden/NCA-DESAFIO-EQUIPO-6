@@ -478,6 +478,7 @@ public class PPTLS extends javax.swing.JFrame {
         textoInit.setForeground(new java.awt.Color(0, 204, 204));
         textoInit.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         textoInit.setText("EMPEZAR PARTIDA");
+        textoInit.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         continuarTurno.add(textoInit, new org.netbeans.lib.awtextra.AbsoluteConstraints(8, 12, 250, 90));
 
         jLabel2.setBackground(new java.awt.Color(51, 51, 51));
