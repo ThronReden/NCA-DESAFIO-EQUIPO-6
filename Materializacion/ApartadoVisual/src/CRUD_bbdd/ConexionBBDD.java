@@ -8,9 +8,9 @@ import java.util.logging.Logger;
 
 public class ConexionBBDD {
 
-    private static final String url = "jdbc:mysql://localhost:3307/desafio_grupo6";
+    private static final String url = "jdbc:mysql://localhost:3306/desafio_grupo6";
     private static final String user = "root";
-    private static final String password = "";
+    private static final String password = "0000";
 
     public static Connection conexion() {
         Connection con = null;
