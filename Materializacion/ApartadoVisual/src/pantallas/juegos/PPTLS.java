@@ -519,7 +519,7 @@ public class PPTLS extends javax.swing.JFrame {
     }//GEN-LAST:event_tijeraMouseEntered
 
     private void tijeraMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tijeraMouseExited
-
+        tijera.setBorder(null);
     }//GEN-LAST:event_tijeraMouseExited
 
     private void piedraMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_piedraMouseEntered
@@ -528,7 +528,7 @@ public class PPTLS extends javax.swing.JFrame {
     }//GEN-LAST:event_piedraMouseEntered
 
     private void piedraMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_piedraMouseExited
-
+        piedra.setBorder(null);
     }//GEN-LAST:event_piedraMouseExited
 
     private void papelMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_papelMouseEntered
@@ -537,7 +537,7 @@ public class PPTLS extends javax.swing.JFrame {
     }//GEN-LAST:event_papelMouseEntered
 
     private void papelMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_papelMouseExited
-
+        papel.setBorder(null);
     }//GEN-LAST:event_papelMouseExited
 
     private void lagartoMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lagartoMouseEntered
@@ -546,7 +546,7 @@ public class PPTLS extends javax.swing.JFrame {
     }//GEN-LAST:event_lagartoMouseEntered
 
     private void lagartoMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lagartoMouseExited
-
+        lagarto.setBorder(null);
     }//GEN-LAST:event_lagartoMouseExited
 
     private void spockMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_spockMouseEntered
@@ -555,7 +555,7 @@ public class PPTLS extends javax.swing.JFrame {
     }//GEN-LAST:event_spockMouseEntered
 
     private void spockMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_spockMouseExited
-
+        spock.setBorder(null);
     }//GEN-LAST:event_spockMouseExited
 
     private void jLabel10MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel10MouseClicked
