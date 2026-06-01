@@ -492,16 +492,15 @@ header .container-fluid {
 /* =====================================================
    PÁGINA: QuienesSomos.html — Fichas del equipo
    ===================================================== */
-
 .equipo-grid {
   width: 100%;
   padding: 20px;
 }
- 
+
 .equipo-grid input {
   display: none;
 }
- 
+
 .botones {
   display: flex;
   flex-wrap: wrap;
@@ -509,7 +508,7 @@ header .container-fluid {
   justify-content: center;
   margin-bottom: 36px;
 }
- 
+
 .botones label {
   font-family: 'Orbitron';
   font-size: 11px;
@@ -523,12 +522,12 @@ header .container-fluid {
   cursor: pointer;
   transition: all 0.25s ease;
 }
- 
+
 .botones label:hover {
   border-color: #00f5d4;
   color: #00f5d4;
 }
- 
+
 #raul:checked ~ .botones label[for="raul"],
 #salvador:checked ~ .botones label[for="salvador"],
 #sanchez:checked ~ .botones label[for="sanchez"],
@@ -538,7 +537,7 @@ header .container-fluid {
   border-color: #00f5d4;
   box-shadow: 0 0 20px rgba(0,245,212,0.4);
 }
- 
+
 .contenido {
   display: none;
   background: #12121e;
@@ -547,7 +546,7 @@ header .container-fluid {
   padding: 40px;
   animation: fade-in 0.4s ease forwards;
 }
- 
+
 @keyframes fade-in {
   from {
     opacity: 0;
@@ -558,7 +557,7 @@ header .container-fluid {
     transform: translateY(0);
   }
 }
- 
+
 .contenido img {
   width: 130px;
   height: 130px;
@@ -569,50 +568,49 @@ header .container-fluid {
   margin-bottom: 20px;
   display: block;
 }
- 
+
 .contenido h2 {
   font-family: 'Orbitron';
   font-size: 18px;
   color: #00f5d4;
   margin-bottom: 14px;
 }
- 
+
 .contenido p,
 .contenido li {
   color: #8888aa;
   font-size: 16px;
 }
- 
+
 .contenido ul {
   margin-top: 12px;
   padding-left: 20px;
 }
- 
+
 .contenido ul li {
   margin-bottom: 8px;
 }
- 
+
 .contenido ul li::marker {
   color: #00f5d4;
 }
- 
+
 .contenido a {
   color: #00f5d4;
   text-decoration: none;
 }
- 
+
 .contenido a:hover {
   text-shadow: 0 0 20px rgba(0,245,212,0.4);
 }
- 
+
 #raul:checked ~ .ficha-raul,
 #salvador:checked ~ .ficha-salvador,
-#sanchez:checked ~ .ficha-sanchez,
-#grupo:checked ~ .ficha-grupo {
+#sanchez:checked ~ .ficha-sanchez {
   display: block;
 }
 
-
+/* Grupo separado porque usa contenido-grupo */
 .contenido-grupo {
   display: none;
   background: #12121e;
@@ -622,20 +620,15 @@ header .container-fluid {
   animation: fade-in 0.4s ease forwards;
 }
 
-@keyframes fade-in {
-  from {
-    opacity: 0;
-    transform: translateY(10px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
+#grupo:checked ~ .ficha-grupo {
+  display: block;
 }
 
 .contenido-grupo img {
-  width: 100% ;
+  width: 100%;
   height: 530px;
+  object-fit: cover;
+  border-radius: 12px;
   border: 3px solid #00f5d4;
   box-shadow: 0 0 20px rgba(0,245,212,0.4);
   margin-bottom: 20px;
@@ -684,7 +677,6 @@ header .container-fluid {
     gap: 12px;
   }
 }
-
  
 /* =====================================================
    PÁGINA: Contacta.html — Formulario de contacto
